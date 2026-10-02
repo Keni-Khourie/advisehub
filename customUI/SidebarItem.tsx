@@ -11,8 +11,7 @@ const SidebarItem = ({text, link}:Props) => {
     const isActive = usePathname().includes(link);
   return (
     <Link href={link} aria-disabled={isActive} className="flex justify-center">
-        <div className={cn("text-center")}></div>
-
+        <div className={cn("text-center cursor-pointer", isActive?"text-ahGreen":"text-ahTextBlack")}>{text}</div>
     </Link>
   )
 }

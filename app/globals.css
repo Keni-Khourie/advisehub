@@ -49,6 +49,9 @@
   --radius-4xl: calc(var(--radius) * 2.6);
   --color-ahGreen:var(--ahGreen);
   --color-ahGrey:var(--ahGrey);
+  --color-ahDarkGrey:var(--ahDarkGrey);
+  --color-ahTextBlack:var(--ahTextBlack);
+  --color-ahTextGrey:var(--ahTextGrey);
 }
 
 :root {
@@ -86,6 +89,9 @@
   --sidebar-ring: oklch(0.708 0 0);
   --ahGreen:oklch(0.7097 0.1166 191.99);
   --ahGrey:oklch(0.9702 0 0);
+  --ahDarkGrey:oklch(0.4313 0 0);
+  --ahTextBlack:oklch(0.2603 0 0);
+  --ahTextGrey:oklch(0.5521 0 0);
 }
 
 .dark {
