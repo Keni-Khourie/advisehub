@@ -2,11 +2,7 @@ export interface SidebarItemDetails{
     text:string;
     link:string;
 }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const user:any = {}
-export const getSidebarItemsBasedOnUser = ()=>{
-  const sidebarItems:SidebarItemDetails[] = user?.role=="STUDENT"?studentSidebarItems:user?.role==="ADVISOR"?advisorSidebarItems:[]
-  return sidebarItems}
+
 export const studentSidebarItems: SidebarItemDetails[] =[
     {
         text:"Dashboard",

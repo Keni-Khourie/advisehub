@@ -10,8 +10,8 @@ interface Props{
 const SidebarItem = ({text, link}:Props) => {
     const isActive = usePathname().includes(link);
   return (
-    <Link href={link} aria-disabled={isActive} className="flex justify-center">
-        <div className={cn("text-center cursor-pointer", isActive?"text-ahGreen":"text-ahTextBlack")}>{text}</div>
+    <Link href={link} aria-disabled={isActive} className="">
+        <div className={cn("text-start cursor-pointer font-semibold text-sm", isActive?"text-ahGreen":"text-ahTextBlack hover:text-ahGreen")}>{text}</div>
     </Link>
   )
 }
