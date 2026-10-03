@@ -17,7 +17,7 @@ const user:any = {
   return sidebarItems}
   
   return (
-    <div className={cn("bg-ahGrey w-48 h-screen justify-center hidden md:inline py-4 px-4")}>
+    <div className={cn("bg-ahGrey w-60 h-screen justify-center hidden md:inline py-4 px-4")}>
         <div className={cn("flex flex-col justify-between h-full")}>
             <div className="flex flex-col gap-y-8">
                 <div className="">

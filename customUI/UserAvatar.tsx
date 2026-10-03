@@ -23,7 +23,7 @@ const UserAvatar = () => {
         </Avatar>
 
         <div>
-            <p className="text-ahTextBlack font-semibold">{`${user.firstName} ${user.lastName}`}</p>
+            <p className="text-ahTextBlack font-semibold text-wrap">{`${user.firstName} ${user.lastName}`}</p>
             <p className="text-ahTextGrey  text-sm">{user.role==="STUDENT"?"Student":user.role==="ADVISOR"?"Advisor":user.role==="ADMIN"?"Admin":""}</p>
         </div>
     </div>

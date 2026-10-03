@@ -8,7 +8,7 @@ const PagesLayout = ({ children }: Props) => {
   return (
     <div className="font-inter w-full flex">
         <Sidebar/>
-        <div className="py-4">{children}</div>
+        <div className="py-4 px-3 w-full ">{children}</div>
     </div>
   )
 }
