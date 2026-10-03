@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
-
+import { Toaster } from "@/components/ui/toast";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -13,10 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 const inter = Inter({
-  variable:"--font-inter",
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight:"400"
-})
+  weight: "400",
+});
 
 export const metadata: Metadata = {
   title: "AdviseHub",
@@ -29,7 +29,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }
