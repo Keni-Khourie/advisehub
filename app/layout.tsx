@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toast";
+import { AuthWrapper } from "@/redux/AuthWrapper";
+import StoreProvider from "@/redux/StoreProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -30,8 +32,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <StoreProvider>
+          <AuthWrapper>
         {children}
-        <Toaster />
+          </AuthWrapper>
+        </StoreProvider>
+        
+        <Toaster/>
       </body>
     </html>
   );
