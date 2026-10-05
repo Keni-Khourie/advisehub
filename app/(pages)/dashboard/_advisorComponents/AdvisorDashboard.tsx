@@ -1,8 +1,10 @@
-import React from 'react'
+import PageHeader from '@/customUI/PageHeader';
 
 const AdvisorDashboard = () => {
   return (
-    <div>AdvisorDashboard</div>
+    <div>
+      <PageHeader headerText="Advisor Dashboard" subtitle="Today's work in one place"/>
+    </div>
   )
 }
 

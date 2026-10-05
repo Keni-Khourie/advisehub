@@ -1,8 +1,11 @@
-import React from 'react'
+import PageHeader from '@/customUI/PageHeader';
+
 
 const StudentDashboard = () => {
   return (
-    <div>StudentDashboard</div>
+    <div>
+     <PageHeader headerText="Student Dashboard" subtitle="Choose what you need today"/>
+    </div>
   )
 }
 
