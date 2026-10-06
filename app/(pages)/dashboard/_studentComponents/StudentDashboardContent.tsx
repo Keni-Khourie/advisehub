@@ -2,7 +2,7 @@ import NextAppointmentCard from './NextAppointmentCard';
 import ScheduleAppointmentButton from './ScheduleAppointmentButton';
 import DegreeProgressCard from './DegreeProgressCard';
 import SectionHeader from '@/customUI/SectionHeader';
-import { getDayPeriod } from '@/lib/utilityFunctions';
+import { getDayPeriod } from '@/lib/utilityDateFunctions';
 
 const StudentDashboardContent = () => {
   return (
