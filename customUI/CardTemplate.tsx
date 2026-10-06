@@ -13,9 +13,8 @@ const CardTemplate = () => {
   return (
     <Card className={cn("")}>
       <CardHeader className="">
-        <CardTitle className="">
-          <CardDescription className=""></CardDescription>
-        </CardTitle>
+        <CardTitle className=""></CardTitle>
+        <CardDescription className=""></CardDescription>
       </CardHeader>
       <CardContent className=""></CardContent>
       <CardFooter className=""></CardFooter>

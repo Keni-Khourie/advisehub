@@ -42,6 +42,7 @@ export interface Student{
 export interface Advisor{
   id:number;
   userId:number;
+  office:string;
   specialization:Specialization[]
 }
 export interface Grade{
