@@ -2,21 +2,28 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-const DegreeCreditsCard = () => {
+interface Props{
+  title:string;
+  subtitle:string;
+  credits:number;
+}
+
+const DegreeCreditsCard = ({title, subtitle, credits}:Props) => {
   return (
-     <Card className={cn("")}>
+     <Card className={cn("border py-2 px-3 rounded-sm w-1/2")}>
       <CardHeader className="">
-        <CardTitle className=""></CardTitle>
-        <CardDescription className=""></CardDescription>
+        <CardTitle className="font-semibold text-lg">{title}</CardTitle>
+        <CardDescription className="text-sm">{subtitle}</CardDescription>
       </CardHeader>
-      <CardContent className=""></CardContent>
-      <CardFooter className=""></CardFooter>
+      <CardContent className="pb-10">
+        <p className="font-bold text-3xl">{`${credits} credits`}</p>
+      </CardContent>
+
     </Card>
   )
 }

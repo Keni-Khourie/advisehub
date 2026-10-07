@@ -53,6 +53,7 @@
   --color-ahDarkGrey:var(--ahDarkGrey);
   --color-ahTextBlack:var(--ahTextBlack);
   --color-ahTextGrey:var(--ahTextGrey);
+  --color-ahProgressGrey:var(--ahProgressGrey);
 }
 
 :root {
@@ -94,6 +95,7 @@
   --ahDarkGrey:oklch(0.4313 0 0);
   --ahTextBlack:oklch(0.2603 0 0);
   --ahTextGrey:oklch(0.5521 0 0);
+  --ahProgressGrey:oklch(0.9288 0.0126 255.51);
 }
 
 .dark {
