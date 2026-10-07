@@ -1,20 +1,60 @@
 "use client"
 import {useContext} from 'react'
 import { StudentAppointmentContext } from './StudentAppointments';
-import { StudentAppointmentSection, StudentAppointmentView } from '@/types';
-import { studentAppointmentHeadings } from '@/constants';
+import { StudentAppointmentSection, StudentAppointmentView,  } from '@/types';
+import {  studentAppointmentSections, studentAppointmentComponentDetails } from '@/constants';
+import PageHeader from '@/customUI/PageHeader';
+import StudentAppointmentLanding from "./StudentAppointmentLanding"
+import AdvisorSelection from "./AdvisorSelection"
+import AppointmentConfirmationLoading from "./AppointmentConfirmationLoading"
+import AppointmentConfirmationSuccess from "./AppointmentConfirmationSuccess"
+import AppointmentReview from "./AppointmentReview"
+import DateSelection from "./DateSelection"
+import DateSelectionConflict from "./DateSelectionConflict"
+import FindingAppointment from "./FindingAppointment"
+import CreatingAppointment from "./CreatingAppointment"
+import SectionBadge from "./SectionBadge"
+
 
 const StudentAppointmentContent = () => {
     const contextData = useContext(StudentAppointmentContext)
-    console.log(contextData);
+    
+    //const componentDetails = getComponentDetailsByView(contextData.componentDetails.view)
   return (
     <div>
+       
+        
+          {<PageHeader headerText={contextData.componentDetails.header} subtitle={contextData.componentDetails.subtitle} additionalClass="mb-10"/>}
 
+          <div className="flex gap-x-3 mb-10">
+            {studentAppointmentSections.map((section, index)=><SectionBadge key={index} text={section}/>)}
+          </div>
+
+        {
+            contextData.componentDetails &&
+            (
+                contextData.componentDetails.view==="StudentAppointmentLanding"?<StudentAppointmentLanding/>:
+                contextData.componentDetails.view==="DateSelection"?<DateSelection/>:
+                contextData.componentDetails.view==="AdvisorSelection"?<AdvisorSelection/>:
+                contextData.componentDetails.view==="AppointmentReview"?<AppointmentReview/>:
+                contextData.componentDetails.view==="AppointmentConfirmationSuccess"?<AppointmentConfirmationSuccess/>:
+                contextData.componentDetails.view==="DateSelectionConflict"?<DateSelectionConflict/>:
+                //the ones below will most likely be removed
+                contextData.componentDetails.view==="AppointmentConfirmationLoading"?<AppointmentConfirmationLoading/>:
+                contextData.componentDetails.view==="CreatingAppointment"?<CreatingAppointment/>:
+                contextData.componentDetails.view==="FindingAppointment"?<FindingAppointment/>:
+                <></>
+                
+            )
+        }
+     
     </div>
-  )
+  ) 
 }
 
 export default StudentAppointmentContent
+
+
 
 /*
 Note to self:

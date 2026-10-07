@@ -17,7 +17,12 @@ export interface SelectItemData {
 export type StudentAppointmentView = "AdvisorSelection"|"AppointmentConfirmationLoading"|"AppointmentConfirmationSuccess"|"AppointmentReview"|"DateSelection"|"DateSelectionConflict"|"StudentAppointmentLanding"|"FindingAppointment"| "CreatingAppointment"
 export type StudentAppointmentSection = "Details"|"Time"|"Review"|"none"
 
-
+export interface StudentAppointmentComponentDetail{
+    header:string;
+    subtitle?:string;
+    view:StudentAppointmentView,
+    section:StudentAppointmentSection,
+}
 
 //Dummy Data
 export interface Degree{

@@ -5,7 +5,7 @@ const DegreeProgressPage = () => {
   //fetch students degree progress
   return (
     <div className="w-full">
-      <PageHeader headerText="Degree Progress" subtitle="Completed and Remaining Credits" additionalClass="mb-20"/>
+      <PageHeader headerText="Degree Progress" subtitle="Completed and Remaining Credits" additionalClass=""/>
       <DegreeProgressContent/>
     </div>
   )

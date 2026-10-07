@@ -5,7 +5,7 @@ import StudentDashboardContent from './StudentDashboardContent';
 const StudentDashboard = () => {
   return (
     <div>
-     <PageHeader headerText="Student Dashboard" subtitle="Choose what you need today" additionalClass="mb-10"/>
+     <PageHeader headerText="Student Dashboard" subtitle="Choose what you need today" additionalClass=""/>
      <StudentDashboardContent/>
     </div>
   )

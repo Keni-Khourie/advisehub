@@ -1,15 +1,11 @@
-import { StudentAppointmentView, StudentAppointmentSection } from "./types";
+import { StudentAppointmentView, StudentAppointmentSection, StudentAppointmentComponentDetail } from "./types";
 
 export type UserRole = "STUDENT" | "ADVISOR" | "ADMIN";
 
 
-export interface StudentAppointmentHeading{
-    header:string;
-    subtitle?:string;
-    view:StudentAppointmentView,
-    section:StudentAppointmentSection,
-}
-export const studentAppointmentHeadings:StudentAppointmentHeading[] = [
+
+export const studentAppointmentSections:StudentAppointmentSection[] = ["Details","Time", "Review", ]
+export const studentAppointmentComponentDetails:StudentAppointmentComponentDetail[] = [
     {
         header:"Schedule an Appointment",
         subtitle:"Begin the guided booking",

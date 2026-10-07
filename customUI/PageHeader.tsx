@@ -9,7 +9,7 @@ interface Props{
 
 const PageHeader = ({headerText, subtitle, noInfo, additionalClass}:Props) => {
   return (
-    <div className={cn("w-full flex justify-between items-center ", additionalClass)}>
+    <div className={cn("w-full flex justify-between items-center mb-20", additionalClass)}>
         <div className="flex flex-col gap-x-2">
             <h2 className="text-ahTextBlack text-4xl font-bold">{headerText}</h2>
             {
