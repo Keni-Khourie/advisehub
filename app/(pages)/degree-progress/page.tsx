@@ -1,8 +1,11 @@
+import PageHeader from '@/customUI/PageHeader';
 import React from 'react'
 
 const DegreeProgressPage = () => {
   return (
-    <div>DegreeProgressPage</div>
+    <div className="w-full">
+      <PageHeader headerText="Degree Progress" subtitle="Completed and Remaining Credits"/>
+    </div>
   )
 }
 
