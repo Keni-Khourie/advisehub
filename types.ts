@@ -14,6 +14,10 @@ export interface SelectItemData {
   value: string;
 }
 
+export type StudentAppointmentView = "AdvisorSelection"|"AppointmentConfirmationLoading"|"AppointmentConfirmationSuccess"|"AppointmentReview"|"DateSelection"|"DateSelectionConflict"|"StudentAppointmentLanding"
+
+
+
 //Dummy Data
 export interface Degree{
   id:number;
