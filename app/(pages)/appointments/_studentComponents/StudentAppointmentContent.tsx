@@ -19,4 +19,5 @@ export default StudentAppointmentContent
 /*
 Note to self:
 set view and section badge via context
+for the context, set the advisor to an Advisor object. This way in the review section, you can show the advisor's name and office. Also final form, you populate it with the advisor's Id and include the optional note which would be a string.
  */
