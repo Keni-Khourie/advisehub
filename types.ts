@@ -14,7 +14,8 @@ export interface SelectItemData {
   value: string;
 }
 
-export type StudentAppointmentView = "AdvisorSelection"|"AppointmentConfirmationLoading"|"AppointmentConfirmationSuccess"|"AppointmentReview"|"DateSelection"|"DateSelectionConflict"|"StudentAppointmentLanding"
+export type StudentAppointmentView = "AdvisorSelection"|"AppointmentConfirmationLoading"|"AppointmentConfirmationSuccess"|"AppointmentReview"|"DateSelection"|"DateSelectionConflict"|"StudentAppointmentLanding"|"FindingAppointment"| "CreatingAppointment"
+export type StudentAppointmentSection = "Details"|"Time"|"Review"|"none"
 
 
 
