@@ -10,7 +10,7 @@ const Sidebar = () => {
     //fetch user from store
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const user:any = {
-    role:"ADVISOR"
+    role:"STUDENT"
 }
  const getSidebarItemsBasedOnUser = ()=>{
   const sidebarItems:SidebarItemDetails[] = user?.role=="STUDENT"?studentSidebarItems:user?.role==="ADVISOR"?advisorSidebarItems:[]
