@@ -7,7 +7,7 @@ import { getDayPeriod } from '@/lib/utilityDateFunctions';
 const StudentDashboardContent = () => {
   return (
     <div className="w-full">
-      <SectionHeader headerText={`Good ${getDayPeriod()}, ${"Alex"}`} additionalClass="mb-5"/>
+      <SectionHeader headerText={`Good ${getDayPeriod()}, ${"Alex"}`} additionalClass=""/>
         <div className="flex gap-x-5">
             <div className="w-[60%]">
               <div className="w-full flex flex-col justify-center gap-y-5">

@@ -18,7 +18,7 @@ const PageHeader = ({headerText, subtitle, noInfo, additionalClass}:Props) => {
             }
         </div>
         <div>
-        {!noInfo && <CircleQuestionMark className="text-ahTextGrey font-thin cursor-pointer" />}
+        {!noInfo && <CircleQuestionMark className="text-ahTextGrey font-light cursor-pointer" size={30} fontWeight={"200px"}/>}
         </div>
     </div>
   )
