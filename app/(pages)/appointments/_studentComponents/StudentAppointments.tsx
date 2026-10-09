@@ -1,8 +1,36 @@
-import React from 'react'
+"use client"
+import { createContext, useState, Dispatch, SetStateAction } from "react";
+import { StudentAppointmentView, StudentAppointmentSection, StudentAppointmentComponentDetail  } from "@/types";
+import StudentAppointmentsContent from "./StudentAppointmentsContent";
+
+
+interface StudentAppointmentContextData{
+  componentDetails:StudentAppointmentComponentDetail;
+  setComponentDetails:Dispatch<SetStateAction<StudentAppointmentComponentDetail>>;
+}
+
+export const StudentAppointmentContext = createContext<StudentAppointmentContextData>({
+  componentDetails:{
+    view:"UpcomingAppointments",
+    section:"Upcoming",
+    header:"Schedule an Appointment",
+    subtitle:"Begin the guided booking",
+        
+  },
+  setComponentDetails:()=>{},
+})
 
 const StudentAppointments = () => {
+  const [componentDetails, setComponentDetails] = useState<StudentAppointmentComponentDetail>({
+      view:"UpcomingAppointments",
+        section:"Upcoming",
+       header:"Upcoming Appointments",
+
+    })
   return (
-    <div>StudentAppointments</div>
+   <StudentAppointmentContext.Provider value={{componentDetails, setComponentDetails}}>
+    <StudentAppointmentsContent/>
+   </StudentAppointmentContext.Provider>
   )
 }
 

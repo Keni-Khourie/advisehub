@@ -1,4 +1,4 @@
-import { StudentAppointmentSection, StudentAppointmentComponentDetail, SidebarItemDetails } from "./types";
+import { StudentScheduleAppointmentSection, StudentScheduleAppointmentComponentDetail, SidebarItemDetails, StudentAppointmentSection, StudentAppointmentComponentDetail } from "./types";
 
 
 
@@ -48,8 +48,24 @@ export const advisorSidebarItems:SidebarItemDetails[] =[
     },
 ]
 
-export const studentAppointmentSections:StudentAppointmentSection[] = ["Details","Time", "Review", ]
-export const studentAppointmentComponentDetails:StudentAppointmentComponentDetail[] = [
+export const studentAppointmentSections:StudentAppointmentSection[] = ["Upcoming", "Past Meetings"]
+export const studentAppointmentComponentDetails:StudentAppointmentComponentDetail[]= [
+    {
+        view:"UpcomingAppointments",
+        section:"Upcoming",
+        header:"Upcoming Appointments",
+        subtitle:""
+    },
+    {
+        view:"PastMeetings",
+        section:"Past Meetings",
+        header:"Past Meetings",
+    },
+]
+
+export const studentScheduleAppointmentSections:StudentScheduleAppointmentSection[] = ["Details","Time", "Review", ]
+
+export const studentScheduleAppointmentComponentDetails:StudentScheduleAppointmentComponentDetail[] = [
     {
         header:"Schedule an Appointment",
         subtitle:"Begin the guided booking",

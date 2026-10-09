@@ -1,18 +1,18 @@
 "use client"
 import { createContext, useState, Dispatch, SetStateAction } from "react";
 
-import { StudentScheduleAppointmentView, StudentAppointmentSection, StudentAppointmentComponentDetail  } from "@/types";
-import StudentAppointmentContent from "./StudentAppointmentContent";
+import { StudentScheduleAppointmentView, StudentScheduleAppointmentSection, StudentScheduleAppointmentComponentDetail  } from "@/types";
+import StudentScheduleAppointmentContent from "./StudentScheduleAppointmentContent";
 
-
+//this would be the data sent to the backend
 interface AppointmentDetails{
   appointmentReason:string|undefined;
   advisorId: number|undefined;
   date: Date|undefined;
 }
-interface StudentAppointmentContextData{
-  componentDetails: StudentAppointmentComponentDetail,
-  setComponentDetails:Dispatch<SetStateAction<StudentAppointmentComponentDetail>>;
+interface StudentScheduleAppointmentContextData{
+  componentDetails: StudentScheduleAppointmentComponentDetail,
+  setComponentDetails:Dispatch<SetStateAction<StudentScheduleAppointmentComponentDetail>>;
   // view:StudentAppointmentView;
   // setView:Dispatch<SetStateAction<StudentAppointmentView>>;
   // section:StudentAppointmentSection,
@@ -21,7 +21,7 @@ interface StudentAppointmentContextData{
   setAppointmentDetails:Dispatch<SetStateAction<AppointmentDetails>>;
 
 }
-export const StudentAppointmentContext = createContext<StudentAppointmentContextData>({
+export const StudentScheduleAppointmentContext = createContext<StudentScheduleAppointmentContextData>({
   componentDetails:{
     view:"StudentScheduleAppointmentLanding",
     section:"Details",
@@ -42,9 +42,9 @@ export const StudentAppointmentContext = createContext<StudentAppointmentContext
   setAppointmentDetails:()=>{},
 })
 const StudentAppointmentSchedule = () => {
-    const [view, setView]= useState<StudentScheduleAppointmentView>("DateSelection")
-    const [section, setSection] = useState<StudentAppointmentSection>("Details")
-    const [componentDetails, setComponentDetails] = useState<StudentAppointmentComponentDetail>({
+    //const [view, setView]= useState<StudentScheduleAppointmentView>("DateSelection")
+   // const [section, setSection] = useState<StudentScheduleAppointmentSection>("Details")
+    const [componentDetails, setComponentDetails] = useState<StudentScheduleAppointmentComponentDetail>({
       view:"StudentScheduleAppointmentLanding",
         section:"Details",
        header:"Schedule an Appointment",
@@ -57,9 +57,9 @@ const StudentAppointmentSchedule = () => {
     date:undefined
     })
   return (
-    <StudentAppointmentContext.Provider value={{componentDetails, setComponentDetails, appointmentDetails, setAppointmentDetails}}>
-      <StudentAppointmentContent/>
-    </StudentAppointmentContext.Provider>
+    <StudentScheduleAppointmentContext.Provider value={{componentDetails, setComponentDetails, appointmentDetails, setAppointmentDetails}}>
+      <StudentScheduleAppointmentContent/>
+    </StudentScheduleAppointmentContext.Provider>
     
   )
 }

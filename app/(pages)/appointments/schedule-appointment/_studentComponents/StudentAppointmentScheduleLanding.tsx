@@ -1,6 +1,6 @@
 "use client"
 import {useContext} from 'react'
-import { StudentAppointmentContext } from './StudentAppointmentSchedule';
+import { StudentScheduleAppointmentContext } from './StudentAppointmentSchedule';
 import SectionHeader from '@/customUI/SectionHeader';
 import {
   Card,
@@ -12,13 +12,13 @@ import {
 import { cn } from "@/lib/utils";
 import LandingCardOption from './LandingCardOption';
 import GreenButton from '@/customUI/GreenButton';
-import { getComponentDetailsByView } from '@/lib/utilityFunctions';
+import { getStudentAppointmentScheduleComponentDetailsByView } from '@/lib/utilityFunctions';
 const StudentAppointmentScheduleLanding = () => {
-    const contextData = useContext(StudentAppointmentContext)
+    const contextData = useContext(StudentScheduleAppointmentContext)
     const landingCardOptions:string[] = ["Choose advising reason", "Select an available time", "Choose an advisor", "Review and confirm"]
 
     const startAppointmentScheduling = ()=>{
-     contextData.setComponentDetails(getComponentDetailsByView("AdvisorSelection"))
+     contextData.setComponentDetails(getStudentAppointmentScheduleComponentDetailsByView("AdvisorSelection"))
     }
   return (
     <div className="w-full">

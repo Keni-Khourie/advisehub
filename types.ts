@@ -18,15 +18,22 @@ export interface SelectItemData {
 }
 
 export type StudentAppointmentView = "UpcomingAppointments"|"PastMeetings"
+export type StudentAppointmentSection = "Upcoming"|"Past Meetings"
+export interface StudentAppointmentComponentDetail{
+  view:StudentAppointmentView;
+  section:StudentAppointmentSection;
+  header:string;
+  subtitle?:string;
+}
 
 export type StudentScheduleAppointmentView = "AdvisorSelection"|"AppointmentConfirmationLoading"|"AppointmentConfirmationSuccess"|"AppointmentReview"|"DateSelection"|"DateSelectionConflict"|"StudentScheduleAppointmentLanding"|"FindingAppointment"| "CreatingAppointment"
-export type StudentAppointmentSection = "Details"|"Time"|"Review"|"none"
+export type StudentScheduleAppointmentSection = "Details"|"Time"|"Review"|"none"
 
-export interface StudentAppointmentComponentDetail{
+export interface StudentScheduleAppointmentComponentDetail{
     header:string;
     subtitle?:string;
     view:StudentScheduleAppointmentView,
-    section:StudentAppointmentSection,
+    section:StudentScheduleAppointmentSection,
 }
 export type AdvisorSpecialization = "Degree Planning"|"Course Selection" |"Graduation Requirements" | "Transfer Questions"|"Career" |"General"
 

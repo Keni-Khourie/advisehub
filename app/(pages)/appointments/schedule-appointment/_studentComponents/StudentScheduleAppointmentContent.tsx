@@ -1,8 +1,8 @@
 "use client"
 import {useContext} from 'react'
-import { StudentAppointmentContext } from './StudentAppointmentSchedule';
-import { StudentAppointmentSection, StudentScheduleAppointmentView,  } from '@/types';
-import {  studentAppointmentSections, studentAppointmentComponentDetails } from '@/constants';
+import { StudentScheduleAppointmentContext } from './StudentAppointmentSchedule';
+import { StudentScheduleAppointmentSection, StudentScheduleAppointmentView,  } from '@/types';
+import {  studentScheduleAppointmentSections, studentScheduleAppointmentComponentDetails } from '@/constants';
 import PageHeader from '@/customUI/PageHeader';
 import StudentAppointmentScheduleLanding from "./StudentAppointmentScheduleLanding"
 import AdvisorSelection from "./AdvisorSelection"
@@ -16,18 +16,18 @@ import CreatingAppointment from "./CreatingAppointment"
 import ScheduleSectionBadge from "./ScheduleSectionBadge"
 
 
-const StudentAppointmentContent = () => {
-    const contextData = useContext(StudentAppointmentContext)
+const StudentScheduleAppointmentContent = () => {
+    const contextData = useContext(StudentScheduleAppointmentContext)
     
     //const componentDetails = getComponentDetailsByView(contextData.componentDetails.view)
   return (
     <div>
        
         
-          {<PageHeader headerText={contextData.componentDetails.header} subtitle={contextData.componentDetails.subtitle} additionalClass="mb-10"/>}
+          <PageHeader headerText={contextData.componentDetails.header} subtitle={contextData.componentDetails.subtitle} additionalClass="mb-10"/>
 
           <div className="flex gap-x-3 mb-10">
-            {studentAppointmentSections.map((section, index)=><ScheduleSectionBadge key={index} text={section}/>)}
+            {studentScheduleAppointmentSections.map((section, index)=><ScheduleSectionBadge key={index} text={section}/>)}
           </div>
 
         {
@@ -52,7 +52,7 @@ const StudentAppointmentContent = () => {
   ) 
 }
 
-export default StudentAppointmentContent
+export default StudentScheduleAppointmentContent
 
 
 

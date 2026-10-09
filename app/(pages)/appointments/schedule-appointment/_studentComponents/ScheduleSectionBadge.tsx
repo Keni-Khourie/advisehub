@@ -1,16 +1,16 @@
 "use client";
 import { useContext } from "react";
 import { Badge } from "@/components/ui/badge";
-import { StudentAppointmentContext } from "./StudentAppointmentSchedule";
-import { StudentAppointmentSection } from "@/types";
+import { StudentScheduleAppointmentContext } from "./StudentAppointmentSchedule";
+import { StudentScheduleAppointmentSection } from "@/types";
 import { cn } from "@/lib/utils";
 
 interface Props {
-  text: StudentAppointmentSection;
+  text: StudentScheduleAppointmentSection;
 }
 
 const ScheduleSectionBadge = ({ text }: Props) => {
-  const contextData = useContext(StudentAppointmentContext);
+  const contextData = useContext(StudentScheduleAppointmentContext);
   const isActive = contextData.componentDetails.section === text;
 
   return (
