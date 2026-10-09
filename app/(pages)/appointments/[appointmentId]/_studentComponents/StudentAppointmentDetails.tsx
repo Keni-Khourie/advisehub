@@ -1,8 +1,10 @@
-import React from 'react'
+import PageHeader from '@/customUI/PageHeader';
 
 const StudentAppointmentDetails = () => {
   return (
-    <div>StudentAppointmentDetails</div>
+    <div>
+      <PageHeader headerText="Appointment Details" additionalClass=""/>
+    </div>
   )
 }
 
