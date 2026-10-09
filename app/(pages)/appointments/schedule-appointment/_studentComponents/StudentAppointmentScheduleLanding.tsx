@@ -1,6 +1,6 @@
 "use client"
 import {useContext} from 'react'
-import { StudentAppointmentContext } from './StudentAppointments';
+import { StudentAppointmentContext } from './StudentAppointmentSchedule';
 import SectionHeader from '@/customUI/SectionHeader';
 import {
   Card,
@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import LandingCardOption from './LandingCardOption';
 import GreenButton from '@/customUI/GreenButton';
 import { getComponentDetailsByView } from '@/lib/utilityFunctions';
-const StudentAppointmentLanding = () => {
+const StudentAppointmentScheduleLanding = () => {
     const contextData = useContext(StudentAppointmentContext)
     const landingCardOptions:string[] = ["Choose advising reason", "Select an available time", "Choose an advisor", "Review and confirm"]
 
@@ -39,4 +39,4 @@ const StudentAppointmentLanding = () => {
   )
 }
 
-export default StudentAppointmentLanding
+export default StudentAppointmentScheduleLanding

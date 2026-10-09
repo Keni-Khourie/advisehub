@@ -1,15 +1,51 @@
-import { StudentAppointmentView, StudentAppointmentSection, StudentAppointmentComponentDetail } from "./types";
-
-export type UserRole = "STUDENT" | "ADVISOR" | "ADMIN";
+import { StudentAppointmentSection, StudentAppointmentComponentDetail, SidebarItemDetails } from "./types";
 
 
+
+export const studentSidebarItems: SidebarItemDetails[] =[
+    {
+        text:"Dashboard",
+        link:"/dashboard"
+    },
+    {
+        text:"Appointments",
+        link:"/appointments"
+    },
+    {
+        text:"Degree Progress",
+        link:"/degree-progress"
+    },
+]
+
+export const advisorSidebarItems:SidebarItemDetails[] =[
+    {
+        text:"Dashboard",
+        link:"/dashboard"
+    },
+    {
+        text:"Availability",
+        link:"/availability"
+    },
+    {
+        text:"Appointments",
+        link:"/appointments"
+    },
+    {
+        text:"Students",
+        link:"/students"
+    },
+    {
+        text:"Advising Notes",
+        link:"/advising-notes"
+    },
+]
 
 export const studentAppointmentSections:StudentAppointmentSection[] = ["Details","Time", "Review", ]
 export const studentAppointmentComponentDetails:StudentAppointmentComponentDetail[] = [
     {
         header:"Schedule an Appointment",
         subtitle:"Begin the guided booking",
-        view:"StudentAppointmentLanding",
+        view:"StudentScheduleAppointmentLanding",
         section:"Details",
     },
      {

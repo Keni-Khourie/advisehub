@@ -1,18 +1,15 @@
 import { cn } from "@/lib/utils";
-import {
-  studentSidebarItems,
-  advisorSidebarItems,
-  SidebarItemDetails,
-} from "@/lists/SidebarItemList";
+
 import SidebarItem from "./SidebarItem";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import UserAvatar from "./UserAvatar";
+import {UserRole, SidebarItemDetails}from "@/types"
+import {studentSidebarItems, advisorSidebarItems} from "@/constants"
 
 const Sidebar = () => {
   //fetch user from store
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const user: any = {
+  const user: {role:UserRole} = {
     role: "STUDENT",
   };
   const getSidebarItemsBasedOnUser = () => {

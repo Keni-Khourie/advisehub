@@ -1,10 +1,10 @@
 "use client"
 import {useContext} from 'react'
-import { StudentAppointmentContext } from './StudentAppointments';
+import { StudentAppointmentContext } from './StudentAppointmentSchedule';
 import { StudentAppointmentSection, StudentAppointmentView,  } from '@/types';
 import {  studentAppointmentSections, studentAppointmentComponentDetails } from '@/constants';
 import PageHeader from '@/customUI/PageHeader';
-import StudentAppointmentLanding from "./StudentAppointmentLanding"
+import StudentAppointmentScheduleLanding from "./StudentAppointmentScheduleLanding"
 import AdvisorSelection from "./AdvisorSelection"
 import AppointmentConfirmationLoading from "./AppointmentConfirmationLoading"
 import AppointmentConfirmationSuccess from "./AppointmentConfirmationSuccess"
@@ -33,7 +33,7 @@ const StudentAppointmentContent = () => {
         {
             contextData.componentDetails &&
             (
-                contextData.componentDetails.view==="StudentAppointmentLanding"?<StudentAppointmentLanding/>:
+                contextData.componentDetails.view==="StudentScheduleAppointmentLanding"?<StudentAppointmentScheduleLanding/>:
                 contextData.componentDetails.view==="DateSelection"?<DateSelection/>:
                 contextData.componentDetails.view==="AdvisorSelection"?<AdvisorSelection/>:
                 contextData.componentDetails.view==="AppointmentReview"?<AppointmentReview/>:

@@ -4,17 +4,20 @@ export interface ErrorResponse {
       detail?: string;
     };
   }
-
+export type UserRole = "STUDENT" | "ADVISOR" | "ADMIN";
 export interface GenericMessageResponse{
   message:string
 }
-
+export interface SidebarItemDetails{
+    text:string;
+    link:string;
+}
 export interface SelectItemData {
   title: string;
   value: string;
 }
 
-export type StudentAppointmentView = "AdvisorSelection"|"AppointmentConfirmationLoading"|"AppointmentConfirmationSuccess"|"AppointmentReview"|"DateSelection"|"DateSelectionConflict"|"StudentAppointmentLanding"|"FindingAppointment"| "CreatingAppointment"
+export type StudentAppointmentView = "AdvisorSelection"|"AppointmentConfirmationLoading"|"AppointmentConfirmationSuccess"|"AppointmentReview"|"DateSelection"|"DateSelectionConflict"|"StudentScheduleAppointmentLanding"|"FindingAppointment"| "CreatingAppointment"
 export type StudentAppointmentSection = "Details"|"Time"|"Review"|"none"
 
 export interface StudentAppointmentComponentDetail{

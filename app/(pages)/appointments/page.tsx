@@ -1,6 +1,7 @@
 import AdvisorAppointments from "./_advisorComponents/AdvisorAppointments";
 import StudentAppointments from "./_studentComponents/StudentAppointments";
 
+
 const user = {
   role:"STUDENT"
 }

@@ -1,7 +1,7 @@
 "use client";
 import { useContext } from "react";
 import { Badge } from "@/components/ui/badge";
-import { StudentAppointmentContext } from "./StudentAppointments";
+import { StudentAppointmentContext } from "./StudentAppointmentSchedule";
 import { StudentAppointmentSection } from "@/types";
 import { cn } from "@/lib/utils";
 
