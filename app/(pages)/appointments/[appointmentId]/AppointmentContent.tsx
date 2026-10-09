@@ -7,13 +7,16 @@ import StudentAppointmentDetails from "./_studentComponents/StudentAppointmentDe
 const user = {
   role: "STUDENT",
 };
-const AppointmentContent = () => {
+interface Props{
+  appointmentId:number
+}
+const AppointmentContent = ({appointmentId}:Props) => {
   return (
     <div>
       {user.role === "STUDENT" ? (
-        <StudentAppointmentDetails />
+        <StudentAppointmentDetails appointmentId={appointmentId} />
       ) : user.role === "ADVISOR" ? (
-        <AdvisorAppointmentDetails />
+        <AdvisorAppointmentDetails appointmentId={appointmentId} />
       ) : (
         <></>
       )}

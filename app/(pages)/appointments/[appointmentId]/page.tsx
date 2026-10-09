@@ -1,9 +1,13 @@
 import AppointmentContent from "./AppointmentContent";
 
-
-const StudentAppointment = () => {
+interface Props{
+  params:{
+    appointmentId:string
+  }
+}
+const StudentAppointment = ({params:{appointmentId}}:Props) => {
   return (
-    <AppointmentContent/>
+    <AppointmentContent appointmentId={parseInt(appointmentId)}/>
   )
 }
 

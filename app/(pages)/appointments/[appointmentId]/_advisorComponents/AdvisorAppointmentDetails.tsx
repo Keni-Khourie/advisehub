@@ -1,7 +1,9 @@
 
 import PageHeader from '@/customUI/PageHeader';
-
-const AdvisorAppointmentDetails = () => {
+interface Props{
+  appointmentId:number
+}
+const AdvisorAppointmentDetails = ({appointmentId}:Props) => {
   return (
     <div>
       <PageHeader headerText="Appointment Details" additionalClass=""/>
