@@ -45,3 +45,14 @@ export interface DummyGrade{
 
 export type DummyDegreeClassification ="Bsc."|"MSc"|"PhD"
 export type DummyGrading = "PASS"|"FAIL"|"DISTINCTION"
+
+//query appointment database. Get appointment by Id add filter to toggle between upcoming and past. upcoming will produce results where appointment date is AFTER current date/time and previous would give results where date and time is before
+export interface ExistingMeetingData{
+  id:number;
+  startDateTime:string;
+  endDateTime:string;
+  meetingReason:AdvisorSpecialization;
+  advisor:string;
+  advisorOffice:string;
+  status:"UPCOMING"|"CONCLUDED"|"CANCELLED"
+}

@@ -35,6 +35,6 @@ export interface StudentScheduleAppointmentComponentDetail{
     view:StudentScheduleAppointmentView,
     section:StudentScheduleAppointmentSection,
 }
-export type AdvisorSpecialization = "Degree Planning"|"Course Selection" |"Graduation Requirements" | "Transfer Questions"|"Career" |"General"
+export type AdvisorSpecialization = "Academic Planning" | "Course Registration" | "Degree Requirements" | "Transfer Credits"| "General Advising"
 
-//Dummy Data
+
