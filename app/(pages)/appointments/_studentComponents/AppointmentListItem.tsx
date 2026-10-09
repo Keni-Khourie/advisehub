@@ -67,7 +67,7 @@ const AppointmentListItem = ({ type, data, isLoading }: Props) => {
           </div>
         </div>
       )}
-      <Link href="#" className={cn(isLoading &&"cursor-not-allowed")}>
+      <Link href={`/appointments/${data.id}`} className={cn(isLoading &&"cursor-not-allowed")}>
         <Button className={cn("bg-white hover:bg-ahGrey text-ahTextBlack font-semibold cursor-pointer rounded-sm py-4 px-6 border-2 border-stone-300", isLoading && "cursor-not-allowed")} disabled={isLoading}>
           View Details
         </Button>

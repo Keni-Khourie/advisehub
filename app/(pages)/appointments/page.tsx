@@ -1,17 +1,7 @@
-import AdvisorAppointments from "./_advisorComponents/AdvisorAppointments";
-import StudentAppointments from "./_studentComponents/StudentAppointments";
-
-
-const user = {
-  role:"STUDENT"
-}
+import AppointmentsPageContent from "./AppointmentsPageContent";
 
 const AppointmentsPage = () => {
-  return (
-    <div>
-      {user.role==="STUDENT"?(<StudentAppointments/>):user.role==="ADVISOR"?(<AdvisorAppointments/>):<></>}
-    </div>
-  )
-}
+  return <AppointmentsPageContent />;
+};
 
-export default AppointmentsPage
+export default AppointmentsPage;

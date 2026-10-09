@@ -1,18 +1,7 @@
-import StudentDashboard from './_studentComponents/StudentDashboard';
-import AdvisorDashboard from './_advisorComponents/AdvisorDashboard';
+import DashboardContent from "./DashboardContent";
 
 const DashboardPage = () => {
+  return <DashboardContent />;
+};
 
-   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const user:any = {
-    role:"STUDENT"
-}
-
-  return (
-    <div>
-      {user.role==="STUDENT"?(<StudentDashboard/>):user.role==="ADVISOR"?(<AdvisorDashboard/>):<></>}
-    </div>
-  )
-}
-
-export default DashboardPage
+export default DashboardPage;
