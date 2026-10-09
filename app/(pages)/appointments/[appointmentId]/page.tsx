@@ -1,8 +1,9 @@
-import React from 'react'
+import AppointmentContent from "./AppointmentContent";
+
 
 const StudentAppointment = () => {
   return (
-    <div>StudentAppointment</div>
+    <AppointmentContent/>
   )
 }
 
