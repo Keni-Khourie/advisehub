@@ -1,8 +1,8 @@
 "use client"
 import {useContext} from 'react'
 import { StudentAppointmentContext } from './StudentAppointments';
-import PastMeetings from './PastMeetings';
-import UpcomingAppointments from './UpcomingAppointments';
+//import PastMeetings from './PastMeetings';
+//import UpcomingAppointments from './UpcomingAppointments';
 import PageHeader from '@/customUI/PageHeader';
 import {studentAppointmentSections} from "@/constants"
 import AppointmentSectionBadge from './AppointmentSectionBadge';
