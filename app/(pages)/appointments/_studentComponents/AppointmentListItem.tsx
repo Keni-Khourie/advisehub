@@ -18,12 +18,12 @@ const AppointmentListItem = ({ type, data, isLoading }: Props) => {
     <div className="flex justify-between items-center ps-3 pe-5 py-6 rounded-sm border">
       {!isLoading && (
         <div className="flex gap-x-5">
-          <div className="font-bold bg-ahGrey flex flex-col justify-center text-center border py-5 px-3 rounded-sm">
+          <div className="font-bold bg-ahGrey flex flex-col justify-center text-center border w-22 h-22 rounded-sm">
             {format(data.startDateTime, "MMM dd").toLocaleUpperCase()}
           </div>
 
           <div>
-            <p className="mb-1">{data.meetingReason}</p>
+            <p className="mb-1 font-semibold text-ahTextBlack">{data.meetingReason}</p>
             {type === "Upcoming" && (
               <p className="font-thin text-ahTextGrey text-sm flex">
                 {data.advisor}
@@ -42,7 +42,7 @@ const AppointmentListItem = ({ type, data, isLoading }: Props) => {
       )}
       {isLoading && (
         <div className="flex gap-x-5">
-          <div className="rounded-sm w-20 h-20">
+          <div className="rounded-sm w-22 h-22">
             <Skeleton className="w-full h-full" />
           </div>
           <div>
