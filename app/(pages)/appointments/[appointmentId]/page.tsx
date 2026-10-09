@@ -1,14 +1,14 @@
 import AppointmentContent from "./AppointmentContent";
 
-interface Props{
-  params:{
-    appointmentId:string
-  }
+interface Props {
+  params: Promise<{
+    appointmentId: string;
+  }>;
 }
-const StudentAppointment = ({params:{appointmentId}}:Props) => {
-  return (
-    <AppointmentContent appointmentId={parseInt(appointmentId)}/>
-  )
-}
+const Appointment = async ({ params }: Props) => {
+  const { appointmentId } = await params;
 
-export default StudentAppointment
+  return <AppointmentContent appointmentId={parseInt(appointmentId)} />;
+};
+
+export default Appointment;

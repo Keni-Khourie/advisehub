@@ -7,6 +7,7 @@ const StudentAppointmentDetails = ({appointmentId}:Props) => {
   return (
     <div>
       <PageHeader headerText="Appointment Details" additionalClass=""/>
+      <div>{`${appointmentId}`}</div>
     </div>
   )
 }
