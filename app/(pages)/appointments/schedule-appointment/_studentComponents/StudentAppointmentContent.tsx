@@ -13,7 +13,7 @@ import DateSelection from "./DateSelection"
 import DateSelectionConflict from "./DateSelectionConflict"
 import FindingAppointment from "./FindingAppointment"
 import CreatingAppointment from "./CreatingAppointment"
-import SectionBadge from "./SectionBadge"
+import ScheduleSectionBadge from "./ScheduleSectionBadge"
 
 
 const StudentAppointmentContent = () => {
@@ -27,7 +27,7 @@ const StudentAppointmentContent = () => {
           {<PageHeader headerText={contextData.componentDetails.header} subtitle={contextData.componentDetails.subtitle} additionalClass="mb-10"/>}
 
           <div className="flex gap-x-3 mb-10">
-            {studentAppointmentSections.map((section, index)=><SectionBadge key={index} text={section}/>)}
+            {studentAppointmentSections.map((section, index)=><ScheduleSectionBadge key={index} text={section}/>)}
           </div>
 
         {

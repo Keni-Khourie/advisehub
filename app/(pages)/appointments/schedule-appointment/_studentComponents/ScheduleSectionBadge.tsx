@@ -9,7 +9,7 @@ interface Props {
   text: StudentAppointmentSection;
 }
 
-const SectionBadge = ({ text }: Props) => {
+const ScheduleSectionBadge = ({ text }: Props) => {
   const contextData = useContext(StudentAppointmentContext);
   const isActive = contextData.componentDetails.section === text;
 
@@ -27,4 +27,4 @@ const SectionBadge = ({ text }: Props) => {
   );
 };
 
-export default SectionBadge;
+export default ScheduleSectionBadge;
