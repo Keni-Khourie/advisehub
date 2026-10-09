@@ -1,7 +1,7 @@
 "use client"
 import { createContext, useState, Dispatch, SetStateAction } from "react";
 
-import { StudentAppointmentView, StudentAppointmentSection, StudentAppointmentComponentDetail  } from "@/types";
+import { StudentScheduleAppointmentView, StudentAppointmentSection, StudentAppointmentComponentDetail  } from "@/types";
 import StudentAppointmentContent from "./StudentAppointmentContent";
 
 
@@ -42,7 +42,7 @@ export const StudentAppointmentContext = createContext<StudentAppointmentContext
   setAppointmentDetails:()=>{},
 })
 const StudentAppointmentSchedule = () => {
-    const [view, setView]= useState<StudentAppointmentView>("DateSelection")
+    const [view, setView]= useState<StudentScheduleAppointmentView>("DateSelection")
     const [section, setSection] = useState<StudentAppointmentSection>("Details")
     const [componentDetails, setComponentDetails] = useState<StudentAppointmentComponentDetail>({
       view:"StudentScheduleAppointmentLanding",

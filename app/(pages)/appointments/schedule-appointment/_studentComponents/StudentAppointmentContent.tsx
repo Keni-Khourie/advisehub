@@ -1,7 +1,7 @@
 "use client"
 import {useContext} from 'react'
 import { StudentAppointmentContext } from './StudentAppointmentSchedule';
-import { StudentAppointmentSection, StudentAppointmentView,  } from '@/types';
+import { StudentAppointmentSection, StudentScheduleAppointmentView,  } from '@/types';
 import {  studentAppointmentSections, studentAppointmentComponentDetails } from '@/constants';
 import PageHeader from '@/customUI/PageHeader';
 import StudentAppointmentScheduleLanding from "./StudentAppointmentScheduleLanding"

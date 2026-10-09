@@ -15,6 +15,14 @@ export const studentSidebarItems: SidebarItemDetails[] =[
         text:"Degree Progress",
         link:"/degree-progress"
     },
+    {
+        text:"Advising Notes",
+        link:"/advising-notes"
+    },
+    {
+        text:"Messages/Resources",
+        link:"/messages-resources"
+    },
 ]
 
 export const advisorSidebarItems:SidebarItemDetails[] =[

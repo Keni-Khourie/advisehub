@@ -17,13 +17,15 @@ export interface SelectItemData {
   value: string;
 }
 
-export type StudentAppointmentView = "AdvisorSelection"|"AppointmentConfirmationLoading"|"AppointmentConfirmationSuccess"|"AppointmentReview"|"DateSelection"|"DateSelectionConflict"|"StudentScheduleAppointmentLanding"|"FindingAppointment"| "CreatingAppointment"
+export type StudentAppointmentView = "UpcomingAppointments"|"PastMeetings"
+
+export type StudentScheduleAppointmentView = "AdvisorSelection"|"AppointmentConfirmationLoading"|"AppointmentConfirmationSuccess"|"AppointmentReview"|"DateSelection"|"DateSelectionConflict"|"StudentScheduleAppointmentLanding"|"FindingAppointment"| "CreatingAppointment"
 export type StudentAppointmentSection = "Details"|"Time"|"Review"|"none"
 
 export interface StudentAppointmentComponentDetail{
     header:string;
     subtitle?:string;
-    view:StudentAppointmentView,
+    view:StudentScheduleAppointmentView,
     section:StudentAppointmentSection,
 }
 export type AdvisorSpecialization = "Degree Planning"|"Course Selection" |"Graduation Requirements" | "Transfer Questions"|"Career" |"General"
