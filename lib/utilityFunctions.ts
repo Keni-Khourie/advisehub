@@ -1,5 +1,5 @@
-import {  StudentAppointmentSection, StudentAppointmentView, StudentScheduleAppointmentView,  } from '@/types';
-import {studentScheduleAppointmentComponentDetails, studentAppointmentComponentDetails} from '@/constants'
+import {  StudentAppointmentSection, StudentAppointmentView, StudentScheduleAppointmentView, StudentScheduleAppointmentStep  } from '@/types';
+import {studentScheduleAppointmentComponentDetails, studentAppointmentComponentDetails, studentScheduleAppointmentSteps} from '@/constants'
 export const getStudentAppointmentScheduleComponentDetailsByView = (view:StudentScheduleAppointmentView)=>{
   const details =  studentScheduleAppointmentComponentDetails.find((item)=>item.view===view)
   return details ?? studentScheduleAppointmentComponentDetails[0]
@@ -13,4 +13,9 @@ export const getStudentAppointmentComponentDetailsByView = (view:StudentAppointm
 export const getStudentAppointmentComponentDetailsBySection = (section:StudentAppointmentSection)=>{
   const details =  studentAppointmentComponentDetails.find((item)=>item.section===section)
   return details ?? studentAppointmentComponentDetails[0]
+}
+
+export const getStudentScheduleStepCompletion = (stepNumber:number, currentStep:StudentScheduleAppointmentStep)=>{
+  const isComplete:boolean = studentScheduleAppointmentSteps[stepNumber]===currentStep
+  return isComplete
 }

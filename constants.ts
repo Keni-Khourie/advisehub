@@ -1,4 +1,4 @@
-import { StudentScheduleAppointmentSection, StudentScheduleAppointmentComponentDetail, SidebarItemDetails, StudentAppointmentSection, StudentAppointmentComponentDetail} from "./types";
+import { StudentScheduleAppointmentSection, StudentScheduleAppointmentComponentDetail, SidebarItemDetails, StudentAppointmentSection, StudentAppointmentComponentDetail, StudentScheduleAppointmentStep} from "./types";
 
 
 export const studentSidebarItems: SidebarItemDetails[] =[
@@ -63,6 +63,7 @@ export const studentAppointmentComponentDetails:StudentAppointmentComponentDetai
 ]
 
 export const studentScheduleAppointmentSections:StudentScheduleAppointmentSection[] = ["Details","Time", "Review"]
+export const studentScheduleAppointmentSteps:StudentScheduleAppointmentStep[] = ["Reason", "Advisor", "Date & Time", "Review"]
 
 export const studentScheduleAppointmentComponentDetails:StudentScheduleAppointmentComponentDetail[] = [
     {

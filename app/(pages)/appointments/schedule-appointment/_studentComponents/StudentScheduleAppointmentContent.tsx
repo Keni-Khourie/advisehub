@@ -1,7 +1,7 @@
 "use client";
 import { useContext } from "react";
 import { StudentScheduleAppointmentContext } from "./StudentAppointmentSchedule";
-import { studentScheduleAppointmentSections } from "@/constants";
+//import { studentScheduleAppointmentSections } from "@/constants";
 import PageHeader from "@/customUI/PageHeader";
 import StudentAppointmentScheduleLanding from "./StudentAppointmentScheduleLanding";
 import AdvisorSelection from "./AdvisorSelection";
@@ -12,8 +12,9 @@ import DateSelection from "./DateSelection";
 import DateSelectionConflict from "./DateSelectionConflict";
 import FindingAppointment from "./FindingAppointment";
 import CreatingAppointment from "./CreatingAppointment";
-import ScheduleSectionBadge from "./ScheduleSectionBadge";
+//import ScheduleSectionBadge from "./ScheduleSectionBadge";
 import ReasonSelection from "./ReasonSelection";
+import ScheduleSteps from "./ScheduleSteps";
 
 const StudentScheduleAppointmentContent = () => {
   const contextData = useContext(StudentScheduleAppointmentContext);
@@ -26,10 +27,9 @@ const StudentScheduleAppointmentContent = () => {
         additionalClass="mb-10"
       />
 
-      <div className="flex gap-x-3 mb-10">
-        {studentScheduleAppointmentSections.map((section, index) => (
-          <ScheduleSectionBadge key={index} text={section} />
-        ))}
+      <div className="mb-10">
+        <ScheduleSteps/>
+        
       </div>
 
       {contextData.componentDetails &&

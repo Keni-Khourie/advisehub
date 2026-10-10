@@ -3,7 +3,7 @@ import { createContext, useState, Dispatch, SetStateAction } from "react";
 
 import { StudentScheduleAppointmentView, StudentScheduleAppointmentSection, StudentScheduleAppointmentComponentDetail  } from "@/types";
 import StudentScheduleAppointmentContent from "./StudentScheduleAppointmentContent";
-
+import{getStudentAppointmentScheduleComponentDetailsByView } from '@/lib/utilityFunctions';
 //this would be the data sent to the backend
 interface AppointmentDetails{
   appointmentReason:string|undefined;
@@ -21,14 +21,11 @@ interface StudentScheduleAppointmentContextData{
   setAppointmentDetails:Dispatch<SetStateAction<AppointmentDetails>>;
 
 }
+
+const studentScheduleAppointmentLanding = getStudentAppointmentScheduleComponentDetailsByView("StudentScheduleAppointmentLanding")
+
 export const StudentScheduleAppointmentContext = createContext<StudentScheduleAppointmentContextData>({
-  componentDetails:{
-    view:"StudentScheduleAppointmentLanding",
-    section:"Details",
-    header:"Schedule an Appointment",
-    subtitle:"Begin the guided booking",
-        
-  },
+  componentDetails:studentScheduleAppointmentLanding,
   setComponentDetails:()=>{},
   // view:"StudentScheduleAppointmentLanding",
   // setView:()=>{},
@@ -44,13 +41,7 @@ export const StudentScheduleAppointmentContext = createContext<StudentScheduleAp
 const StudentAppointmentSchedule = () => {
     //const [view, setView]= useState<StudentScheduleAppointmentView>("DateSelection")
    // const [section, setSection] = useState<StudentScheduleAppointmentSection>("Details")
-    const [componentDetails, setComponentDetails] = useState<StudentScheduleAppointmentComponentDetail>({
-      view:"StudentScheduleAppointmentLanding",
-        section:"Details",
-       header:"Schedule an Appointment",
-        subtitle:"Begin the guided booking",
-
-    })
+    const [componentDetails, setComponentDetails] = useState<StudentScheduleAppointmentComponentDetail>(studentScheduleAppointmentLanding)
     const [appointmentDetails, setAppointmentDetails] = useState<AppointmentDetails>({
       appointmentReason:undefined,
     advisorId:undefined,
