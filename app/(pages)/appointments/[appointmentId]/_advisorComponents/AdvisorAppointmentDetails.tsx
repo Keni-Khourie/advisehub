@@ -6,6 +6,7 @@ interface Props{
 }
 const AdvisorAppointmentDetails = ({appointmentId}:Props) => {
   //fetch appointment users here.
+  console.log(appointmentId);
   return (
     <div>
       <PageHeader headerText="Appointment Details" additionalClass=""/>
