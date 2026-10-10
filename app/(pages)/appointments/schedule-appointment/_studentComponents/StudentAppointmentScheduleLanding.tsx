@@ -19,7 +19,7 @@ const StudentAppointmentScheduleLanding = () => {
     const landingCardOptions:string[] = ["Choose advising reason", "Select an available time", "Choose an advisor", "Review and confirm"]
 
     const startAppointmentScheduling = ()=>{
-     contextData.setComponentDetails(getStudentAppointmentScheduleComponentDetailsByView("AdvisorSelection"))
+     contextData.setComponentDetails(getStudentAppointmentScheduleComponentDetailsByView("ReasonSelection"))
     }
   return (
     <div className="w-full">

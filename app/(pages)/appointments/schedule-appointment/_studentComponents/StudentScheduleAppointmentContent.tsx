@@ -14,6 +14,7 @@ import DateSelectionConflict from "./DateSelectionConflict"
 import FindingAppointment from "./FindingAppointment"
 import CreatingAppointment from "./CreatingAppointment"
 import ScheduleSectionBadge from "./ScheduleSectionBadge"
+import ReasonSelection from './ReasonSelection';
 
 
 const StudentScheduleAppointmentContent = () => {
@@ -36,6 +37,7 @@ const StudentScheduleAppointmentContent = () => {
                 contextData.componentDetails.view==="StudentScheduleAppointmentLanding"?<StudentAppointmentScheduleLanding/>:
                 contextData.componentDetails.view==="DateSelection"?<DateSelection/>:
                 contextData.componentDetails.view==="AdvisorSelection"?<AdvisorSelection/>:
+                contextData.componentDetails.view==="ReasonSelection"? <ReasonSelection/>:
                 contextData.componentDetails.view==="AppointmentReview"?<AppointmentReview/>:
                 contextData.componentDetails.view==="AppointmentConfirmationSuccess"?<AppointmentConfirmationSuccess/>:
                 contextData.componentDetails.view==="DateSelectionConflict"?<DateSelectionConflict/>:

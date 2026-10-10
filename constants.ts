@@ -1,4 +1,4 @@
-import { StudentScheduleAppointmentSection, StudentScheduleAppointmentComponentDetail, SidebarItemDetails, StudentAppointmentSection, StudentAppointmentComponentDetail } from "./types";
+import { StudentScheduleAppointmentSection, StudentScheduleAppointmentComponentDetail, SidebarItemDetails, StudentAppointmentSection, StudentAppointmentComponentDetail} from "./types";
 
 
 
@@ -63,56 +63,80 @@ export const studentAppointmentComponentDetails:StudentAppointmentComponentDetai
     },
 ]
 
-export const studentScheduleAppointmentSections:StudentScheduleAppointmentSection[] = ["Details","Time", "Review", ]
+export const studentScheduleAppointmentSections:StudentScheduleAppointmentSection[] = ["Details","Time", "Review"]
 
 export const studentScheduleAppointmentComponentDetails:StudentScheduleAppointmentComponentDetail[] = [
     {
-        header:"Schedule an Appointment",
-        subtitle:"Begin the guided booking",
         view:"StudentScheduleAppointmentLanding",
         section:"Details",
+        step:"none",
+        header:"Schedule an Appointment",
+        subtitle:"Begin the guided booking",
+        
     },
      {
-        header:"Schedule an Advisor",
-        subtitle:"Step 1 of 3",
-        view:"AdvisorSelection",
+       view:"AdvisorSelection",
         section:"Details",
+        step:"Advisor",
+        header:"Schedule an Advisor",
+        subtitle:"Step 1 of 3",  
     },
     {
-        header:"Finding Available Appointments",
+        view:"ReasonSelection",
+        section:"Details",
+        step:"Reason",
+        header:"Schedule an Appointment",
+        subtitle:"Choose a reason for advising",
+    }, 
+    {
         view:"FindingAppointment",
         section:"Time",
+        step:"Date & Time",
+        header:"Finding Available Appointments",
+        
     },
      {
-        header:"Select Date & Time",
-        subtitle:"Step 2 of 3",
         view:"DateSelection",
         section:"Time",
+        step:"Date & Time",
+        header:"Select Date & Time",
+        subtitle:"Step 2 of 3",
+        
     },
      {
-        header:"Review Appointment",
-        subtitle:"Step 3 of 3",
         view:"AppointmentReview",
         section:"Review",
+        step:"Review",
+        header:"Review Appointment",
+        subtitle:"Step 3 of 3",
+        
     },
     {
-        header:"Creating Appointment",
         view:"CreatingAppointment",
         section:"none",
+        step:"none",
+        header:"Creating Appointment",
+        
     },
      {
-        header:"Confirming Appointment",
         view:"AppointmentConfirmationLoading",
         section:"none",
+        step:"none",
+        header:"Confirming Appointment",
+        
     },
      {
-        header:"Appointment Confirmed",
         view:"AppointmentConfirmationSuccess",
-        section:"none"
+        section:"none",
+        step:"none",
+        header:"Appointment Confirmed",
+        
     },
     {
-        header:"Select Date & Time",
         view:"DateSelectionConflict",
-        section:"Time"
+        section:"Time",
+        step:"Date & Time",
+        header:"Select Date & Time",
+        
     },
 ]
