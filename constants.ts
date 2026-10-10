@@ -1,7 +1,6 @@
 import { StudentScheduleAppointmentSection, StudentScheduleAppointmentComponentDetail, SidebarItemDetails, StudentAppointmentSection, StudentAppointmentComponentDetail} from "./types";
 
 
-
 export const studentSidebarItems: SidebarItemDetails[] =[
     {
         text:"Dashboard",
