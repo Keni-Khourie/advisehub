@@ -5,7 +5,7 @@ import StudentAppointmentDetails from "./_studentComponents/StudentAppointmentDe
 
 //this will be gotten from context
 const user = {
-  role: "STUDENT",
+  role: "STUDENT"
 };
 interface Props{
   appointmentId:number

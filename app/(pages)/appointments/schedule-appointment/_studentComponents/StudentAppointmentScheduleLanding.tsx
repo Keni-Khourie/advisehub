@@ -10,9 +10,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import LandingCardOption from './LandingCardOption';
+
 import GreenButton from '@/customUI/GreenButton';
 import { getStudentAppointmentScheduleComponentDetailsByView } from '@/lib/utilityFunctions';
+import GreenCheckOption from '@/customUI/GreenCheckOption';
 const StudentAppointmentScheduleLanding = () => {
     const contextData = useContext(StudentScheduleAppointmentContext)
     const landingCardOptions:string[] = ["Choose advising reason", "Select an available time", "Choose an advisor", "Review and confirm"]
@@ -29,7 +30,7 @@ const StudentAppointmentScheduleLanding = () => {
         <CardDescription className=""></CardDescription>
       </CardHeader>
       <CardContent className="grid grid-cols-2 gap-y-6 ps-5">
-        {landingCardOptions.map((option, index)=><LandingCardOption key={index} text={option}/>)}
+        {landingCardOptions.map((option, index)=><GreenCheckOption key={index} text={option}/>)}
       </CardContent>
     </Card>
     <div className="mt-5 flex justify-end">
