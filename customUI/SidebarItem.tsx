@@ -13,10 +13,10 @@ const SidebarItem = ({ text, link }: Props) => {
     <Link href={link} aria-disabled={isActive} className="">
       <div
         className={cn(
-          "text-start cursor-pointer font-medium text-sm",
+          "text-start cursor-pointer font-medium text-sm h-10 px-1.5 py-2 rounded-sm",
           isActive
-            ? "text-ahGreen font-semibold"
-            : "text-ahTextBlack hover:text-ahGreen",
+            ? "text-ahTextBlack bg-ahBgBlue font-semibold"
+            : "text-ahTextGrey hover:bg-ahBgBlue",
         )}
       >
         {text}

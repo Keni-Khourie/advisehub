@@ -25,7 +25,7 @@ const Sidebar = () => {
   return (
     <div
       className={cn(
-        "bg-ahGrey w-60 h-screen justify-center hidden md:inline py-4 px-4",
+        "bg-white w-60 h-screen justify-center hidden md:inline py-4 px-4",
       )}
     >
       <div className={cn("flex flex-col justify-between h-full")}>
