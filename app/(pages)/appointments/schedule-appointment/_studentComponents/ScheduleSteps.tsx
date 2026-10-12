@@ -1,7 +1,7 @@
 "use client"
 import { useContext } from "react";
 import { StudentScheduleAppointmentContext } from "./StudentAppointmentSchedule";
-import { cn } from "@/lib/utils";
+//import { cn } from "@/lib/utils";
 import StepNumber from './StepNumber';
 import { studentScheduleAppointmentSteps } from "@/constants";
 
