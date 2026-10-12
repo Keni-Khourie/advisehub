@@ -54,6 +54,9 @@
   --color-ahTextBlack:var(--ahTextBlack);
   --color-ahTextGrey:var(--ahTextGrey);
   --color-ahProgressGrey:var(--ahProgressGrey);
+  --color-ahBgBlue:var(--ahBgBlue);
+  --color-ahDeepBlue:var(--ahDeepBlue);
+  --color-ahHoverDeepBlue:var(--ahHoverDeepBlue);
 }
 
 :root {
@@ -89,6 +92,9 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --ahBgBlue:oklch(0.9771 0.0125 236.62);
+  --ahDeepBlue:oklch(0.5461 0.2152 262.88);
+  --ahHoverDeepBlue:oklch(0.5461 0.1324 262.89);
   --ahGreen:oklch(0.7097 0.1166 191.99);
   --ahHoverGreen:oklch(0.6471 0.0814 191.99);
   --ahGrey:oklch(0.9702 0 0);
