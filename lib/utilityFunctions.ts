@@ -16,6 +16,10 @@ export const getStudentAppointmentComponentDetailsBySection = (section:StudentAp
 }
 
 export const getStudentScheduleStepCompletion = (stepNumber:number, currentStep:StudentScheduleAppointmentStep)=>{
-  const isComplete:boolean = studentScheduleAppointmentSteps[stepNumber]===currentStep
+  const contextIndex = studentScheduleAppointmentSteps.findIndex((step)=> step===currentStep)
+  const currentIndex= stepNumber - 1
+  const isComplete:boolean = contextIndex > currentIndex
+
+  //const isComplete:boolean = studentScheduleAppointmentSteps[stepNumber]===currentStep
   return isComplete
 }

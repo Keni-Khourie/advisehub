@@ -28,7 +28,7 @@ export interface StudentAppointmentComponentDetail{
 
 export type StudentScheduleAppointmentView = "AdvisorSelection"|"AppointmentConfirmationLoading"|"AppointmentConfirmationSuccess"|"AppointmentReview"|"DateSelection"|"DateSelectionConflict"|"StudentScheduleAppointmentLanding"|"FindingAppointment"| "CreatingAppointment"|"ReasonSelection"
 export type StudentScheduleAppointmentSection = "Details"|"Time"|"Review"|"none"
-export type StudentScheduleAppointmentStep = "Reason"|"Advisor"|"Date & Time"|"Review"|"none"
+export type StudentScheduleAppointmentStep = "Reason"|"Advisor"|"Date & Time"|"Review"|"Success"|"none"
 
 export interface StudentScheduleAppointmentComponentDetail{
     header:string;

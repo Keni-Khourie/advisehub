@@ -63,7 +63,7 @@ export const studentAppointmentComponentDetails:StudentAppointmentComponentDetai
 ]
 
 export const studentScheduleAppointmentSections:StudentScheduleAppointmentSection[] = ["Details","Time", "Review"]
-export const studentScheduleAppointmentSteps:StudentScheduleAppointmentStep[] = ["Reason", "Advisor", "Date & Time", "Review"]
+export const studentScheduleAppointmentSteps:StudentScheduleAppointmentStep[] = ["Reason", "Advisor", "Date & Time", "Review", "Success"]
 
 export const studentScheduleAppointmentComponentDetails:StudentScheduleAppointmentComponentDetail[] = [
     {
