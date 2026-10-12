@@ -21,6 +21,10 @@ import { useLoginMutation } from "@/redux/features/authApiSlice";
 import GreenButton from "@/customUI/GreenButton";
 import { cn } from "@/lib/utils";
 import LoginFormHeader from "./LoginFormHeader";
+import { Button } from "@/components/ui/button";
+import BlueButton from "@/customUI/BlueButton";
+import { FaUniversity } from "react-icons/fa"
+import {Landmark} from "lucide-react"
 
 
 const LoginForm = () => {
@@ -56,8 +60,8 @@ const LoginForm = () => {
     );
   };
   return (
-    <div className="flex items-center justify-center place-items-center w-full h-full">
-      <div className="flex flex-col items-center justify-center w-[60%]">
+    <div className="flex justify-center w-full h-full bg-white rounded-xl pb-2">
+      <div className="flex flex-col  items-center rounded-xl w-[90%]">
        
         <LoginFormHeader/>
           <form onSubmit={loginForm.handleSubmit(trySubmitForm)} className="w-full">
@@ -76,7 +80,7 @@ const LoginForm = () => {
                       aria-invalid={fieldState.invalid}
                       placeholder="John.Smith@@baforcemultiplier.com"
                       type="text"
-                      className="w-full rounded-sm"
+                      className="w-full rounded-md h-12"
                     />
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
@@ -98,7 +102,7 @@ const LoginForm = () => {
                       aria-invalid={fieldState.invalid}
                       autoComplete="off"
                       type="password"
-                      className="w-full rounded-sm"
+                      className="w-full rounded-md h-12"
                     />
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
@@ -109,10 +113,19 @@ const LoginForm = () => {
               </FieldGroup>
         
                   <Field className="">
-                    <GreenButton text="Sign in" disabled={isLoading}/>
+                    <BlueButton text="Sign in" disabled={isLoading} additionalStyle="h-15 rounded-md"/>
                   </Field>
         
-        
+                <div className="mt-5 w-full">
+                  <div className="flex items-center gap-x-3 w-full justify-center mb-5">
+                    <hr className="w-full mt-1"/>
+                    <p className="font-light text-ahTextGrey">or</p>
+                    <hr className="w-full mt-1"/>
+                  </div>
+                  <Button className="border border-ahDeepBlue text-ahDeepBlue h-12 bg-white w-full hover:bg-white hover:underline cursor-pointer font-semibold relative">
+                    <FaUniversity className="md:absolute md:left-6 md:top-4"/>
+                    Use Campus Credentials (SSO)</Button>
+                </div>
           </form>
       </div>
     </div>
