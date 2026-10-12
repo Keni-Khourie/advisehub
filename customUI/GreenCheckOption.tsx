@@ -1,4 +1,5 @@
-import { FaCheckCircle } from "react-icons/fa";
+
+import GreenCheck from "./GreenCheck";
 interface Props {
   text: string;
 }
@@ -6,7 +7,7 @@ interface Props {
 const GreenCheckOption = ({ text }: Props) => {
   return (
     <div className="flex items-center gap-x-3">
-      <FaCheckCircle className="text-ahGreen bg-white rounded-full" size={28} />
+      <GreenCheck/>
       <p className="font-medium text-sm">{text}</p>
     </div>
   );

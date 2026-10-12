@@ -4,6 +4,8 @@ import { StudentScheduleAppointmentContext } from "./StudentAppointmentSchedule"
 import { StudentScheduleAppointmentStep } from "@/types";
 import { cn } from "@/lib/utils";
 import { getStudentScheduleStepCompletion } from "@/lib/utilityFunctions";
+import GreenCheck from "@/customUI/GreenCheck";
+import BlueCheck from "@/customUI/BlueCheck";
 
 interface Props{
     text:StudentScheduleAppointmentStep,
@@ -16,12 +18,14 @@ const StepNumber = ({text, step}:Props) => {
   return (
     <>
     {text!=="none" && (
-        <div className="flex flex-col gap-y-1 justify-center">
-        <div className="flex items-center">
-            <p className={cn("border h-7 w-7 flex justify-center items-center text-center rounded-full text-ahTextGrey border-ahTextGrey", isActive &&"text-ahGreen border-ahGreen")}>{step}</p>
-            {text!=="Review"&& <div className={cn("h-1 w-20 bg-ahGrey rounded-sm", isCompleted && "bg-ahGreen")}></div>}
+        <div className="flex flex-col gap-y-1 justify-center w-full">
+        <div className="flex items-center w-full">
+            {!isCompleted && <p className={cn("border bg-white h-7 w-7 flex justify-center items-center text-center rounded-full text-ahTextGrey border-ahTextGrey font-semibold", isActive &&"text-white bg-ahDeepBlue border-ahDeepBlue")}>{step}</p>}
+            {isCompleted &&<BlueCheck/>}
+            {text!=="Review"&& <div className={cn("h-0.5 w-full bg-stone-400 rounded-sm", isCompleted && "bg-ahGreen")}></div>}
         </div>
         <p className={cn("font-thin text-ahTextGrey", isActive && "font-semibold text-ahTextBlack")}>{text}</p>
+        
     </div>
     )}
     </>

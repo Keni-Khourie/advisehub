@@ -9,7 +9,7 @@ interface Props extends ComponentProps<typeof Button>{
 const BlueButton = ({text, additionalStyle, ...props}:Props) => {
     
   return (
-    <Button className={cn("bg-ahDeepBlue hover:bg-ahHoverDeepBlue text-white text-center font-semibold text-sm w-full h-10 rounded-sm cursor-pointer",additionalStyle)} {...props}>{text}</Button>
+    <Button className={cn("bg-ahDeepBlue hover:bg-ahHoverDeepBlue text-white text-center font-semibold text-sm w-full h-10 rounded-lg cursor-pointer",additionalStyle)} {...props}>{text}</Button>
   )
 }
 
