@@ -128,7 +128,7 @@ export const studentScheduleAppointmentComponentDetails:StudentScheduleAppointme
      {
         view:"AppointmentConfirmationSuccess",
         section:"none",
-        step:"none",
+        step:"Success",
         header:"Appointment Confirmed",
         
     },

@@ -17,7 +17,7 @@ const StepNumber = ({text, step}:Props) => {
     const isCompleted:boolean =getStudentScheduleStepCompletion(step, contextData.componentDetails.step)
   return (
     <>
-    {text!=="none" && (
+    {(text!=="none" && text!=="Success") && (
         <div className="flex flex-col gap-y-1 justify-center w-full">
         <div className="flex items-center w-full">
             {!isCompleted && <p className={cn("border bg-white h-7 w-7 flex justify-center items-center text-center rounded-full text-ahTextGrey border-ahTextGrey font-semibold", isActive &&"text-white bg-ahDeepBlue border-ahDeepBlue")}>{step}</p>}
