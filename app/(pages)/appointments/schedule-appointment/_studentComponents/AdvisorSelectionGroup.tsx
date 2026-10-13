@@ -8,9 +8,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getInitials } from "@/lib/utilityFunctions";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-
+//import { Skeleton } from '@/components/ui/skeleton';
 const AdvisorSelectionGroup = () => {
   //fetch advisors for advisor select (API:getAdvisors with nearest available time)
+  //add skeletons for loading
   const contextData = useContext(StudentScheduleAppointmentContext);
   const updateAdvisorSelection = (e:number) => {
     contextData.setAppointmentDetails({...contextData.appointmentDetails, advisorId:e})
