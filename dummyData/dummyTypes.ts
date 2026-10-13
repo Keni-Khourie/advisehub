@@ -6,6 +6,9 @@ export interface DummyAdvisor{
     office:string;
     yearsOfExperience:number;
     jobTitle:string;
+    closestAvailability:string;
+    fullName:string;
+    title:string
 }
 
 export interface DummyDegree{

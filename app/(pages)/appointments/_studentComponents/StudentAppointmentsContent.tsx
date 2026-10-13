@@ -24,7 +24,7 @@ const StudentAppointmentsContent = () => {
         {studentAppointmentSections.map((section, index)=><AppointmentSectionBadge key={index} text={section}/>)}
       </div>
 
-      <div className="flex flex-col gap-y-6 overflow-y-scroll h-[40vw] ">
+      <div className="flex flex-col gap-y-6 overflow-y-scroll h-[40vw]">
         {appointments && (
         appointments.map((meeting, index)=><AppointmentListItem type={contextData.componentDetails.section} data={meeting} key={index} isLoading={isLoading}/>)
       )

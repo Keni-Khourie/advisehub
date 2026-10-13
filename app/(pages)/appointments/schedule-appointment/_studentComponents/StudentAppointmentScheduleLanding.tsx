@@ -29,12 +29,12 @@ const StudentAppointmentScheduleLanding = () => {
         <CardTitle className="font-semibold text-lg">Before You Start</CardTitle>
         <CardDescription className=""></CardDescription>
       </CardHeader>
-      <CardContent className="grid grid-cols-2 gap-y-6 ps-5">
+      <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-y-6 ps-5">
         {landingCardOptions.map((option, index)=><GreenCheckOption key={index} text={option}/>)}
       </CardContent>
     </Card>
-    <div className="mt-5 flex justify-end">
-      <BlueButton text="Start" additionalStyle="w-2/12 rounded-lg" onClick={startAppointmentScheduling}/>
+    <div className="mt-5 flex justify-center md:justify-end">
+      <BlueButton text="Start" additionalStyle="w-full md:w-2/12 rounded-lg" onClick={startAppointmentScheduling}/>
     </div>
     </div>
   )

@@ -78,15 +78,15 @@ export const studentScheduleAppointmentComponentDetails:StudentScheduleAppointme
        view:"AdvisorSelection",
         section:"Details",
         step:"Advisor",
-        header:"Schedule an Advisor",
-        subtitle:"Step 1 of 3",  
+        header:"Select an Advisor",
+        subtitle:"Compare experience and earliest availability",  
     },
     {
         view:"ReasonSelection",
         section:"Details",
         step:"Reason",
         header:"Schedule an Appointment",
-        subtitle:"Choose a reason for advising",
+        subtitle:"Choose the reason that best matches your need",
     }, 
     {
         view:"FindingAppointment",

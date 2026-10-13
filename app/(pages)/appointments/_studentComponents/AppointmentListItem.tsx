@@ -15,7 +15,7 @@ interface Props {
 
 const AppointmentListItem = ({ type, data, isLoading }: Props) => {
   return (
-    <div className="flex justify-between items-center ps-3 pe-5 py-6 rounded-sm border">
+    <div className="flex justify-between items-center ps-3 pe-5 py-6 rounded-md bg-white border">
       {!isLoading && (
         <div className="flex gap-x-5">
           <div className="font-bold bg-ahGrey flex flex-col justify-center text-center border w-22 h-22 rounded-sm">

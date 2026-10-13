@@ -61,7 +61,7 @@ const LoginForm = () => {
     );
   };
   return (
-    <div className="flex justify-center w-full h-full bg-white rounded-xl pb-2">
+    <div className="flex justify-center w-full h-full bg-white shadow-lg rounded-xl pb-2">
       <div className="flex flex-col  items-center rounded-xl w-[90%]">
         <LoginFormHeader />
         <form

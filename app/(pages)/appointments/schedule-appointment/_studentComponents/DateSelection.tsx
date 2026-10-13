@@ -16,7 +16,7 @@ const DateSelection = () => {
     <div>
       <div>Content</div>
       <div className="flex justify-between items-center">
-        <WhiteButton text="Back" onClick={backToAdvisorSelection}/>
+        <WhiteButton text="Back" onClick={backToAdvisorSelection} additionalStyle="shadow-md"/>
         <BlueButton text="Review Appointment" onClick={continueToAppointmentReview} additionalStyle="w-full md:w-1/4"/>
       </div>
       

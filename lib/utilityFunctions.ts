@@ -23,3 +23,9 @@ export const getStudentScheduleStepCompletion = (stepNumber:number, currentStep:
   //const isComplete:boolean = studentScheduleAppointmentSteps[stepNumber]===currentStep
   return isComplete
 }
+
+export const getInitials = (fullName:string)=>{
+const initials = fullName.split(" ").map((names)=>names[0]).join("")
+return initials
+
+}
