@@ -4,6 +4,7 @@ import { StudentScheduleAppointmentContext } from './StudentAppointmentSchedule'
 import WhiteButton from '@/customUI/WhiteButton';
 import BlueButton from '@/customUI/BlueButton';
 import {getStudentAppointmentScheduleComponentDetailsByView } from '@/lib/utilityFunctions';
+import { Calendar } from "@/components/ui/calendar"
 const DateSelection = () => {
     const contextData = useContext(StudentScheduleAppointmentContext)
      const backToAdvisorSelection = ()=>{
@@ -14,7 +15,10 @@ const DateSelection = () => {
     }
   return (
     <div>
-      <div>Content</div>
+      <div>
+        <div></div>
+        <div></div>
+      </div>
       <div className="flex justify-between items-center">
         <WhiteButton text="Back" onClick={backToAdvisorSelection} additionalStyle="shadow-md"/>
         <BlueButton text="Review Appointment" onClick={continueToAppointmentReview} additionalStyle="w-full md:w-1/4"/>

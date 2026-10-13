@@ -8,6 +8,7 @@ interface AppointmentDetails{
   appointmentReason:AdvisorSpecialization|undefined;
   advisorId: number|undefined;
   date: Date|undefined;
+  availableTime:string|undefined;
   generalAdvisingQuestion:string|undefined;
 }
 interface StudentScheduleAppointmentContextData{
@@ -27,6 +28,7 @@ export const StudentScheduleAppointmentContext = createContext<StudentScheduleAp
     appointmentReason:undefined,
     advisorId:undefined,
     date:undefined,
+    availableTime:undefined,
     generalAdvisingQuestion:undefined,
   },
   setAppointmentDetails:()=>{},
@@ -37,6 +39,7 @@ const StudentAppointmentSchedule = () => {
       appointmentReason:undefined,
     advisorId:undefined,
     date:undefined,
+    availableTime:undefined,
     generalAdvisingQuestion:undefined,
     })
   return (
