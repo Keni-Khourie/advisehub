@@ -17,7 +17,7 @@ const DateSelection = () => {
     }
   return (
     <div>
-      <div className="flex gap-x-5 flex-wrap md:flex-nowrap">
+      <div className="flex gap-x-5 flex-wrap md:flex-nowrap md:h-[53vh] ">
         <DateSelectionCalendar/> 
          <AvailableTimeSelection/> 
       </div>

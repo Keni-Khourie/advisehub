@@ -9,6 +9,8 @@ import AppointmentSectionBadge from './AppointmentSectionBadge';
 import AppointmentListItem from './AppointmentListItem';
 import { ExistingMeetingData } from '@/dummyData/dummyTypes';
 import { getPastMeetings, getUpcomingMeetings } from '@/dummyData/dummyUtils';
+import Link from 'next/link';
+import BlueButton from '@/customUI/BlueButton'
 
 
 const StudentAppointmentsContent = () => {
@@ -20,8 +22,13 @@ const StudentAppointmentsContent = () => {
     <div>
       <PageHeader headerText={contextData.componentDetails.header} subtitle={contextData.componentDetails.subtitle} additionalClass="mb-10"/>
 
-      <div className="flex gap-x-3 mb-10">
-        {studentAppointmentSections.map((section, index)=><AppointmentSectionBadge key={index} text={section}/>)}
+      <div className="flex justify-between items-center mb-10">
+        <div className="flex gap-x-3">
+          {studentAppointmentSections.map((section, index)=><AppointmentSectionBadge key={index} text={section}/>)}
+        </div>
+        <Link href="/appointments/schedule-appointment">
+        <BlueButton text="Schedule Appointment" additionalStyle="py-1 text-sm"/>
+        </Link>
       </div>
 
       <div className="flex flex-col gap-y-6 overflow-y-scroll h-[40vw]">
