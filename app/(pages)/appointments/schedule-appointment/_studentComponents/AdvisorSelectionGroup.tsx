@@ -4,7 +4,6 @@ import { StudentScheduleAppointmentContext } from "./StudentAppointmentSchedule"
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { dummyAdvisors } from "@/dummyData/dummyData";
-import { Dot } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getInitials } from "@/lib/utilityFunctions";
 import { Badge } from "@/components/ui/badge";
@@ -46,11 +45,7 @@ const AdvisorSelectionGroup = () => {
                   <p>{`${advisor.title} ${advisor.fullName}`}</p>
                   <p>{advisor.jobTitle}</p>
                   <p className="flex items-center">
-                    {advisor.yearsOfExperience}yrs
-                    <span>
-                      <Dot />{" "}
-                    </span>
-                    {advisor.specialization}
+                    {`${advisor.yearsOfExperience}yrs • ${advisor.specialization}`}
                   </p>
                 </div>
               </Label>

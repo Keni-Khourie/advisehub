@@ -79,14 +79,14 @@ export const studentScheduleAppointmentComponentDetails:StudentScheduleAppointme
         section:"Details",
         step:"Advisor",
         header:"Select an Advisor",
-        subtitle:"Compare experience and earliest availability",  
+        subtitle:"Step 2 • Compare experience and earliest availability",  
     },
     {
         view:"ReasonSelection",
         section:"Details",
         step:"Reason",
         header:"Schedule an Appointment",
-        subtitle:"Choose the reason that best matches your need",
+        subtitle:"Step 1 • Choose the reason that best matches your need",
     }, 
     {
         view:"FindingAppointment",
@@ -100,7 +100,7 @@ export const studentScheduleAppointmentComponentDetails:StudentScheduleAppointme
         section:"Time",
         step:"Date & Time",
         header:"Select Date & Time",
-        subtitle:"Step 2 of 3",
+        subtitle:"Step 3 • Only conflict-free available slots can be selected.",
         
     },
      {

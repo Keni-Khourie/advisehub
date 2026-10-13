@@ -7,7 +7,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Dot } from "lucide-react";
 
 const AppointmentTimePlaceCard = () => {
   return (
@@ -15,7 +14,7 @@ const AppointmentTimePlaceCard = () => {
       <CardHeader className="">
         <CardTitle className="font-semibold">Appointment</CardTitle>
         <CardDescription className="">
-            <p className="flex items-center">Today <Dot/> 10:30 AM</p>
+            <p className="flex items-center">{`${"Today"}•${"10:30 AM"}`}</p>
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col justify-center">

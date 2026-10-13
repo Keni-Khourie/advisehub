@@ -4,7 +4,6 @@ import { ExistingMeetingData } from "@/dummyData/dummyTypes";
 import { cn } from "@/lib/utils";
 import { StudentAppointmentSection } from "@/types";
 import { format } from "date-fns";
-import { Dot } from "lucide-react";
 import Link from "next/link";
 
 interface Props {
@@ -25,10 +24,8 @@ const AppointmentListItem = ({ type, data, isLoading }: Props) => {
           <div>
             <p className="mb-1 font-semibold text-ahTextBlack">{data.meetingReason}</p>
             {type === "Upcoming" && (
-              <p className="font-thin text-ahTextGrey text-sm flex">
-                {data.advisor}
-                <Dot />
-                {`${format(data.startDateTime, "h a")} - ${format(data.endDateTime, "h a")}`}
+              <p className="font-thin text-ahTextGrey text-sm">
+               { `${data.advisor} • ${format(data.startDateTime, "h a")} - ${format(data.endDateTime, "h a")}` }
               </p>
             )}
             {type === "Past Meetings" && (
