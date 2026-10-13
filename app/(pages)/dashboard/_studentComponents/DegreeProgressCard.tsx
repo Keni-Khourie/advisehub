@@ -1,35 +1,30 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress";
 import { cn } from '@/lib/utils';
+import Image from "next/image";
 
 //interface Props {}
 const DegreeProgressCard = () => {
   return (
-    <Card className={cn("w-full rounded-sm px-3 py-3")}>
+    <Card className={cn("w-full md:w-[35%] rounded-md p-4 bg-white")}>
         <CardHeader className="">
-            <CardTitle className="font-semibold">Degree Progress</CardTitle>
-            <CardDescription className="text-sm font-light">Bsc Computer Science</CardDescription>
+            <CardTitle className="text-ahTextBlack font-semibold text-base">Degree Progress</CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-col justify-center gap-y-3">
-          <div className="flex justify-between items-center w-1/2">
-            <p className="font-bold text-4xl">94</p>
-            <p className="font-light text-ahTextGrey">Completed</p>
-          </div>
-          <div className="flex justify-between items-center w-1/2">
-            <p className="font-bold text-ahGreen text-2xl">26</p>
-            <p className="font-light text-ahTextGrey">Remaining</p>
-          </div>
-          <div className="mt-10 flex flex-col gap-y-2 justify-center">
+        <CardContent className="flex items-center w-full">
+          
+          <div className="w-1/2 flex flex-col justify-center">
             
-              <Progress value={78} className="" />
+              <p className="text-ahTextBlack font-bold text-4xl mb-3">{`${78}%`}</p>
            
-            <p className="font-semibold text-ahGreen text-sm">78% complete</p>
+            <p className="text-sm font-thin text-ahTextGrey">{`${96} completed`}</p>
+            <p className="text-sm font-thin text-ahTextGrey">{`${26} remaining`}</p>
+          </div>
+          <div className="w-full">
+            <Image src="/degreeProgressCardImage.png" alt="student degree progress" width={500} height={500} className=""/> 
           </div>
         </CardContent>
     </Card>

@@ -1,25 +1,28 @@
 import NextAppointmentCard from './NextAppointmentCard';
-import ScheduleAppointmentButton from './ScheduleAppointmentButton';
+import ScheduleAppointmentCard from './ScheduleAppointmentCard';
 import DegreeProgressCard from './DegreeProgressCard';
 import SectionHeader from '@/customUI/SectionHeader';
 import { getDayPeriod } from '@/lib/utilityDateFunctions';
+import AdvisorNotesCard from './AdvisorNotesCard';
+import MeetingHistoryCard from './MeetingHistoryCard';
 
 const StudentDashboardContent = () => {
   return (
     <div className="w-full">
       <SectionHeader headerText={`Good ${getDayPeriod()}, ${"Alex"}`} additionalClass=""/>
-        <div className="flex gap-x-5">
-            <div className="w-[60%]">
-              <div className="w-full flex flex-col justify-center gap-y-5">
+
+        <div className="flex flex-col gap-y-4">
+            <div className="w-full flex gap-x-5">
+    <ScheduleAppointmentCard/>
                 <NextAppointmentCard/>
-            <ScheduleAppointmentButton/>
-              </div>
-            
-                  </div>
-                  <div className="w-[40%]">
-                    <DegreeProgressCard/>
-                  </div>
-        </div>
+            </div>
+            <div className="w-full flex gap-x-5 gap-y-4 flex-wrap md:flex-nowrap">
+               <DegreeProgressCard/>
+               <AdvisorNotesCard/>
+               <MeetingHistoryCard/>
+            </div>
+           
+    </div>
     </div>
   )
 }
