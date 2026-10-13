@@ -19,12 +19,12 @@ const StepNumber = ({text, step}:Props) => {
     <>
     {(text!=="none" && text!=="Success") && (
         <div className="flex flex-col gap-y-1 justify-center w-full">
-        <div className="flex items-center w-full">
-            {!isCompleted && <p className={cn("border bg-white h-7 w-7 flex justify-center items-center text-center rounded-full text-ahTextGrey border-ahTextGrey font-semibold", isActive &&"text-white bg-ahDeepBlue border-ahDeepBlue")}>{step}</p>}
+        <div className="flex items-center gap-x-0.5 w-full">
+            {!isCompleted && <p className={cn("border bg-white h-7 w-7 flex justify-center text-center rounded-full text-ahTextGrey border-ahTextGrey font-semibold", isActive &&"text-white bg-ahDeepBlue border-ahDeepBlue")}>{step}</p>}
             {isCompleted &&<BlueCheck/>}
-            {text!=="Review"&& <div className={cn("h-0.5 w-full bg-stone-400 rounded-sm", isCompleted && "bg-ahGreen")}></div>}
+            {text!=="Review"&& <div className={cn("h-0.5 w-[90%]  md:w-full bg-stone-400 rounded-sm", isCompleted && "bg-ahGreen")}></div>}
         </div>
-        <p className={cn("font-thin text-ahTextGrey", isActive && "font-semibold text-ahTextBlack")}>{text}</p>
+        <p className={cn("font-thin text-ahTextGrey text-xs md:text-base", isActive && "font-semibold text-ahTextBlack")}>{text}</p>
         
     </div>
     )}

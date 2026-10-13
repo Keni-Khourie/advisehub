@@ -1,4 +1,4 @@
-import { StudentScheduleAppointmentSection, StudentScheduleAppointmentComponentDetail, SidebarItemDetails, StudentAppointmentSection, StudentAppointmentComponentDetail, StudentScheduleAppointmentStep} from "./types";
+import { StudentScheduleAppointmentSection, StudentScheduleAppointmentComponentDetail, SidebarItemDetails, StudentAppointmentSection, StudentAppointmentComponentDetail, StudentScheduleAppointmentStep, AppointmentReason} from "./types";
 
 
 export const studentSidebarItems: SidebarItemDetails[] =[
@@ -139,4 +139,27 @@ export const studentScheduleAppointmentComponentDetails:StudentScheduleAppointme
         header:"Select Date & Time",
         
     },
+]
+
+export const appointmentReasons: AppointmentReason[] = [
+    {
+        option:"Academic Planning",
+        description:"Map your courses and graduation path"
+    },
+    {
+        option:"Course Registration",
+        description:"Help selecting or changing courses"
+    },
+    {
+        option:"Degree Requirements",
+        description:"Review remaining program requirements"
+    },
+    {
+        option:"Transfer Credits",
+        description:"Questions about transferred coursework"
+    },
+    {
+        option:"General Advising",
+        description:"Ask anything that does not fit above"
+    }
 ]

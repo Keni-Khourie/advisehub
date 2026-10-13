@@ -10,7 +10,7 @@ const ScheduleSteps = () => {
   return (
     <>{
         (contextData.componentDetails.step !=="none" && contextData.componentDetails.step !=="Success") && (
-            <div className="flex gap-x-1">
+            <div className="flex justify-between md:justify-none md:gap-x-1 w-full">
         {studentScheduleAppointmentSteps.map((step, index)=><StepNumber key={index} text={step} step={index+1}/>)}
     </div>
         )

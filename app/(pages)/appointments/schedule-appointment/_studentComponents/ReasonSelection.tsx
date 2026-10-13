@@ -5,6 +5,8 @@ import { StudentScheduleAppointmentContext } from './StudentAppointmentSchedule'
 
 import {getStudentAppointmentScheduleComponentDetailsByView } from '@/lib/utilityFunctions';
 import BlueButton from '@/customUI/BlueButton';
+import ReasonSelectionGroup from './ReasonSelectionGroup';
+import GeneralAdvisingQuestion from './GeneralAdvisingQuestion';
 
 const ReasonSelection = () => {
     const contextData = useContext(StudentScheduleAppointmentContext)
@@ -13,9 +15,16 @@ const ReasonSelection = () => {
         contextData.setComponentDetails(getStudentAppointmentScheduleComponentDetailsByView("AdvisorSelection"))
     }
   return (
-    <div>
-        <div className="flex justify-center md:justify-end">
-            
+    <div className="h-full w-full">
+        <div className="w-full h-max flex gap-x-3 gap-y-6 flex-wrap md:flex-nowrap">
+            <ReasonSelectionGroup/>
+            {
+                contextData.appointmentDetails.appointmentReason==="General Advising" && (
+                    <GeneralAdvisingQuestion/>
+                )
+            }
+        </div>
+        <div className="flex justify-center md:justify-end mt-20">
             <BlueButton text="Continue to Advisor" onClick={continueToAdvisor} additionalStyle="w-full md:w-1/4"/>
         </div>
        

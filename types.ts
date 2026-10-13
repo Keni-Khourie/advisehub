@@ -39,4 +39,9 @@ export interface StudentScheduleAppointmentComponentDetail{
 }
 export type AdvisorSpecialization = "Academic Planning" | "Course Registration" | "Degree Requirements" | "Transfer Credits"| "General Advising"
 
+export interface AppointmentReason {
+  option:AdvisorSpecialization;
+  description:string;
+}
+
 
