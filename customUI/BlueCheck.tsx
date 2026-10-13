@@ -7,7 +7,7 @@ additionalClass?:string
 
 const BlueCheck = ({size, additionalClass}:Props) => {
   return (
-    <FaCheckCircle className={cn("text-ahDeepBlue bg-white rounded-full", additionalClass)} size={size??28} />
+    <FaCheckCircle className={cn("rounded-full text-ahDeepBlue bg-white", additionalClass)} size={size??28} />
   )
 }
 
