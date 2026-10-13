@@ -7,6 +7,8 @@ import { dummyAdvisors } from "@/dummyData/dummyData";
 import { Dot } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getInitials } from "@/lib/utilityFunctions";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 const AdvisorSelectionGroup = () => {
   //fetch advisors for advisor select (API:getAdvisors with nearest available time)
@@ -57,6 +59,12 @@ const AdvisorSelectionGroup = () => {
                 className="w-6 h-6
                 data-checked:border-2 data-checked:border-ahGreen data-checked:bg-white cursor-pointer"
               />
+            </div>
+            <div className="ms-2 md:ms-20 flex justify-between mt-3">
+                <Badge className={cn("text-green-600 bg-green-100 font-semibold p-1")}>
+                    {"Today 4:00PM"}
+                </Badge>
+                <Badge className={cn("bg-white text-ahTextGrey font-semibold bg-stone-100")}>Office</Badge>
             </div>
           </div>
         ))}
