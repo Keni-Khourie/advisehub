@@ -36,6 +36,7 @@ const AdvisorSelectionGroup = () => {
               >
                 <div>
                   <Avatar className="w-12 h-12">
+                    <AvatarImage src={undefined}/>
                     <AvatarFallback className="text-white font-semibold bg-ahGreen text-lg">
                       {getInitials(advisor.fullName)}
                     </AvatarFallback>
