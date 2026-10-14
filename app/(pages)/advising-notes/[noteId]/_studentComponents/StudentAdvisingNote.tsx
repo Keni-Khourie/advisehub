@@ -1,11 +1,13 @@
-import React from 'react'
+"use client"
+import PageHeader from '@/customUI/PageHeader';
 interface Props{
     noteId:number
 }
 const StudentAdvisingNote = ({noteId}:Props) => {
+  //fetch advising note by student ID
   return (
     <div>
-        <p>StudentAdvisingNote</p>
+        <PageHeader headerText="Advising Note" subtitle="Full note details shared by your advisor." additionalClass=""/>
         <p>{`Note ID: ${noteId}`}</p>
     </div>
   )

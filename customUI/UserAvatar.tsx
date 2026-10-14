@@ -1,5 +1,5 @@
 "use client"
-import {Avatar, AvatarFallback} from "@/components/ui/avatar"
+import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar"
 const UserAvatar = () => {
     //fetch user from store
     const alex ={
@@ -17,6 +17,7 @@ const UserAvatar = () => {
   return (
     <div className="flex gap-x-3">
         <Avatar className="w-10 h-10">
+            <AvatarImage src={undefined}/>
             <AvatarFallback className="text-white font-semibold bg-ahGreen">
                 {`${user.firstName[0]} ${user.lastName[0]}`}
             </AvatarFallback>
