@@ -7,8 +7,13 @@ import WhiteButton from '@/customUI/WhiteButton';
 import {getStudentAppointmentScheduleComponentDetailsByView } from '@/lib/utilityFunctions';
 import Image from 'next/image';
 
+import BeforeYouConfirmCard from './BeforeYouConfirmCard';
+import AppointmentReviewCard from './AppointmentReviewCard';
+
+
 const AppointmentReview = () => {
     const contextData = useContext(StudentScheduleAppointmentContext)
+   
    const backToDateTimeSelection = ()=>{
     contextData.setComponentDetails(getStudentAppointmentScheduleComponentDetailsByView("DateSelection"))
    }
@@ -19,7 +24,10 @@ const AppointmentReview = () => {
    }
   return (
     <div>
-      <div>Content</div>
+      <div className="flex items-start flex-wrap md:flex-nowrap gap-x-5">
+        <AppointmentReviewCard/>
+        <BeforeYouConfirmCard/>
+      </div>
       <div className="flex justify-between items-end flex-wrap gap-y-5">
         <WhiteButton text="Back" onClick={backToDateTimeSelection} additionalStyle="shadow-md"/>
         <div className="w-full md:w-1/4 flex flex-col gap-y-0.5">
