@@ -1,6 +1,4 @@
 "use client"
-
-import DegreeCreditsCard from "./DegreeCreditsCard";
 import DegreeProgressCard from "./DegreeProgressCard";
 import RecommendedNextStepsCard from "./RecommendedNextStepsCard";
 import WhatThisMeansCard from "./WhatThisMeansCard";
