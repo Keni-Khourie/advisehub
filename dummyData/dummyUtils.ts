@@ -1,7 +1,7 @@
 
 import { parseISO } from "date-fns";
 import { ExistingMeetingData } from "./dummyTypes";
-import { dummyAdvisors, existingMeetings } from "./dummyData";
+import { dummyAdvisors, dummyStudentAdvisingNotes, existingMeetings } from "./dummyData";
 
 export const getPastMeetings = (
   
@@ -24,4 +24,8 @@ export const getUpcomingMeetings = (
 export const getDummyAdvisorById = (advisorId:number)=>{
  const advisor = dummyAdvisors.find((advisor)=>advisor.id===advisorId)
  return advisor
+}
+
+export const getDummyStudentAdvisingNoteById = (id:number)=>{
+return dummyStudentAdvisingNotes.find((note)=>note.id===id)
 }
