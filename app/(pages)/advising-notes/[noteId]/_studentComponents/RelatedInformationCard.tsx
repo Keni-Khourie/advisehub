@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 const RelatedInformationCard = () => {
   return (
-     <Card className={cn("w-full md:w-1/2 px-3 pt-3 pb-1")}>
+     <Card className={cn("w-full h-full md:w-1/2 px-3 pt-3 pb-1")}>
       <CardHeader className="">
         <CardTitle className="text-base font-semibold">Related Information</CardTitle>
         <CardDescription className="text-ahTextGrey font-light text-sm">{`Degree Progress: ${94} completed • ${26} remaining`}</CardDescription>

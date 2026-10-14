@@ -27,11 +27,11 @@ const StudentAdvisingNote = ({noteId}:Props) => {
         
         
         <div className="flex flex-col gap-y-6 w-full">
-          <AdvisorDetails/>
+         {advisingNote && <AdvisorDetails advisor={advisingNote.advisor} advisorTitle={advisingNote.advisorTitle} date={advisingNote.meetingDate} noteTitle={advisingNote.noteTitle}/>}
           <StudentAdvisorNoteCard note={advisingNote?.note}/>
           
 
-          <div className="w-full flex items-start gap-x-5 flex-wrap md:flex-nowrap">
+          <div className="w-full h-full flex items-start gap-x-5 flex-wrap md:flex-nowrap">
             <NextStepsCard steps={advisingNote?.nextSteps}/>
             <RelatedInformationCard/>
           </div>
