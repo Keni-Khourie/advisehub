@@ -1,8 +1,9 @@
-import React from 'react'
+import AdvisingNotesContent from "./AdvisingNotesContent";
+
 
 const AdvisingNotesPage = () => {
   return (
-    <div>AdvisingNotesPage</div>
+    <AdvisingNotesContent/>
   )
 }
 

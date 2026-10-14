@@ -4,13 +4,14 @@ import AdvisorAppointmentDetails from "./_advisorComponents/AdvisorAppointmentDe
 import StudentAppointmentDetails from "./_studentComponents/StudentAppointmentDetails";
 
 //this will be gotten from context
-const user = {
-  role: "STUDENT"
-};
+
 interface Props{
   appointmentId:number
 }
 const AppointmentContent = ({appointmentId}:Props) => {
+  const user = {
+  role: "STUDENT"
+};
   return (
     <div>
       {user.role === "STUDENT" ? (
