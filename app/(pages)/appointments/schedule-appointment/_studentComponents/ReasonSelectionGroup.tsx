@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { appointmentReasons } from "@/constants";
 import { AdvisorSpecialization } from "@/types";
+import { cn } from "@/lib/utils";
 const ReasonSelectionGroup = () => {
   const contextData = useContext(StudentScheduleAppointmentContext);
 
@@ -29,7 +30,7 @@ const ReasonSelectionGroup = () => {
         >
           {appointmentReasons.map((reason, index) => (
             <div
-              className="flex items-center gap-3 bg-white  rounded-lg py-3 px-3 shadow-md border active:border-ahGreen hover:border-ahGreen"
+              className={cn("flex items-center gap-3 bg-white  rounded-lg py-3 px-3 shadow-md border active:border-ahGreen hover:border-ahGreen",contextData.appointmentDetails.appointmentReason===reason.option &&"border-2 border-ahGreen")}
               key={index}
             >
               <RadioGroupItem

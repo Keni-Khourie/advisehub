@@ -27,7 +27,7 @@ const AdvisorSelectionGroup = () => {
         {dummyAdvisors.map((advisor, index) => (
           <div
             key={index}
-            className="bg-white p-3 rounded-lg shadow-md focus:border-ahGreen active:border-ahGreen checked:border-ahGreen hover:border-ahGreen w-full border"
+            className={cn("bg-white p-3 rounded-lg shadow-md focus:border-ahGreen active:border-ahGreen checked:border-ahGreen hover:border-ahGreen w-full border",contextData.appointmentDetails.advisorId===advisor.id &&"border-2 border-ahGreen")}
           >
             <div className="w-full flex justify-between">
               <Label
