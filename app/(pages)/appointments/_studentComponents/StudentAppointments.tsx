@@ -13,8 +13,8 @@ export const StudentAppointmentContext = createContext<StudentAppointmentContext
   componentDetails:{
     view:"UpcomingAppointments",
     section:"Upcoming",
-    header:"Schedule an Appointment",
-    subtitle:"Begin the guided booking",
+    header:"My Appointments",
+    subtitle:"View upcoming sessions and previous meetings",
         
   },
   setComponentDetails:()=>{},
@@ -24,7 +24,8 @@ const StudentAppointments = () => {
   const [componentDetails, setComponentDetails] = useState<StudentAppointmentComponentDetail>({
       view:"UpcomingAppointments",
         section:"Upcoming",
-       header:"Upcoming Appointments",
+       header:"My Appointments",
+       subtitle:"View upcoming sessions and previous meetings",
 
     })
   return (

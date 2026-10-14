@@ -18,10 +18,10 @@ export const studentSidebarItems: SidebarItemDetails[] =[
         text:"Advising Notes",
         link:"/advising-notes"
     },
-    {
-        text:"Messages/Resources",
-        link:"/messages-resources"
-    },
+    // {
+    //     text:"Messages/Resources",
+    //     link:"/messages-resources"
+    // },
 ]
 
 export const advisorSidebarItems:SidebarItemDetails[] =[
@@ -52,13 +52,14 @@ export const studentAppointmentComponentDetails:StudentAppointmentComponentDetai
     {
         view:"UpcomingAppointments",
         section:"Upcoming",
-        header:"Upcoming Appointments",
-        subtitle:""
+        header:"My Appointments",
+        subtitle:"View upcoming sessions and previous meetings"
     },
     {
         view:"PastMeetings",
         section:"Past Meetings",
-        header:"Past Meetings",
+        header:"Meeting History",
+        subtitle:"Review completed advising meetings",
     },
 ]
 

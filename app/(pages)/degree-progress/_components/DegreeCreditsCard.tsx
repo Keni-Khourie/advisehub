@@ -9,21 +9,17 @@ import { cn } from "@/lib/utils";
 
 interface Props{
   title:string;
-  subtitle:string;
   credits:number;
+  fontStyling?:string
 }
 
-const DegreeCreditsCard = ({title, subtitle, credits}:Props) => {
+const DegreeCreditsCard = ({title, credits, fontStyling}:Props) => {
   return (
-     <Card className={cn("border py-2 px-3 rounded-sm w-1/2")}>
-      <CardHeader className="">
-        <CardTitle className="font-semibold text-lg">{title}</CardTitle>
-        <CardDescription className="text-sm">{subtitle}</CardDescription>
+     <Card className={cn("border py-3 px-4 rounded-lg w-1/2 bg-white h-32 flex flex-col justify-center")}>
+      <CardHeader className="flex gap-x-10 items-center">
+        <CardTitle className={cn("font-bold text-3xl", fontStyling)}>{credits}</CardTitle>
+        <CardDescription className="text-base font-semibold text-ahTextGrey">{title}</CardDescription>
       </CardHeader>
-      <CardContent className="pb-10">
-        <p className="font-bold text-3xl">{`${credits} credits`}</p>
-      </CardContent>
-
     </Card>
   )
 }

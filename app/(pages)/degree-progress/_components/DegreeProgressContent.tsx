@@ -2,9 +2,11 @@
 
 import DegreeCreditsCard from "./DegreeCreditsCard";
 import DegreeProgressCard from "./DegreeProgressCard";
+import RecommendedNextStepsCard from "./RecommendedNextStepsCard";
+import WhatThisMeansCard from "./WhatThisMeansCard";
 
 const DegreeProgressContent = () => {
-    //fetch students Degree info
+    //fetch students Degree info. This info should contain required credits
     const dummyDegreeInfo = {
         creditsEarned :94,
         creditsRemaining:26,
@@ -14,8 +16,8 @@ const DegreeProgressContent = () => {
     <div className="w-full flex flex-col gap-y-8">
         <DegreeProgressCard completedCredits={dummyDegreeInfo.creditsEarned} remainingCredits={dummyDegreeInfo.creditsRemaining} percentComplete={dummyDegreeInfo.degreeCompletion}/>
         <div className="w-full flex gap-x-5">
-          <DegreeCreditsCard title="Completed" subtitle="Credits already earned" credits={dummyDegreeInfo.creditsEarned}/>
-          <DegreeCreditsCard title="Remaining" subtitle="Credits still needed" credits={dummyDegreeInfo.creditsRemaining}/>
+          <WhatThisMeansCard completedCredits={dummyDegreeInfo.creditsEarned} remainingCredits={dummyDegreeInfo.creditsRemaining}/>
+          <RecommendedNextStepsCard/>
         </div>
       </div>
   )

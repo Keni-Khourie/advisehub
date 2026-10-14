@@ -57,6 +57,10 @@
   --color-ahBgBlue:var(--ahBgBlue);
   --color-ahDeepBlue:var(--ahDeepBlue);
   --color-ahHoverDeepBlue:var(--ahHoverDeepBlue);
+  --color-ahLightBlue:var(--ahLightBlue);
+  --color-ahCardBlue:var(--ahCardBlue);
+  --color-ahBorderBlue:var(---ahBorderBlue);
+
 }
 
 :root {
@@ -92,7 +96,7 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --ahBgBlue:oklch(0.9771 0.0125 236.62);
+  --ahBgBlue:oklch(0.9834 0.0042 236.5);
   --ahDeepBlue:oklch(0.5461 0.2152 262.88);
   --ahHoverDeepBlue:oklch(0.5461 0.1324 262.89);
   --ahGreen:oklch(0.7097 0.1166 191.99);
@@ -102,6 +106,9 @@
   --ahTextBlack:oklch(0.2603 0 0);
   --ahTextGrey:oklch(0.5521 0 0);
   --ahProgressGrey:oklch(0.9288 0.0126 255.51);
+  --ahLightBlue:oklch(0.9274 0.0227 233.37);
+  --ahCardBlue:oklch(0.9768 0.0117 231.65);
+  --ahBorderBlue:oklch(0.9298 0.0321 224.23);
 }
 
 .dark {
