@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import BlueButton from "@/customUI/BlueButton";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const RelatedInformationCard = () => {
   return (
@@ -16,7 +17,9 @@ const RelatedInformationCard = () => {
         <CardDescription className="text-ahTextGrey font-light text-sm">{`Degree Progress: ${94} completed • ${26} remaining`}</CardDescription>
       </CardHeader>
       <CardContent className="w-full">
-        <BlueButton text="Schedule Follow-up" additionalStyle="w-full md:w-[50%]"/>
+        <Link href="/appointments/schedule-appointment" className="w-full">
+        <BlueButton text="Schedule Follow-up" additionalStyle="w-full md:w-[50%]"/></Link>
+        
       </CardContent>
     </Card>
   )
