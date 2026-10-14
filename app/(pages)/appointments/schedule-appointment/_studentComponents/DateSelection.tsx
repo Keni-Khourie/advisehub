@@ -23,7 +23,7 @@ const DateSelection = () => {
       </div>
       <div className="flex justify-between items-center mt-8">
         <WhiteButton text="Back" onClick={backToAdvisorSelection} additionalStyle="shadow-md"/>
-        <BlueButton text="Review Appointment" onClick={continueToAppointmentReview} additionalStyle="w-full md:w-1/4"/>
+        <BlueButton text="Review Appointment" onClick={continueToAppointmentReview} additionalStyle="w-full md:w-1/4 disabled:not-allowed" disabled={contextData.appointmentDetails.date===undefined||contextData.appointmentDetails.availableTime==undefined}/>
       </div>
       
     </div>

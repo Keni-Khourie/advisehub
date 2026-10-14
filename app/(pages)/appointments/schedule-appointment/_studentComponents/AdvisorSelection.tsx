@@ -22,7 +22,7 @@ const AdvisorSelection = () => {
       </div>
       <div className="flex justify-between items-center flex-wrap gap-y-5 md:flex-nowrap">
         <WhiteButton text="Back" onClick={backToReasonSelection} additionalStyle="shadow-md"/>
-        <BlueButton text="Choose Date & Time" onClick={continueToDateTime} additionalStyle="w-full md:w-1/4 shadow-md"/>
+        <BlueButton text="Choose Date & Time" onClick={continueToDateTime} additionalStyle="w-full md:w-1/4 shadow-md disabled:cursor-not-allowed" disabled={contextData.appointmentDetails.advisorId===undefined}/>
       </div>
     </div>
   )

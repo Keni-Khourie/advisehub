@@ -21,7 +21,7 @@ const AdvisorSelectionGroup = () => {
     <div>
       <RadioGroup
         className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-5"
-        value={contextData.appointmentDetails.advisorId}
+        value={contextData.appointmentDetails.advisorId??""}
         onValueChange={updateAdvisorSelection}
       >
         {dummyAdvisors.map((advisor, index) => (
@@ -61,7 +61,7 @@ const AdvisorSelectionGroup = () => {
                 <Badge className={cn("text-green-600 bg-green-100 font-semibold p-1")}>
                     {"Today 4:00PM"}
                 </Badge>
-                <Badge className={cn("bg-white text-ahTextGrey font-semibold bg-stone-100")}>Office</Badge>
+                <Badge className={cn(" text-ahTextGrey font-semibold bg-stone-100")}>Office</Badge>
             </div>
           </div>
         ))}

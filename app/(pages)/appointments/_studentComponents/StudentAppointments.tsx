@@ -1,6 +1,6 @@
 "use client"
 import { createContext, useState, Dispatch, SetStateAction } from "react";
-import { StudentAppointmentView, StudentAppointmentSection, StudentAppointmentComponentDetail  } from "@/types";
+import {StudentAppointmentComponentDetail  } from "@/types";
 import StudentAppointmentsContent from "./StudentAppointmentsContent";
 
 

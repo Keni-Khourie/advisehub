@@ -25,7 +25,7 @@ const ReasonSelection = () => {
             }
         </div>
         <div className="flex justify-center md:justify-end mt-20">
-            <BlueButton text="Continue to Advisor" onClick={continueToAdvisor} additionalStyle="w-full md:w-1/4"/>
+            <BlueButton text="Continue to Advisor" onClick={continueToAdvisor} additionalStyle="w-full md:w-1/4 disabled:cursor-not-allowed" disabled={contextData.appointmentDetails.appointmentReason===undefined}/>
         </div>
        
     </div>
