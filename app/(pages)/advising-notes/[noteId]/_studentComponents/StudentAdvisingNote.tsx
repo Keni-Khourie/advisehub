@@ -5,12 +5,15 @@ import WhiteButton from '@/customUI/WhiteButton';
 import { getDummyStudentAdvisingNoteById } from '@/dummyData/dummyUtils';
 import Link from 'next/link';
 import AdvisorDetails from './AdvisorDetails';
-import AdvisorNoteCard from './AdvisorNoteCard';
+
 import NextStepsCard from './NextStepsCard';
 import RelatedInformationCard from './RelatedInformationCard';
+import StudentAdvisorNoteCard from './StudentAdvisorNoteCard';
 interface Props{
     noteId:number
 }
+
+console.log(typeof StudentAdvisorNoteCard, String(StudentAdvisorNoteCard).slice(0, 200));
 const StudentAdvisingNote = ({noteId}:Props) => {
   //fetch advising note by student ID
   const advisingNote = getDummyStudentAdvisingNoteById(noteId)
@@ -25,7 +28,8 @@ const StudentAdvisingNote = ({noteId}:Props) => {
         
         <div className="flex flex-col gap-y-6 w-full">
           <AdvisorDetails/>
-          <AdvisorNoteCard note={advisingNote?.note??"No notes to display"}/>
+          <StudentAdvisorNoteCard note={advisingNote?.note}/>
+          
 
           <div className="w-full flex items-start gap-x-5 flex-wrap md:flex-nowrap">
             <NextStepsCard steps={advisingNote?.nextSteps}/>
