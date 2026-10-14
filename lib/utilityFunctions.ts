@@ -29,3 +29,7 @@ const initials = fullName.split(" ").map((names)=>names[0]).join("")
 return initials
 
 }
+
+export const truncateText = (text:string, characterLimit:number)=> {
+  return text.length > characterLimit ? text.slice(0, characterLimit) + "..." : text;
+}

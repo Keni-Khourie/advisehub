@@ -59,3 +59,14 @@ export interface ExistingMeetingData{
   advisorOffice:string;
   status:"UPCOMING"|"CONCLUDED"|"CANCELLED"
 }
+
+export interface DummyStudentAdvisingNote{
+  id:number;
+  advisor:string;
+  advisorTitle:string;
+  meetingDate:string;
+  meetingReason:AdvisorSpecialization
+  noteTitle:string;
+  note:string;
+  nextSteps:string[]
+}

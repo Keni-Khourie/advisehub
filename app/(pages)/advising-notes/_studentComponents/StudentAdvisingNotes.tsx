@@ -2,6 +2,7 @@
 import PageHeader from '@/customUI/PageHeader';
 import React from 'react'
 import AdvisingNotesCard from './AdvisingNotesCard';
+import { dummyStudentAdvisingNotes } from '@/dummyData/dummyData';
 
 const StudentAdvisingNotes = () => {
   //fetch advising notes by student ID
@@ -11,13 +12,7 @@ const StudentAdvisingNotes = () => {
 
       <div className="md:h-[40vw] overflow-y-scroll">
         <div className="flex flex-col gap-y-4">
-          <AdvisingNotesCard/>
-          <AdvisingNotesCard/>
-          <AdvisingNotesCard/>
-          <AdvisingNotesCard/>
-          <AdvisingNotesCard/>
-          <AdvisingNotesCard/>
-          <AdvisingNotesCard/>
+          {dummyStudentAdvisingNotes.map((note, index)=> <AdvisingNotesCard key={index} note={note}/>)}
         </div>
       </div>
     </div>

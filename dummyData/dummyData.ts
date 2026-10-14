@@ -1,4 +1,4 @@
-import { DummyAdvisor, ExistingMeetingData } from "./dummyTypes";
+import { DummyAdvisor, ExistingMeetingData, DummyStudentAdvisingNote } from "./dummyTypes";
 
 export const dummyAdvisors: DummyAdvisor[] = [
   {
@@ -259,4 +259,175 @@ export const existingMeetings: ExistingMeetingData[] = [
     advisorOffice: "Room 105",
     status: "UPCOMING",
   },
+];
+
+export const dummyStudentAdvisingNotes: DummyStudentAdvisingNote[] = [
+  {
+    id: 1,
+    advisor: "Sarah Mitchell",
+    advisorTitle: "Dr.",
+    meetingDate: "2026-10-12T09:30:00.000Z",
+    meetingReason: "Academic Planning",
+    noteTitle: "Academic Progress Review",
+    note: "Reviewed the student's academic progress for the current semester. The student is performing well overall but needs to improve consistency in completing weekly assignments. Discussed strategies for balancing coursework and extracurricular activities.",
+    nextSteps: [
+      "Create a weekly study schedule",
+      "Submit all outstanding assignments before the next review",
+      "Schedule a follow-up meeting in four weeks"
+    ]
+  },
+  {
+    id: 2,
+    advisor: "James Anderson",
+    advisorTitle: "",
+    meetingDate: "2026-10-09T14:00:00.000Z",
+    meetingReason: "Course Registration",
+    noteTitle: "Spring Semester Course Selection",
+    note: "Discussed course options for the upcoming semester. The student selected preliminary courses based on their degree plan and career interests. Reviewed prerequisites and recommended confirming course availability before registration opens.",
+    nextSteps: [
+      "Review the course catalog",
+      "Confirm prerequisite completion",
+      "Finalize the course schedule before registration opens"
+    ]
+  },
+  {
+    id: 3,
+    advisor: "Emily Carter",
+    advisorTitle: "Prof.",
+    meetingDate: "2026-10-07T11:15:00.000Z",
+    meetingReason: "Degree Requirements",
+    noteTitle: "Degree Audit and Graduation Timeline",
+    note: "Conducted a preliminary degree audit to determine the student's remaining graduation requirements. The student has completed most general education requirements but still needs to satisfy two upper-level major requirements and the capstone course.",
+    nextSteps: [
+      "Review the updated degree audit",
+      "Register for the required upper-level courses",
+      "Confirm eligibility for the capstone course"
+    ]
+  },
+  {
+    id: 4,
+    advisor: "Olivia Bennett",
+    advisorTitle: "",
+    meetingDate: "2026-10-05T10:00:00.000Z",
+    meetingReason: "Transfer Credits",
+    noteTitle: "Transfer Credit Evaluation",
+    note: "Reviewed transcripts from the student's previous institution. Several courses may qualify for transfer credit, but official documentation is required before a final determination can be made.",
+    nextSteps: [
+      "Request official transcripts from the previous institution",
+      "Submit course descriptions for evaluation",
+      "Follow up with the registrar's office regarding transfer decisions"
+    ]
+  },
+  {
+    id: 5,
+    advisor: "Daniel Brooks",
+    advisorTitle: "Dr.",
+    meetingDate: "2026-10-02T13:45:00.000Z",
+    meetingReason: "General Advising",
+    noteTitle: "Academic Workload and Time Management",
+    note: "The student expressed concerns about managing multiple assignments and upcoming examinations. Discussed prioritization techniques, campus tutoring resources, and ways to develop a more manageable weekly routine.",
+    nextSteps: [
+      "Prepare a weekly task planner",
+      "Visit the campus tutoring center",
+      "Review progress during the next advising appointment"
+    ]
+  },
+  {
+    id: 6,
+    advisor: "Rachel Thompson",
+    advisorTitle: "Prof.",
+    meetingDate: "2026-09-29T15:30:00.000Z",
+    meetingReason: "Academic Planning",
+    noteTitle: "Major and Career Alignment",
+    note: "Discussed the student's long-term career interests and whether the current academic major aligns with their goals. Explored elective options and relevant extracurricular opportunities that could strengthen the student's professional profile.",
+    nextSteps: [
+      "Research career paths related to the current major",
+      "Identify relevant elective courses",
+      "Attend the upcoming departmental career session"
+    ]
+  },
+  {
+    id: 7,
+    advisor: "Sophia Reynolds",
+    advisorTitle: "",
+    meetingDate: "2026-09-25T08:45:00.000Z",
+    meetingReason: "Course Registration",
+    noteTitle: "Registration Hold Resolution",
+    note: "The student reported being unable to register for the upcoming semester due to an administrative hold. Reviewed the registration portal and identified the office responsible for resolving the issue.",
+    nextSteps: [
+      "Contact the student accounts office",
+      "Resolve the outstanding registration hold",
+      "Verify registration eligibility in the student portal"
+    ]
+  },
+  {
+    id: 8,
+    advisor: "Michael Foster",
+    advisorTitle: "Dr.",
+    meetingDate: "2026-09-22T12:00:00.000Z",
+    meetingReason: "Degree Requirements",
+    noteTitle: "Major Requirement Clarification",
+    note: "Clarified the minimum credit requirements for the student's major and explained the distinction between required courses and approved electives. Recommended checking the current academic catalog to ensure compliance with the applicable degree requirements.",
+    nextSteps: [
+      "Review the current academic catalog",
+      "Identify remaining major-specific credit requirements",
+      "Update the semester-by-semester graduation plan"
+    ]
+  },
+  {
+    id: 9,
+    advisor: "Grace Wilson",
+    advisorTitle: "",
+    meetingDate: "2026-09-18T16:15:00.000Z",
+    meetingReason: "Transfer Credits",
+    noteTitle: "Transfer Credit Status Update",
+    note: "Followed up on previously submitted transfer credits. The student was informed that the evaluation is still in progress. Discussed how the final credit assessment may affect the student's remaining coursework and anticipated graduation date.",
+    nextSteps: [
+      "Check the transfer credit evaluation status next week",
+      "Contact the registrar if no update is received",
+      "Reassess the graduation timeline after the evaluation"
+    ]
+  },
+  {
+    id: 10,
+    advisor: "Christopher Lee",
+    advisorTitle: "Prof.",
+    meetingDate: "2026-09-15T09:00:00.000Z",
+    meetingReason: "General Advising",
+    noteTitle: "Campus Resources and Student Support",
+    note: "Introduced the student to available academic support services, including peer tutoring, writing assistance, and faculty office hours. The student identified two courses where additional academic support would be beneficial.",
+    nextSteps: [
+      "Book a tutoring session for the identified courses",
+      "Attend faculty office hours at least once this month",
+      "Monitor course grades and assignment feedback"
+    ]
+  },
+  {
+    id: 11,
+    advisor: "Natalie Cooper",
+    advisorTitle: "Dr.",
+    meetingDate: "2026-09-11T14:30:00.000Z",
+    meetingReason: "Academic Planning",
+    noteTitle: "Graduation Planning and Credit Review",
+    note: "Reviewed the student's accumulated credits and anticipated graduation term. Discussed the importance of completing outstanding requirements on schedule and maintaining the minimum academic standing required by the program.",
+    nextSteps: [
+      "Verify completed credits against degree requirements",
+      "Confirm the expected graduation term",
+      "Schedule a graduation eligibility review"
+    ]
+  },
+  {
+    id: 12,
+    advisor: "Anthony Parker",
+    advisorTitle: "",
+    meetingDate: "2026-09-08T10:45:00.000Z",
+    meetingReason: "Course Registration",
+    noteTitle: "Waitlisted Course Alternatives",
+    note: "The student requested guidance after being placed on a waitlist for a required course. Discussed alternative sections, equivalent approved courses, and the importance of confirming any substitutions with the academic department before enrolling.",
+    nextSteps: [
+      "Monitor the waitlist position",
+      "Check availability in alternative course sections",
+      "Obtain advisor approval before selecting a course substitution"
+    ]
+  }
 ];
