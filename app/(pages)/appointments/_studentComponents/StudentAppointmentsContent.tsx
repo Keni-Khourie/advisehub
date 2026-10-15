@@ -43,7 +43,7 @@ const StudentAppointmentsContent = () => {
         </Link>
       </div>
 
-      <div className="flex flex-col gap-y-6 overflow-y-scroll h-[40vw]">
+      <div className="flex flex-col gap-y-6 overflow-y-scroll md:h-[40vw]">
         {appointments &&
           appointments.map((meeting, index) => (
             <AppointmentListItem
