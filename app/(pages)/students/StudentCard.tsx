@@ -11,7 +11,7 @@ interface Props{
 const StudentCard = ({studentData}:Props) => {
 
   return (
-    <div className="border bg-white rounded-lg py-3 px-3">
+    <div className="border bg-white rounded-lg py-5 px-4 flex items-center justify-between">
         <div className="flex items-center gap-x-3">
             <CardAvatar fullName={studentData.fullName}/>
             <div>
@@ -22,7 +22,7 @@ const StudentCard = ({studentData}:Props) => {
         <p className="font-thin text-ahTextGrey text-sm">{`${studentData.completedCredits} completed • ${studentData.remainingCredits} remaining`}</p>
 
         <Link href={`/students/${studentData.studentId}`}>
-            <WhiteButton text="View Profile"/>
+            <WhiteButton text="View Profile" additionalStyle="border-2 border-ahGrey"/>
         </Link>
         
     </div>
