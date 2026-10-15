@@ -11,7 +11,7 @@ interface Props{
 }
 const StudentAdvisorNoteCard = ({note}:Props) => {
   return (
-     <Card className={cn("bg-ahCardBlue border border-ahLightBlue w-full h-full md:h-40")}>
+     <Card className={cn("bg-ahCardBlue border border-ahBorderBlue w-full h-full md:h-40")}>
       
         
         

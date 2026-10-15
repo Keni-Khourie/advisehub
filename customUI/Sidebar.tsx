@@ -10,7 +10,7 @@ import {studentSidebarItems, advisorSidebarItems} from "@/constants"
 const Sidebar = () => {
   //fetch user from store
   const user: {role:UserRole} = {
-    role: "STUDENT",
+    role: "ADVISOR",
   };
   const getSidebarItemsBasedOnUser = () => {
     const sidebarItems: SidebarItemDetails[] =

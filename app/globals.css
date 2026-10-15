@@ -53,13 +53,15 @@
   --color-ahDarkGrey:var(--ahDarkGrey);
   --color-ahTextBlack:var(--ahTextBlack);
   --color-ahTextGrey:var(--ahTextGrey);
+  --color-ahTextPurple:var(--ahTextPurple);
   --color-ahProgressGrey:var(--ahProgressGrey);
   --color-ahBgBlue:var(--ahBgBlue);
   --color-ahDeepBlue:var(--ahDeepBlue);
   --color-ahHoverDeepBlue:var(--ahHoverDeepBlue);
   --color-ahLightBlue:var(--ahLightBlue);
   --color-ahCardBlue:var(--ahCardBlue);
-  --color-ahBorderBlue:var(---ahBorderBlue);
+  --color-ahBorderBlue:var(--ahBorderBlue);
+  
 
 }
 
@@ -105,6 +107,7 @@
   --ahDarkGrey:oklch(0.4313 0 0);
   --ahTextBlack:oklch(0.2603 0 0);
   --ahTextGrey:oklch(0.5521 0 0);
+  --ahTextPurple:oklch(0.2706 0.1518 275.24);
   --ahProgressGrey:oklch(0.9288 0.0126 255.51);
   --ahLightBlue:oklch(0.9274 0.0227 233.37);
   --ahCardBlue:oklch(0.9768 0.0117 231.65);

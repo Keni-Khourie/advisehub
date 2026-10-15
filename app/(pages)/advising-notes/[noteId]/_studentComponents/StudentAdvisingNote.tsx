@@ -21,7 +21,7 @@ const StudentAdvisingNote = ({noteId}:Props) => {
         <PageHeader headerText="Advising Note" subtitle="Full note details shared by your advisor." additionalClass="mb-10"/>
         <Link href="/advising-notes" className="">
         
-        <WhiteButton text="← Back to all notes" additionalStyle="border border-ahLightBlue py-2 shadow-sm mb-10"/>
+        <WhiteButton text="← Back to all notes" additionalStyle="border border-ahBorderBlue py-2 shadow-sm mb-10"/>
         </Link>
         
         

@@ -10,7 +10,7 @@ interface Props{
 
 const DegreeProgressCard = ({completedCredits, remainingCredits, percentComplete}:Props) => {
   return (
-     <div className={cn("border border-ahLightBlue rounded-lg bg-ahCardBlue py-6 px-5")}>
+     <div className={cn("border border-ahBorderBlue rounded-lg bg-ahCardBlue py-6 px-5")}>
       <div className="flex gap-x-10 items-center">
        <div className="">
         <div className="bg-ahLightBlue border rounded-full p-3">

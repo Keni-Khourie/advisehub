@@ -4,7 +4,7 @@ import AdvisorDashboard from "./_advisorComponents/AdvisorDashboard";
 const DashboardContent = () => {
   //get from redux store
   const user = {
-    role: "STUDENT",
+    role: "ADVISOR",
   };
 
   return (
