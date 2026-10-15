@@ -17,11 +17,11 @@ export interface SelectItemData {
   value: string;
 }
 
-export type StudentAppointmentView = "UpcomingAppointments"|"PastMeetings"
-export type StudentAppointmentSection = "Upcoming"|"Past Meetings"
-export interface StudentAppointmentComponentDetail{
-  view:StudentAppointmentView;
-  section:StudentAppointmentSection;
+export type AppointmentView = "UpcomingAppointments"|"PastMeetings"
+export type AppointmentSection = "Upcoming"|"Past Meetings"
+export interface AppointmentComponentDetail{
+  view:AppointmentView;
+  section:AppointmentSection;
   header:string;
   subtitle?:string;
 }

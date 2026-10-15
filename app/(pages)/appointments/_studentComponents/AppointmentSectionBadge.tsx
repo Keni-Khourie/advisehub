@@ -3,11 +3,11 @@ import {useContext} from 'react'
 import { StudentAppointmentContext } from './StudentAppointments';
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { StudentAppointmentSection } from "@/types";
+import { AppointmentSection } from "@/types";
 import { getStudentAppointmentComponentDetailsBySection } from '@/lib/utilityFunctions';
 
 interface Props {
-  text: StudentAppointmentSection;
+  text: AppointmentSection;
 }
 
 

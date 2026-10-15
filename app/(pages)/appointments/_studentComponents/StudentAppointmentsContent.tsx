@@ -1,16 +1,15 @@
 "use client"
 import {useContext} from 'react'
 import { StudentAppointmentContext } from './StudentAppointments';
-//import PastMeetings from './PastMeetings';
-//import UpcomingAppointments from './UpcomingAppointments';
 import PageHeader from '@/customUI/PageHeader';
-import {studentAppointmentSections} from "@/constants"
+import {appointmentSections} from "@/constants"
 import AppointmentSectionBadge from './AppointmentSectionBadge';
 import AppointmentListItem from './AppointmentListItem';
 import { ExistingMeetingData } from '@/dummyData/dummyTypes';
 import { getPastMeetings, getUpcomingMeetings } from '@/dummyData/dummyUtils';
 import Link from 'next/link';
 import BlueButton from '@/customUI/BlueButton'
+//import { Skeleton } from '@/components/ui/skeleton';
 
 
 const StudentAppointmentsContent = () => {
@@ -24,7 +23,7 @@ const StudentAppointmentsContent = () => {
 
       <div className="flex justify-between items-center mb-10">
         <div className="flex gap-x-3">
-          {studentAppointmentSections.map((section, index)=><AppointmentSectionBadge key={index} text={section}/>)}
+          {appointmentSections.map((section, index)=><AppointmentSectionBadge key={index} text={section}/>)}
         </div>
         <Link href="/appointments/schedule-appointment">
         <BlueButton text="Schedule Appointment" additionalStyle="py-1 text-sm"/>

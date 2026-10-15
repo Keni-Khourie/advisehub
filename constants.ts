@@ -1,4 +1,4 @@
-import { StudentScheduleAppointmentSection, StudentScheduleAppointmentComponentDetail, SidebarItemDetails, StudentAppointmentSection, StudentAppointmentComponentDetail, StudentScheduleAppointmentStep, AppointmentReason} from "./types";
+import { StudentScheduleAppointmentSection, StudentScheduleAppointmentComponentDetail, SidebarItemDetails, AppointmentSection, AppointmentComponentDetail, StudentScheduleAppointmentStep, AppointmentReason} from "./types";
 
 
 export const studentSidebarItems: SidebarItemDetails[] =[
@@ -47,8 +47,8 @@ export const advisorSidebarItems:SidebarItemDetails[] =[
     },
 ]
 
-export const studentAppointmentSections:StudentAppointmentSection[] = ["Upcoming", "Past Meetings"]
-export const studentAppointmentComponentDetails:StudentAppointmentComponentDetail[]= [
+export const appointmentSections:AppointmentSection[] = ["Upcoming", "Past Meetings"]
+export const studentAppointmentComponentDetails:AppointmentComponentDetail[]= [
     {
         view:"UpcomingAppointments",
         section:"Upcoming",
@@ -163,4 +163,19 @@ export const appointmentReasons: AppointmentReason[] = [
         option:"General Advising",
         description:"Ask anything that does not fit above"
     }
+]
+
+export const advisorAppointmentComponentDetails:AppointmentComponentDetail[]= [
+    {
+        view:"UpcomingAppointments",
+        section:"Upcoming",
+        header:"Appointments",
+        subtitle:"Upcoming and past advising meetings."
+    },
+    {
+        view:"PastMeetings",
+        section:"Past Meetings",
+        header:"Past Meetings",
+        subtitle:"Completed advising sessions and outcomes.",
+    },
 ]

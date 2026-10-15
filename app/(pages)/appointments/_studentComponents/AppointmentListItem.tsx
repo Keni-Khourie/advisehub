@@ -2,12 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ExistingMeetingData } from "@/dummyData/dummyTypes";
 import { cn } from "@/lib/utils";
-import { StudentAppointmentSection } from "@/types";
+import { AppointmentSection } from "@/types";
 import { format } from "date-fns";
 import Link from "next/link";
 
 interface Props {
-  type: StudentAppointmentSection;
+  type: AppointmentSection;
   data: ExistingMeetingData;
   isLoading: boolean;
 }
@@ -25,7 +25,7 @@ const AppointmentListItem = ({ type, data, isLoading }: Props) => {
             <p className="mb-1 font-semibold text-ahTextBlack">{data.meetingReason}</p>
             {type === "Upcoming" && (
               <p className="font-thin text-ahTextGrey text-sm">
-               { `${data.advisor} • ${format(data.startDateTime, "h a")} - ${format(data.endDateTime, "h a")}` }
+               { `${data.advisor} • ${format(data.startDateTime, "h:mm a")} - ${format(data.endDateTime, "h:mm a")}` }
               </p>
             )}
             {type === "Past Meetings" && (

@@ -1,7 +1,7 @@
 
 import { parseISO } from "date-fns";
-import { ExistingMeetingData } from "./dummyTypes";
-import { dummyAdvisors, dummyStudentAdvisingNotes, existingMeetings } from "./dummyData";
+import { ExistingMeetingData, DummyAdvisorAppointments } from "./dummyTypes";
+import { dummyAdvisors, dummyStudentAdvisingNotes, existingMeetings, dummyAdvisorAppointments2 } from "./dummyData";
 
 export const getPastMeetings = (
   
@@ -18,6 +18,24 @@ export const getUpcomingMeetings = (
   const currentTime = new Date();
   return existingMeetings.filter(
     (meeting) => parseISO(meeting.endDateTime) > currentTime
+  );
+};
+
+export const getAdvisorPastMeetings = (
+  
+): DummyAdvisorAppointments[] => {
+  const currentTime = new Date();
+  return dummyAdvisorAppointments2.filter(
+    (meeting) => parseISO(meeting.appointmentDateTime) < currentTime
+  );
+};
+
+export const getAdvisorUpcomingMeetings = (
+  
+): DummyAdvisorAppointments[] => {
+  const currentTime = new Date();
+  return dummyAdvisorAppointments2.filter(
+    (meeting) => parseISO(meeting.appointmentDateTime) > currentTime
   );
 };
 

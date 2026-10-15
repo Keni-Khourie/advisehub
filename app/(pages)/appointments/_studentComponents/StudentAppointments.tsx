@@ -1,12 +1,12 @@
 "use client"
 import { createContext, useState, Dispatch, SetStateAction } from "react";
-import {StudentAppointmentComponentDetail  } from "@/types";
+import {AppointmentComponentDetail  } from "@/types";
 import StudentAppointmentsContent from "./StudentAppointmentsContent";
 
 
 interface StudentAppointmentContextData{
-  componentDetails:StudentAppointmentComponentDetail;
-  setComponentDetails:Dispatch<SetStateAction<StudentAppointmentComponentDetail>>;
+  componentDetails:AppointmentComponentDetail;
+  setComponentDetails:Dispatch<SetStateAction<AppointmentComponentDetail>>;
 }
 
 export const StudentAppointmentContext = createContext<StudentAppointmentContextData>({
@@ -21,7 +21,7 @@ export const StudentAppointmentContext = createContext<StudentAppointmentContext
 })
 
 const StudentAppointments = () => {
-  const [componentDetails, setComponentDetails] = useState<StudentAppointmentComponentDetail>({
+  const [componentDetails, setComponentDetails] = useState<AppointmentComponentDetail>({
       view:"UpcomingAppointments",
         section:"Upcoming",
        header:"My Appointments",
