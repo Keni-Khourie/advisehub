@@ -4,10 +4,9 @@ import { StudentScheduleAppointmentContext } from "./StudentAppointmentSchedule"
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { dummyAdvisors } from "@/dummyData/dummyData";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { getInitials } from "@/lib/utilityFunctions";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import CardAvatar from "@/customUI/CardAvatar";
 //import { Skeleton } from '@/components/ui/skeleton';
 const AdvisorSelectionGroup = () => {
   //fetch advisors for advisor select (API:getAdvisors with nearest available time)
@@ -35,12 +34,8 @@ const AdvisorSelectionGroup = () => {
                 className="flex gap-x-3 cursor-pointer"
               >
                 <div>
-                  <Avatar className="w-12 h-12">
-                    <AvatarImage src={undefined}/>
-                    <AvatarFallback className="text-white font-semibold bg-ahGreen text-lg">
-                      {getInitials(advisor.fullName)}
-                    </AvatarFallback>
-                  </Avatar>
+                  <CardAvatar fullName={advisor.fullName}/>
+                  
                 </div>
                 <div className="font-thin text-ahTextGrey text-sm flex flex-col">
                   <p>{`${advisor.title} ${advisor.fullName}`}</p>

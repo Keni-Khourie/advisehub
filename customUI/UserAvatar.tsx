@@ -1,5 +1,6 @@
 "use client"
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar"
+import { getInitials } from "@/lib/utilityFunctions";
 const UserAvatar = () => {
     //fetch user from store
     const alex ={
@@ -19,7 +20,7 @@ const UserAvatar = () => {
         <Avatar className="w-10 h-10">
             <AvatarImage src={undefined}/>
             <AvatarFallback className="text-white font-semibold bg-ahGreen">
-                {`${user.firstName[0]} ${user.lastName[0]}`}
+                {getInitials(`${user.firstName} ${user.lastName}`)}
             </AvatarFallback>
         </Avatar>
 

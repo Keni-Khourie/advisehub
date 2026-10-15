@@ -3,12 +3,12 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { getInitials, truncateText } from "@/lib/utilityFunctions";
+import {truncateText } from "@/lib/utilityFunctions";
 import {format} from "date-fns"
 import { DummyStudentAdvisingNote } from "@/dummyData/dummyTypes";
+import CardAvatar from "@/customUI/CardAvatar";
 //import { Skeleton } from '@/components/ui/skeleton';
 
 interface Props{
@@ -22,12 +22,7 @@ const AdvisingNotesCard = ({note}:Props) => {
      <Card className={cn("bg-white w-full h-full border px-3 pt-4 pb-12")}>
       <CardContent className="w-full h-full flex justify-between items-center">
         <div className="flex gap-x-3 items-center">
-            <Avatar className="h-12 w-12">
-                <AvatarImage src={undefined}/>
-                <AvatarFallback className="text-white font-semibold bg-ahGreen text-lg">
-                    {getInitials(note.advisor)}
-                </AvatarFallback>
-            </Avatar>
+            <CardAvatar fullName={note.advisor}/>
             <div className="flex flex-col gap-y-2 w-[90%]">
                 <p className="text-base font-semibold">{`Graduation planning follow-up`}</p>
                 <p className="font-thin text-sm text-ahTextGrey">{`${note.advisorTitle} ${note.advisor} • ${format(note.meetingDate, "MMM d, yyyy")}`}</p>

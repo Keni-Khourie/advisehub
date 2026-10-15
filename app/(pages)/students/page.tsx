@@ -1,8 +1,8 @@
-import React from 'react'
+import StudentSearch from './StudentSearch';
 
 const StudentsViewPage = () => {
   return (
-    <div>StudentsViewPage</div>
+    <StudentSearch/>
   )
 }
 

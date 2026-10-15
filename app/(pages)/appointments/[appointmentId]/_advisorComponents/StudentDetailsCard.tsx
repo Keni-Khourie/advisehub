@@ -7,8 +7,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import {Avatar, AvatarFallback} from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge";
+import CardAvatar from "@/customUI/CardAvatar";
 
 
 const StudentDetailsCard = () => {
@@ -25,11 +25,7 @@ const StudentDetailsCard = () => {
       </CardHeader>
       <CardContent className="">
         <div className="flex items-center gap-x-3">
-            <Avatar className="w-12 h-12">
-            <AvatarFallback className="text-white font-semibold bg-ahGreen text-lg">
-                {`${student.firstName[0]} ${student.lastName[0]}`}
-            </AvatarFallback>
-        </Avatar>
+          <CardAvatar fullName={`${student.firstName[0]} ${student.lastName[0]}`}/>
             <div>
                 <p className="text-thin text-ahTextGrey">{`Student ID ${student.studentNo.toString().split("").toSpliced(0, 4, "*", "*", "*", "*").join("")}`}</p>
                 <Badge className="text-ahGreen px-3 py-1 bg-ahGrey rounded-sm">Degree Planning</Badge>

@@ -26,13 +26,14 @@ export interface DummyCourse{
 }
 export interface DummyStudent{
   id:number;
-  userId:number;
-  degree:DummyDegree;
-  enrollmentDate:Date;
-  expectedGraduationDate:Date;
-  courses:DummyCourse[];
-  grades:DummyGrade[];
-  degreeCompletion:number;
+  studentId:number;
+  fullName:string;
+  degree:string;
+  enrollmentDate:string;
+  expectedGraduationDate:string;
+  degreeCompletionPercent:number;
+  completedCredits:number;
+  remainingCredits:number;
 }
 
 

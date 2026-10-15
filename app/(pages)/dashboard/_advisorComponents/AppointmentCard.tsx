@@ -1,10 +1,9 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {format} from "date-fns"
 import { cn } from "@/lib/utils";
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
-import { getInitials } from "@/lib/utilityFunctions";
 import { DummyAdvisorAppointments } from "@/dummyData/dummyTypes";
+import CardAvatar from "@/customUI/CardAvatar";
 
 //import { Skeleton } from '@/components/ui/skeleton';
 
@@ -17,12 +16,8 @@ const AppointmentCard = ({appointment}:Props) => {
       <div className="flex items-center gap-x-5">
         <p className="font-semibold">{format(appointment.appointmentDateTime, "h:mm a")}</p>
         <div className="flex items-center gap-x-5">
-            <Avatar className="w-12 h-12 ">
-                <AvatarImage src={undefined}/>
-                <AvatarFallback className="bg-ahGreen font-bold text-white">
-                    {getInitials(appointment.studentName)}
-                </AvatarFallback>
-            </Avatar>
+          <CardAvatar fullName={appointment.studentName} additionalFallbackStyle="font-bold text-base" />
+            
             <div>
                 <p className="font-semibold">{appointment.studentName}</p>
                 <p className="font-thin text-sm text-ahTextGrey">{appointment.meetingReason}</p>

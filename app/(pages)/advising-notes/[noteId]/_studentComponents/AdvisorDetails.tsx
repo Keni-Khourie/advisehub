@@ -1,10 +1,9 @@
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
 } from "@/components/ui/card";
-import { getInitials } from "@/lib/utilityFunctions";
+import CardAvatar from "@/customUI/CardAvatar";
 import { cn } from "@/lib/utils";
 import {format} from "date-fns"
 interface Props{
@@ -19,12 +18,7 @@ const AdvisorDetails = ({advisorTitle, advisor, date, noteTitle}:Props) => {
      <Card className={cn("border bg-white w-full pt-4 px-3 pb-15")}>
       <CardContent className=" flex items-start justify-between">
         <div className="flex items-center gap-x-5">
-            <Avatar className="w-12 h-12">
-                <AvatarImage src={undefined}/>
-            <AvatarFallback className="bg-ahGreen text-white">
-                {getInitials(advisor)}
-            </AvatarFallback>
-            </Avatar>
+          <CardAvatar fullName={advisor} additionalFallbackStyle="text-base"/>
             <div className="flex flex-col gap-y-2">
                 <p className="text-lg font-semibold">{noteTitle}</p>
                 <p className="text-ahTextGrey">{`${advisorTitle} ${advisor} • ${format(date, "MMM d, yyyy")}`}</p>
