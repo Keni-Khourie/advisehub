@@ -70,3 +70,11 @@ export interface DummyStudentAdvisingNote{
   note:string;
   nextSteps:string[]
 }
+
+export interface DummyAdvisorAppointments{
+  id:number;
+  studentId:number;
+  studentName:string;
+  appointmentDateTime:string;
+  meetingReason:AdvisorSpecialization
+}

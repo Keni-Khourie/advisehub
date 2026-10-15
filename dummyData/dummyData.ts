@@ -1,4 +1,4 @@
-import { DummyAdvisor, ExistingMeetingData, DummyStudentAdvisingNote } from "./dummyTypes";
+import { DummyAdvisor, ExistingMeetingData, DummyStudentAdvisingNote, DummyAdvisorAppointments } from "./dummyTypes";
 
 export const dummyAdvisors: DummyAdvisor[] = [
   {
@@ -430,4 +430,49 @@ export const dummyStudentAdvisingNotes: DummyStudentAdvisingNote[] = [
       "Obtain advisor approval before selecting a course substitution"
     ]
   }
+];
+
+export const dummyAdvisorAppointments: DummyAdvisorAppointments[] = [
+  {
+    id: 1,
+    studentId: 20261001,
+    studentName: "Amara Johnson",
+    appointmentDateTime: "2026-10-16T09:00:00.000Z",
+    meetingReason: "Academic Planning",
+  },
+  {
+    id: 2,
+    studentId: 20261002,
+    studentName: "Daniel Williams",
+    appointmentDateTime: "2026-10-16T10:30:00.000Z",
+    meetingReason: "Course Registration",
+  },
+  {
+    id: 3,
+    studentId: 20261003,
+    studentName: "Sophia Martinez",
+    appointmentDateTime: "2026-10-17T11:00:00.000Z",
+    meetingReason: "Degree Requirements",
+  },
+  {
+    id: 4,
+    studentId: 20261004,
+    studentName: "Michael Thompson",
+    appointmentDateTime: "2026-10-17T13:00:00.000Z",
+    meetingReason: "Transfer Credits",
+  },
+  {
+    id: 5,
+    studentId: 20261005,
+    studentName: "Olivia Anderson",
+    appointmentDateTime: "2026-10-19T14:30:00.000Z",
+    meetingReason: "General Advising",
+  },
+  {
+    id: 6,
+    studentId: 20261006,
+    studentName: "Ethan Brown",
+    appointmentDateTime: "2026-10-20T15:00:00.000Z",
+    meetingReason: "Academic Planning",
+  },
 ];

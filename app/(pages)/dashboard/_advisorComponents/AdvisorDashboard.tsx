@@ -4,7 +4,7 @@ import AdvisorDashboardContent from './AdvisorDashboardContent';
 const AdvisorDashboard = () => {
   return (
     <div>
-      <PageHeader headerText="Advisor Dashboard" subtitle="Today's work in one place"/>
+      <PageHeader headerText="Advisor Dashboard" subtitle="Today's work in one place" additionalClass="mb-10"/>
       <AdvisorDashboardContent/>
     </div>
   )

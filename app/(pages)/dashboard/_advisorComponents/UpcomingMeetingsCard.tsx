@@ -7,14 +7,18 @@ import {
 import { cn } from "@/lib/utils";
 //import { Skeleton } from '@/components/ui/skeleton';
 //public/upcomingMeetingsCardImage.png
-const UpcomingMeetingsCard = () => {
+
+interface Props{
+    upcomingMeetings:number
+}
+const UpcomingMeetingsCard = ({upcomingMeetings}:Props) => {
   return (
      <Card className={cn("bg-white rounded-lg pt-4 ps-3 py-3 border w-full md:w-1/3")}>
       
       <CardContent className="w-full h-full flex gap-x-5">
         <div className="w-full h-full flex flex-col gap-y-6 z-10">
             <div className="flex items-center gap-x-3">
-            <p className="font-semibold text-3xl">{3}</p>
+            <p className="font-semibold text-3xl">{upcomingMeetings}</p>
             <p className="font-thin text-ahTextGrey text-nowrap"> Upcoming meetings</p>
                   </div>
                   <Link href="/appointments">
