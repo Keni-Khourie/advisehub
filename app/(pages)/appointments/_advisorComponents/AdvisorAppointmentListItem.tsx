@@ -78,7 +78,7 @@ const AdvisorAppointmentListItem = ({ type, data, isLoading }: Props) => {
               )}
               disabled={isLoading}
             >
-              View Details
+              {type==="Upcoming"?"Open Profile":type==="Past Meetings"?"View Summary":""}
             </Button>
           </Link>
       </div>
