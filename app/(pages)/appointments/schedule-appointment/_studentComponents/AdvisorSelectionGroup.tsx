@@ -4,6 +4,7 @@ import { StudentScheduleAppointmentContext } from "./StudentAppointmentSchedule"
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { dummyAdvisors } from "@/dummyData/dummyData";
+//import {DummyAdvisor} from "@/dummyData/dummyTypes"
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import CardAvatar from "@/customUI/CardAvatar";
@@ -13,7 +14,8 @@ const AdvisorSelectionGroup = () => {
   //add skeletons for loading
   const contextData = useContext(StudentScheduleAppointmentContext);
   const updateAdvisorSelection = (e:number) => {
-    contextData.setAppointmentDetails({...contextData.appointmentDetails, advisorId:e})
+    const selectedAdvisor= dummyAdvisors.find((advisor)=>advisor.id===e)
+    contextData.setAppointmentDetails({...contextData.appointmentDetails, advisorId:e, advisor:selectedAdvisor})
   };
 
   return (

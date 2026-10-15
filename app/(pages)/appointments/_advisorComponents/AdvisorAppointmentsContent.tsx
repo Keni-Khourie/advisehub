@@ -27,7 +27,7 @@ const AdvisorAppointmentsContent = () => {
         <BlueButton text="Manage Availability" additionalStyle="py-1 text-sm"/>
         </Link>
       </div>
-      <div className="flex flex-col gap-y-6 overflow-y-scroll md:h-[40vw]">
+      <div className="flex flex-col gap-y-6 overflow-y-scroll md:h-[65vh]">
         {appointments && (
         appointments.map((meeting, index)=><AdvisorAppointmentListItem type={contextData.componentDetails.section} data={meeting} key={index} isLoading={isLoading}/>)
       )

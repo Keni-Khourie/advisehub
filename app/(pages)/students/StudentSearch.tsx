@@ -21,7 +21,7 @@ const StudentSearch = () => {
             <Input type="text" placeholder="Enter student name or ID" className="bg-white rounded-md h-10" onChange={updateSearch}/>
         </div>
 
-        <div className="flex flex-col gap-y-4 overflow-y-scroll md:h-[40vw]">
+        <div className="flex flex-col gap-y-4 overflow-y-scroll md:h-[65vh]">
             {dummyStudents.map((student, index)=><StudentCard key={index} studentData={student}/>)}
         </div>
     </div>

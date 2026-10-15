@@ -131,6 +131,7 @@ export const studentScheduleAppointmentComponentDetails:StudentScheduleAppointme
         section:"none",
         step:"Success",
         header:"Appointment Confirmed",
+        subtitle:"Your booking has been saved successfully."
         
     },
     {

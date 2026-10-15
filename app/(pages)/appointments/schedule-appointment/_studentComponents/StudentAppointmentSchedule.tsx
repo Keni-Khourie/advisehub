@@ -3,6 +3,7 @@ import { createContext, useState, Dispatch, SetStateAction } from "react";
 import {AdvisorSpecialization, StudentScheduleAppointmentComponentDetail  } from "@/types";
 import StudentScheduleAppointmentContent from "./StudentScheduleAppointmentContent";
 import{getStudentAppointmentScheduleComponentDetailsByView } from '@/lib/utilityFunctions';
+import {DummyAdvisor} from "@/dummyData/dummyTypes"
 //this would be the data sent to the backend
 interface AppointmentDetails{
   appointmentReason:AdvisorSpecialization|undefined;
@@ -10,6 +11,7 @@ interface AppointmentDetails{
   date: Date|undefined;
   availableTime:string|undefined;
   generalAdvisingQuestion:string|undefined;
+  advisor:DummyAdvisor|undefined
 }
 interface StudentScheduleAppointmentContextData{
   componentDetails: StudentScheduleAppointmentComponentDetail,
@@ -30,6 +32,7 @@ export const StudentScheduleAppointmentContext = createContext<StudentScheduleAp
     date:undefined,
     availableTime:undefined,
     generalAdvisingQuestion:undefined,
+    advisor:undefined
   },
   setAppointmentDetails:()=>{},
 })
@@ -41,6 +44,7 @@ const StudentAppointmentSchedule = () => {
     date:undefined,
     availableTime:undefined,
     generalAdvisingQuestion:undefined,
+    advisor:undefined
     })
   return (
     <StudentScheduleAppointmentContext.Provider value={{componentDetails, setComponentDetails, appointmentDetails, setAppointmentDetails}}>

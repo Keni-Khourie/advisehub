@@ -10,7 +10,7 @@ const StudentAdvisingNotes = () => {
     <div>
       <PageHeader headerText="Advising Notes" subtitle="Notes your advisors have shared with you. Open any note to see the full details and next steps." additionalClass="" />
 
-      <div className="md:h-[40vw] overflow-y-scroll">
+      <div className="md:h-[65vh] overflow-y-scroll">
         <div className="flex flex-col gap-y-4">
           {dummyStudentAdvisingNotes.map((note, index)=> <AdvisingNotesCard key={index} note={note}/>)}
         </div>
