@@ -79,3 +79,17 @@ export interface DummyAdvisorAppointments{
   appointmentDateTime:string;
   meetingReason:AdvisorSpecialization
 }
+
+export interface DummyAdvisorNotes{
+  id:number;
+  studentId:number;
+  studentFullName:string;
+  advisorId:number;
+  advisorFullName:string;
+  meetingId:number
+  meetingReason:AdvisorSpecialization
+  meetingDateTime:string;
+  noteTitle:string;
+  note:string;
+  nextSteps:string[]
+}

@@ -1,4 +1,4 @@
-import { DummyAdvisor, ExistingMeetingData, DummyStudentAdvisingNote, DummyAdvisorAppointments, DummyStudent } from "./dummyTypes";
+import { DummyAdvisor, ExistingMeetingData, DummyStudentAdvisingNote, DummyAdvisorAppointments, DummyStudent, DummyAdvisorNotes } from "./dummyTypes";
 
 export const dummyAdvisors: DummyAdvisor[] = [
   {
@@ -752,4 +752,211 @@ export const dummyStudents: DummyStudent[] = [
     completedCredits: 34,
     remainingCredits: 6,
   },
+];
+
+export const dummyAdvisorNotes: DummyAdvisorNotes[] = [
+  {
+    id: 1,
+    studentId: 10028471,
+    studentFullName: "Olivia Bennett",
+    advisorId: 2576,
+    advisorFullName: "Dr. Emily Carter",
+    meetingId: 5001,
+    meetingReason: "Academic Planning",
+    meetingDateTime: "2026-10-12T10:30:00.000Z",
+    noteTitle: "Final Year Academic Plan",
+    note: "Olivia reviewed her academic progress and confirmed that she has completed 102 credits toward her Computer Science degree. We discussed her remaining courses, the importance of maintaining her current GPA, and her readiness for graduation.",
+    nextSteps: [
+      "Review the remaining degree requirements",
+      "Register for outstanding courses",
+      "Schedule a graduation eligibility review"
+    ]
+  },
+  {
+    id: 2,
+    studentId: 10039582,
+    studentFullName: "Ethan Mitchell",
+    advisorId: 2577,
+    advisorFullName: "Prof. Daniel Brooks",
+    meetingId: 5002,
+    meetingReason: "Course Registration",
+    meetingDateTime: "2026-10-13T14:00:00.000Z",
+    noteTitle: "Course Registration Review",
+    note: "Ethan discussed his planned course selections for the upcoming semester. We reviewed prerequisite requirements for advanced Software Engineering courses and identified a balanced schedule that accommodates his academic workload.",
+    nextSteps: [
+      "Confirm course prerequisites",
+      "Complete registration before the deadline",
+      "Check the timetable for scheduling conflicts"
+    ]
+  },
+  {
+    id: 3,
+    studentId: 10041693,
+    studentFullName: "Sophia Williams",
+    advisorId: 2578,
+    advisorFullName: "Dr. Michael Reed",
+    meetingId: 5003,
+    meetingReason: "Degree Requirements",
+    meetingDateTime: "2026-10-14T09:15:00.000Z",
+    noteTitle: "Master's Degree Completion Review",
+    note: "Sophia has completed 27 of the 36 credits required for her MSc. Data Science degree. We reviewed her remaining coursework, capstone expectations, and the academic requirements she must satisfy before graduation.",
+    nextSteps: [
+      "Confirm capstone project requirements",
+      "Complete the remaining credits",
+      "Request a preliminary graduation audit"
+    ]
+  },
+  {
+    id: 4,
+    studentId: 10052714,
+    studentFullName: "Noah Anderson",
+    advisorId: 2579,
+    advisorFullName: "Dr. Sarah Thompson",
+    meetingId: 5004,
+    meetingReason: "General Advising",
+    meetingDateTime: "2026-10-15T11:00:00.000Z",
+    noteTitle: "Post-Graduation Planning",
+    note: "Noah has completed all required credits for his Information Technology degree. We discussed his graduation documentation, career interests, and opportunities to strengthen his professional portfolio before entering the job market.",
+    nextSteps: [
+      "Confirm graduation application status",
+      "Update resume and professional portfolio",
+      "Explore relevant graduate positions"
+    ]
+  },
+  {
+    id: 5,
+    studentId: 10063825,
+    studentFullName: "Amara Okafor",
+    advisorId: 2580,
+    advisorFullName: "Prof. James Wilson",
+    meetingId: 5005,
+    meetingReason: "Academic Planning",
+    meetingDateTime: "2026-10-16T08:30:00.000Z",
+    noteTitle: "Graduate Study Progress Review",
+    note: "Amara discussed her progress in the MSc. Cybersecurity program and her plans for the next academic term. We reviewed her current course load and discussed strategies for balancing coursework with practical security research.",
+    nextSteps: [
+      "Review available cybersecurity electives",
+      "Identify a potential research topic",
+      "Prepare a study schedule for the next term"
+    ]
+  },
+  {
+    id: 6,
+    studentId: 10074936,
+    studentFullName: "Liam Thompson",
+    advisorId: 2581,
+    advisorFullName: "Dr. Rachel Adams",
+    meetingId: 5006,
+    meetingReason: "Transfer Credits",
+    meetingDateTime: "2026-10-08T13:45:00.000Z",
+    noteTitle: "Transfer Credit Evaluation",
+    note: "Liam requested clarification about transferring credits from previously completed coursework. We discussed the documentation required for an evaluation and explained that final credit equivalencies must be confirmed by the appropriate academic department.",
+    nextSteps: [
+      "Submit official transcripts",
+      "Provide course descriptions for review",
+      "Follow up on the transfer credit evaluation"
+    ]
+  },
+  {
+    id: 7,
+    studentId: 10085147,
+    studentFullName: "Isabella Carter",
+    advisorId: 2582,
+    advisorFullName: "Dr. Andrew Mitchell",
+    meetingId: 5007,
+    meetingReason: "Degree Requirements",
+    meetingDateTime: "2026-10-09T10:00:00.000Z",
+    noteTitle: "Final Degree Audit",
+    note: "Isabella reviewed her remaining requirements for the BSc. Mathematics degree. We discussed the importance of verifying elective credits and confirming that all program requirements are satisfied before submitting her graduation application.",
+    nextSteps: [
+      "Review the degree audit report",
+      "Confirm completion of elective requirements",
+      "Submit the graduation application"
+    ]
+  },
+  {
+    id: 8,
+    studentId: 10096258,
+    studentFullName: "Daniel Adeyemi",
+    advisorId: 2583,
+    advisorFullName: "Prof. Victoria Lewis",
+    meetingId: 5008,
+    meetingReason: "General Advising",
+    meetingDateTime: "2026-10-05T15:30:00.000Z",
+    noteTitle: "Graduate Program Progress",
+    note: "Daniel discussed his academic progress and upcoming career plans. Since he has completed his MSc. Information Systems requirements, we reviewed the graduation process and considered professional certifications that align with his interests.",
+    nextSteps: [
+      "Confirm degree conferral status",
+      "Research relevant professional certifications",
+      "Update professional networking profiles"
+    ]
+  },
+  {
+    id: 9,
+    studentId: 10107369,
+    studentFullName: "Mia Rodriguez",
+    advisorId: 2584,
+    advisorFullName: "Dr. Christopher Hall",
+    meetingId: 5009,
+    meetingReason: "Course Registration",
+    meetingDateTime: "2026-10-07T09:45:00.000Z",
+    noteTitle: "Computer Engineering Course Selection",
+    note: "Mia reviewed her planned courses for the upcoming semester. We discussed prerequisite sequences for advanced engineering subjects and the importance of completing required laboratory components alongside theoretical coursework.",
+    nextSteps: [
+      "Check prerequisites for advanced courses",
+      "Confirm laboratory course availability",
+      "Finalize the semester registration"
+    ]
+  },
+  {
+    id: 10,
+    studentId: 10118470,
+    studentFullName: "James O'Connor",
+    advisorId: 2585,
+    advisorFullName: "Prof. Elizabeth Morgan",
+    meetingId: 5010,
+    meetingReason: "Academic Planning",
+    meetingDateTime: "2026-10-06T12:00:00.000Z",
+    noteTitle: "Doctoral Research Milestone Review",
+    note: "James discussed his doctoral research progress and upcoming milestones. We reviewed his research timeline, identified the need to coordinate with his supervisory committee, and discussed preparation for his next progress review.",
+    nextSteps: [
+      "Update the doctoral research timeline",
+      "Arrange a meeting with the supervisory committee",
+      "Prepare documentation for the next progress review"
+    ]
+  },
+  {
+    id: 11,
+    studentId: 10129581,
+    studentFullName: "Zara Ibrahim",
+    advisorId: 2586,
+    advisorFullName: "Dr. Benjamin Scott",
+    meetingId: 5011,
+    meetingReason: "General Advising",
+    meetingDateTime: "2026-10-02T14:15:00.000Z",
+    noteTitle: "First-Year Academic Guidance",
+    note: "Zara discussed her transition into the Information Systems program and asked about effective study strategies. We reviewed available academic support resources, semester expectations, and ways to monitor her progress throughout the year.",
+    nextSteps: [
+      "Create a weekly study plan",
+      "Explore academic support services",
+      "Review academic progress before registration"
+    ]
+  },
+  {
+    id: 12,
+    studentId: 10130692,
+    studentFullName: "Benjamin Foster",
+    advisorId: 2587,
+    advisorFullName: "Dr. Natalie Green",
+    meetingId: 5012,
+    meetingReason: "Degree Requirements",
+    meetingDateTime: "2026-10-01T08:45:00.000Z",
+    noteTitle: "Artificial Intelligence Program Requirements",
+    note: "Benjamin reviewed his progress toward completing the MSc. Artificial Intelligence degree. We discussed his remaining credits, elective options, and the importance of confirming that his selected courses satisfy the program's graduation requirements.",
+    nextSteps: [
+      "Review the remaining degree requirements",
+      "Confirm elective selections with the department",
+      "Schedule a follow-up degree audit"
+    ]
+  }
 ];

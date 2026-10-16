@@ -6,7 +6,7 @@ import StudentAdvisingNotes from "./_studentComponents/StudentAdvisingNotes";
 const AdvisingNotesContent = () => {
   //get from redux store
   const user = {
-    role: "STUDENT",
+    role: "ADVISOR",
   };
   return (
     <div>

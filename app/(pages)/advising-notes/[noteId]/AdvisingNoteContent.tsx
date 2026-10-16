@@ -10,7 +10,7 @@ interface Props{
 const AdvisingNoteContent = ({noteId}:Props) => {
     //get from redux store
   const user = {
-    role: "STUDENT",
+    role: "ADVISOR",
   };
 
   return (
