@@ -80,7 +80,7 @@ export interface DummyAdvisorAppointments{
   meetingReason:AdvisorSpecialization
 }
 
-export interface DummyAdvisorNotes{
+export interface DummyAdvisorNote{
   id:number;
   studentId:number;
   studentFullName:string;

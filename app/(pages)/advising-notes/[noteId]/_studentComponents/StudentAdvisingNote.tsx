@@ -5,7 +5,7 @@ import { getDummyStudentAdvisingNoteById } from '@/dummyData/dummyUtils';
 import Link from 'next/link';
 import AdvisorDetails from './AdvisorDetails';
 
-import NextStepsCard from './NextStepsCard';
+import NextStepsCard from '../_components/NextStepsCard';
 import RelatedInformationCard from './RelatedInformationCard';
 import StudentAdvisorNoteCard from './StudentAdvisorNoteCard';
 interface Props{
@@ -26,7 +26,7 @@ const StudentAdvisingNote = ({noteId}:Props) => {
         
         
         <div className="flex flex-col gap-y-6 w-full">
-         {advisingNote && <AdvisorDetails advisor={advisingNote.advisor} advisorTitle={advisingNote.advisorTitle} date={advisingNote.meetingDate} noteTitle={advisingNote.noteTitle}/>}
+          <AdvisorDetails note={advisingNote}/>
           <StudentAdvisorNoteCard note={advisingNote?.note}/>
           
 

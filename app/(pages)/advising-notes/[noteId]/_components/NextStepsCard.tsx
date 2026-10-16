@@ -18,7 +18,7 @@ const NextStepsCard = ({steps}:Props) => {
         <CardTitle className="text-base font-semibold">Next Steps</CardTitle>
         <CardDescription className=""></CardDescription>
       </CardHeader>
-      <CardContent className="w-full">
+      <CardContent className="w-full h-28 overflow-y-scroll">
         {!steps && <p className="text-sm font-thin text-ahTextGrey">No next steps</p>}
         {steps && (
           <div className="flex flex-col gap-y-2">

@@ -1,4 +1,4 @@
-import { DummyAdvisor, ExistingMeetingData, DummyStudentAdvisingNote, DummyAdvisorAppointments, DummyStudent, DummyAdvisorNotes } from "./dummyTypes";
+import { DummyAdvisor, ExistingMeetingData, DummyStudentAdvisingNote, DummyAdvisorAppointments, DummyStudent, DummyAdvisorNote } from "./dummyTypes";
 
 export const dummyAdvisors: DummyAdvisor[] = [
   {
@@ -754,7 +754,7 @@ export const dummyStudents: DummyStudent[] = [
   },
 ];
 
-export const dummyAdvisorNotes: DummyAdvisorNotes[] = [
+export const dummyAdvisorNotes: DummyAdvisorNote[] = [
   {
     id: 1,
     studentId: 10028471,
@@ -769,7 +769,7 @@ export const dummyAdvisorNotes: DummyAdvisorNotes[] = [
     nextSteps: [
       "Review the remaining degree requirements",
       "Register for outstanding courses",
-      "Schedule a graduation eligibility review"
+      "Schedule a graduation eligibility review",
     ]
   },
   {

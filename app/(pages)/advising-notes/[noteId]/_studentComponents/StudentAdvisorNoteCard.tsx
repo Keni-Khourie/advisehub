@@ -1,4 +1,3 @@
-console.log("AdvisorNoteCard.tsx loaded");
 import {
   Card,
   CardContent,
@@ -22,7 +21,7 @@ const StudentAdvisorNoteCard = ({note}:Props) => {
       </div>
         <div className="flex flex-col gap-y-2">
           <p className="font-semibold text-base">Advisor note</p>
-          <p>{note}</p>
+          <p>{note??""}</p>
         </div>
       </CardContent>
     </Card>
