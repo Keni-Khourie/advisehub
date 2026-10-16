@@ -10,10 +10,10 @@ import { cn } from "@/lib/utils";
 
 const CardTemplate = () => {
   return (
-    <Card className={cn("")}>
+    <Card className={cn("rounded-lg")}>
       <CardHeader className="">
-        <CardTitle className=""></CardTitle>
-        <CardDescription className=""></CardDescription>
+        <CardTitle className="font-semibold"></CardTitle>
+        <CardDescription className="font-thin text-ahTextGrey text-sm"></CardDescription>
       </CardHeader>
       <CardContent className=""></CardContent>
       <CardFooter className=""></CardFooter>
