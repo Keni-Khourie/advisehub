@@ -9,12 +9,12 @@ type InclusiveInputElementProps = {
   className?: string;
   children?: React.ReactElement;
   onChange?: (value: string[]|undefined) => void
-  value?: string[];
+  value?: string[]|undefined;
  
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 type InputTagsProps = InclusiveInputElementProps & {
-  value: string[];
+  value: string[]|undefined;
   onChange: Dispatch<SetStateAction<string[]>>;
 };
 

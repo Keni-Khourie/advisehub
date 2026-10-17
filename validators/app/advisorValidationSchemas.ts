@@ -4,7 +4,8 @@ export const createAdvisingNoteSchema = z.object({
     noteTitle:z.string().min(3, "Note title required"),
     noteContent:z.string().min(3, "Note content required"),
     nextSteps:z.array(z.string().min(1, "Empty values not allowed")).optional(),
-    isPrivate:z.boolean().default(false)
+    isPrivate:z.boolean(),
+    studentId:z.number(),
 
 })
 export type CreateAdvisingNoteData =z.infer<typeof createAdvisingNoteSchema>

@@ -2,6 +2,7 @@
 
 import PageHeader from "@/customUI/PageHeader";
 import { dummyStudents } from "@/dummyData/dummyData";
+import CreateStudentAdvisingNoteForm from "./CreateStudentAdvisingNoteForm";
 
 interface Props{
     studentId:number
@@ -21,10 +22,7 @@ const CreateAdvisingNoteContent = ({studentId}:Props) => {
                      </div>)}
                      {!student && <p className="text-base font-semibold">Student not found</p>}
          </div>
-         <div className="flex flex-col gap-y-3 w-full">
-            <p className="text-lg font-semibold">Advising Note</p>
-            <div></div>
-         </div>
+         <CreateStudentAdvisingNoteForm studentId={studentId}/>
         
 
     </div>
