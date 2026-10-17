@@ -1,9 +1,9 @@
 
 "use client";
 
-import { useState } from "react";
+import { Dispatch, useState, SetStateAction } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
-
+import {dummyStudents} from "@/dummyData/dummyData"
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -19,67 +19,50 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import {DummyStudent} from "@/dummyData/dummyTypes"
 
-const fruits = [
-  { label: "Apple", value: "apple" },
-  { label: "Banana", value: "banana" },
-  { label: "Blueberry", value: "blueberry" },
-  { label: "Grapes", value: "grapes" },
-  { label: "Mango", value: "mango" },
-  { label: "Pineapple", value: "pineapple" },
-   { label: "Apple2", value: "apple2" },
-  { label: "Banana2", value: "banana2" },
-  { label: "Blueberry2", value: "blueberry2" },
-  { label: "Grapes2", value: "grapes2" },
-  { label: "Mango2", value: "mango2" },
-  { label: "Pineapple2", value: "pineapple2" },
-   { label: "Apple3", value: "apple3" },
-  { label: "Banana3", value: "banana3" },
-  { label: "Blueberry3", value: "blueberry3" },
-  { label: "Grapes3", value: "grapes3" },
-  { label: "Mango3", value: "mango3" },
-  { label: "Pineapple3", value: "pineapple3"},
-];
-
-const SearchableSelect = () =>{
+interface Props{
+  selectedStudent:DummyStudent|undefined
+  setSelectedStudent:Dispatch<SetStateAction<DummyStudent|undefined>>
+}
+const SearchableSelect = ({selectedStudent, setSelectedStudent}:Props) =>{
   const [open, setOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(undefined);
 
-  const selectedFruit = fruits.find(
-    (fruit) => fruit.value === selectedValue
+
+  const selectedStudentJ = dummyStudents.find(
+    (dummyStudent) => dummyStudent.id === selectedStudent?.studentId
   );
 
   return (
    <Command className="bg-none w-full">
     <Popover open={open} >
         <PopoverTrigger>
-            <CommandInput placeholder="Search students..." onKeyDown={()=>setOpen(true)} value={selectedValue}/>
+            <CommandInput placeholder="Search students..." onKeyDown={()=>setOpen(true)} value={selectedStudent?`${selectedStudent.fullName}`:undefined}/>
         </PopoverTrigger>
         <PopoverContent className="  w-(--anchor-width)">
             <CommandList className="w-full">
             <CommandEmpty>Student not found.</CommandEmpty>
 
             <CommandGroup className="w-full ">
-              {fruits.map((fruit) => (
+              {dummyStudents.map((student, index) => (
                 <CommandItem
-                  key={fruit.value}
-                  value={fruit.label}
+                  key={index}
+                  value={`${student.fullName}`}
                   className="w-full flex justify-between"
                   onSelect={() => {
-                    setSelectedValue(
-                      fruit.value === selectedValue
-                        ? ""
-                        : fruit.value
-                    );
+                    setSelectedStudent(
+                     selectedStudent?.studentId===student.studentId?undefined:student
+                    )
+                    
                     setOpen(false);
                   }}
                 >
-                  <p className="text-red-500">{fruit.label}</p>
+                  <p className="text-ahTextGrey">{student.fullName}</p>
 
                   <Check
                     className={cn(
                       "h-4 w-4",
-                      selectedValue === fruit.value
+                      selectedStudent?.studentId === student.studentId
                         ? "opacity-100"
                         : "opacity-0"
                     )}
