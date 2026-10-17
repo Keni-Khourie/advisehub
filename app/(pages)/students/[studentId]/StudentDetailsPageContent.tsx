@@ -9,6 +9,8 @@ import MeetingHistory from "./MeetingHistory"
 import {useState} from "react"
 import WhiteButton from "@/customUI/WhiteButton"
 import {cn} from "@/lib/utils"
+import Link from "next/link";
+import BlueButton from "@/customUI/BlueButton";
 interface Props {
   studentId: number;
 }
@@ -37,9 +39,15 @@ const StudentDetailsPageContent = ({ studentId }: Props) => {
             <DegreeProgressCard percentComplete={student.degreeCompletionPercent} completedCredits={student.completedCredits} remainingCredits={student.remainingCredits}/>
             <NextAppointmentCard/>
           </div>
-          <div className="flex items-center gap-x-5  flex-wrap md:flex-nowrap">
-            <WhiteButton text="Advising Notes" additionalStyle={cn("border", view==="Advising Notes" && "shadow-md")} onClick={()=>setView("Advising Notes")}/>
-            <WhiteButton text="Meeting History" additionalStyle={cn("border", view==="Meeting History" && "shadow-md")} onClick={()=>setView("Meeting History")}/>
+          <div className="flex items-center gap-y-3 justify-between flex-wrap md:flex-nowrap mt-3">
+            <div className="flex items-center gap-x-5 gap-y-3 flex-wrap md:flex-nowrap">
+              <WhiteButton text="Advising Notes" additionalStyle={cn("border", view==="Advising Notes" && "shadow-md")} onClick={()=>setView("Advising Notes")}/>
+              <WhiteButton text="Meeting History" additionalStyle={cn("border", view==="Meeting History" && "shadow-md")} onClick={()=>setView("Meeting History")}/>
+            </div>
+
+              <Link href={`/advising-notes/student/${studentId}/create`}>
+            <BlueButton additionalStyle="" text="+ Add Advising Note"/>
+            </Link>
           </div>
           <div className="md:h-[30vh] overflow-y-scroll">
             {view==="Advising Notes" && (<AdvisingNotes/>)}
