@@ -30,7 +30,7 @@ const CreateAdvisingNoteForm = ({studentId}:Props) => {
   const createNoteForm = useForm<CreateAdvisingNoteData>({
         defaultValues:{
             studentId,
-            noteTitle:undefined,
+            noteTitle:"",
             noteContent:undefined,
             nextSteps:undefined,
             isPrivate:false
@@ -42,93 +42,145 @@ const CreateAdvisingNoteForm = ({studentId}:Props) => {
     }
   return (
     <div>
-        <form onSubmit={createNoteForm.handleSubmit(trySubmitForm)} className="w-full">
-            <FieldGroup>
-                <FieldLegend>Note title</FieldLegend>
-                <Controller
-                name="noteTitle"
-                control={createNoteForm.control}
-                render={({field, fieldState})=>(
-                    <Field data-invalid={fieldState.invalid}>
-                        <FieldLabel htmlFor="noteTitle" className="">
-                            Note Title
-                        </FieldLabel>
-                        <Input {...field} id={field.name} aria-invalid={fieldState.invalid} placeholder="Enter note title" type="text" className=""/>
-                        {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                    </Field>
-                )}
+       <form
+        onSubmit={createNoteForm.handleSubmit(trySubmitForm)}
+        className="w-full"
+      >
+        <FieldGroup>
+          <Controller
+            name="noteTitle"
+            control={createNoteForm.control}
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel
+                  htmlFor="noteTitle"
+                  className="font-semibold text-base"
+                >
+                  Note Title
+                </FieldLabel>
+                <Input
+                  {...field}
+                  id={field.name}
+                  aria-invalid={fieldState.invalid}
+                  placeholder="Enter note title"
+                  className="bg-white rounded-sm"
                 />
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
+            )}
+          />
 
-                <FieldLegend>AdvisingNote</FieldLegend>
-                <Controller
-                name="noteContent"
-                control={createNoteForm.control}
-                render={({field, fieldState})=>(
-                    <Field data-invalid={fieldState.invalid}              
->
-                        <FieldLabel htmlFor="noteContent" className="">
-                            Advising Note
-                        </FieldLabel>
-                        <Textarea {...field} id={field.name} aria-invalid={fieldState.invalid} placeholder="Enter advising note" rows={8} className=""/>
-                        {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                    </Field>
-                )}
+          <Controller
+            name="noteContent"
+            control={createNoteForm.control}
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel
+                  htmlFor="noteContent"
+                  className="font-semibold text-base"
+                >
+                  Advising Note
+                </FieldLabel>
+                <Textarea
+                  {...field}
+                  id={field.name}
+                  aria-invalid={fieldState.invalid}
+                  placeholder="Enter your notes for student"
+                  className="bg-white h-40"
                 />
-                <FieldLegend>Next Steps</FieldLegend>
-                 <Controller
-                name="nextSteps"
-                control={createNoteForm.control}
-                render={({field, fieldState})=>(
-                    <Field>
-                        <FieldLabel htmlFor="nextSteps" className="">
-                            Next Steps
-                        </FieldLabel>
-                        <InputTags {...field} id={field.name} placeholder="" className="" aria-invalid={fieldState.invalid}/>
-                        {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                    </Field>
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
                 )}
-                />
+              </Field>
+            )}
+          />
 
-                <FieldLegend>Note Visibility</FieldLegend>
-                 <Controller
-                name="isPrivate"
-                control={createNoteForm.control}
-                render={({ field, fieldState})=>(
-                    <Field orientation="horizontal"
-              data-invalid={fieldState.invalid}>
-                        
-                       
-                        <Checkbox  id={field.name} name={field.name} checked={field.value} onCheckedChange={(checked) =>
-                  field.onChange(checked === true)
-                } onBlur={field.onBlur} aria-invalid={fieldState.invalid} className=""/>
-                 <FieldLabel htmlFor="isPrivate" className="">
-                           Keep this note private
-                        </FieldLabel>
-                        <FieldDescription>
-                  Only you and the student can see this. Other advisor cannot view it.
+          <Controller
+            name="nextSteps"
+            control={createNoteForm.control}
+            render={({ field, fieldState }) => (
+              <Field>
+                <FieldLabel
+                  htmlFor="nextSteps"
+                  className="text-base font-semibold"
+                >
+                  Next Steps
+                </FieldLabel>
+                <InputTags
+                  {...field}
+                  id={field.name}
+                  placeholder="Add recommended next steps for student to take"
+                  className="bg-white"
+                  aria-invalid={fieldState.invalid}
+                />
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
+            )}
+          />
+
+          <Controller
+            name="isPrivate"
+            control={createNoteForm.control}
+            render={({ field, fieldState }) => (
+              <Field  data-invalid={fieldState.invalid}>
+                 <FieldLabel htmlFor="isPrivate" className="text-base font-semibold">
+                  Note visibility
+                </FieldLabel>
+                <div className="flex gap-x-3 items-center">
+                    <Checkbox
+                  id={field.name}
+                  name={field.name}
+                  checked={field.value}
+                  onCheckedChange={(checked) =>
+                    field.onChange(checked === true)
+                  }
+                  onBlur={field.onBlur}
+                  aria-invalid={fieldState.invalid}
+                  className="data-checked:bg-ahGreen data-checked:border-ahGreen w-5 h-5 md:w-5 md:h-5 shadow-sm "
+                />
+                <div className="flex flex-col justify-center">
+                    <p className="font-semibold text-sm">Keep this note private</p>
+                     <FieldDescription>
+                  Only you and the student can see this. Other advisor cannot
+                  view it.
                 </FieldDescription>
-                        {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                    </Field>
+                </div>
+                </div>
+                
+               
+               
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
                 )}
-                />
-            </FieldGroup>
-            <div className="flex justify-between mt-5">
-                <WhiteButton text="Cancel" type="button" onClick={()=>createNoteForm.reset()} disabled={createNoteForm.formState.isSubmitting}/>
+              </Field>
+            )}
+          />
+        </FieldGroup>
+        <div className="flex justify-between items-center mt-5 md:flex-nowrap flex-wrap gap-y-4 ">
+          <WhiteButton
+            text="Cancel"
+            type="button"
+            onClick={() => createNoteForm.reset()}
+            disabled={createNoteForm.formState.isSubmitting}
+            additionalStyle="w-full md:w-1/6 border border-ahGrey shadow-sm"
+          />
 
-                 <BlueButton text={createNoteForm.formState.isSubmitting
-          ? "Saving note..."
-          : "Save Note"} type="submit"
-        disabled={createNoteForm.formState.isSubmitting}/>   
-            </div>
-        </form>
+          <BlueButton
+            text={
+              createNoteForm.formState.isSubmitting
+                ? "Saving note..."
+                : "Save Note"
+            }
+            additionalStyle="w-full md:w-1/6"
+            type="submit"
+            disabled={createNoteForm.formState.isSubmitting}
+          />
+        </div>
+      </form>
     </div>
   )
 }

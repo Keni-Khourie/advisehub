@@ -37,7 +37,7 @@ const SearchableSelect = ({selectedStudent, setSelectedStudent}:Props) =>{
    <Command className="bg-none w-full">
     <Popover open={open} >
         <PopoverTrigger>
-            <CommandInput placeholder="Search students..." onKeyDown={()=>setOpen(true)} value={selectedStudent?`${selectedStudent.fullName}`:undefined}/>
+            <CommandInput placeholder="Search students..." onKeyDown={()=>setOpen(true)} value={selectedStudent?`${selectedStudent.fullName}`:undefined} className=""/>
         </PopoverTrigger>
         <PopoverContent className="  w-(--anchor-width)">
             <CommandList className="w-full">

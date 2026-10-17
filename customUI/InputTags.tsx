@@ -32,7 +32,7 @@ export const InputTags = forwardRef<HTMLInputElement, InputTagsProps>(
 
     return (
       <>
-        <div className="flex">
+        <div className="flex items-center gap-x-2">
           <Input
             value={pendingDataPoint}
             onChange={(e) => setPendingDataPoint(e.target.value)}
@@ -42,20 +42,19 @@ export const InputTags = forwardRef<HTMLInputElement, InputTagsProps>(
                 addPendingDataPoint();
               } 
             }}
-            className="rounded-r-none"
+            className="rounded-sm"
             {...props}
             ref={ref}
           />
           <Button
             type="button"
-            variant="secondary"
-            className="rounded-l-none border border-l-0"
+            className="border bg-ahGreen hover:bg-ahHoverGreen font-bold py-4 cursor-pointer rounded-full"
             onClick={addPendingDataPoint}
           >
-            Add
+            ADD
           </Button>
         </div>
-        <div className="border rounded-md min-h-[2.5rem] overflow-y-auto p-2 flex gap-2 flex-wrap items-center">
+        <div className="border rounded-md min-h-[2.5rem] overflow-y-auto p-2 flex gap-2 flex-wrap items-center bg-white">
           {value && value.map((item, idx) => (
             <Badge key={idx} variant="secondary">
               {item}
