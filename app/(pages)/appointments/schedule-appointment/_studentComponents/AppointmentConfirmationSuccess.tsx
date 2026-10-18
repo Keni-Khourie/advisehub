@@ -17,7 +17,7 @@ const AppointmentConfirmationSuccess = () => {
         </div>
         <div>
           <p className="font-bold text-4xl text-center mb-3">Appointment Confirmed!</p>
-          <p className="font-thin text-center text-ahTextGrey">{`${format(contextData.appointmentDetails.date!, "iii, MMM d")} • ${contextData.appointmentDetails.availableTime} with ${contextData.appointmentDetails.advisor?.title} ${contextData.appointmentDetails.advisor?.fullName}`}</p>
+          <p className="font-thin text-center text-ahTextGrey">{`${format(contextData.appointmentDetails.meetingDateTime!, "iii, MMM d • h:mm a")} with ${contextData.appointmentDetails.advisor?.title} ${contextData.appointmentDetails.advisor?.fullName}`}</p>
         </div>
         <div className="bg-ahCardBlue rounded-lg px-4 py-5 flex flex-col gap-y-2 items-start shadow-sm mb-6">
           <p className="font-semibold">Academic Planning</p>

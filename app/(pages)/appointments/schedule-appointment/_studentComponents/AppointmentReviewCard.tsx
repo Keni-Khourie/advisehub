@@ -12,7 +12,7 @@ const AppointmentReviewCard = () => {
      <div className="bg-white border w-full md:w-2/3 rounded-lg px-3 pt-8 pb-12 flex flex-col gap-y-5">
         <div className="flex flex-col gap-y-2">
           <p className="text-sm text-ahTextGrey font-semibold">Date & Time</p>
-          {contextData.appointmentDetails.date && <p className="font-semi-bold text-base">{`${format(contextData.appointmentDetails.date, "iii MMM, d")} • ${contextData.appointmentDetails.availableTime}`}</p>}
+          {contextData.appointmentDetails.meetingDateTime && <p className="font-semi-bold text-base">{`${format(contextData.appointmentDetails.meetingDateTime, "iii MMM, d • h:mm a")}`}</p>}
         </div>
         <div className="flex flex-col gap-y-2">
           <p className="text-sm text-ahTextGrey font-semibold">Advisor</p>

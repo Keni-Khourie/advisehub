@@ -10,7 +10,7 @@ interface Props{
 }
 const AppointmentContent = ({appointmentId}:Props) => {
   const user = {
-  role: "STUDENT"
+  role: "ADVISOR"
 };
   return (
     <div>
