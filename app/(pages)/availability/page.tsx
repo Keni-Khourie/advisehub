@@ -1,8 +1,9 @@
-import React from 'react'
+import AdvisorAvailability from "./AdvisorAvailability";
+
 
 const AdvisorAvailabilityPage = () => {
   return (
-    <div>AdvisorAvailabilityPage</div>
+    <AdvisorAvailability/>
   )
 }
 

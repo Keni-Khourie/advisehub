@@ -5,7 +5,7 @@ import AppointmentTimePlaceCard from "./AppointmentTimePlaceCard";
 import PrepareForMeetingCard from "./PrepareForMeetingCard";
 
 const AdvisorAppointmentContent = () => {
-    //fetch user data
+    //fetch meeting data (get appointment data by id)
     //extract content later
   return (
     <div className="w-full">

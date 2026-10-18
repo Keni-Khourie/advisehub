@@ -4,7 +4,7 @@ import StudentAppointments from "./_studentComponents/StudentAppointments";
 
 //this will be gotten from context
 const user = {
-  role: "STUDENT",
+  role: "ADVISOR",
 };
 
 const AppointmentsPageContent = () => {
