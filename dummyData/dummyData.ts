@@ -1,4 +1,4 @@
-import { DummyAdvisor, ExistingMeetingData, DummyStudentAdvisingNote, DummyAdvisorAppointments, DummyStudent, DummyAdvisorNote } from "./dummyTypes";
+import { DummyAdvisor, ExistingMeetingData, DummyStudentAdvisingNote, DummyAdvisorAppointments, DummyStudent, DummyAdvisorNote, DummyExistingAdvisorAvailability } from "./dummyTypes";
 
 export const dummyAdvisors: DummyAdvisor[] = [
   {
@@ -959,4 +959,133 @@ export const dummyAdvisorNotes: DummyAdvisorNote[] = [
       "Schedule a follow-up degree audit"
     ]
   }
+];
+
+
+export const dummyExistingAdvisorAvailabilities: DummyExistingAdvisorAvailability[] = [
+  {
+    id: 1,
+    availability: "2026-10-19T09:00:00.000Z",
+    isBooked: true,
+  },
+  {
+    id: 2,
+    availability: "2026-10-19T10:30:00.000Z",
+    isBooked: false,
+  },
+  {
+    id: 3,
+    availability: "2026-10-19T13:00:00.000Z",
+    isBooked: true,
+  },
+  {
+    id: 4,
+    availability: "2026-10-20T09:30:00.000Z",
+    isBooked: false,
+  },
+  {
+    id: 5,
+    availability: "2026-10-20T11:00:00.000Z",
+    isBooked: true,
+  },
+  {
+    id: 6,
+    availability: "2026-10-20T14:00:00.000Z",
+    isBooked: false,
+  },
+  {
+    id: 7,
+    availability: "2026-10-21T08:30:00.000Z",
+    isBooked: false,
+  },
+  {
+    id: 8,
+    availability: "2026-10-21T10:00:00.000Z",
+    isBooked: true,
+  },
+  {
+    id: 9,
+    availability: "2026-10-21T12:30:00.000Z",
+    isBooked: false,
+  },
+  {
+    id: 10,
+    availability: "2026-10-21T15:00:00.000Z",
+    isBooked: true,
+  },
+  {
+    id: 11,
+    availability: "2026-10-22T09:00:00.000Z",
+    isBooked: false,
+  },
+  {
+    id: 12,
+    availability: "2026-10-22T11:30:00.000Z",
+    isBooked: true,
+  },
+  {
+    id: 13,
+    availability: "2026-10-22T14:30:00.000Z",
+    isBooked: false,
+  },
+  {
+    id: 14,
+    availability: "2026-10-23T08:00:00.000Z",
+    isBooked: true,
+  },
+  {
+    id: 15,
+    availability: "2026-10-23T10:00:00.000Z",
+    isBooked: false,
+  },
+  {
+    id: 16,
+    availability: "2026-10-23T13:30:00.000Z",
+    isBooked: false,
+  },
+  {
+    id: 17,
+    availability: "2026-10-24T09:30:00.000Z",
+    isBooked: true,
+  },
+  {
+    id: 18,
+    availability: "2026-10-24T12:00:00.000Z",
+    isBooked: false,
+  },
+  {
+    id: 19,
+    availability: "2026-10-24T14:00:00.000Z",
+    isBooked: true,
+  },
+  {
+    id: 20,
+    availability: "2026-10-25T09:00:00.000Z",
+    isBooked: false,
+  },
+  {
+    id: 21,
+    availability: "2026-10-25T11:00:00.000Z",
+    isBooked: true,
+  },
+  {
+    id: 22,
+    availability: "2026-10-25T13:30:00.000Z",
+    isBooked: false,
+  },
+  {
+    id: 23,
+    availability: "2026-10-26T08:30:00.000Z",
+    isBooked: true,
+  },
+  {
+    id: 24,
+    availability: "2026-10-26T10:30:00.000Z",
+    isBooked: false,
+  },
+  {
+    id: 25,
+    availability: "2026-10-26T14:00:00.000Z",
+    isBooked: false,
+  },
 ];

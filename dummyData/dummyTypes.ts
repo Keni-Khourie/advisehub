@@ -93,3 +93,9 @@ export interface DummyAdvisorNote{
   note:string;
   nextSteps:string[]
 }
+
+export interface DummyExistingAdvisorAvailability{
+  id:number;
+  availability:string;
+  isBooked:boolean;
+}

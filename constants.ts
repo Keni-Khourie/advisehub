@@ -1,4 +1,4 @@
-import { StudentScheduleAppointmentSection, StudentScheduleAppointmentComponentDetail, SidebarItemDetails, AppointmentSection, AppointmentComponentDetail, StudentScheduleAppointmentStep, AppointmentReason} from "./types";
+import { StudentScheduleAppointmentSection, StudentScheduleAppointmentComponentDetail, SidebarItemDetails, AppointmentSection, AppointmentComponentDetail, StudentScheduleAppointmentStep, AppointmentReason, SelectItemData} from "./types";
 
 
 export const studentSidebarItems: SidebarItemDetails[] =[
@@ -180,3 +180,27 @@ export const advisorAppointmentComponentDetails:AppointmentComponentDetail[]= [
         subtitle:"Completed advising sessions and outcomes.",
     },
 ]
+
+ export const advisorAvailableTimeOptions:SelectItemData[] = [
+  { title: "8:00 AM", value: "8:00 AM" },
+  { title: "8:30 AM", value: "8:30 AM" },
+  { title: "9:00 AM", value: "9:00 AM" },
+  { title: "9:30 AM", value: "9:30 AM" },
+  { title: "10:00 AM", value: "10:00 AM" },
+  { title: "10:30 AM", value: "10:30 AM" },
+  { title: "11:00 AM", value: "11:00 AM" },
+  { title: "11:30 AM", value: "11:30 AM" },
+  { title: "12:00 PM", value: "12:00 PM" },
+  { title: "12:30 PM", value: "12:30 PM" },
+  { title: "1:00 PM", value: "1:00 PM" },
+  { title: "1:30 PM", value: "1:30 PM" },
+  { title: "2:00 PM", value: "2:00 PM" },
+  { title: "2:30 PM", value: "2:30 PM" },
+  { title: "3:00 PM", value: "3:00 PM" },
+  { title: "3:30 PM", value: "3:30 PM" },
+  { title: "4:00 PM", value: "4:00 PM" },
+  { title: "4:30 PM", value: "4:30 PM" },
+  { title: "5:00 PM", value: "5:00 PM" },
+  { title: "5:30 PM", value: "5:30 PM" },
+  { title: "6:00 PM", value: "6:00 PM" },
+];
