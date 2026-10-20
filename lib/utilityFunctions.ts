@@ -1,4 +1,4 @@
-import {  AppointmentSection, AppointmentView, StudentScheduleAppointmentView, StudentScheduleAppointmentStep  } from '@/types';
+import {  AppointmentSection, AppointmentView, StudentScheduleAppointmentView, StudentScheduleAppointmentStep  } from '@/types/types';
 import {studentScheduleAppointmentComponentDetails, studentAppointmentComponentDetails, studentScheduleAppointmentSteps, advisorAppointmentComponentDetails} from '@/constants'
 export const getStudentAppointmentScheduleComponentDetailsByView = (view:StudentScheduleAppointmentView)=>{
   const details =  studentScheduleAppointmentComponentDetails.find((item)=>item.view===view)

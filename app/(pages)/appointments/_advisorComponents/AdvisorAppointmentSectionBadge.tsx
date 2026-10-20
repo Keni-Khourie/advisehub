@@ -1,7 +1,7 @@
 "use client"
 import {useContext} from 'react'
 import { AdvisorAppointmentContext } from './AdvisorAppointments';
-import { AppointmentSection } from "@/types";
+import { AppointmentSection } from "@/types/types";
 import { getAdvisorAppointmentComponentDetailsBySection } from '@/lib/utilityFunctions'
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";

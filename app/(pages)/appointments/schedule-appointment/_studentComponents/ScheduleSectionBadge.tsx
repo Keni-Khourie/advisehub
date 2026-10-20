@@ -2,7 +2,7 @@
 import { useContext } from "react";
 import { Badge } from "@/components/ui/badge";
 import { StudentScheduleAppointmentContext } from "./StudentAppointmentSchedule";
-import { StudentScheduleAppointmentSection } from "@/types";
+import { StudentScheduleAppointmentSection } from "@/types/types";
 import { cn } from "@/lib/utils";
 
 interface Props {

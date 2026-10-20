@@ -1,4 +1,4 @@
-import { AdvisorSpecialization } from "@/types";
+import { AdvisorSpecialization } from "@/types/types";
 
 export interface DummyAdvisor{
     id:number;

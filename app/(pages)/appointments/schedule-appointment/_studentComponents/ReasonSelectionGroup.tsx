@@ -4,7 +4,7 @@ import { StudentScheduleAppointmentContext } from "./StudentAppointmentSchedule"
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { appointmentReasons } from "@/constants";
-import { AdvisorSpecialization } from "@/types";
+import { AdvisorSpecialization } from "@/types/types";
 import { cn } from "@/lib/utils";
 const ReasonSelectionGroup = () => {
   const contextData = useContext(StudentScheduleAppointmentContext);

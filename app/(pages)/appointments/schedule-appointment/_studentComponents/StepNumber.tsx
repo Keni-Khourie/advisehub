@@ -1,7 +1,7 @@
 "use client"
 import { useContext } from "react";
 import { StudentScheduleAppointmentContext } from "./StudentAppointmentSchedule";
-import { StudentScheduleAppointmentStep } from "@/types";
+import { StudentScheduleAppointmentStep } from "@/types/types";
 import { cn } from "@/lib/utils";
 import { getStudentScheduleStepCompletion } from "@/lib/utilityFunctions";
 //import GreenCheck from "@/customUI/GreenCheck";

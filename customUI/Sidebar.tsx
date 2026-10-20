@@ -4,7 +4,7 @@ import SidebarItem from "./SidebarItem";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import UserAvatar from "./UserAvatar";
-import {UserRole, SidebarItemDetails}from "@/types"
+import {UserRole, SidebarItemDetails}from "@/types/types"
 import {studentSidebarItems, advisorSidebarItems} from "@/constants"
 
 const Sidebar = () => {

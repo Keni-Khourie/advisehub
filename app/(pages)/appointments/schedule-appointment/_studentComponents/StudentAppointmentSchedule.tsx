@@ -1,6 +1,6 @@
 "use client"
 import { createContext, useState, Dispatch, SetStateAction } from "react";
-import {AdvisorSpecialization, StudentScheduleAppointmentComponentDetail  } from "@/types";
+import {AdvisorSpecialization, StudentScheduleAppointmentComponentDetail  } from "@/types/types";
 import StudentScheduleAppointmentContent from "./StudentScheduleAppointmentContent";
 import{getStudentAppointmentScheduleComponentDetailsByView } from '@/lib/utilityFunctions';
 import {DummyAdvisor} from "@/dummyData/dummyTypes"

@@ -49,3 +49,52 @@ export interface SelectItemData{
   title:string;
   value:string;
 }
+
+
+
+
+export interface User {
+  id: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  role: UserRole | null;
+
+  student: Student | null;
+
+  advisor: Advisor | null;
+
+  admin: {
+    id: number;
+  } | null;
+}
+
+
+export interface Student {
+    id: number;
+    studentId: string;
+    enrollmentDate: string;
+    expectedGraduationDate: string;
+    completedCredits: number;
+    degree: Degree;
+  }
+   export interface Advisor{
+    id: number;
+    advisorId: string;
+    title: string | null;
+    office: string;
+    yearsOfExperience: number;
+    specialization:Specialization
+  }
+export interface Degree {
+      id: number;
+      degreeName: string;
+      code: string;
+      degreeClassification: string;
+      requiredCredits: number;
+    };
+
+    export interface Specialization {
+      id: number;
+      name: string;
+    };

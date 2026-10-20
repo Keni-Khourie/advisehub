@@ -1,4 +1,4 @@
-import { ErrorResponse } from "@/types";
+import { ErrorResponse } from "@/types/types";
 import { ShieldAlert } from "lucide-react";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const queryErrorResponse = (err:any) => {

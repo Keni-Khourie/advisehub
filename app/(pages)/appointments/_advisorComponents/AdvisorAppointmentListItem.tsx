@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { DummyAdvisorAppointments } from "@/dummyData/dummyTypes";
 import { cn } from "@/lib/utils";
-import { AppointmentSection } from "@/types";
+import { AppointmentSection } from "@/types/types";
 import { format } from "date-fns";
 import Link from "next/link";
 
