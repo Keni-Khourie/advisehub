@@ -6,6 +6,8 @@ import ExistingAvailabilityItem from './ExistingAvailabilityItem';
 import {dummyExistingAdvisorAvailabilities} from "@/dummyData/dummyData"
 
 const ExistingAvailability = () => {
+  const contextData = useContext(AdvisorAvailabilityContext)
+  console.log(contextData);
   return (
     <div className="rounded-lg border bg-white w-full md:w-1/2 px-3 py-4">
       <p className="font-semibold  mb-2">Existing Meetings</p>

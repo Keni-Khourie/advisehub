@@ -6,7 +6,7 @@ import {dummyExistingAdvisorAvailabilities} from "@/dummyData/dummyData"
 //import { Skeleton } from "@/components/ui/skeleton";
 const AvailabilityTimes = () => {
     const contextData = useContext(AdvisorAvailabilityContext)
-
+    console.log(contextData.dialogOpen);
     //fetch existing availability
   return (
     <div className="md:w-1/2 w-full md:h-[40vh] h-56 flex flex-col gap-y-3 overflow-y-scroll">
