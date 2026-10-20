@@ -1,0 +1,156 @@
+
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  STUDENT
+  ADVISOR
+  ADMIN
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  firstName String
+  lastName  String
+  passwordHash       String? //only for admins
+  // Microsoft Entra identity
+  microsoftTenantId  String?
+  microsoftObjectId  String?
+  role      Role?
+  student   Student?
+  advisor   Advisor?
+  admin     Admin?
+   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@unique([microsoftTenantId, microsoftObjectId])
+}
+
+model Student {
+  id                     Int           @id @default(autoincrement())
+  studentId              String        @unique @db.VarChar(8)
+  firstName              String
+  lastName               String
+  enrollmentDate         DateTime
+  expectedGraduationDate DateTime
+  completedCredits       Int
+  advisorNotes           AdvisorNote[]
+  appointments           Appointment[]
+  userId                 Int           @unique
+  user                   User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  degreeId               Int
+  degree                 Degree        @relation(fields: [degreeId], references: [id], onDelete: Restrict)
+  createdAt              DateTime      @default(now())
+  updatedAt              DateTime      @updatedAt
+}
+
+model Advisor {
+  id                Int                   @id @default(autoincrement())
+  advisorId         String                @unique @db.VarChar(8)
+  firstName         String
+  lastName          String
+  title             String?
+  office            String
+  yearsOfExperience Int
+  notes             AdvisorNote[]
+  appointments      Appointment[]
+  availabilitySlots AdvisorAvailability[]
+  userId            Int                   @unique
+  user              User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  specializationId  Int
+  specialization    AdvisorSpecialization @relation(fields: [specializationId], references: [id], onDelete: Restrict)
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
+}
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Degree {
+  id                   Int       @id @default(autoincrement())
+  degreeName           String
+  code                 String    @unique
+  degreeClassification String
+  requiredCredits      Int
+  students             Student[]
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+}
+
+model AdvisorSpecialization {
+  id           Int           @id @default(autoincrement())
+  name         String        @unique
+  advisors     Advisor[]
+  appointments Appointment[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model AdvisorNote {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  nextSteps String[] @default([])
+  isPrivate Boolean  @default(false)
+  studentId Int
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  advisorId Int
+  advisor   Advisor  @relation(fields: [advisorId], references: [id], onDelete: Restrict)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([studentId, createdAt])
+  @@index([advisorId, createdAt])
+  @@index([isPrivate, createdAt])
+}
+
+model Appointment {
+  id               Int                   @id @default(autoincrement())
+  date             DateTime              @db.Timestamptz(3)
+  note             String?               @db.Text()
+  status           AppointmentStatus     @default(SCHEDULED)
+  studentId        Int
+  student          Student               @relation(fields: [studentId], references: [id], onDelete: Restrict)
+  advisorId        Int
+  advisor          Advisor               @relation(fields: [advisorId], references: [id], onDelete: Restrict)
+  specializationId Int
+  specialization   AdvisorSpecialization @relation(fields: [specializationId], references: [id], onDelete: Restrict)
+  availabilityId   Int?
+  availability     AdvisorAvailability?  @relation(fields: [availabilityId], references: [id], onDelete: SetNull)
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+
+  @@index([studentId, date])
+  @@index([advisorId, date])
+  @@index([status, date])
+}
+
+model AdvisorAvailability {
+  id           Int           @id @default(autoincrement())
+  date         DateTime      @db.Timestamptz(3)
+  appointments Appointment[]
+  advisorId    Int
+  advisor      Advisor       @relation(fields: [advisorId], references: [id], onDelete: Cascade)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([advisorId, date])
+}
