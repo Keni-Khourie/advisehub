@@ -66,7 +66,7 @@ const AddAvailabilityTime = () => {
         <div>
             {contextData.availabilityData.date && contextData.availabilityData.time &&
                 <p className="text-sm"> Selected Availability: <span className="font-semibold text-ahGreen">
-                    {format( combineDateAndTime(contextData.availabilityData.date, contextData.availabilityData.time), " h:mm a, dd MMM")}</span></p>
+                    {format( combineDateAndTime(contextData.availabilityData.date, contextData.availabilityData.time), " h:mm a, iii dd MMM")}</span></p>
             }
         </div>
         <div className="flex justify-center md:justify-end">

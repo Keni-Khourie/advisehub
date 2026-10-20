@@ -185,7 +185,7 @@ export default function WeeklyAvailability({
               startOfWeek(today, { weekStartsOn: 1 })
             )
               ? "This week"
-              : `${format(weekStart, "MMM d")} – ${format(
+              : `${format(weekStart, "MMM d")} - ${format(
                   addDays(weekStart, 6),
                   "MMM d"
                 )}`}

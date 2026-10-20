@@ -2,7 +2,7 @@
 import { createContext, useState, Dispatch, SetStateAction } from "react";
 import AvailabilityContent from './AvailabilityContent';
 import { DummyExistingAdvisorAvailability } from "@/dummyData/dummyTypes";
-
+import {startOfDay} from "date-fns"
 export interface AvailabilityData{
     date:Date|undefined;
     time:string|undefined;
@@ -21,10 +21,10 @@ interface AdvisorAvailabilityContextData{
     dialogOpen:boolean;
     setDialogOpen:Dispatch<SetStateAction<boolean>>;
 }
-
+const today = startOfDay(new Date());
 export const AdvisorAvailabilityContext = createContext<AdvisorAvailabilityContextData>({
     availabilityData:{
-        date: new Date(),
+        date: today,
         time:undefined,
         combinedDateTime:undefined
     },
@@ -41,7 +41,7 @@ export const AdvisorAvailabilityContext = createContext<AdvisorAvailabilityConte
 
 const AdvisorAvailability = () => {
     const [availabilityData,setAvailabilityData] = useState<AvailabilityData>({
-       date:new Date(),
+       date:today,
        time:undefined,
        combinedDateTime:undefined 
     })
