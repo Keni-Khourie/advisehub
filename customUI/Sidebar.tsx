@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import UserAvatar from "./UserAvatar";
 import {UserRole, SidebarItemDetails}from "@/types/types"
-import {studentSidebarItems, advisorSidebarItems} from "@/constants"
+import {studentSidebarItems, advisorSidebarItems, adminSidebarItems} from "@/constants"
 
 const Sidebar = () => {
   //fetch user from store
@@ -18,6 +18,7 @@ const Sidebar = () => {
         ? studentSidebarItems
         : user?.role === "ADVISOR"
           ? advisorSidebarItems
+          :user?.role==="ADMIN"?adminSidebarItems
           : [];
     return sidebarItems;
   };

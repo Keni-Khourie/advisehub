@@ -46,7 +46,24 @@ export const advisorSidebarItems:SidebarItemDetails[] =[
         link:"/advising-notes"
     },
 ]
-
+export const adminSidebarItems:SidebarItemDetails[]= [
+    {
+        text:"Update User",
+        link:"/admin/users"
+    },
+    {
+        text:"Degrees",
+        link:"/admin/degrees"
+    },
+    {
+        text:"Degree Specs",
+        link:"/admin/degree-spec"
+    },
+    {
+        text:"Specialization",
+        link:"/admin/advisor-specialization"
+    }
+]
 export const appointmentSections:AppointmentSection[] = ["Upcoming", "Past Meetings"]
 export const studentAppointmentComponentDetails:AppointmentComponentDetail[]= [
     {
