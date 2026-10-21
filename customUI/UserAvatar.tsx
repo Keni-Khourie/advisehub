@@ -7,10 +7,10 @@ import { getInitials } from "@/lib/utilityFunctions";
 import {signOutUser} from "@/lib/actions/auth"
 import { RootState } from "@/redux/store";
 import { useAppSelector } from "@/redux/reduxHooks";
-import { useDispatch } from "react-redux";
+
 const UserAvatar = () => {
     //fetch user from store
-    const dispatch = useDispatch()
+   
     const user = useAppSelector((state: RootState) => state.user);
    
     

@@ -9,11 +9,11 @@ import {SidebarItemDetails}from "@/types/types"
 import {studentSidebarItems, advisorSidebarItems, adminSidebarItems} from "@/constants"
 import { RootState } from "@/redux/store";
 import { useAppSelector } from "@/redux/reduxHooks";
-import { useDispatch } from "react-redux";
+
 
 const Sidebar = () => {
   //fetch user from store
-   const dispatch = useDispatch()
+
     const user = useAppSelector((state: RootState) => state.user);
   const getSidebarItemsBasedOnUser = () => {
     const sidebarItems: SidebarItemDetails[] =
