@@ -8,7 +8,7 @@ import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
 
 const adminLoginSchema = z.object({
-  email: z.string().email().transform((value) => value.trim().toLowerCase()),
+  email: z.email().transform((value) => value.trim().toLowerCase()),
   password: z.string().min(1),
 });
 
@@ -72,6 +72,46 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         };
       },
     }),
+    Credentials({
+  id: "test-credentials",
+  name: "Test User",
+  credentials: {
+    email: { label: "Email", type: "email" },
+    password: { label: "Password", type: "password" },
+  },
+
+  async authorize(credentials) {
+    const parsed = adminLoginSchema.safeParse(credentials);
+
+    if (!parsed.success) return null;
+
+    const user = await prisma.user.findUnique({
+      where: { email: parsed.data.email },
+    });
+
+    // Test login must never authenticate an administrator.
+    if (
+      !user ||
+      user.role === "ADMIN" ||
+      !user.passwordHash
+    ) {
+      return null;
+    }
+
+    const passwordMatches = await bcrypt.compare(
+      parsed.data.password,
+      user.passwordHash,
+    );
+
+    if (!passwordMatches) return null;
+
+    return {
+      id: String(user.id),
+      email: user.email,
+      name: `${user.firstName} ${user.lastName}`,
+    };
+  },
+}),
   ],
 
   callbacks: {
@@ -178,7 +218,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
     async jwt({ token, account, profile, user }) {
       if (account && user) {
-        if (account.provider === "admin-credentials") {
+        if (account.provider === "admin-credentials" ||
+  account.provider === "test-credentials") {
           token.userId = Number(user.id);
         }
 

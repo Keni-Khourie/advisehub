@@ -48,17 +48,23 @@ const LoginForm = () => {
         })
   }
 
+  const testUserSign = ()=>{ 
+    signIn("test-credentials", {
+      redirectTo:"/user"
+    })
+  }
+
   const trySubmitForm = (values: LoginFormData) => {
     toast.promise(
-      login({
-        email: values.email,
-        password: values.password.trim(),
+       signIn("test-credentials", {
+        email:values.email,
+        password:values.password,
+        redirect: false,
       })
-        .unwrap()
         .then((resp) => {
           console.log(resp);
 
-          router.push("/dashboard");
+          router.push("/user");
         }),
       {
         loading: "Logging in....",
