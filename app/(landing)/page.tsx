@@ -7,7 +7,7 @@ export default function Home() {
         "flex justify-center md:justify-end p-8 h-screen font-inter bg-[url('/ah-landing2.png')]"
       }
     >
-      <div className="w-[40%]">
+      <div className="  md:w-[40%]">
         <LoginForm />
       </div>
     </div>

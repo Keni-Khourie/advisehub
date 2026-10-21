@@ -1,17 +1,20 @@
+"use client"
 import { cn } from "@/lib/utils";
 
 import SidebarItem from "./SidebarItem";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import UserAvatar from "./UserAvatar";
-import {UserRole, SidebarItemDetails}from "@/types/types"
+import {SidebarItemDetails}from "@/types/types"
 import {studentSidebarItems, advisorSidebarItems, adminSidebarItems} from "@/constants"
+import { RootState } from "@/redux/store";
+import { useAppSelector } from "@/redux/reduxHooks";
+import { useDispatch } from "react-redux";
 
 const Sidebar = () => {
   //fetch user from store
-  const user: {role:UserRole} = {
-    role: "ADVISOR",
-  };
+   const dispatch = useDispatch()
+    const user = useAppSelector((state: RootState) => state.user);
   const getSidebarItemsBasedOnUser = () => {
     const sidebarItems: SidebarItemDetails[] =
       user?.role == "STUDENT"

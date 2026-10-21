@@ -4,14 +4,14 @@ import storageSession from 'redux-persist/lib/storage/session'
 import { combineReducers } from "redux";
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import authReducer from "./features/authSlice"
-//import userReducer from "./features/userSlice"
+import userReducer from "./features/userSlice"
 //import profileReducer from "./features/profileSlice"
 import { ApiSlice } from './services/apiSlice'
 
 const rootReducer = combineReducers({
     [ApiSlice.reducerPath]:ApiSlice.reducer,
     auth:authReducer,
-   // user:userReducer,
+    user:userReducer,
    // profile:profileReducer,
   
 });
