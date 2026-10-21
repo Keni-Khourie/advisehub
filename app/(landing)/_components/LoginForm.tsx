@@ -28,6 +28,7 @@ import { Button } from "@/components/ui/button";
 import BlueButton from "@/customUI/BlueButton";
 import { FaUniversity } from "react-icons/fa";
 import { Landmark } from "lucide-react";
+import { signIn } from "next-auth/react";
 
 const LoginForm = () => {
   const [login, { isLoading }] = useLoginMutation();
@@ -40,6 +41,12 @@ const LoginForm = () => {
     },
     resolver: zodResolver(loginFormSchema),
   });
+
+  const institutionalSign =()=>{
+    signIn("microsoft-entra-id", {
+          redirectTo: "/user",
+        })
+  }
 
   const trySubmitForm = (values: LoginFormData) => {
     toast.promise(
@@ -135,7 +142,7 @@ const LoginForm = () => {
               <p className="font-light text-ahTextGrey">or</p>
               <hr className="w-full mt-1" />
             </div>
-            <Button className="border border-ahDeepBlue text-ahDeepBlue h-12 bg-white w-full hover:bg-white hover:underline cursor-pointer font-semibold relative">
+            <Button className="border border-ahDeepBlue text-ahDeepBlue h-12 bg-white w-full hover:bg-white hover:underline cursor-pointer font-semibold relative" onClick={institutionalSign}>
               <FaUniversity className="md:absolute md:left-6 md:top-4" />
               Use Campus Credentials (SSO)
             </Button>

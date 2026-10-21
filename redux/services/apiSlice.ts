@@ -8,6 +8,7 @@ import type {
 import { setAuth, logout } from '../features/authSlice'
 import { Mutex } from 'async-mutex'
 import { RootState } from '../store'
+import {User} from "@/types/types"
 
 
 const mutex = new Mutex()
@@ -15,14 +16,13 @@ const mutex = new Mutex()
 interface refreshResponse {
  accessToken:string;
   refreshToken:string;
-  profileId:number|null;
-  userId:number;
+  id:number
   firstName:string;
   lastName:string;
   email:string;
   role:string;
 }
-const baseQuery = fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,mode:"cors",credentials:"omit",prepareHeaders: (headers, { getState }) => {
+const baseQuery = fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,mode:"cors",credentials:"same-origin",prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.accessToken;
     const isAuthenticated = (getState() as RootState).auth.isAuthenticated
     if (token  && isAuthenticated) {
@@ -86,6 +86,6 @@ const baseQuery = fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL
   export const ApiSlice=createApi({
     reducerPath:"api",
     baseQuery:baseQueryWithReauth,
-    tagTypes:[],
+    tagTypes:["CurrentUser"],
     endpoints: () => ({}),
   })

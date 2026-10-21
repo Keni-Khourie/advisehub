@@ -7,7 +7,7 @@ import {
 import { ApiSlice } from "../services/apiSlice";
  
 import { GenericMessageResponse } from "@/types/types";
-import { UserRole } from "@/constants";
+import { UserRole, User } from "@/types/types";
 
 export interface LoginResponse {
   accessToken: string;
@@ -37,6 +37,13 @@ const authApiSlice = ApiSlice.injectEndpoints({
         body: formData,
       }),
     }),
+    getCurrentUser:builder.query<User, void>({
+      query:()=>({
+        url:"/auth/me",
+        method:"GET"
+      }),
+      providesTags: ["CurrentUser"],
+    })
     
    
     
@@ -44,5 +51,5 @@ const authApiSlice = ApiSlice.injectEndpoints({
   
   }),
 });
-export const { useLoginMutation, useAdminLoginMutation,} = authApiSlice;
+export const { useLoginMutation, useAdminLoginMutation, useGetCurrentUserQuery} = authApiSlice;
 export default authApiSlice.reducer;
