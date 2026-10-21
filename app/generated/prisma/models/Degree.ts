@@ -29,19 +29,21 @@ export type AggregateDegree = {
 export type DegreeAvgAggregateOutputType = {
   id: number | null
   requiredCredits: number | null
+  degreeClassificationId: number | null
 }
 
 export type DegreeSumAggregateOutputType = {
   id: number | null
   requiredCredits: number | null
+  degreeClassificationId: number | null
 }
 
 export type DegreeMinAggregateOutputType = {
   id: number | null
   degreeName: string | null
   code: string | null
-  degreeClassification: string | null
   requiredCredits: number | null
+  degreeClassificationId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -50,8 +52,8 @@ export type DegreeMaxAggregateOutputType = {
   id: number | null
   degreeName: string | null
   code: string | null
-  degreeClassification: string | null
   requiredCredits: number | null
+  degreeClassificationId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -60,8 +62,8 @@ export type DegreeCountAggregateOutputType = {
   id: number
   degreeName: number
   code: number
-  degreeClassification: number
   requiredCredits: number
+  degreeClassificationId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -71,19 +73,21 @@ export type DegreeCountAggregateOutputType = {
 export type DegreeAvgAggregateInputType = {
   id?: true
   requiredCredits?: true
+  degreeClassificationId?: true
 }
 
 export type DegreeSumAggregateInputType = {
   id?: true
   requiredCredits?: true
+  degreeClassificationId?: true
 }
 
 export type DegreeMinAggregateInputType = {
   id?: true
   degreeName?: true
   code?: true
-  degreeClassification?: true
   requiredCredits?: true
+  degreeClassificationId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -92,8 +96,8 @@ export type DegreeMaxAggregateInputType = {
   id?: true
   degreeName?: true
   code?: true
-  degreeClassification?: true
   requiredCredits?: true
+  degreeClassificationId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -102,8 +106,8 @@ export type DegreeCountAggregateInputType = {
   id?: true
   degreeName?: true
   code?: true
-  degreeClassification?: true
   requiredCredits?: true
+  degreeClassificationId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -199,8 +203,8 @@ export type DegreeGroupByOutputType = {
   id: number
   degreeName: string
   code: string
-  degreeClassification: string
   requiredCredits: number
+  degreeClassificationId: number
   createdAt: Date
   updatedAt: Date
   _count: DegreeCountAggregateOutputType | null
@@ -232,22 +236,24 @@ export type DegreeWhereInput = {
   id?: Prisma.IntFilter<"Degree"> | number
   degreeName?: Prisma.StringFilter<"Degree"> | string
   code?: Prisma.StringFilter<"Degree"> | string
-  degreeClassification?: Prisma.StringFilter<"Degree"> | string
   requiredCredits?: Prisma.IntFilter<"Degree"> | number
+  degreeClassificationId?: Prisma.IntFilter<"Degree"> | number
   createdAt?: Prisma.DateTimeFilter<"Degree"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Degree"> | Date | string
   students?: Prisma.StudentListRelationFilter
+  degreeClassification?: Prisma.XOR<Prisma.DegreeClassificationScalarRelationFilter, Prisma.DegreeClassificationWhereInput>
 }
 
 export type DegreeOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   degreeName?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  degreeClassification?: Prisma.SortOrder
   requiredCredits?: Prisma.SortOrder
+  degreeClassificationId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   students?: Prisma.StudentOrderByRelationAggregateInput
+  degreeClassification?: Prisma.DegreeClassificationOrderByWithRelationInput
 }
 
 export type DegreeWhereUniqueInput = Prisma.AtLeast<{
@@ -257,19 +263,20 @@ export type DegreeWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.DegreeWhereInput[]
   NOT?: Prisma.DegreeWhereInput | Prisma.DegreeWhereInput[]
   degreeName?: Prisma.StringFilter<"Degree"> | string
-  degreeClassification?: Prisma.StringFilter<"Degree"> | string
   requiredCredits?: Prisma.IntFilter<"Degree"> | number
+  degreeClassificationId?: Prisma.IntFilter<"Degree"> | number
   createdAt?: Prisma.DateTimeFilter<"Degree"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Degree"> | Date | string
   students?: Prisma.StudentListRelationFilter
+  degreeClassification?: Prisma.XOR<Prisma.DegreeClassificationScalarRelationFilter, Prisma.DegreeClassificationWhereInput>
 }, "id" | "code">
 
 export type DegreeOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   degreeName?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  degreeClassification?: Prisma.SortOrder
   requiredCredits?: Prisma.SortOrder
+  degreeClassificationId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.DegreeCountOrderByAggregateInput
@@ -286,8 +293,8 @@ export type DegreeScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Degree"> | number
   degreeName?: Prisma.StringWithAggregatesFilter<"Degree"> | string
   code?: Prisma.StringWithAggregatesFilter<"Degree"> | string
-  degreeClassification?: Prisma.StringWithAggregatesFilter<"Degree"> | string
   requiredCredits?: Prisma.IntWithAggregatesFilter<"Degree"> | number
+  degreeClassificationId?: Prisma.IntWithAggregatesFilter<"Degree"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Degree"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Degree"> | Date | string
 }
@@ -295,19 +302,19 @@ export type DegreeScalarWhereWithAggregatesInput = {
 export type DegreeCreateInput = {
   degreeName: string
   code: string
-  degreeClassification: string
   requiredCredits: number
   createdAt?: Date | string
   updatedAt?: Date | string
   students?: Prisma.StudentCreateNestedManyWithoutDegreeInput
+  degreeClassification: Prisma.DegreeClassificationCreateNestedOneWithoutDegreesInput
 }
 
 export type DegreeUncheckedCreateInput = {
   id?: number
   degreeName: string
   code: string
-  degreeClassification: string
   requiredCredits: number
+  degreeClassificationId: number
   createdAt?: Date | string
   updatedAt?: Date | string
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutDegreeInput
@@ -316,19 +323,19 @@ export type DegreeUncheckedCreateInput = {
 export type DegreeUpdateInput = {
   degreeName?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  degreeClassification?: Prisma.StringFieldUpdateOperationsInput | string
   requiredCredits?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   students?: Prisma.StudentUpdateManyWithoutDegreeNestedInput
+  degreeClassification?: Prisma.DegreeClassificationUpdateOneRequiredWithoutDegreesNestedInput
 }
 
 export type DegreeUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   degreeName?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  degreeClassification?: Prisma.StringFieldUpdateOperationsInput | string
   requiredCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  degreeClassificationId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   students?: Prisma.StudentUncheckedUpdateManyWithoutDegreeNestedInput
@@ -338,8 +345,8 @@ export type DegreeCreateManyInput = {
   id?: number
   degreeName: string
   code: string
-  degreeClassification: string
   requiredCredits: number
+  degreeClassificationId: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -347,7 +354,6 @@ export type DegreeCreateManyInput = {
 export type DegreeUpdateManyMutationInput = {
   degreeName?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  degreeClassification?: Prisma.StringFieldUpdateOperationsInput | string
   requiredCredits?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -357,8 +363,8 @@ export type DegreeUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   degreeName?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  degreeClassification?: Prisma.StringFieldUpdateOperationsInput | string
   requiredCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  degreeClassificationId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -372,8 +378,8 @@ export type DegreeCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   degreeName?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  degreeClassification?: Prisma.SortOrder
   requiredCredits?: Prisma.SortOrder
+  degreeClassificationId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -381,14 +387,15 @@ export type DegreeCountOrderByAggregateInput = {
 export type DegreeAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   requiredCredits?: Prisma.SortOrder
+  degreeClassificationId?: Prisma.SortOrder
 }
 
 export type DegreeMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   degreeName?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  degreeClassification?: Prisma.SortOrder
   requiredCredits?: Prisma.SortOrder
+  degreeClassificationId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -397,8 +404,8 @@ export type DegreeMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   degreeName?: Prisma.SortOrder
   code?: Prisma.SortOrder
-  degreeClassification?: Prisma.SortOrder
   requiredCredits?: Prisma.SortOrder
+  degreeClassificationId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -406,6 +413,17 @@ export type DegreeMinOrderByAggregateInput = {
 export type DegreeSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   requiredCredits?: Prisma.SortOrder
+  degreeClassificationId?: Prisma.SortOrder
+}
+
+export type DegreeListRelationFilter = {
+  every?: Prisma.DegreeWhereInput
+  some?: Prisma.DegreeWhereInput
+  none?: Prisma.DegreeWhereInput
+}
+
+export type DegreeOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type DegreeCreateNestedOneWithoutStudentsInput = {
@@ -422,21 +440,63 @@ export type DegreeUpdateOneRequiredWithoutStudentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DegreeUpdateToOneWithWhereWithoutStudentsInput, Prisma.DegreeUpdateWithoutStudentsInput>, Prisma.DegreeUncheckedUpdateWithoutStudentsInput>
 }
 
+export type DegreeCreateNestedManyWithoutDegreeClassificationInput = {
+  create?: Prisma.XOR<Prisma.DegreeCreateWithoutDegreeClassificationInput, Prisma.DegreeUncheckedCreateWithoutDegreeClassificationInput> | Prisma.DegreeCreateWithoutDegreeClassificationInput[] | Prisma.DegreeUncheckedCreateWithoutDegreeClassificationInput[]
+  connectOrCreate?: Prisma.DegreeCreateOrConnectWithoutDegreeClassificationInput | Prisma.DegreeCreateOrConnectWithoutDegreeClassificationInput[]
+  createMany?: Prisma.DegreeCreateManyDegreeClassificationInputEnvelope
+  connect?: Prisma.DegreeWhereUniqueInput | Prisma.DegreeWhereUniqueInput[]
+}
+
+export type DegreeUncheckedCreateNestedManyWithoutDegreeClassificationInput = {
+  create?: Prisma.XOR<Prisma.DegreeCreateWithoutDegreeClassificationInput, Prisma.DegreeUncheckedCreateWithoutDegreeClassificationInput> | Prisma.DegreeCreateWithoutDegreeClassificationInput[] | Prisma.DegreeUncheckedCreateWithoutDegreeClassificationInput[]
+  connectOrCreate?: Prisma.DegreeCreateOrConnectWithoutDegreeClassificationInput | Prisma.DegreeCreateOrConnectWithoutDegreeClassificationInput[]
+  createMany?: Prisma.DegreeCreateManyDegreeClassificationInputEnvelope
+  connect?: Prisma.DegreeWhereUniqueInput | Prisma.DegreeWhereUniqueInput[]
+}
+
+export type DegreeUpdateManyWithoutDegreeClassificationNestedInput = {
+  create?: Prisma.XOR<Prisma.DegreeCreateWithoutDegreeClassificationInput, Prisma.DegreeUncheckedCreateWithoutDegreeClassificationInput> | Prisma.DegreeCreateWithoutDegreeClassificationInput[] | Prisma.DegreeUncheckedCreateWithoutDegreeClassificationInput[]
+  connectOrCreate?: Prisma.DegreeCreateOrConnectWithoutDegreeClassificationInput | Prisma.DegreeCreateOrConnectWithoutDegreeClassificationInput[]
+  upsert?: Prisma.DegreeUpsertWithWhereUniqueWithoutDegreeClassificationInput | Prisma.DegreeUpsertWithWhereUniqueWithoutDegreeClassificationInput[]
+  createMany?: Prisma.DegreeCreateManyDegreeClassificationInputEnvelope
+  set?: Prisma.DegreeWhereUniqueInput | Prisma.DegreeWhereUniqueInput[]
+  disconnect?: Prisma.DegreeWhereUniqueInput | Prisma.DegreeWhereUniqueInput[]
+  delete?: Prisma.DegreeWhereUniqueInput | Prisma.DegreeWhereUniqueInput[]
+  connect?: Prisma.DegreeWhereUniqueInput | Prisma.DegreeWhereUniqueInput[]
+  update?: Prisma.DegreeUpdateWithWhereUniqueWithoutDegreeClassificationInput | Prisma.DegreeUpdateWithWhereUniqueWithoutDegreeClassificationInput[]
+  updateMany?: Prisma.DegreeUpdateManyWithWhereWithoutDegreeClassificationInput | Prisma.DegreeUpdateManyWithWhereWithoutDegreeClassificationInput[]
+  deleteMany?: Prisma.DegreeScalarWhereInput | Prisma.DegreeScalarWhereInput[]
+}
+
+export type DegreeUncheckedUpdateManyWithoutDegreeClassificationNestedInput = {
+  create?: Prisma.XOR<Prisma.DegreeCreateWithoutDegreeClassificationInput, Prisma.DegreeUncheckedCreateWithoutDegreeClassificationInput> | Prisma.DegreeCreateWithoutDegreeClassificationInput[] | Prisma.DegreeUncheckedCreateWithoutDegreeClassificationInput[]
+  connectOrCreate?: Prisma.DegreeCreateOrConnectWithoutDegreeClassificationInput | Prisma.DegreeCreateOrConnectWithoutDegreeClassificationInput[]
+  upsert?: Prisma.DegreeUpsertWithWhereUniqueWithoutDegreeClassificationInput | Prisma.DegreeUpsertWithWhereUniqueWithoutDegreeClassificationInput[]
+  createMany?: Prisma.DegreeCreateManyDegreeClassificationInputEnvelope
+  set?: Prisma.DegreeWhereUniqueInput | Prisma.DegreeWhereUniqueInput[]
+  disconnect?: Prisma.DegreeWhereUniqueInput | Prisma.DegreeWhereUniqueInput[]
+  delete?: Prisma.DegreeWhereUniqueInput | Prisma.DegreeWhereUniqueInput[]
+  connect?: Prisma.DegreeWhereUniqueInput | Prisma.DegreeWhereUniqueInput[]
+  update?: Prisma.DegreeUpdateWithWhereUniqueWithoutDegreeClassificationInput | Prisma.DegreeUpdateWithWhereUniqueWithoutDegreeClassificationInput[]
+  updateMany?: Prisma.DegreeUpdateManyWithWhereWithoutDegreeClassificationInput | Prisma.DegreeUpdateManyWithWhereWithoutDegreeClassificationInput[]
+  deleteMany?: Prisma.DegreeScalarWhereInput | Prisma.DegreeScalarWhereInput[]
+}
+
 export type DegreeCreateWithoutStudentsInput = {
   degreeName: string
   code: string
-  degreeClassification: string
   requiredCredits: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  degreeClassification: Prisma.DegreeClassificationCreateNestedOneWithoutDegreesInput
 }
 
 export type DegreeUncheckedCreateWithoutStudentsInput = {
   id?: number
   degreeName: string
   code: string
-  degreeClassification: string
   requiredCredits: number
+  degreeClassificationId: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -460,17 +520,112 @@ export type DegreeUpdateToOneWithWhereWithoutStudentsInput = {
 export type DegreeUpdateWithoutStudentsInput = {
   degreeName?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  degreeClassification?: Prisma.StringFieldUpdateOperationsInput | string
   requiredCredits?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  degreeClassification?: Prisma.DegreeClassificationUpdateOneRequiredWithoutDegreesNestedInput
 }
 
 export type DegreeUncheckedUpdateWithoutStudentsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   degreeName?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
-  degreeClassification?: Prisma.StringFieldUpdateOperationsInput | string
+  requiredCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  degreeClassificationId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type DegreeCreateWithoutDegreeClassificationInput = {
+  degreeName: string
+  code: string
+  requiredCredits: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  students?: Prisma.StudentCreateNestedManyWithoutDegreeInput
+}
+
+export type DegreeUncheckedCreateWithoutDegreeClassificationInput = {
+  id?: number
+  degreeName: string
+  code: string
+  requiredCredits: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  students?: Prisma.StudentUncheckedCreateNestedManyWithoutDegreeInput
+}
+
+export type DegreeCreateOrConnectWithoutDegreeClassificationInput = {
+  where: Prisma.DegreeWhereUniqueInput
+  create: Prisma.XOR<Prisma.DegreeCreateWithoutDegreeClassificationInput, Prisma.DegreeUncheckedCreateWithoutDegreeClassificationInput>
+}
+
+export type DegreeCreateManyDegreeClassificationInputEnvelope = {
+  data: Prisma.DegreeCreateManyDegreeClassificationInput | Prisma.DegreeCreateManyDegreeClassificationInput[]
+  skipDuplicates?: boolean
+}
+
+export type DegreeUpsertWithWhereUniqueWithoutDegreeClassificationInput = {
+  where: Prisma.DegreeWhereUniqueInput
+  update: Prisma.XOR<Prisma.DegreeUpdateWithoutDegreeClassificationInput, Prisma.DegreeUncheckedUpdateWithoutDegreeClassificationInput>
+  create: Prisma.XOR<Prisma.DegreeCreateWithoutDegreeClassificationInput, Prisma.DegreeUncheckedCreateWithoutDegreeClassificationInput>
+}
+
+export type DegreeUpdateWithWhereUniqueWithoutDegreeClassificationInput = {
+  where: Prisma.DegreeWhereUniqueInput
+  data: Prisma.XOR<Prisma.DegreeUpdateWithoutDegreeClassificationInput, Prisma.DegreeUncheckedUpdateWithoutDegreeClassificationInput>
+}
+
+export type DegreeUpdateManyWithWhereWithoutDegreeClassificationInput = {
+  where: Prisma.DegreeScalarWhereInput
+  data: Prisma.XOR<Prisma.DegreeUpdateManyMutationInput, Prisma.DegreeUncheckedUpdateManyWithoutDegreeClassificationInput>
+}
+
+export type DegreeScalarWhereInput = {
+  AND?: Prisma.DegreeScalarWhereInput | Prisma.DegreeScalarWhereInput[]
+  OR?: Prisma.DegreeScalarWhereInput[]
+  NOT?: Prisma.DegreeScalarWhereInput | Prisma.DegreeScalarWhereInput[]
+  id?: Prisma.IntFilter<"Degree"> | number
+  degreeName?: Prisma.StringFilter<"Degree"> | string
+  code?: Prisma.StringFilter<"Degree"> | string
+  requiredCredits?: Prisma.IntFilter<"Degree"> | number
+  degreeClassificationId?: Prisma.IntFilter<"Degree"> | number
+  createdAt?: Prisma.DateTimeFilter<"Degree"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Degree"> | Date | string
+}
+
+export type DegreeCreateManyDegreeClassificationInput = {
+  id?: number
+  degreeName: string
+  code: string
+  requiredCredits: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type DegreeUpdateWithoutDegreeClassificationInput = {
+  degreeName?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  requiredCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  students?: Prisma.StudentUpdateManyWithoutDegreeNestedInput
+}
+
+export type DegreeUncheckedUpdateWithoutDegreeClassificationInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  degreeName?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  requiredCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  students?: Prisma.StudentUncheckedUpdateManyWithoutDegreeNestedInput
+}
+
+export type DegreeUncheckedUpdateManyWithoutDegreeClassificationInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  degreeName?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
   requiredCredits?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -511,11 +666,12 @@ export type DegreeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   id?: boolean
   degreeName?: boolean
   code?: boolean
-  degreeClassification?: boolean
   requiredCredits?: boolean
+  degreeClassificationId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   students?: boolean | Prisma.Degree$studentsArgs<ExtArgs>
+  degreeClassification?: boolean | Prisma.DegreeClassificationDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.DegreeCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["degree"]>
 
@@ -523,51 +679,59 @@ export type DegreeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   id?: boolean
   degreeName?: boolean
   code?: boolean
-  degreeClassification?: boolean
   requiredCredits?: boolean
+  degreeClassificationId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  degreeClassification?: boolean | Prisma.DegreeClassificationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["degree"]>
 
 export type DegreeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   degreeName?: boolean
   code?: boolean
-  degreeClassification?: boolean
   requiredCredits?: boolean
+  degreeClassificationId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  degreeClassification?: boolean | Prisma.DegreeClassificationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["degree"]>
 
 export type DegreeSelectScalar = {
   id?: boolean
   degreeName?: boolean
   code?: boolean
-  degreeClassification?: boolean
   requiredCredits?: boolean
+  degreeClassificationId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type DegreeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "degreeName" | "code" | "degreeClassification" | "requiredCredits" | "createdAt" | "updatedAt", ExtArgs["result"]["degree"]>
+export type DegreeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "degreeName" | "code" | "requiredCredits" | "degreeClassificationId" | "createdAt" | "updatedAt", ExtArgs["result"]["degree"]>
 export type DegreeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   students?: boolean | Prisma.Degree$studentsArgs<ExtArgs>
+  degreeClassification?: boolean | Prisma.DegreeClassificationDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.DegreeCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type DegreeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type DegreeIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type DegreeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  degreeClassification?: boolean | Prisma.DegreeClassificationDefaultArgs<ExtArgs>
+}
+export type DegreeIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  degreeClassification?: boolean | Prisma.DegreeClassificationDefaultArgs<ExtArgs>
+}
 
 export type $DegreePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Degree"
   objects: {
     students: Prisma.$StudentPayload<ExtArgs>[]
+    degreeClassification: Prisma.$DegreeClassificationPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     degreeName: string
     code: string
-    degreeClassification: string
     requiredCredits: number
+    degreeClassificationId: number
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["degree"]>
@@ -965,6 +1129,7 @@ readonly fields: DegreeFieldRefs;
 export interface Prisma__DegreeClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   students<T extends Prisma.Degree$studentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Degree$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  degreeClassification<T extends Prisma.DegreeClassificationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DegreeClassificationDefaultArgs<ExtArgs>>): Prisma.Prisma__DegreeClassificationClient<runtime.Types.Result.GetResult<Prisma.$DegreeClassificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -997,8 +1162,8 @@ export interface DegreeFieldRefs {
   readonly id: Prisma.FieldRef<"Degree", 'Int'>
   readonly degreeName: Prisma.FieldRef<"Degree", 'String'>
   readonly code: Prisma.FieldRef<"Degree", 'String'>
-  readonly degreeClassification: Prisma.FieldRef<"Degree", 'String'>
   readonly requiredCredits: Prisma.FieldRef<"Degree", 'Int'>
+  readonly degreeClassificationId: Prisma.FieldRef<"Degree", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Degree", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Degree", 'DateTime'>
 }
@@ -1255,6 +1420,10 @@ export type DegreeCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    */
   data: Prisma.DegreeCreateManyInput | Prisma.DegreeCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DegreeIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1325,6 +1494,10 @@ export type DegreeUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many Degrees to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DegreeIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

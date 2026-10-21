@@ -59,7 +59,8 @@ export const ModelName = {
   AdvisorSpecialization: 'AdvisorSpecialization',
   AdvisorNote: 'AdvisorNote',
   Appointment: 'Appointment',
-  AdvisorAvailability: 'AdvisorAvailability'
+  AdvisorAvailability: 'AdvisorAvailability',
+  DegreeClassification: 'DegreeClassification'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -142,8 +143,8 @@ export const DegreeScalarFieldEnum = {
   id: 'id',
   degreeName: 'degreeName',
   code: 'code',
-  degreeClassification: 'degreeClassification',
   requiredCredits: 'requiredCredits',
+  degreeClassificationId: 'degreeClassificationId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -201,6 +202,17 @@ export const AdvisorAvailabilityScalarFieldEnum = {
 } as const
 
 export type AdvisorAvailabilityScalarFieldEnum = (typeof AdvisorAvailabilityScalarFieldEnum)[keyof typeof AdvisorAvailabilityScalarFieldEnum]
+
+
+export const DegreeClassificationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  abbreviation: 'abbreviation',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DegreeClassificationScalarFieldEnum = (typeof DegreeClassificationScalarFieldEnum)[keyof typeof DegreeClassificationScalarFieldEnum]
 
 
 export const SortOrder = {

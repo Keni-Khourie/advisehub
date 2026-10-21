@@ -62,3 +62,8 @@ export type Appointment = Prisma.AppointmentModel
  * 
  */
 export type AdvisorAvailability = Prisma.AdvisorAvailabilityModel
+/**
+ * Model DegreeClassification
+ * 
+ */
+export type DegreeClassification = Prisma.DegreeClassificationModel

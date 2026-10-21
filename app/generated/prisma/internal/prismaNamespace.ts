@@ -405,7 +405,8 @@ export const ModelName = {
   AdvisorSpecialization: 'AdvisorSpecialization',
   AdvisorNote: 'AdvisorNote',
   Appointment: 'Appointment',
-  AdvisorAvailability: 'AdvisorAvailability'
+  AdvisorAvailability: 'AdvisorAvailability',
+  DegreeClassification: 'DegreeClassification'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -421,7 +422,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "student" | "advisor" | "admin" | "degree" | "advisorSpecialization" | "advisorNote" | "appointment" | "advisorAvailability"
+    modelProps: "user" | "student" | "advisor" | "admin" | "degree" | "advisorSpecialization" | "advisorNote" | "appointment" | "advisorAvailability" | "degreeClassification"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1091,6 +1092,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    DegreeClassification: {
+      payload: Prisma.$DegreeClassificationPayload<ExtArgs>
+      fields: Prisma.DegreeClassificationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DegreeClassificationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeClassificationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DegreeClassificationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeClassificationPayload>
+        }
+        findFirst: {
+          args: Prisma.DegreeClassificationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeClassificationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DegreeClassificationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeClassificationPayload>
+        }
+        findMany: {
+          args: Prisma.DegreeClassificationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeClassificationPayload>[]
+        }
+        create: {
+          args: Prisma.DegreeClassificationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeClassificationPayload>
+        }
+        createMany: {
+          args: Prisma.DegreeClassificationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DegreeClassificationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeClassificationPayload>[]
+        }
+        delete: {
+          args: Prisma.DegreeClassificationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeClassificationPayload>
+        }
+        update: {
+          args: Prisma.DegreeClassificationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeClassificationPayload>
+        }
+        deleteMany: {
+          args: Prisma.DegreeClassificationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DegreeClassificationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DegreeClassificationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeClassificationPayload>[]
+        }
+        upsert: {
+          args: Prisma.DegreeClassificationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeClassificationPayload>
+        }
+        aggregate: {
+          args: Prisma.DegreeClassificationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDegreeClassification>
+        }
+        groupBy: {
+          args: Prisma.DegreeClassificationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DegreeClassificationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DegreeClassificationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DegreeClassificationCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1194,8 +1269,8 @@ export const DegreeScalarFieldEnum = {
   id: 'id',
   degreeName: 'degreeName',
   code: 'code',
-  degreeClassification: 'degreeClassification',
   requiredCredits: 'requiredCredits',
+  degreeClassificationId: 'degreeClassificationId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1253,6 +1328,17 @@ export const AdvisorAvailabilityScalarFieldEnum = {
 } as const
 
 export type AdvisorAvailabilityScalarFieldEnum = (typeof AdvisorAvailabilityScalarFieldEnum)[keyof typeof AdvisorAvailabilityScalarFieldEnum]
+
+
+export const DegreeClassificationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  abbreviation: 'abbreviation',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DegreeClassificationScalarFieldEnum = (typeof DegreeClassificationScalarFieldEnum)[keyof typeof DegreeClassificationScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1535,6 +1621,7 @@ export type GlobalOmitConfig = {
   advisorNote?: Prisma.AdvisorNoteOmit
   appointment?: Prisma.AppointmentOmit
   advisorAvailability?: Prisma.AdvisorAvailabilityOmit
+  degreeClassification?: Prisma.DegreeClassificationOmit
 }
 
 /* Types for Logging */
