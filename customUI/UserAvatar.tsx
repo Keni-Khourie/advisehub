@@ -1,6 +1,7 @@
 "use client"
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button";
+import { HiLogout } from "react-icons/hi";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { getInitials } from "@/lib/utilityFunctions";
 import {signOutUser} from "@/lib/actions/auth"
@@ -11,11 +12,7 @@ const UserAvatar = () => {
         lastName:"Johnson",
         role:"STUDENT"
     }
-    const jordan ={
-        firstName:"Jordan",
-        lastName:"Lee",
-        role:"ADVISOR"
-    }
+   
     const user = alex
     
   return (
@@ -30,14 +27,14 @@ const UserAvatar = () => {
         </Avatar>
             </PopoverTrigger>
 
-            <PopoverContent className="bg-white px-3 py-3">
-                <div className="flex flex-col gap-y-2 text-sm">
-                    <p>{`firstName lastName`}</p>
-                    <p>{`email@email.com`}</p>
+            <PopoverContent className="bg-white py-5 ">
+                <div className="flex flex-col items-center gap-y-2 text-sm">
+                    <p className="font-semibold border-b w-full px-5">{`FirstName LastName`}</p>
+                    <p className="text-ahTextGrey border-b w-full px-5">{`email@email.com`}</p>
                 </div>
-                <div className="shadow-sm">
-                    <Button className="border-none bg-transparent cursor-pointer text-ahTextBlack" onClick={signOutUser}>
-                        Logout
+                <div className="flex justify-center">
+                    <Button className="w-full bg-ahLightBlue hover:bg-ahBorderBlue cursor-pointer text-ahDeepBlue text-left font-semibold border border-stone-100" onClick={signOutUser}>
+                        Logout <HiLogout/>
                     </Button>
                 </div>
             </PopoverContent>
