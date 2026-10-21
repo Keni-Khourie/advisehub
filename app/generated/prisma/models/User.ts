@@ -43,6 +43,7 @@ export type UserMinAggregateOutputType = {
   microsoftTenantId: string | null
   microsoftObjectId: string | null
   role: $Enums.Role | null
+  image: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -56,6 +57,7 @@ export type UserMaxAggregateOutputType = {
   microsoftTenantId: string | null
   microsoftObjectId: string | null
   role: $Enums.Role | null
+  image: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -69,6 +71,7 @@ export type UserCountAggregateOutputType = {
   microsoftTenantId: number
   microsoftObjectId: number
   role: number
+  image: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -92,6 +95,7 @@ export type UserMinAggregateInputType = {
   microsoftTenantId?: true
   microsoftObjectId?: true
   role?: true
+  image?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -105,6 +109,7 @@ export type UserMaxAggregateInputType = {
   microsoftTenantId?: true
   microsoftObjectId?: true
   role?: true
+  image?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -118,6 +123,7 @@ export type UserCountAggregateInputType = {
   microsoftTenantId?: true
   microsoftObjectId?: true
   role?: true
+  image?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -218,6 +224,7 @@ export type UserGroupByOutputType = {
   microsoftTenantId: string | null
   microsoftObjectId: string | null
   role: $Enums.Role | null
+  image: string | null
   createdAt: Date
   updatedAt: Date
   _count: UserCountAggregateOutputType | null
@@ -254,6 +261,7 @@ export type UserWhereInput = {
   microsoftTenantId?: Prisma.StringNullableFilter<"User"> | string | null
   microsoftObjectId?: Prisma.StringNullableFilter<"User"> | string | null
   role?: Prisma.EnumRoleNullableFilter<"User"> | $Enums.Role | null
+  image?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   student?: Prisma.XOR<Prisma.StudentNullableScalarRelationFilter, Prisma.StudentWhereInput> | null
@@ -270,6 +278,7 @@ export type UserOrderByWithRelationInput = {
   microsoftTenantId?: Prisma.SortOrderInput | Prisma.SortOrder
   microsoftObjectId?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrderInput | Prisma.SortOrder
+  image?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   student?: Prisma.StudentOrderByWithRelationInput
@@ -290,6 +299,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   microsoftTenantId?: Prisma.StringNullableFilter<"User"> | string | null
   microsoftObjectId?: Prisma.StringNullableFilter<"User"> | string | null
   role?: Prisma.EnumRoleNullableFilter<"User"> | $Enums.Role | null
+  image?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   student?: Prisma.XOR<Prisma.StudentNullableScalarRelationFilter, Prisma.StudentWhereInput> | null
@@ -306,6 +316,7 @@ export type UserOrderByWithAggregationInput = {
   microsoftTenantId?: Prisma.SortOrderInput | Prisma.SortOrder
   microsoftObjectId?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrderInput | Prisma.SortOrder
+  image?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
@@ -327,6 +338,7 @@ export type UserScalarWhereWithAggregatesInput = {
   microsoftTenantId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   microsoftObjectId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   role?: Prisma.EnumRoleNullableWithAggregatesFilter<"User"> | $Enums.Role | null
+  image?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
@@ -339,6 +351,7 @@ export type UserCreateInput = {
   microsoftTenantId?: string | null
   microsoftObjectId?: string | null
   role?: $Enums.Role | null
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   student?: Prisma.StudentCreateNestedOneWithoutUserInput
@@ -355,6 +368,7 @@ export type UserUncheckedCreateInput = {
   microsoftTenantId?: string | null
   microsoftObjectId?: string | null
   role?: $Enums.Role | null
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
@@ -370,6 +384,7 @@ export type UserUpdateInput = {
   microsoftTenantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   microsoftObjectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   student?: Prisma.StudentUpdateOneWithoutUserNestedInput
@@ -386,6 +401,7 @@ export type UserUncheckedUpdateInput = {
   microsoftTenantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   microsoftObjectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
@@ -402,6 +418,7 @@ export type UserCreateManyInput = {
   microsoftTenantId?: string | null
   microsoftObjectId?: string | null
   role?: $Enums.Role | null
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -414,6 +431,7 @@ export type UserUpdateManyMutationInput = {
   microsoftTenantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   microsoftObjectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -427,6 +445,7 @@ export type UserUncheckedUpdateManyInput = {
   microsoftTenantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   microsoftObjectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -445,6 +464,7 @@ export type UserCountOrderByAggregateInput = {
   microsoftTenantId?: Prisma.SortOrder
   microsoftObjectId?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -462,6 +482,7 @@ export type UserMaxOrderByAggregateInput = {
   microsoftTenantId?: Prisma.SortOrder
   microsoftObjectId?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -475,6 +496,7 @@ export type UserMinOrderByAggregateInput = {
   microsoftTenantId?: Prisma.SortOrder
   microsoftObjectId?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -562,6 +584,7 @@ export type UserCreateWithoutStudentInput = {
   microsoftTenantId?: string | null
   microsoftObjectId?: string | null
   role?: $Enums.Role | null
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   advisor?: Prisma.AdvisorCreateNestedOneWithoutUserInput
@@ -577,6 +600,7 @@ export type UserUncheckedCreateWithoutStudentInput = {
   microsoftTenantId?: string | null
   microsoftObjectId?: string | null
   role?: $Enums.Role | null
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   advisor?: Prisma.AdvisorUncheckedCreateNestedOneWithoutUserInput
@@ -607,6 +631,7 @@ export type UserUpdateWithoutStudentInput = {
   microsoftTenantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   microsoftObjectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   advisor?: Prisma.AdvisorUpdateOneWithoutUserNestedInput
@@ -622,6 +647,7 @@ export type UserUncheckedUpdateWithoutStudentInput = {
   microsoftTenantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   microsoftObjectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   advisor?: Prisma.AdvisorUncheckedUpdateOneWithoutUserNestedInput
@@ -636,6 +662,7 @@ export type UserCreateWithoutAdvisorInput = {
   microsoftTenantId?: string | null
   microsoftObjectId?: string | null
   role?: $Enums.Role | null
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   student?: Prisma.StudentCreateNestedOneWithoutUserInput
@@ -651,6 +678,7 @@ export type UserUncheckedCreateWithoutAdvisorInput = {
   microsoftTenantId?: string | null
   microsoftObjectId?: string | null
   role?: $Enums.Role | null
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
@@ -681,6 +709,7 @@ export type UserUpdateWithoutAdvisorInput = {
   microsoftTenantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   microsoftObjectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   student?: Prisma.StudentUpdateOneWithoutUserNestedInput
@@ -696,6 +725,7 @@ export type UserUncheckedUpdateWithoutAdvisorInput = {
   microsoftTenantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   microsoftObjectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
@@ -710,6 +740,7 @@ export type UserCreateWithoutAdminInput = {
   microsoftTenantId?: string | null
   microsoftObjectId?: string | null
   role?: $Enums.Role | null
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   student?: Prisma.StudentCreateNestedOneWithoutUserInput
@@ -725,6 +756,7 @@ export type UserUncheckedCreateWithoutAdminInput = {
   microsoftTenantId?: string | null
   microsoftObjectId?: string | null
   role?: $Enums.Role | null
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   student?: Prisma.StudentUncheckedCreateNestedOneWithoutUserInput
@@ -755,6 +787,7 @@ export type UserUpdateWithoutAdminInput = {
   microsoftTenantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   microsoftObjectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   student?: Prisma.StudentUpdateOneWithoutUserNestedInput
@@ -770,6 +803,7 @@ export type UserUncheckedUpdateWithoutAdminInput = {
   microsoftTenantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   microsoftObjectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   student?: Prisma.StudentUncheckedUpdateOneWithoutUserNestedInput
@@ -787,6 +821,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   microsoftTenantId?: boolean
   microsoftObjectId?: boolean
   role?: boolean
+  image?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   student?: boolean | Prisma.User$studentArgs<ExtArgs>
@@ -803,6 +838,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   microsoftTenantId?: boolean
   microsoftObjectId?: boolean
   role?: boolean
+  image?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -816,6 +852,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   microsoftTenantId?: boolean
   microsoftObjectId?: boolean
   role?: boolean
+  image?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -829,11 +866,12 @@ export type UserSelectScalar = {
   microsoftTenantId?: boolean
   microsoftObjectId?: boolean
   role?: boolean
+  image?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "firstName" | "lastName" | "passwordHash" | "microsoftTenantId" | "microsoftObjectId" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "firstName" | "lastName" | "passwordHash" | "microsoftTenantId" | "microsoftObjectId" | "role" | "image" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   student?: boolean | Prisma.User$studentArgs<ExtArgs>
   advisor?: boolean | Prisma.User$advisorArgs<ExtArgs>
@@ -858,6 +896,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     microsoftTenantId: string | null
     microsoftObjectId: string | null
     role: $Enums.Role | null
+    image: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["user"]>
@@ -1294,6 +1333,7 @@ export interface UserFieldRefs {
   readonly microsoftTenantId: Prisma.FieldRef<"User", 'String'>
   readonly microsoftObjectId: Prisma.FieldRef<"User", 'String'>
   readonly role: Prisma.FieldRef<"User", 'Role'>
+  readonly image: Prisma.FieldRef<"User", 'String'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }

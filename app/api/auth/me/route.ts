@@ -32,6 +32,7 @@ export async function GET() {
       firstName: true,
       lastName: true,
       role: true,
+      image: true,
       student: {
         select: {
           id: true,

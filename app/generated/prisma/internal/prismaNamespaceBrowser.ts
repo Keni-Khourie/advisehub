@@ -88,6 +88,7 @@ export const UserScalarFieldEnum = {
   microsoftTenantId: 'microsoftTenantId',
   microsoftObjectId: 'microsoftObjectId',
   role: 'role',
+  image: 'image',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

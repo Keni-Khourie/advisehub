@@ -59,7 +59,7 @@ export interface User {
   firstName: string;
   lastName: string;
   role: UserRole | null;
-
+  image: string | null;
   student: Student | null;
 
   advisor: Advisor | null;

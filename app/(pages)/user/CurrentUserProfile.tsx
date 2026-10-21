@@ -19,7 +19,7 @@ const CurrentUserProfile = () => {
     if (!user) return <p>No user profile found.</p>;
 
   if (!user.role) {
-    return <p>Your account is awaiting administrator assignment.</p>;
+    return <p>Hello, {user.firstName} {user.lastName} Please wait why the administrator finishes setting up your account.</p>;
   }
    return (
     <div>

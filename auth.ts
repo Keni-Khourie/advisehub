@@ -25,9 +25,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       issuer: process.env.AUTH_MICROSOFT_ENTRA_ID_ISSUER!,
       authorization: {
         params: {
-          scope: "openid profile email",
+          scope: "openid profile email User.Read",
         },
       },
+      profilePhotoSize: 96
     }),
 
     Credentials({
@@ -74,7 +75,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
 
   callbacks: {
-    async signIn({ account, profile }) {
+    async signIn({ account, profile, user }) {
       // Only automatically provision Microsoft institutional users.
       if (account?.provider !== "microsoft-entra-id") {
         return true;
@@ -121,6 +122,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         microsoftProfile?.name?.trim().split(/\s+/).slice(1).join(" ") ||
         "Unknown";
 
+       
       const existingIdentity = await prisma.user.findUnique({
         where: {
           microsoftTenantId_microsoftObjectId: {
@@ -131,6 +133,19 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       });
 
       if (existingIdentity) {
+        if (user.image) {
+    await prisma.user.update({
+      where: {
+        microsoftTenantId_microsoftObjectId: {
+          microsoftTenantId: tenantId,
+          microsoftObjectId: objectId,
+        },
+      },
+      data: {
+        image: user.image,
+      },
+    });
+  }
         // The immutable Microsoft identity is already linked.
         // Do not change administrator-assigned application data here.
         return true;
@@ -154,6 +169,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           microsoftTenantId: tenantId,
           microsoftObjectId: objectId,
           role: null,
+          image: user.image ?? null,
         },
       });
 

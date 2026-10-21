@@ -29,6 +29,7 @@ model User {
   microsoftTenantId String?
   microsoftObjectId String?
   role              Role?
+  image             String?
   student           Student?
   advisor           Advisor?
   admin             Admin?
