@@ -5,6 +5,8 @@ import { combineReducers } from "redux";
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import authReducer from "./features/authSlice"
 import userReducer from "./features/userSlice"
+import studentReducer from "./features/studentSlice"
+import advisorReducer from "./features/advisorSlice"
 //import profileReducer from "./features/profileSlice"
 import { ApiSlice } from './services/apiSlice'
 
@@ -12,7 +14,8 @@ const rootReducer = combineReducers({
     [ApiSlice.reducerPath]:ApiSlice.reducer,
     auth:authReducer,
     user:userReducer,
-   // profile:profileReducer,
+    student:studentReducer,
+    advisor:advisorReducer
   
 });
 const persistConfig = {
