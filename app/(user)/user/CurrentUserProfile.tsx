@@ -21,7 +21,7 @@ const CurrentUserProfile = () => {
     if (isLoading) return (
       <div className="bg-ahBgBlue w-full h-screen flex flex-col items-center justify-center">
         <div className="">
-          <Spinner className="w-72 text-ahDeepBlue" fontSize={90} type="arrow"/>
+          <Spinner className="w-72 text-ahDeepBlue" fontSize={90} scale={90} type="arrow"/>
           <p>Loading profile...</p>
         </div>
       </div>
@@ -79,23 +79,7 @@ const CurrentUserProfile = () => {
   if(user.role){
     router.push("/dashboard")
   }
-   return (
-    <div>
-      <h2>
-        Welcome, {user.firstName} {user.lastName}
-      </h2>
-
-      <p>Role: {user.role}</p>
-
-      {user.student && (
-        <p>Student ID: {user.student.studentId}</p>
-      )}
-
-      {user.advisor && (
-        <p>Advisor ID: {user.advisor.advisorId}</p>
-      )}
-    </div>
-  );
+   return
 }
 
 export default CurrentUserProfile
