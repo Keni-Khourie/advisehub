@@ -15,16 +15,17 @@ import {
   AdminLoginFormData
 } from "@/validators/auth/authValidationSchemas";
 import { useDispatch } from "react-redux";
-import { queryErrorResponse } from "@/lib/utilityComponents";
+import { queryErrorResponse, customToast } from "@/lib/utilityComponents";
 import FormHeader from "./FormHeader";
 import BlueButton from "@/customUI/BlueButton";
 import { signIn } from "next-auth/react";
-
+import {useState} from "react"
 
 
 const AdminLoginForm = () => {
      const router = useRouter();
      const dispatch = useDispatch();
+      const [isLoading, setIsLoading] = useState<boolean>(false);
   const loginForm = useForm<AdminLoginFormData>({
     defaultValues: {
       email: "",
@@ -33,25 +34,34 @@ const AdminLoginForm = () => {
     resolver: zodResolver(adminLoginFormSchema),
   });
 
-   const trySubmitForm = (values: AdminLoginFormData) => {
-    toast.promise(
-       signIn("admin-credentials", {
-        email:values.email,
-        password:values.password,
-        redirect: false,
-      })
-        .then((resp) => {
-          console.log(resp);
+   const trySubmitForm = async (values: AdminLoginFormData) => {
+  setIsLoading(true);
+  customToast("Signing in...", "info")
 
-          router.push("/user");
-        }),
-      {
-        loading: "Logging in....",
-        success: "Welcome!",
-        error: queryErrorResponse,
-      },
-    );
-  };
+  try {
+    const result = await signIn("admin-credentials", {
+      email: values.email.trim(),
+      password: values.password,
+      redirect: false,
+    });
+
+    console.log("Credentials sign-in result:", result);
+
+    if (!result || result.error || !result.ok) {
+      customToast("Invalid email or password. Please try again.", "error")
+      return;
+    }
+
+    customToast("Welcome!", "success")
+    router.push("/user");
+    router.refresh();
+  } catch (error) {
+    console.error("Sign-in error:", error);
+    customToast("Unable to sign in. Please try again.", "error");
+  } finally {
+    setIsLoading(false);
+  }
+};
   return (
      <div className="flex justify-center w-full h-full bg-white shadow-lg rounded-xl pb-2">
       <div className="flex flex-col  items-center rounded-xl w-[90%]">
@@ -115,9 +125,10 @@ const AdminLoginForm = () => {
 
           <Field className="">
             <BlueButton
-              text="Sign in"
+              text={isLoading?"Signing in..." :"Sign in"}
               additionalStyle="h-15 rounded-md"
               type="submit"
+              disabled={isLoading}
             />
           </Field>
 

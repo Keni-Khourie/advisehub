@@ -15,7 +15,7 @@ import {
   LoginFormData,
 } from "@/validators/auth/authValidationSchemas";
 import { useDispatch } from "react-redux";
-import { queryErrorResponse } from "@/lib/utilityComponents";
+import { queryErrorResponse, customToast } from "@/lib/utilityComponents";
 import LoginFormHeader from "./LoginFormHeader";
 import { Button } from "@/components/ui/button";
 import BlueButton from "@/customUI/BlueButton";
@@ -47,26 +47,34 @@ const LoginForm = () => {
   //   })
   // }
 
-  const trySubmitForm = (values: LoginFormData) => {
-    setIsLoading(true);
-    toast.promise(
-       signIn("test-credentials", {
-        email:values.email,
-        password:values.password,
-        redirect: false,
-      })
-        .then((resp) => {
-          console.log(resp);
+const trySubmitForm = async (values: LoginFormData) => {
+  setIsLoading(true);
+  customToast("Signing in...", "info")
 
-          router.push("/user");
-        }),
-      {
-        loading: "Logging in....",
-        success: "Welcome!",
-        error: queryErrorResponse,
-      },
-    );
-  };
+  try {
+    const result = await signIn("test-credentials", {
+      email: values.email.trim(),
+      password: values.password,
+      redirect: false,
+    });
+
+    console.log("Credentials sign-in result:", result);
+
+    if (!result || result.error || !result.ok) {
+      customToast("Invalid email or password. Please try again.", "error")
+      return;
+    }
+
+    customToast("Welcome!", "success")
+    router.push("/user");
+    router.refresh();
+  } catch (error) {
+    console.error("Sign-in error:", error);
+    customToast("Unable to sign in. Please try again.", "error");
+  } finally {
+    setIsLoading(false);
+  }
+};
   return (
     <div className="flex justify-center w-full h-full bg-white shadow-lg rounded-xl pb-2">
       <div className="flex flex-col  items-center rounded-xl w-[90%]">

@@ -1,5 +1,7 @@
 import { ErrorResponse } from "@/types/types";
-import { ShieldAlert } from "lucide-react";
+import { ShieldAlert } from 
+"lucide-react";
+import { toast } from "@/components/ui/toast";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const queryErrorResponse = (err:any) => {
           const errorMessage =
@@ -15,3 +17,16 @@ export const queryErrorResponse = (err:any) => {
             </div>
           );
         }
+
+export const customToast =( description:string="", type?:"success"|"error"|"info"|"warning"|"error")=>{
+ const id =  toast.add({
+      description: description,
+      type:type,
+      actionProps: {
+        onClick() {
+          toast.close(id)
+        },
+      },
+    })
+}
+       
