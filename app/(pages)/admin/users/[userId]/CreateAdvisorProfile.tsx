@@ -1,6 +1,6 @@
 "use client"
 import { useGetAdvisorSpecializationsQuery } from "@/redux/features/main/advisorApiSlice";
-"use client"
+
 import {
   Field,
   FieldGroup,
@@ -34,3 +34,7 @@ const CreateAdvisorProfile = ({userId}:Props) => {
 }
 
 export default CreateAdvisorProfile
+
+/*
+studentID, degreeId, enrollmentDate, expectedGraduationDate, the completedCredits
+ */

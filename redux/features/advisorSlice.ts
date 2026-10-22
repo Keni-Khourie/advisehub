@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {UserRole} from "@/types/types"
+//import {UserRole} from "@/types/types"
 
 interface AdvisorState{
     id:number|null;

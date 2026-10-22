@@ -21,7 +21,7 @@ const CurrentUserProfile = () => {
     if (isLoading) return (
       <div className="bg-ahBgBlue w-full h-screen flex flex-col items-center justify-center">
         <div className="">
-          <Spinner className="w-72 text-ahDeepBlue" fontSize={90} scale={90} type="arrow"/>
+          <Spinner className="w-20 h-20 text-ahDeepBlue" type="arrow"/>
           <p>Loading profile...</p>
         </div>
       </div>

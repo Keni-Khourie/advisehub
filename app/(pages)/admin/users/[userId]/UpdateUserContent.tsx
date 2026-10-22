@@ -5,13 +5,14 @@ import CreateAdvisorProfile from "./CreateAdvisorProfile";
 import CreateStudentProfile from "./CreateStudentProfile";
 import PageHeader from "@/customUI/PageHeader";
 import { useGetUserByIdQuery } from "@/redux/features/main/usersApiSlice";
+import {Spinner} from "@/components/ui/spinner"
 
 interface Props{
   userId:number
 }
 const UpdateUserContent = ({userId}:Props) => {
   const [refetchData, setRefetchData] = useState<boolean>(true)
-  const {data:user, refetch} = useGetUserByIdQuery(userId)
+  const {data:user, refetch, isLoading} = useGetUserByIdQuery(userId)
   useEffect(()=>{
     if(refetchData)
       refetch()
@@ -19,6 +20,9 @@ const UpdateUserContent = ({userId}:Props) => {
   return (
     <div>
       <PageHeader headerText="UPDATE USER DETAILS"/>
+      {isLoading && (<div>
+        <Spinner className="w-20 h-20 text-ahDeepBlue" type="arrow"/>
+      </div>)}
       {user && (
         <div>
           {user && <div>
