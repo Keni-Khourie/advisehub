@@ -25,5 +25,16 @@ export const loginFormSchema2 = z.object({
 })
 
 
+export const createTestUserSchema = z.object({
+    email: z.email().trim().transform((value) =>
+    value.toLowerCase()
+  ),
+  password: z.string().min(8, "Password must be at least 8 characters."),
+  firstName: z.string().trim().min(1, "First name is required."),
+  lastName: z.string().trim().min(1, "Last name is required."),
+})
+
+export type CreateTestUserData = z.infer<typeof createTestUserSchema>
+
 
 //"kehinde.khourie@baforcemultiplier.com"
