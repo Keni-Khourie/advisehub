@@ -8,7 +8,7 @@ import type {
 import { setAuth, logout } from '../features/authSlice'
 import { Mutex } from 'async-mutex'
 import { RootState } from '../store'
-import {User} from "@/types/types"
+//import {User} from "@/types/types"
 
 
 const mutex = new Mutex()

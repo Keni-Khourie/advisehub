@@ -1,19 +1,6 @@
 import { ApiSlice } from "@/redux/services/apiSlice";
 import {CreateDegreeData } from "@/validators/api/degreeApiValidators"
 
-const degree = {
-        "id": 1,
-        "degreeName": "Computer Science",
-        "code": "CSB101",
-        "requiredCredits": 120,
-        "degreeClassification": {
-            "id": 2,
-            "name": "Bachelor of Science",
-            "abbreviation": "BSc"
-        },
-        "createdAt": "2026-10-22T06:26:56.402Z"
-    }
-
 export interface DegreeClassification{
     id:number;
     name:string;
