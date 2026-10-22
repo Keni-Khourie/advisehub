@@ -1,5 +1,5 @@
 import { ApiSlice } from "@/redux/services/apiSlice";
-import { UserRole } from "@/types/types";
+import { UserRole, User } from "@/types/types";
 import { AssignUserRoleData } from "@/validators/api/userApiValidators";
 
 export interface UpdatedUser{
@@ -10,6 +10,16 @@ export interface UpdatedUser{
     role:UserRole;
     updatedAt:string
 }
+export interface UserResponseData {
+     id: number;
+        email: string,
+        firstName: string,
+        lastName: string,
+        role: UserRole,
+        image: string|null,
+        createdAt: string,
+        updatedAt: string,
+}
 
 const userApiSlice = ApiSlice.injectEndpoints({
     endpoints:(builder)=>({
@@ -19,17 +29,31 @@ const userApiSlice = ApiSlice.injectEndpoints({
                 method:"PATCH",
                 body:formData
             }),
-            invalidatesTags:["User"]
+            invalidatesTags:(data)=>data?["User", {type:"User", id:data.id}]:[]
         }),
-        getUnassignedUser:builder.query<UpdatedUser[], void>({
+        getUnassignedUsers:builder.query<UpdatedUser[], void>({
             query:()=>({
                 url:"/users/unassigned",
                 method:"GET"
             }),
             providesTags:["User"]
-        })
+        }),
+        getUserById:builder.query<User, number>({
+            query:(userId)=>({
+                url:`/users/${userId}`,
+                method:"GET"
+            }),
+            providesTags:(data)=>data?["User", {type:"User", id:data.id}]:[]
+        }),
+        getAllUsers:builder.query<UserResponseData[], void>({
+            query:()=>({
+                url:"/users",
+                method:"GET"
+            }),
+            providesTags:["User"]
+        }),
     })
 })
 
-export const {useAssignUserRoleMutation} =userApiSlice
+export const {useAssignUserRoleMutation, useGetUnassignedUsersQuery, useGetUserByIdQuery, useGetAllUsersQuery} =userApiSlice
 export default userApiSlice.reducer

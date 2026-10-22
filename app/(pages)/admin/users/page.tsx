@@ -1,8 +1,9 @@
-import React from 'react'
+
+import UsersContent from './UsersContent';
 
 const UsersListPage = () => {
   return (
-    <div>UsersListPage</div>
+    <UsersContent/>
   )
 }
 

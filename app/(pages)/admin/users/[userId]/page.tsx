@@ -1,12 +1,15 @@
-import React from 'react'
-import UpdateUserForm from './UpdateUserForm';
 
-const SpecificUserPage = () => {
-    //get user by id
-    //
+import UpdateUserContent from './UpdateUserContent';
+interface Props {
+  params: Promise<{
+    userId: string;
+  }>;
+}
+const SpecificUserPage = async({params}:Props) => {
+    const {userId} = await params
   return (
     <div>
-        <UpdateUserForm/>
+        <UpdateUserContent userId={parseInt(userId)}/>
     </div>
   )
 }
