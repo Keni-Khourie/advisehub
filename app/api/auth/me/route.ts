@@ -6,6 +6,7 @@ import prisma from "@/lib/prisma";
 export const runtime = "nodejs";
 
 export async function GET() {
+  console.log("GET ME TRIGGERED");
   const session = await auth();
   console.log("Session exists:", Boolean(session));
 console.log("Session user:", session?.user);
