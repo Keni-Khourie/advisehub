@@ -7,10 +7,15 @@ import { getInitials } from "@/lib/utilityFunctions";
 import {signOutUser} from "@/lib/actions/auth"
 import { RootState } from "@/redux/store";
 import { useAppSelector } from "@/redux/reduxHooks";
-
+import { useDispatch } from "react-redux";
+import {clearUser} from "@/redux/features/userSlice"
 const UserAvatar = () => {
     //fetch user from store
-   
+   const dispatch = useDispatch()
+   const signOut = ()=>{
+    signOutUser()
+    dispatch(clearUser())
+   }
     const user = useAppSelector((state: RootState) => state.user);
    
     
@@ -32,7 +37,7 @@ const UserAvatar = () => {
                     <p className="text-ahTextGrey border-b w-full px-5">{user.email}</p>
                 </div>
                 <div className="flex justify-center">
-                    <Button className="w-full bg-ahLightBlue hover:bg-ahBorderBlue cursor-pointer text-ahDeepBlue text-left font-semibold border border-stone-100" onClick={signOutUser}>
+                    <Button className="w-full bg-ahLightBlue hover:bg-ahBorderBlue cursor-pointer text-ahDeepBlue text-left font-semibold border border-stone-100" onClick={signOut}>
                         Logout <HiLogout/>
                     </Button>
                 </div>

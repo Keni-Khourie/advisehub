@@ -7,6 +7,9 @@ export const runtime = "nodejs";
 
 export async function GET() {
   const session = await auth();
+  console.log("Session exists:", Boolean(session));
+console.log("Session user:", session?.user);
+console.log("Session user ID:", session?.user?.id);
 
   if (!session?.user?.id) {
     return NextResponse.json(

@@ -9,6 +9,7 @@ const LoginFormHeader = () => {
         width={500}
         height={500}
         className="w-72 "
+        loading="eager"
       />
       <div className="flex flex-col gap-y-2 justify-center">
         <h2 className="text-ahTextBlack text-4xl font-bold">

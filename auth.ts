@@ -217,35 +217,44 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
 
     async jwt({ token, account, profile, user }) {
-      if (account && user) {
-        if (account.provider === "admin-credentials" ||
-  account.provider === "test-credentials") {
-          token.userId = Number(user.id);
-        }
+  // Runs when the user first signs in.
+  if (account && user) {
+    if (
+      account.provider === "admin-credentials" ||
+      account.provider === "test-credentials"
+    ) {
+      const userId = Number(user.id);
 
-        if (account.provider === "microsoft-entra-id") {
-          const microsoftProfile = profile as
-            | { oid?: string; tid?: string }
-            | undefined;
+      if (Number.isSafeInteger(userId) && userId > 0) {
+        token.userId = userId;
+      }
+    }
 
-          if (microsoftProfile?.oid && microsoftProfile.tid) {
-            const dbUser = await prisma.user.findUnique({
-              where: {
-                microsoftTenantId_microsoftObjectId: {
-                  microsoftTenantId: microsoftProfile.tid,
-                  microsoftObjectId: microsoftProfile.oid,
-                },
-              },
-              select: { id: true },
-            });
+    if (account.provider === "microsoft-entra-id") {
+      const microsoftProfile = profile as
+        | { oid?: string; tid?: string }
+        | undefined;
 
-            if (dbUser) token.userId = dbUser.id;
-          }
+      if (microsoftProfile?.oid && microsoftProfile.tid) {
+        const dbUser = await prisma.user.findUnique({
+          where: {
+            microsoftTenantId_microsoftObjectId: {
+              microsoftTenantId: microsoftProfile.tid,
+              microsoftObjectId: microsoftProfile.oid,
+            },
+          },
+          select: { id: true },
+        });
+
+        if (dbUser) {
+          token.userId = dbUser.id;
         }
       }
+    }
+  }
 
-      return token;
-    },
+  return token;
+},
 
     async session({ session, token }) {
       if (session.user && typeof token.userId === "number") {

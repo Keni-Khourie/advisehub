@@ -1,12 +1,8 @@
 "use client";
 import {
   Field,
-  FieldDescription,
   FieldGroup,
   FieldLabel,
-  FieldLegend,
-  FieldSeparator,
-  FieldSet,
   FieldError,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
@@ -20,20 +16,17 @@ import {
 } from "@/validators/auth/authValidationSchemas";
 import { useDispatch } from "react-redux";
 import { queryErrorResponse } from "@/lib/utilityComponents";
-import { useLoginMutation } from "@/redux/features/authApiSlice";
-import GreenButton from "@/customUI/GreenButton";
-import { cn } from "@/lib/utils";
 import LoginFormHeader from "./LoginFormHeader";
 import { Button } from "@/components/ui/button";
 import BlueButton from "@/customUI/BlueButton";
 import { FaUniversity } from "react-icons/fa";
-import { Landmark } from "lucide-react";
 import { signIn } from "next-auth/react";
+import {useState} from "react"
 
 const LoginForm = () => {
-  const [login, { isLoading }] = useLoginMutation();
   const router = useRouter();
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const loginForm = useForm<LoginFormData>({
     defaultValues: {
       email: "",
@@ -48,13 +41,14 @@ const LoginForm = () => {
         })
   }
 
-  const testUserSign = ()=>{ 
-    signIn("test-credentials", {
-      redirectTo:"/user"
-    })
-  }
+  // const testUserSign = ()=>{ 
+  //   signIn("test-credentials", {
+  //     redirectTo:"/user"
+  //   })
+  // }
 
   const trySubmitForm = (values: LoginFormData) => {
+    setIsLoading(true);
     toast.promise(
        signIn("test-credentials", {
         email:values.email,
@@ -136,9 +130,10 @@ const LoginForm = () => {
 
           <Field className="">
             <BlueButton
-              text="Sign in"
-              disabled={isLoading}
+              text={isLoading?"Signing in..." :"Sign in"}
               additionalStyle="h-15 rounded-md"
+              type="submit"
+              disabled={isLoading}
             />
           </Field>
 
