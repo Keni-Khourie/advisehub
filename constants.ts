@@ -57,7 +57,7 @@ export const adminSidebarItems:SidebarItemDetails[]= [
     },
     {
         text:"Degree Specs",
-        link:"/admin/degree-spec"
+        link:"/admin/degree-classification"
     },
     // {
     //     text:"Specialization",
