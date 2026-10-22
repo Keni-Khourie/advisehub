@@ -1,40 +1,53 @@
+
 import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
-import bcrypt from "bcryptjs"
-import { createTestUserSchema, } from "@/validators/auth/authValidationSchemas";
+import bcrypt from "bcryptjs";
+import { createTestUserSchema } from "@/validators/auth/authValidationSchemas";
 
-export async function POST(req:NextRequest){
-    try {
-          const body = await req.json()
-    const parsed = await createTestUserSchema.safeParse(body)
-     if (!parsed.success) {
-    return new NextResponse("Invalid request Data", {
-      status: 400,
-    });
-  }
-   
-  const {email, password, firstName, lastName} = parsed.data
+export const runtime = "nodejs";
 
-const existingUser = await prisma.user.findUnique({
-      where: { email },
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const parsed = createTestUserSchema.safeParse(body);
+
+    if (!parsed.success) {
+      return NextResponse.json(
+        { message: "Invalid request data." },
+        { status: 400 },
+      );
+    }
+
+    const { email, password, firstName, lastName } = parsed.data;
+
+    const normalizedEmail = email.trim().toLowerCase();
+
+    const existingUser = await prisma.user.findUnique({
+      where: { email: normalizedEmail },
       select: { id: true },
     });
 
-     if (existingUser) {
+    if (existingUser) {
       return NextResponse.json(
         { message: "A user with this email already exists." },
-        { status: 409 }
+        { status: 409 },
       );
     }
+
     const passwordHash = await bcrypt.hash(password, 12);
 
-  const user = await prisma.user.create({
+    const user = await prisma.user.create({
       data: {
-        email,
+        email: normalizedEmail,
         passwordHash,
         firstName,
         lastName,
         role: "ADMIN",
+
+        // Create the related Admin record automatically.
+        admin: {
+          create: {},
+        },
       },
       select: {
         id: true,
@@ -43,17 +56,24 @@ const existingUser = await prisma.user.findUnique({
         lastName: true,
         role: true,
         createdAt: true,
+        admin: {
+          select: {
+            id: true,
+            createdAt: true,
+          },
+        },
       },
     });
-     return NextResponse.json(
+
+    return NextResponse.json(
       {
         message: "Admin user created successfully.",
         user,
       },
-      { status: 201 }
+      { status: 201 },
     );
-    } catch (error) {
-         if (
+  } catch (error) {
+    if (
       typeof error === "object" &&
       error !== null &&
       "code" in error &&
@@ -61,14 +81,15 @@ const existingUser = await prisma.user.findUnique({
     ) {
       return NextResponse.json(
         { message: "A user with this email already exists." },
-        { status: 409 }
+        { status: 409 },
       );
     }
+
     console.error("Failed to create admin:", error);
 
     return NextResponse.json(
       { message: "An unexpected error occurred." },
-      { status: 500 }
+      { status: 500 },
     );
-    }
+  }
 }
