@@ -38,3 +38,6 @@ export const truncateText = (text:string, characterLimit:number)=> {
   return text.length > characterLimit ? text.slice(0, characterLimit) + "..." : text;
 }
 
+export const generateArray = (length:number)=>{
+  return Array.from({length}, (_, index)=>index)
+}
