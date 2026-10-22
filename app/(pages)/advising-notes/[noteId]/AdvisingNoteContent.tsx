@@ -2,16 +2,15 @@
 
 import AdvisorAdvisingNote from "./_advisorComponents/AdvisorAdvisingNote";
 import StudentAdvisingNote from "./_studentComponents/StudentAdvisingNote";
-
+import { RootState } from "@/redux/store";
+import { useAppSelector } from "@/redux/reduxHooks";
 interface Props{
     noteId:number
 }
 
 const AdvisingNoteContent = ({noteId}:Props) => {
     //get from redux store
-  const user = {
-    role: "ADVISOR",
-  };
+  const user = useAppSelector((state: RootState) => state.user);
 
   return (
     <div>

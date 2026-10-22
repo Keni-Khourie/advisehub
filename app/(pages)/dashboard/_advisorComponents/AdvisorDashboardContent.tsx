@@ -6,12 +6,15 @@ import UpcomingMeetingsCard from './UpcomingMeetingsCard';
 import SearchStudentsCard from './SearchStudentsCard';
 import AppointmentCard from './AppointmentCard';
 import { dummyAdvisorAppointments } from '@/dummyData/dummyData';
+import { RootState } from "@/redux/store";
+import { useAppSelector } from "@/redux/reduxHooks";
 
 const AdvisorDashboardContent = () => {
   //fetch dashboard data
+  const user = useAppSelector((state: RootState) => state.user);
   return (
     <div className="w-full">
-      <SectionHeader headerText={`Good ${getDayPeriod()}, ${"Jordan"}`} additionalClass="mb-10"/>
+      <SectionHeader headerText={`Good ${getDayPeriod()}, ${user.firstName}`} additionalClass="mb-10"/>
       <div>
         <div className="flex gap-x-5 mb-6">
           <AvailableSlotsCard slots={6}/>
