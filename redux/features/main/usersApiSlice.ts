@@ -21,6 +21,13 @@ const userApiSlice = ApiSlice.injectEndpoints({
             }),
             invalidatesTags:["User"]
         }),
+        getUnassignedUser:builder.query<UpdatedUser[], void>({
+            query:()=>({
+                url:"/users/unassigned",
+                method:"GET"
+            }),
+            providesTags:["User"]
+        })
     })
 })
 
