@@ -6,7 +6,7 @@ import {
 } from "@/validators/auth/authValidationSchemas";
 import { ApiSlice } from "../services/apiSlice";
  
-import { GenericMessageResponse } from "@/types/types";
+//import { GenericMessageResponse } from "@/types/types";
 import { UserRole, User } from "@/types/types";
 
 export interface LoginResponse {

@@ -24,3 +24,17 @@ export const createDegreeClassificationSchema = z
   });
 
   export type CreateDegreeClassificationData = z.infer<typeof createDegreeClassificationSchema>
+
+
+  export const createDegreeSchema = z.object({
+  degreeName: z.string().trim().min(1, "Degree name is required."),
+  code: z.string().trim().min(1, "Degree code is required."),
+  requiredCredits: z.number().int().positive(
+    "Required credits must be a positive integer.",
+  ),
+  degreeClassificationId: z.number().int().positive(
+    "A valid degree classification ID is required.",
+  ),
+});
+
+export type CreateDegreeData = z.infer<typeof createDegreeSchema>

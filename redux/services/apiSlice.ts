@@ -86,6 +86,6 @@ const baseQuery = fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL
   export const ApiSlice=createApi({
     reducerPath:"api",
     baseQuery:baseQueryWithReauth,
-    tagTypes:["CurrentUser"],
+    tagTypes:["CurrentUser", "Degree", "DegreeClassification"],
     endpoints: () => ({}),
   })
