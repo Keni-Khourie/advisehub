@@ -98,3 +98,8 @@ export interface Degree {
       id: number;
       name: string;
     };
+
+    export interface ValidDegreeClassification{
+      name:string;
+      abbreviation:string
+    }

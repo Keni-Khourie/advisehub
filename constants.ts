@@ -1,4 +1,4 @@
-import { StudentScheduleAppointmentSection, StudentScheduleAppointmentComponentDetail, SidebarItemDetails, AppointmentSection, AppointmentComponentDetail, StudentScheduleAppointmentStep, AppointmentReason, SelectItemData} from "./types/types";
+import { StudentScheduleAppointmentSection, StudentScheduleAppointmentComponentDetail, SidebarItemDetails, AppointmentSection, AppointmentComponentDetail, StudentScheduleAppointmentStep, AppointmentReason, SelectItemData, ValidDegreeClassification} from "./types/types";
 
 
 export const studentSidebarItems: SidebarItemDetails[] =[
@@ -221,3 +221,28 @@ export const advisorAppointmentComponentDetails:AppointmentComponentDetail[]= [
   { title: "5:30 PM", value: "5:30 PM" },
   { title: "6:00 PM", value: "6:00 PM" },
 ];
+
+export const validDegreeClassifications:ValidDegreeClassification[] = [
+  { name: "Bachelor of Arts", abbreviation: "BA" },
+  { name: "Bachelor of Science", abbreviation: "BSc" },
+  { name: "Bachelor of Engineering", abbreviation: "BEng" },
+  { name: "Bachelor of Laws", abbreviation: "LLB" },
+  { name: "Bachelor of Business Administration", abbreviation: "BBA" },
+  { name: "Bachelor of Education", abbreviation: "BEd" },
+  { name: "Bachelor of Nursing", abbreviation: "BN" },
+  { name: "Bachelor of Medicine, Bachelor of Surgery", abbreviation: "MBBS" },
+  { name: "Master of Arts", abbreviation: "MA" },
+  { name: "Master of Science", abbreviation: "MSc" },
+  { name: "Master of Engineering", abbreviation: "MEng" },
+  { name: "Master of Business Administration", abbreviation: "MBA" },
+  { name: "Master of Laws", abbreviation: "LLM" },
+  { name: "Master of Public Health", abbreviation: "MPH" },
+  { name: "Master of Education", abbreviation: "MEd" },
+  { name: "Doctor of Philosophy", abbreviation: "PhD" },
+  { name: "Doctor of Medicine", abbreviation: "MD" },
+  { name: "Doctor of Education", abbreviation: "EdD" },
+  { name: "Associate of Arts", abbreviation: "AA" },
+  { name: "Associate of Science", abbreviation: "AS" },
+  { name: "Higher National Diploma", abbreviation: "HND" },
+  { name: "National Diploma", abbreviation: "ND" },
+]

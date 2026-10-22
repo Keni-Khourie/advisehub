@@ -2,7 +2,7 @@
 //This is to create an advisor specialization
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import {createAdvisorSpecializationSchema} from "@/validators/api/advisorValidators"
+import {createAdvisorSpecializationSchema} from "@/validators/api/advisorApiValidators"
 //import {AdvisorSpecialization} from "@/types/types"
 
 
