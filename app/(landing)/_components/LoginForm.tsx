@@ -9,13 +9,11 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { toast } from "@/components/ui/toast";
 import {
   loginFormSchema,
   LoginFormData,
 } from "@/validators/auth/authValidationSchemas";
-import { useDispatch } from "react-redux";
-import { queryErrorResponse, customToast } from "@/lib/utilityComponents";
+import {  customToast } from "@/lib/utilityComponents";
 import LoginFormHeader from "./LoginFormHeader";
 import { Button } from "@/components/ui/button";
 import BlueButton from "@/customUI/BlueButton";
@@ -25,7 +23,7 @@ import {useState} from "react"
 
 const LoginForm = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
+  
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const loginForm = useForm<LoginFormData>({
     defaultValues: {
