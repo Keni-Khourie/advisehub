@@ -8,7 +8,6 @@ import {
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
@@ -29,7 +28,7 @@ interface Props{
 }
 
 const CreateDegreeForm = ({setRefetchData}:Props) => {
-  const [createDegree, {isLoading:isSubmitting, isSuccess, isError}] = useCreateDegreeMutation()
+  const [createDegree, {isLoading:isSubmitting}] = useCreateDegreeMutation()
   const {data:degreeClassifications, isLoading} =useGetDegreeClassificationsQuery()
   
   const createDegreeForm = useForm<CreateDegreeData>({
