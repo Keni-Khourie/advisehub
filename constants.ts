@@ -59,10 +59,10 @@ export const adminSidebarItems:SidebarItemDetails[]= [
         text:"Degree Specs",
         link:"/admin/degree-spec"
     },
-    {
-        text:"Specialization",
-        link:"/admin/advisor-specialization"
-    }
+    // {
+    //     text:"Specialization",
+    //     link:"/admin/advisor-specialization"
+    // }
 ]
 export const appointmentSections:AppointmentSection[] = ["Upcoming", "Past Meetings"]
 export const studentAppointmentComponentDetails:AppointmentComponentDetail[]= [
