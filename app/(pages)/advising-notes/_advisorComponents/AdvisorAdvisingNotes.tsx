@@ -50,6 +50,7 @@ const AdvisorAdvisingNotes = () => {
         {(myAdvisingNotes && view==="private") && myAdvisingNotes.map((note, index) => (
           <AdvisorNoteListCard note={note} key={index} type="private" />
         ))}
+        {myAdvisingNotes && myAdvisingNotes.length==0 && <p className="w-full font-thin text-ahTextGrey text-center ">No notes yet</p>}
         </div>)}
         
 

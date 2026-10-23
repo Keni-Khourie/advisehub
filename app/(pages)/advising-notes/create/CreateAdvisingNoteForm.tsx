@@ -71,7 +71,7 @@ const CreateAdvisingNoteForm = ({studentId}:Props) => {
   })}
         className="w-full"
       >
-        <p>{studentId}</p>
+        
         <FieldGroup>
           <Controller
             name="title"
