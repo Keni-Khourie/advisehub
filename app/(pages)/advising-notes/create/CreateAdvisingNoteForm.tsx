@@ -1,5 +1,5 @@
 "use client"
-import {useState} from "react"
+import {useEffect} from "react"
 import { queryErrorResponse } from "@/lib/utilityComponents";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
@@ -18,39 +18,68 @@ import {InputTags} from "@/customUI/InputTags"
 import BlueButton from "@/customUI/BlueButton";
 import WhiteButton from "@/customUI/WhiteButton"
 import { CreateAdvisingNoteData, createAdvisingNoteSchema } from "@/validators/app/advisorValidationSchemas";
+import { useCreateAdvisingNoteMutation } from "@/redux/features/main/advisingNotesApiSlice";
+import { useRouter } from "next/navigation";
+
 
 interface Props{
-  studentId:number|undefined
+  studentId:string|undefined
 }
 
 const CreateAdvisingNoteForm = ({studentId}:Props) => {
+  const [createAdvisingNote, {isLoading:isSubmitting}] = useCreateAdvisingNoteMutation()
+  const router = useRouter()
   const createNoteForm = useForm<CreateAdvisingNoteData>({
         defaultValues:{
-            studentId,
-            noteTitle:"",
-            noteContent:undefined,
+            studentId:studentId??"",
+            title:"",
+            content:undefined,
             nextSteps:undefined,
             isPrivate:false
         },
         resolver:zodResolver(createAdvisingNoteSchema),
     })
-    const trySubmitForm = (values:CreateAdvisingNoteData)=>{
-        console.log(values);
+    const trySubmitForm = (values:CreateAdvisingNoteData)=>
+      {
+        if(studentId)
+        
+          createNoteForm.setValue("studentId", studentId)
+      console.log(values);
+        toast.promise(
+          createAdvisingNote(values).unwrap().then((resp)=>{
+            console.log(resp)
+            router.push("/advising-notes")
+          }),
+          {
+            loading:"Saving Note",
+            success:"Note Saved!",
+            error:queryErrorResponse
+          }
+        )
+
     }
+
+    useEffect(()=>{
+      if(studentId)
+         createNoteForm.setValue("studentId", studentId)
+    }, [studentId, createNoteForm])
   return (
     <div>
        <form
-        onSubmit={createNoteForm.handleSubmit(trySubmitForm)}
+        onSubmit={createNoteForm.handleSubmit(trySubmitForm, (errors) => {
+    console.log("VALIDATION FAILED:", errors); console.log(studentId);
+  })}
         className="w-full"
       >
+        <p>{studentId}</p>
         <FieldGroup>
           <Controller
-            name="noteTitle"
+            name="title"
             control={createNoteForm.control}
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
                 <FieldLabel
-                  htmlFor="noteTitle"
+                  htmlFor={field.name}
                   className="font-semibold text-base"
                 >
                   Note Title
@@ -70,12 +99,12 @@ const CreateAdvisingNoteForm = ({studentId}:Props) => {
           />
 
           <Controller
-            name="noteContent"
+            name="content"
             control={createNoteForm.control}
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
                 <FieldLabel
-                  htmlFor="noteContent"
+                  htmlFor={field.name}
                   className="font-semibold text-base"
                 >
                   Advising Note
@@ -100,7 +129,7 @@ const CreateAdvisingNoteForm = ({studentId}:Props) => {
             render={({ field, fieldState }) => (
               <Field>
                 <FieldLabel
-                  htmlFor="nextSteps"
+                  htmlFor={field.name}
                   className="text-base font-semibold"
                 >
                   Next Steps
@@ -124,7 +153,7 @@ const CreateAdvisingNoteForm = ({studentId}:Props) => {
             control={createNoteForm.control}
             render={({ field, fieldState }) => (
               <Field  data-invalid={fieldState.invalid}>
-                 <FieldLabel htmlFor="isPrivate" className="text-base font-semibold">
+                 <FieldLabel htmlFor={field.name} className="text-base font-semibold">
                   Note visibility
                 </FieldLabel>
                 <div className="flex gap-x-3 items-center">
@@ -165,7 +194,7 @@ const CreateAdvisingNoteForm = ({studentId}:Props) => {
             disabled={createNoteForm.formState.isSubmitting}
             additionalStyle="w-full md:w-1/6 border border-ahGrey shadow-sm"
           />
-
+          
           <BlueButton
             text={
               createNoteForm.formState.isSubmitting
@@ -174,10 +203,11 @@ const CreateAdvisingNoteForm = ({studentId}:Props) => {
             }
             additionalStyle="w-full md:w-1/6"
             type="submit"
-            disabled={createNoteForm.formState.isSubmitting}
+            disabled={createNoteForm.formState.isSubmitting|| isSubmitting}
           />
         </div>
       </form>
+     
     </div>
   )
 }

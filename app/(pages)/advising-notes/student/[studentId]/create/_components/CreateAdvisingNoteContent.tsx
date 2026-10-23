@@ -1,15 +1,16 @@
 "use client"
 
 import PageHeader from "@/customUI/PageHeader";
-import { dummyStudents } from "@/dummyData/dummyData";
+import {useGetStudentByStudentIdQuery} from "@/redux/features/main/studentApiSlice"
 import CreateStudentAdvisingNoteForm from "./CreateStudentAdvisingNoteForm";
 
 interface Props{
     studentId:number
 }
 const CreateAdvisingNoteContent = ({studentId}:Props) => {
-    //get student by student Id
-    const student = dummyStudents.find((student)=>student.studentId===studentId)
+  const {data:student} = useGetStudentByStudentIdQuery(studentId)
+    
+    
   return (
     <div>
         <PageHeader headerText="Add Advising Note" subtitle="Write a note and choose its visibility" additionalClass="mb-10"/>

@@ -10,14 +10,14 @@ import WhiteButton from "@/customUI/WhiteButton"
 import {cn} from "@/lib/utils"
 import Link from "next/link";
 import BlueButton from "@/customUI/BlueButton";
-import {useGetStudentsByStudentIdQuery } from "@/redux/features/main/studentApiSlice";
+import {useGetStudentByStudentIdQuery } from "@/redux/features/main/studentApiSlice";
 interface Props {
   studentId: number;
 }
 const StudentDetailsPageContent = ({ studentId }: Props) => {
   //fetch student by studentId
   const [view, setView] = useState<"Advising Notes"|"Meeting History">("Advising Notes")
-  const {data:student} = useGetStudentsByStudentIdQuery(studentId)
+  const {data:student} = useGetStudentByStudentIdQuery(studentId)
 
   return (
     <div>

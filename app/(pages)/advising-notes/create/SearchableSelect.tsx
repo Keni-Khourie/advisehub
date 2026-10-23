@@ -2,9 +2,7 @@
 "use client";
 
 import { Dispatch, useState, SetStateAction } from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
-import {dummyStudents} from "@/dummyData/dummyData"
-import { Button } from "@/components/ui/button";
+import { Check, } from "lucide-react";
 import {
   Command,
   CommandEmpty,
@@ -19,19 +17,21 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import {DummyStudent} from "@/dummyData/dummyTypes"
+import { useGetStudentsWithSearchFilterQuery, StudentSearchResponseData } from "@/redux/features/main/studentApiSlice";
+
 
 interface Props{
-  selectedStudent:DummyStudent|undefined
-  setSelectedStudent:Dispatch<SetStateAction<DummyStudent|undefined>>
+  selectedStudent:StudentSearchResponseData |undefined
+  setSelectedStudent:Dispatch<SetStateAction<StudentSearchResponseData |undefined>>
 }
 const SearchableSelect = ({selectedStudent, setSelectedStudent}:Props) =>{
   const [open, setOpen] = useState(false);
+  const {data:students} = useGetStudentsWithSearchFilterQuery({search:""}, {refetchOnMountOrArgChange:true})
 
 
-  const selectedStudentJ = dummyStudents.find(
-    (dummyStudent) => dummyStudent.id === selectedStudent?.studentId
-  );
+  // const selectedStudentJ = dummyStudents.find(
+  //   (dummyStudent) => dummyStudent.id === selectedStudent?.studentId
+  // );
 
   return (
    <Command className="bg-none w-full">
@@ -43,8 +43,8 @@ const SearchableSelect = ({selectedStudent, setSelectedStudent}:Props) =>{
             <CommandList className="w-full">
             <CommandEmpty>Student not found.</CommandEmpty>
 
-            <CommandGroup className="w-full ">
-              {dummyStudents.map((student, index) => (
+           {students && <CommandGroup className="w-full ">
+              {students.map((student, index) => (
                 <CommandItem
                   key={index}
                   value={`${student.fullName}`}
@@ -70,6 +70,7 @@ const SearchableSelect = ({selectedStudent, setSelectedStudent}:Props) =>{
                 </CommandItem>
               ))}
             </CommandGroup>
+            }
           </CommandList>
         </PopoverContent>
     </Popover>

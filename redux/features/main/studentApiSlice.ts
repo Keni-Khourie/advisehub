@@ -40,7 +40,7 @@ export interface StudentSearchResponseData{
         requiredCredits:number;
 }
 interface StudentSearchQueryParams{
-    search:string
+    search?:string|undefined
 }
 
 const studentApiSlice = ApiSlice.injectEndpoints({
@@ -63,7 +63,7 @@ const studentApiSlice = ApiSlice.injectEndpoints({
             }),
             providesTags:["Students"]
         }),
-        getStudentsByStudentId:builder.query<StudentSearchResponseData, number>({
+        getStudentByStudentId:builder.query<StudentSearchResponseData, number>({
             query:(studentId)=>({
                 url:`/students/${studentId}`,
                 method:"GET",
@@ -74,5 +74,5 @@ const studentApiSlice = ApiSlice.injectEndpoints({
     })
 })
 
-export const {useCreateStudentMutation, useGetStudentsWithSearchFilterQuery, useGetStudentsByStudentIdQuery} =studentApiSlice
+export const {useCreateStudentMutation, useGetStudentsWithSearchFilterQuery, useGetStudentByStudentIdQuery} =studentApiSlice
 export default studentApiSlice.reducer

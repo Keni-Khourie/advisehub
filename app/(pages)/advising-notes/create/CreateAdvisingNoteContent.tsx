@@ -4,9 +4,9 @@ import SearchableSelect from "./SearchableSelect"
 import CreateAdvisingNoteForm from "./CreateAdvisingNoteForm";
 import { useState } from "react";
 import {DummyStudent} from "@/dummyData/dummyTypes"
-
+import {StudentSearchResponseData} from "@/redux/features/main/studentApiSlice"
 const CreateAdvisingNoteContent = () => {
-  const [student, setStudent] =useState<DummyStudent|undefined>(undefined)
+  const [student, setStudent] =useState<StudentSearchResponseData|undefined >(undefined)
   return (
     <div className="w-full">
         <PageHeader headerText="Add Advising Note" subtitle="Create Note and choose visibility" additionalClass="mb-10"/>

@@ -5,6 +5,7 @@ import {dummyStudentAdvisingNotes, dummyStudents} from "@/dummyData/dummyData"
 import StudentNotesListCard from "./_components/StudentNotesListCard";
 import Link from "next/link";
 import BlueButton from "@/customUI/BlueButton";
+import {useGetStudentByStudentIdQuery} from "@/redux/features/main/studentApiSlice"
 interface Props{
     studentId:number
 }
@@ -14,7 +15,7 @@ const StudentsAdvisingNotesContent = ({studentId}:Props) => {
     //(find all notes with student ID, regardless of which advisor made it)
     //can include filter to filter based on notes made by that advisor
 
-    const student = dummyStudents.find((student)=>student.studentId===studentId)
+    const {data:student} = useGetStudentByStudentIdQuery(studentId)
 
   return (
     <div className="w-full">
