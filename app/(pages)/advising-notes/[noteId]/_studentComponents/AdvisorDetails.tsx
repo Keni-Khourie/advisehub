@@ -6,9 +6,9 @@ import {
 import CardAvatar from "@/customUI/CardAvatar";
 import { cn } from "@/lib/utils";
 import {format} from "date-fns"
-import {DummyStudentAdvisingNote} from "@/dummyData/dummyTypes"
+import{StudentNoteForStudent} from "@/redux/features/main/advisingNotesApiSlice"
 interface Props{
-    note:DummyStudentAdvisingNote|undefined
+    note:StudentNoteForStudent
 }
 
 const AdvisorDetails = ({note}:Props) => {
@@ -16,13 +16,13 @@ const AdvisorDetails = ({note}:Props) => {
      <Card className={cn("border bg-white w-full pt-4 px-3 pb-15")}>
       {note && <CardContent className="flex items-start justify-between">
         <div className="flex items-center gap-x-5">
-          <CardAvatar fullName={note.advisor} additionalFallbackStyle="text-base"/>
+          <CardAvatar fullName={note.advisorFullName} additionalFallbackStyle="text-base" imageUrl={note.advisorProfileImage}/>
             <div className="flex flex-col gap-y-2">
-                <p className="text-lg font-semibold">{note.noteTitle}</p>
-                <p className="text-ahTextGrey">{`${note.advisorTitle} ${note.advisor} • ${format(note.meetingDate, "MMM d, yyyy")}`}</p>
+                <p className="text-lg font-semibold">{note.title}</p>
+                <p className="text-ahTextGrey">{`${note.advisorTitle} ${note.advisorFullName} • ${format(note.createdAt, "MMM d, yyyy")}`}</p>
             </div>
         </div>
-        <Badge className="py-2 px-5 text-green-600 bg-green-200 text-center text-xs font-semibold">Shared with you</Badge>
+        <Badge className={cn("py-2 px-5  text-center text-xs font-semibold opacity-60", note.isPrivate?"text-red-500 bg-red-100":"text-green-600 bg-green-200")}>{note.isPrivate?"private":"shared"}</Badge>
       </CardContent>}
       {!note && <CardContent>
             <p className="font-bold text-xl">Note note found</p>
