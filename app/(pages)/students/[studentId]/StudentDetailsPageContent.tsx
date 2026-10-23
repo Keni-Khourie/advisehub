@@ -11,16 +11,15 @@ import WhiteButton from "@/customUI/WhiteButton"
 import {cn} from "@/lib/utils"
 import Link from "next/link";
 import BlueButton from "@/customUI/BlueButton";
-import { StudentSearchResponseData } from "@/redux/features/main/studentApiSlice";
+import { StudentSearchResponseData, useGetStudentsByStudentIdQuery } from "@/redux/features/main/studentApiSlice";
 interface Props {
   studentId: number;
 }
 const StudentDetailsPageContent = ({ studentId }: Props) => {
   //fetch student by studentId
   const [view, setView] = useState<"Advising Notes"|"Meeting History">("Advising Notes")
-  const student = dummyStudents.find(
-    (student) => student.studentId === studentId,
-  );
+  const {data:student} = useGetStudentsByStudentIdQuery(studentId)
+
   return (
     <div>
       <PageHeader
@@ -37,7 +36,7 @@ const StudentDetailsPageContent = ({ studentId }: Props) => {
             </div>
           </div>
           <div className="flex gap-x-5 flex-wrap md:flex-nowrap w-full">
-            <DegreeProgressCard percentComplete={student.degreeCompletionPercent} completedCredits={student.completedCredits} remainingCredits={student.remainingCredits}/>
+            <DegreeProgressCard percentComplete={student.degreePercentCompletion} completedCredits={student.completedCredits} remainingCredits={student.remainingCredits}/>
             <NextAppointmentCard/>
           </div>
           <div className="flex items-center gap-y-3 justify-between flex-wrap md:flex-nowrap mt-3">

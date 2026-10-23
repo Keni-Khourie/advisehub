@@ -60,11 +60,19 @@ const studentApiSlice = ApiSlice.injectEndpoints({
                 params:{
                     search:search
                 }
-            })
+            }),
+            providesTags:["Students"]
+        }),
+        getStudentsByStudentId:builder.query<StudentSearchResponseData, number>({
+            query:(studentId)=>({
+                url:`/students/${studentId}`,
+                method:"GET",
+            }),
+            providesTags:(data)=>data?["Students", {type:"Students", id:data.id}]:[]
         })
         
     })
 })
 
-export const {useCreateStudentMutation, useGetStudentsWithSearchFilterQuery} =studentApiSlice
+export const {useCreateStudentMutation, useGetStudentsWithSearchFilterQuery, useGetStudentsByStudentIdQuery} =studentApiSlice
 export default studentApiSlice.reducer

@@ -5,7 +5,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-
+import {Progress} from "@/components/ui/progress"
 interface Props{
     percentComplete:number;
     completedCredits:number;
@@ -19,6 +19,7 @@ const DegreeProgressCard = ({percentComplete, completedCredits, remainingCredits
       </CardHeader>
       <CardContent className="flex flex-col gap-y-2">
         <p className="font-bold text-2xl">{`${percentComplete}%`}</p>
+        <Progress value={percentComplete}/>
         <p className="text-sm font-thin text-ahTextGrey">{`${completedCredits} completed • ${remainingCredits} remaining`}</p>
       </CardContent>
     </Card>
