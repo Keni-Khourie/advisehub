@@ -29,12 +29,19 @@ import { useCreateStudentMutation } from "@/redux/features/main/studentApiSlice"
 
 interface Props {
   userId: number;
+  disableAssign:boolean
 }
-const CreateStudentProfile = ({ userId }: Props) => {
+const CreateStudentProfile = ({ userId, disableAssign }: Props) => {
   const { data: degrees, isLoading } = useGetDegreesQuery();
   const [createStudent, { isLoading:isSubmitting }] = useCreateStudentMutation();
 
   const createStudentForm = useForm<CreateStudentData>({
+    defaultValues:{
+        studentId:"",
+        enrollmentDate:"",
+        expectedGraduationDate:"",
+        completedCredits:undefined
+    },
     resolver: zodResolver(createStudentSchema),
   });
   const trySubmitForm = (values: CreateStudentData) => {
@@ -167,7 +174,7 @@ const CreateStudentProfile = ({ userId }: Props) => {
             )}
           />
         </FieldGroup>
-        <Button type="submit" disabled={isSubmitting}>{isSubmitting?"Creating Student":"Create Student"}</Button>
+        <Button type="submit" disabled={isSubmitting|| disableAssign}>{isSubmitting?"Creating Student":"Create Student"}</Button>
       </form>
     </div>
   );

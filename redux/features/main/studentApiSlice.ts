@@ -30,7 +30,7 @@ const studentApiSlice = ApiSlice.injectEndpoints({
     endpoints:(builder)=>({
         createStudent:builder.mutation<StudentResponseData, {userId:number, formData:CreateStudentData}>({
             query:({userId, formData})=>({
-                url:`api/users/${userId}/student`,
+                url:`/users/${userId}/student`,
                 method:"POST",
                 body:formData
             }),

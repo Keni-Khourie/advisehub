@@ -24,9 +24,10 @@ import { queryErrorResponse } from "@/lib/utilityComponents";
 import { Spinner } from "@/components/ui/spinner";
 
 interface Props{
-  userId:number
+  userId:number,
+  disableAssign:boolean
 }
-const CreateAdvisorProfile = ({userId}:Props) => {
+const CreateAdvisorProfile = ({userId, disableAssign}:Props) => {
   const {data:specializations} = useGetAdvisorSpecializationsQuery()
   return (
     <div className="bg-white p4 rounded-lg mt-5">CreateAdvisorProfile</div>

@@ -26,10 +26,10 @@ const UpdateUserContent = ({userId}:Props) => {
       {user && (
         <div>
           {user && <div>
-            <p>{`${user.firstName} ${user.lastName} - ${user.role}`}</p></div>}
+            <p>{`${user.firstName} ${user.lastName} - ${user.role} ${user.student?" has Student Profile":user.advisor?" haas Advisor Profile":user.admin?" has Admin Profile":" has no profile"}`}</p></div>}
         {user && <AssignUserRole userId={userId} setRefetch={setRefetchData} disableAssign={user.role!==null}/>}
-        {user.role==="ADVISOR"  && <CreateAdvisorProfile userId={userId}/>}
-        {user.role==="STUDENT"  && <CreateStudentProfile userId={userId}/>}
+        {user.role==="ADVISOR"  && <CreateAdvisorProfile userId={userId} disableAssign={user.advisor?true:false}/>}
+        {user.role==="STUDENT"  && <CreateStudentProfile userId={userId} disableAssign={user.student?true:false}/>}
       </div>
       )}
     </div>
