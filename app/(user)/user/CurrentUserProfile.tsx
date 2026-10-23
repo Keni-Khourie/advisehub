@@ -8,7 +8,8 @@ import { HiLogout } from "react-icons/hi";
 import {clearUser} from "@/redux/features/userSlice"
 import {signOutUser} from "@/lib/actions/auth"
 import Image from "next/image";
-import { Spinner } from "@/components/ui/spinner"
+import { Spinner } from "@/components/ui/spinner" 
+import {useEffect} from "react"
 const CurrentUserProfile = () => {
     const dispatch = useDispatch()
     const router = useRouter()
@@ -17,16 +18,8 @@ const CurrentUserProfile = () => {
     signOutUser()
     dispatch(clearUser())
    }
-
-    if (isLoading) return (
-      <div className="bg-ahBgBlue w-full h-screen flex flex-col items-center justify-center">
-        <div className="">
-          <Spinner className="w-20 h-20 text-ahDeepBlue" type="arrow"/>
-          <p>Loading profile...</p>
-        </div>
-      </div>
-    );
-    if(user){
+   useEffect(()=>{
+    if(user)
       dispatch(
         setUser({
           id:user.id,
@@ -37,7 +30,18 @@ const CurrentUserProfile = () => {
           role:user.role,
         })
       )
-    }
+    
+   },[user, dispatch])
+
+    if (isLoading) return (
+      <div className="bg-ahBgBlue w-full h-screen flex flex-col items-center justify-center">
+        <div className="">
+          <Spinner className="w-20 h-20 text-ahDeepBlue" type="arrow"/>
+          <p>Loading profile...</p>
+        </div>
+      </div>
+    );
+    
 
   if (isError) {
     return (
