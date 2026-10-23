@@ -17,7 +17,7 @@ export const createAdvisorSchema = z.object({
     /^\d{8}$/,
     "Advisor ID must contain exactly 8 digits.",
   ),
-  title: z.string().trim().max(50).optional().nullable(),
+  title: z.string().trim().max(50).optional(),
   office: z.string().trim().min(1, "Office is required."),
   yearsOfExperience: z.number().int().nonnegative(
     "Years of experience must be a non-negative integer.",

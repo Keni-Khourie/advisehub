@@ -135,10 +135,9 @@ export async function POST(
     });
 
     return NextResponse.json(
-      {
-        message: "Advisor profile created successfully.",
+      
         advisor,
-      },
+      
       { status: 201 },
     );
   } catch (error) {
