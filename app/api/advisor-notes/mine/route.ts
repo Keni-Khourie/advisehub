@@ -4,6 +4,7 @@ import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 
 export async function GET() {
+    console.log("mine triggered!");
   try {
     // 1. Get the current session
     const session = await auth();
