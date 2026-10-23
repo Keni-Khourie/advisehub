@@ -3,12 +3,15 @@ import PageHeader from "@/customUI/PageHeader";
 import AdvisorNoteListCard from "./AdvisorNoteListCard";
 import BlueButton from "@/customUI/BlueButton";
 import Link from "next/link"
-import {useGetPublicAdvisingNotesQuery, useGetAdvisorAdvisingNotesQuery} from "@/redux/features/main/advisingNotesApiSlice"
+import {useGetPublicAdvisingNotesQuery, useGetAdvisorAdvisingNotesQuery, PublicAdvisorNote,
+  PrivateAdvisorNote,} from "@/redux/features/main/advisingNotesApiSlice"
 import {generateArray} from "@/lib/utilityFunctions"
 import {Skeleton} from "@/components/ui/skeleton"
 import {useState} from "react"
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+
+type Note = PublicAdvisorNote & PrivateAdvisorNote
 
 const AdvisorAdvisingNotes = () => {
   //fetch advising notes by advisorId
@@ -38,7 +41,7 @@ const AdvisorAdvisingNotes = () => {
         {(isLoading) && generateArray(6).map((item)=><Skeleton key={item} className="w-full h-20"/>)}
 
         {(publicAdvisingNotes && view==="public") && publicAdvisingNotes.map((note, index) => (
-          <AdvisorNoteListCard note={note} key={index} type="public" />
+          <AdvisorNoteListCard note={note as Note} key={index} type="public" />
         ))}
         </div>)}
         

@@ -8,7 +8,7 @@ interface Props{
     studentId:number
 }
 const CreateAdvisingNoteContent = ({studentId}:Props) => {
-  const {data:student} = useGetStudentByStudentIdQuery(studentId)
+  const {data:student, isLoading, isError} = useGetStudentByStudentIdQuery(studentId)
     
     
   return (
@@ -21,7 +21,8 @@ const CreateAdvisingNoteContent = ({studentId}:Props) => {
                 <p className="text-base font-semibold">{student.fullName}</p>
                 <p className="font-thin text-sm text-ahTextGrey">{`${student.degree} • Student ID ${student.studentId.toString().split("").toSpliced(0, 4, "*", "*", "*", "*").join("")}`}</p>
                      </div>)}
-                     {!student && <p className="text-base font-semibold">Student not found</p>}
+                     {isLoading && <p className="text-base font-semibold">Loading student information...</p>}
+                     {!isError && <p className="text-base font-semibold">Student not found</p>}
          </div>
          <CreateStudentAdvisingNoteForm studentId={studentId}/>
         

@@ -6,8 +6,12 @@ import {
   PublicAdvisorNote,
   PrivateAdvisorNote,
 } from "@/redux/features/main/advisingNotesApiSlice";
+import {Badge} from "@/components/ui/badge"
+import {cn} from "@/lib/utils"
+
+type Note = PublicAdvisorNote & PrivateAdvisorNote
 interface Props {
-  note: PublicAdvisorNote | PrivateAdvisorNote;
+  note: Note
   type: "public" | "private";
 }
 
@@ -21,8 +25,9 @@ const AdvisorNoteListCard = ({ note, type }: Props) => {
         </div>
       )}
       {type === "private" && (
-        <div className="flex flex-col gap-y-2">
+        <div className="flex items-center justify-between">
           <p className=" text-base">{`${note.studentFullName} • ${note.advisorSpecialization} • ${format(note.createdAt, "MMM d, yyyy")}`}</p>
+          <Badge className={cn("px-5 py-2 font-semibold opacity-60", note.isPrivate?"bg-red-100 text-red-500":"bg-green-200 text-green-600")}>{note.isPrivate?"private":"shared"}</Badge>
         </div>
       )}
       <div className="">
