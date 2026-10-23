@@ -1,17 +1,17 @@
-import {DummyStudent } from "@/dummyData/dummyTypes";
+import { StudentSearchResponseData } from "@/redux/features/main/studentApiSlice";
 import WhiteButton from '@/customUI/WhiteButton';
 import Link from "next/link"
 
 import CardAvatar from "@/customUI/CardAvatar";
 
 interface Props{
-    studentData: DummyStudent
+    studentData: StudentSearchResponseData
 }
 
 const StudentCard = ({studentData}:Props) => {
 
   return (
-    <div className="border bg-white rounded-lg py-5 px-4 flex items-center justify-between">
+    <div className="border bg-white rounded-lg py-5 px-4 grid grid-cols-3 items-center justify-between">
         <div className="flex items-center gap-x-3">
             <CardAvatar fullName={studentData.fullName}/>
             <div>
@@ -19,9 +19,9 @@ const StudentCard = ({studentData}:Props) => {
                 <p className="font-thin text-ahTextGrey text-sm">{`${studentData.degree} • ID ${studentData.studentId.toString().split("").toSpliced(0, 4, "*", "*", "*", "*").join("")}`}</p>
             </div>
         </div>
-        <p className="font-thin text-ahTextGrey text-sm">{`${studentData.completedCredits} completed • ${studentData.remainingCredits} remaining`}</p>
+        <p className="font-thin text-ahTextGrey text-sm  text-center">{`${studentData.completedCredits} completed • ${studentData.remainingCredits} remaining`}</p>
 
-        <Link href={`/students/${studentData.studentId}`}>
+        <Link href={`/students/${studentData.studentId}`} className="flex md:justify-end justify-none">
             <WhiteButton text="View Profile" additionalStyle="border-2 border-ahGrey"/>
         </Link>
         

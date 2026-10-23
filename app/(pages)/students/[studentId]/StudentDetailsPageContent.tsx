@@ -11,6 +11,7 @@ import WhiteButton from "@/customUI/WhiteButton"
 import {cn} from "@/lib/utils"
 import Link from "next/link";
 import BlueButton from "@/customUI/BlueButton";
+import { StudentSearchResponseData } from "@/redux/features/main/studentApiSlice";
 interface Props {
   studentId: number;
 }

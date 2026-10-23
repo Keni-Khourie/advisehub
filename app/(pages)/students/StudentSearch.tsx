@@ -1,16 +1,21 @@
 "use client"
-
 import { Input } from "@/components/ui/input";
 import PageHeader from "@/customUI/PageHeader";
 import StudentCard from "./StudentCard";
-import {dummyStudents} from "@/dummyData/dummyData"
 import { useState, ChangeEvent } from "react";
+import { useGetStudentsWithSearchFilterQuery } from "@/redux/features/main/studentApiSlice";
+import { Skeleton } from "@/components/ui/skeleton";
+import { generateArray } from "@/lib/utilityFunctions";
+import FetchErrorMessage from "@/customUI/FetchErrorMessage";
 const StudentSearch = () => {
     const [inputValue, setInputValue] = useState<string>("")
     const updateSearch = (e:ChangeEvent<HTMLInputElement>)=>{
         setInputValue(e.target.value)
 
     }
+   
+    const {data:students, isLoading, isError} = useGetStudentsWithSearchFilterQuery({search:inputValue},{ refetchOnMountOrArgChange: true })
+    console.log(students);
   return (
     <div className="w-full">
         
@@ -22,7 +27,10 @@ const StudentSearch = () => {
         </div>
 
         <div className="flex flex-col gap-y-4 overflow-y-scroll md:h-[65vh]">
-            {dummyStudents.map((student, index)=><StudentCard key={index} studentData={student}/>)}
+           {isLoading && generateArray(5).map((item)=>(<Skeleton key={item} className="h-10 w-full"/>))  }
+           {isError && <FetchErrorMessage/>}
+           
+            {students && students.map((student, index)=><StudentCard key={index} studentData={student}/>)}
         </div>
     </div>
   )

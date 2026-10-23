@@ -26,6 +26,23 @@ export interface StudentResponseData{
 
 }
 
+export interface StudentSearchResponseData{
+    id: number;
+        studentId: string;
+        fullName: string;
+        degree: string;
+        enrollmentDate: string;
+        expectedGraduationDate:
+          string;
+        degreePercentCompletion:number;
+        completedCredits:number;
+        remainingCredits:number;
+        requiredCredits:number;
+}
+interface StudentSearchQueryParams{
+    search:string
+}
+
 const studentApiSlice = ApiSlice.injectEndpoints({
     endpoints:(builder)=>({
         createStudent:builder.mutation<StudentResponseData, {userId:number, formData:CreateStudentData}>({
@@ -36,9 +53,18 @@ const studentApiSlice = ApiSlice.injectEndpoints({
             }),
             invalidatesTags:["Students"]
         }),
+        getStudentsWithSearchFilter:builder.query<StudentSearchResponseData[], StudentSearchQueryParams>({
+            query:({search})=>({
+                url:`/students`,
+                method:"GET",
+                params:{
+                    search:search
+                }
+            })
+        })
         
     })
 })
 
-export const {useCreateStudentMutation} =studentApiSlice
+export const {useCreateStudentMutation, useGetStudentsWithSearchFilterQuery} =studentApiSlice
 export default studentApiSlice.reducer
