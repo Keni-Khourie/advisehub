@@ -5,9 +5,9 @@ import {
 import CardAvatar from "@/customUI/CardAvatar";
 import { cn } from "@/lib/utils";
 import {format} from "date-fns"
-import {DummyAdvisorNote} from "@/dummyData/dummyTypes"
+import {PrivateAdvisorNote} from "@/redux/features/main/advisingNotesApiSlice"
 interface Props{
-    note:DummyAdvisorNote|undefined
+    note:PrivateAdvisorNote
 }
 const StudentDetails = ({note}:Props) => {
   return (
@@ -19,7 +19,7 @@ const StudentDetails = ({note}:Props) => {
                 <p className="text-lg font-semibold">{note.studentFullName}</p>
                 <p className="text-ahTextGrey">{`Advisor:${note.advisorFullName}`}</p>
                 <p 
-                className="font-thin text-sm text-ahTextGrey">{`${note.meetingReason} • ${format(note.meetingDateTime, "MMM d, yyyy")}`}</p>
+                className="font-thin text-sm text-ahTextGrey">{`${note.advisorSpecialization} • ${format(note.createdAt, "MMM d, yyyy")}`}</p>
             </div>
         </div>
         </CardContent>}
