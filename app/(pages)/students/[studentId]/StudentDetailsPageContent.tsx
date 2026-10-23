@@ -1,6 +1,5 @@
 "use client";
 import PageHeader from "@/customUI/PageHeader";
-import { dummyStudents } from "@/dummyData/dummyData";
 import CardAvatar from "@/customUI/CardAvatar";
 import DegreeProgressCard from "./DegreeProgressCard"
 import NextAppointmentCard from "./NextAppointmentCard"
@@ -11,7 +10,7 @@ import WhiteButton from "@/customUI/WhiteButton"
 import {cn} from "@/lib/utils"
 import Link from "next/link";
 import BlueButton from "@/customUI/BlueButton";
-import { StudentSearchResponseData, useGetStudentsByStudentIdQuery } from "@/redux/features/main/studentApiSlice";
+import {useGetStudentsByStudentIdQuery } from "@/redux/features/main/studentApiSlice";
 interface Props {
   studentId: number;
 }
