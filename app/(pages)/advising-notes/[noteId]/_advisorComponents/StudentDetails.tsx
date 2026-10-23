@@ -14,7 +14,7 @@ const StudentDetails = ({note}:Props) => {
     <Card className={cn("border bg-white w-full pt-4 px-3 pb-8")}>
        {note && <CardContent>
              <div className="flex items-center gap-x-5">
-          <CardAvatar fullName={note.studentFullName} additionalStyle="h-15 w-15" additionalFallbackStyle="text-base font-semibold"/>
+          <CardAvatar imageUrl={note.studentProfileImage} fullName={note.studentFullName} additionalStyle="h-15 w-15" additionalFallbackStyle="text-base font-semibold"/>
             <div className="flex flex-col gap-y-2">
                 <p className="text-lg font-semibold">{note.studentFullName}</p>
                 <p className="text-ahTextGrey">{`Advisor:${note.advisorFullName}`}</p>

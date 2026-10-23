@@ -109,6 +109,11 @@ export async function GET(
             studentId: true,
             firstName: true,
             lastName: true,
+            user: {
+      select: {
+        image: true,
+      },
+    },
             degree: {
               select: {
                 degreeName: true,
@@ -166,6 +171,7 @@ export async function GET(
       studentId: note.student.studentId,
       studentFullName: `${note.student.firstName} ${note.student.lastName}`,
       studentDegree: `${note.student.degree.degreeClassification.abbreviation} ${note.student.degree.degreeName}`,
+      studentProfileImage: note.student.user.image ?? undefined,
     };
 
     return NextResponse.json(formattedNote, { status: 200 });

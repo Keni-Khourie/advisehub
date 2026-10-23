@@ -46,6 +46,7 @@ export interface PrivateAdvisorNote{
     advisorId: string;
     advisorFullName: string;
     advisorSpecialization: string;
+    studentProfileImage?:string|undefined;
     studentId: string;
     studentFullName: string;
     studentDegree: string;

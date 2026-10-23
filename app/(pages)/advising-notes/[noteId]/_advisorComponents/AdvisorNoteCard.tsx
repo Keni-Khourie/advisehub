@@ -8,6 +8,7 @@ import Image from "next/image";
 interface Props{
    noteContent:string | undefined
    noteTitle:string|undefined
+   
 }
 
 const AdvisorNoteCard = ({noteContent, noteTitle}:Props) => {
