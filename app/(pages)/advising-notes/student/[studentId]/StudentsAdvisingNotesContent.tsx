@@ -1,7 +1,7 @@
 "use client"
 import PageHeader from "@/customUI/PageHeader"
 import SectionHeader from "@/customUI/SectionHeader";
-import {dummyStudentAdvisingNotes, dummyStudents} from "@/dummyData/dummyData"
+import {dummyStudentAdvisingNotes} from "@/dummyData/dummyData"
 import StudentNotesListCard from "./_components/StudentNotesListCard";
 import Link from "next/link";
 import BlueButton from "@/customUI/BlueButton";

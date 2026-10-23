@@ -3,7 +3,6 @@ import PageHeader from "@/customUI/PageHeader"
 import SearchableSelect from "./SearchableSelect"
 import CreateAdvisingNoteForm from "./CreateAdvisingNoteForm";
 import { useState } from "react";
-import {DummyStudent} from "@/dummyData/dummyTypes"
 import {StudentSearchResponseData} from "@/redux/features/main/studentApiSlice"
 const CreateAdvisingNoteContent = () => {
   const [student, setStudent] =useState<StudentSearchResponseData|undefined >(undefined)
