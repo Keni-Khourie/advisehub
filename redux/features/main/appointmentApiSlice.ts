@@ -62,7 +62,7 @@ export interface AppointmentData {
   advisorProfileImage: string;
 }
 interface AppointmentFilter {
-  period: "today" | "past" | "upcoming";
+  period: "today" | "previous" | "upcoming";
   timeZone: string;
 }
 

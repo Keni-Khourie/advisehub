@@ -24,7 +24,7 @@ const AdvisorAppointmentsContent = () => {
       contextData.componentDetails.view === "UpcomingAppointments"
         ? "upcoming"
         : contextData.componentDetails.view === "PastMeetings"
-          ? "past"
+          ? "previous"
           : "today",
   });
   return (
