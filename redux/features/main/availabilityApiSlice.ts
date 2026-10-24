@@ -15,6 +15,7 @@ export interface AdvisorAvailabilityListData{
         createdAt:string
 }
 export interface AdvisorAvailabilityStudentListData{
+    id:number
     dateTime: string;
         advisorId: string; //advisors advisorID
         hasAppointment: boolean;
@@ -26,9 +27,15 @@ export interface AvailabilityDeletionResponse{
         dateTime: string;
       }
 
-interface AdvisorAvailabilityQueryParams{
+interface StudentAvailabilityQueryParams{
     advisorId:number;
-    date:string
+    date:string;
+    timeZone:string
+}
+
+interface AdvisorAvailabilityQueryParams{
+    date:string;
+    timeZone:string
 }
 
 const availabilityApiSlice = ApiSlice.injectEndpoints({
@@ -41,22 +48,24 @@ const availabilityApiSlice = ApiSlice.injectEndpoints({
             }),
             invalidatesTags:["AvailabilityTimes"]
         }),
-        getAvailabilitiesByDateForAdvisor:builder.query<AdvisorAvailabilityListData[], string>({
-            query:(dateString)=>({
+        getAvailabilitiesByDateForAdvisor:builder.query<AdvisorAvailabilityListData[], AdvisorAvailabilityQueryParams>({
+            query:({date, timeZone})=>({
                 url:"/advisor-availability",
                 method:"GET",
                 params:{
-                    date:dateString
+                    date:date,
+                    timeZone:encodeURIComponent(timeZone)
                 }
             }),
             providesTags:["AvailabilityTimes"]
         }),
-        getAvailabilitiesByDateForStudent:builder.query<AdvisorAvailabilityStudentListData[], AdvisorAvailabilityQueryParams>({
-            query:({advisorId, date})=>({
+        getAvailabilitiesByDateForStudent:builder.query<AdvisorAvailabilityStudentListData[], StudentAvailabilityQueryParams>({
+            query:({advisorId, date, timeZone})=>({
                 url:`/advisor/availability/${advisorId}`,
                 method:"GET",
                 params:{
-                    date:date
+                    date:date,
+                    timeZone:encodeURIComponent(timeZone)
                 }
             }),
             providesTags:["AvailabilityTimes"]

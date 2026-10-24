@@ -1,43 +1,67 @@
 //ROUTE: /api/advisor/availability/[advisorId]
 //This route is to allow students get a selected advisor's availability
-import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
-import { availabilityDateFilterSchema} from "@/validators/api/availabilityApiValidators"
-import { addDays, parseISO, format } from "date-fns";
-import { fromZonedTime } from "date-fns-tz"
+import { addDays, format, isValid, parseISO } from "date-fns";
+import { fromZonedTime, formatInTimeZone } from "date-fns-tz";
+import { NextRequest, NextResponse } from "next/server";
+
 interface RouteContext {
-  params: Promise<{ advisorId: string }>;
+  params: Promise<{
+    advisorId: string;
+  }>;
 }
 
+function isValidTimeZone(timeZone: string) {
+  try {
+    new Intl.DateTimeFormat("en-US", { timeZone });
+    return true;
+  } catch {
+    return false;
+  }
+}
 
+function isValidCalendarDate(date: string) {
+  const parsed = parseISO(date);
+
+  return (
+    isValid(parsed) &&
+    format(parsed, "yyyy-MM-dd") === date
+  );
+}
+
+function formatDateTime(date: Date, timeZone: string) {
+  return formatInTimeZone(
+    date,
+    timeZone,
+    "yyyy-MM-dd'T'HH:mm:ssXXX"
+  );
+}
 
 export async function GET(
   request: NextRequest,
-  { params }: RouteContext
+  context: RouteContext
 ) {
   try {
-    // 1. Get the advisor ID and date parameter
-    const { advisorId } = await params;
-    const dateParam = request.nextUrl.searchParams.get("date");
+    const { advisorId } = await context.params;
+    const searchParams = request.nextUrl.searchParams;
 
-    // Return an empty array if either parameter is missing
-    if (!advisorId || !dateParam) {
-      return NextResponse.json([], { status: 200 });
+    const date = searchParams.get("date");
+    const timeZone = searchParams.get("timeZone");
+
+    // Missing or invalid parameters return an empty array.
+    if (
+      !advisorId ||
+      !/^\d{8}$/.test(advisorId) ||
+      !date ||
+      !timeZone ||
+      !/^\d{4}-\d{2}-\d{2}$/.test(date) ||
+      !isValidCalendarDate(date) ||
+      !isValidTimeZone(timeZone)
+    ) {
+      return NextResponse.json([]);
     }
 
-    // 2. Validate the advisor's 8-digit ID and date
-    if (!/^\d{8}$/.test(advisorId)) {
-      return NextResponse.json([], { status: 200 });
-    }
-
-    // const dateValidation = availabilityDateFilterSchema.safeParse(dateParam);
-
-    // if (!dateValidation.success) {
-    //   return NextResponse.json([], { status: 200 });
-    // }
-
-    // 3. Authenticate the student
     const session = await auth();
 
     if (!session?.user?.id) {
@@ -47,17 +71,10 @@ export async function GET(
       );
     }
 
-    const userId = Number(session.user.id);
-
-    if (!Number.isSafeInteger(userId) || userId <= 0) {
-      return NextResponse.json(
-        { message: "Invalid session user ID." },
-        { status: 401 }
-      );
-    }
-
     const user = await prisma.user.findUnique({
-      where: { id: userId },
+      where: {
+        id: Number(session.user.id),
+      },
       select: {
         role: true,
         student: {
@@ -68,48 +85,18 @@ export async function GET(
       },
     });
 
-    if (!user) {
+    if (user?.role !== "STUDENT" || !user.student) {
       return NextResponse.json(
-        { message: "User not found." },
-        { status: 401 }
-      );
-    }
-
-    if (user.role !== "STUDENT" || !user.student) {
-      return NextResponse.json(
-        { message: "Only students can access advisor availability." },
+        { message: "Only students can view advisor availability." },
         { status: 403 }
       );
     }
 
-    // 4. Calculate the requested UTC calendar-day boundaries
-
-    // const requestedDate = new Date(dateValidation.data);
-
-    // const startOfDay = new Date(requestedDate);
-    // startOfDay.setUTCHours(0, 0, 0, 0);
-
-    // const startOfNextDay = new Date(startOfDay);
-    // startOfNextDay.setUTCDate(startOfNextDay.getUTCDate() + 1);
-
-const selectedDate = parseISO(dateParam);
-const nextDate = addDays(selectedDate, 1);
-
-const startOfDay = fromZonedTime(
-  `${dateParam}T00:00:00`,
-  "Africa/Lagos"
-);
-
-const startOfNextDay = fromZonedTime(
-  `${format(nextDate, "yyyy-MM-dd")}T00:00:00`,
-  "Africa/Lagos"
-);
-
-
-
-    // 5. Find the selected advisor
+    // Find the advisor using the external 8-digit advisorId.
     const advisor = await prisma.advisor.findUnique({
-      where: { advisorId },
+      where: {
+        advisorId,
+      },
       select: {
         id: true,
         advisorId: true,
@@ -117,11 +104,26 @@ const startOfNextDay = fromZonedTime(
     });
 
     if (!advisor) {
-      return NextResponse.json([], { status: 200 });
+      return NextResponse.json([]);
     }
 
-    // 6. Retrieve all availability slots for the selected day
-    const availabilities = await prisma.advisorAvailability.findMany({
+    // Define the requested calendar day in the student's timezone.
+    const nextDate = format(
+      addDays(parseISO(`${date}T12:00:00`), 1),
+      "yyyy-MM-dd"
+    );
+
+    const startOfDay = fromZonedTime(
+      `${date}T00:00:00`,
+      timeZone
+    );
+
+    const startOfNextDay = fromZonedTime(
+      `${nextDate}T00:00:00`,
+      timeZone
+    );
+
+    const availability = await prisma.advisorAvailability.findMany({
       where: {
         advisorId: advisor.id,
         date: {
@@ -130,6 +132,7 @@ const startOfNextDay = fromZonedTime(
         },
       },
       select: {
+        id: true,
         date: true,
         createdAt: true,
         appointments: {
@@ -144,27 +147,20 @@ const startOfNextDay = fromZonedTime(
       },
     });
 
-    // 7. Format the response
-    const formattedAvailabilities = availabilities.map(
-      (availability) => ({
-        dateTime: availability.date.toISOString(),
+    return NextResponse.json(
+      availability.map((slot) => ({
+        id: slot.id,
+        dateTime: formatDateTime(slot.date, timeZone),
         advisorId: advisor.advisorId,
-        hasAppointment: availability.appointments.length > 0,
-        createdAt: availability.createdAt.toISOString(),
-      })
+        hasAppointment: slot.appointments.length > 0,
+        createdAt: slot.createdAt.toISOString(),
+      }))
     );
-
-    return NextResponse.json(formattedAvailabilities, {
-      status: 200,
-    });
   } catch (error) {
-    console.error("Error fetching selected advisor's availability:", error);
+    console.error("Get advisor's availability error:", error);
 
     return NextResponse.json(
-      {
-        message:
-          "An unexpected error occurred while fetching advisor availability.",
-      },
+      { message: "Failed to retrieve advisor availability." },
       { status: 500 }
     );
   }

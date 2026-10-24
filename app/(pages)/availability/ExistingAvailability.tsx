@@ -6,11 +6,15 @@ import {useGetAvailabilitiesByDateForAdvisorQuery} from "@/redux/features/main/a
 import {Skeleton} from "@/components/ui/skeleton"
 import {generateArray} from "@/lib/utilityFunctions"
 import FetchErrorMessage from "@/customUI/FetchErrorMessage"
-
+import { format } from "date-fns";
 const ExistingAvailability = () => {
+   const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const contextData = useContext(AdvisorAvailabilityContext)
   console.log(contextData);
-  const {data:existingAvailabilities, isLoading, refetch, isError} =useGetAvailabilitiesByDateForAdvisorQuery(contextData.availabilityData.date.toISOString())
+  const {data:existingAvailabilities, isLoading, refetch, isError} =useGetAvailabilitiesByDateForAdvisorQuery( {
+      date:format(contextData.availabilityData.date, "yyyy-MM-dd"),
+      timeZone:timeZone
+    })
 
   useEffect(()=>{
     if(contextData.refetchData)

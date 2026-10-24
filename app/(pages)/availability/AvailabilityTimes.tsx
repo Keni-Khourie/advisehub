@@ -9,6 +9,7 @@ import { combineDateAndTime } from "@/lib/utilityDateFunctions";
 import FetchErrorMessage from "@/customUI/FetchErrorMessage";
 import { format } from "date-fns";
 const AvailabilityTimes = () => {
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const contextData = useContext(AdvisorAvailabilityContext);
   const {
     data: existingAvailabilities,
@@ -16,7 +17,10 @@ const AvailabilityTimes = () => {
     refetch,
     isError,
   } = useGetAvailabilitiesByDateForAdvisorQuery(
-    format(contextData.availabilityData.date, "yyyy-MM-dd"),
+    {
+      date:format(contextData.availabilityData.date, "yyyy-MM-dd"),
+      timeZone:timeZone
+    }
   );
   console.log(existingAvailabilities);
   console.log(contextData.availabilityData.date.toISOString());
