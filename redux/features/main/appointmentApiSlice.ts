@@ -80,7 +80,7 @@ const appointmentApiSlice = ApiSlice.injectEndpoints({
       invalidatesTags: ["Appointments"],
     }),
     getAdvisorAppointments: builder.query<
-      AppointmentDataForAdvisor,
+      AppointmentDataForAdvisor[],
       AppointmentFilter
     >({
       query: ({ period, timeZone }) => ({
@@ -94,7 +94,7 @@ const appointmentApiSlice = ApiSlice.injectEndpoints({
       providesTags: ["Appointments"],
     }),
     getStudentAppointments: builder.query<
-      AppointmentDataForStudent,
+      AppointmentDataForStudent[],
       AppointmentFilter
     >({
       query: ({ period, timeZone }) => ({

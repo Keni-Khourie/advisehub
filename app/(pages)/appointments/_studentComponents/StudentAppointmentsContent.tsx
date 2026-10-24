@@ -5,26 +5,29 @@ import PageHeader from "@/customUI/PageHeader";
 import { appointmentSections } from "@/constants";
 import AppointmentSectionBadge from "./AppointmentSectionBadge";
 import AppointmentListItem from "./AppointmentListItem";
-import { ExistingMeetingData } from "@/dummyData/dummyTypes";
-import { getPastMeetings, getUpcomingMeetings } from "@/dummyData/dummyUtils";
 import Link from "next/link";
 import BlueButton from "@/customUI/BlueButton";
-import { Skeleton } from '@/components/ui/skeleton';
-import {generateArray} from "@/lib/utilityFunctions"
-import FetchErrorMessage from "@/customUI/FetchErrorMessage"
-
+import { Skeleton } from "@/components/ui/skeleton";
+import { generateArray } from "@/lib/utilityFunctions";
+import FetchErrorMessage from "@/customUI/FetchErrorMessage";
+import { useGetStudentAppointmentsQuery } from "@/redux/features/main/appointmentApiSlice";
 const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const StudentAppointmentsContent = () => {
   const contextData = useContext(StudentAppointmentContext);
-  
-  const appointments: ExistingMeetingData[] =
-    contextData.componentDetails.section === "Upcoming"
-      ? getUpcomingMeetings()
-      : contextData.componentDetails.section === "Past Meetings"
-        ? getPastMeetings()
-        : [];
-  //this will come from the RTK query
-  const isLoading: boolean = false;
+  const {
+    data: appointments,
+    isLoading,
+    isError,
+  } = useGetStudentAppointmentsQuery({
+    timeZone: timeZone,
+    period:
+      contextData.componentDetails.view === "UpcomingAppointments"
+        ? "upcoming"
+        : contextData.componentDetails.view === "PastMeetings"
+          ? "past"
+          : "today",
+  });
+
   return (
     <div>
       <PageHeader
@@ -48,6 +51,11 @@ const StudentAppointmentsContent = () => {
       </div>
 
       <div className="flex flex-col gap-y-6 overflow-y-scroll md:h-[65vh]">
+        {isLoading &&
+          generateArray(5).map((item) => (
+            <Skeleton key={item} className="h-28 w-full" />
+          ))}
+        {isError && <FetchErrorMessage />}
         {appointments &&
           appointments.map((meeting, index) => (
             <AppointmentListItem
@@ -57,6 +65,9 @@ const StudentAppointmentsContent = () => {
               isLoading={isLoading}
             />
           ))}
+        {appointments && appointments.length == 0 && (
+          <p className="font-thin w-full text-center text-ahTextGrey">{`No ${contextData.componentDetails.view === "UpcomingAppointments" ? "upcoming" : contextData.componentDetails.view === "PastMeetings" ? "past" : ""} appointments`}</p>
+        )}
       </div>
     </div>
   );

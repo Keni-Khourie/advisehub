@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ExistingMeetingData } from "@/dummyData/dummyTypes";
+import { AppointmentDataForStudent } from "@/redux/features/main/appointmentApiSlice";
 import { cn } from "@/lib/utils";
 import { AppointmentSection } from "@/types/types";
 import { format } from "date-fns";
@@ -8,7 +8,7 @@ import Link from "next/link";
 
 interface Props {
   type: AppointmentSection;
-  data: ExistingMeetingData;
+  data: AppointmentDataForStudent;
   isLoading: boolean;
 }
 
@@ -18,20 +18,22 @@ const AppointmentListItem = ({ type, data, isLoading }: Props) => {
       {!isLoading && (
         <div className="flex gap-x-5">
           <div className="font-bold bg-ahGrey flex flex-col justify-center text-center border w-22 h-22 rounded-sm">
-            {format(data.startDateTime, "MMM dd").toLocaleUpperCase()}
+            {format(data.date, "MMM dd").toLocaleUpperCase()}
           </div>
 
           <div>
-            <p className="mb-1 font-semibold text-ahTextBlack">{data.meetingReason}</p>
+            <p className="mb-1 font-semibold text-ahTextBlack">
+              {data.advisorSpecialization}
+            </p>
             {type === "Upcoming" && (
               <p className="font-thin text-ahTextGrey text-sm">
-               { `${data.advisor} • ${format(data.startDateTime, "h:mm a")} - ${format(data.endDateTime, "h:mm a")}` }
+                {`${data.advisorTitle} ${data.advisorFullName} • ${format(data.date, "h:mm a")} - ${format(data.date, "h:mm a")}`}
               </p>
             )}
             {type === "Past Meetings" && (
               <div className="flex flex-col gap-y-1 font-thin text-ahTextGrey text-sm">
-                <p>{data.advisor}</p>
-                <p>{data.meetingReason}</p>
+                <p>{`${data.advisorTitle} ${data.advisorFullName}`}</p>
+                <p>{data.advisorSpecialization}</p>
               </div>
             )}
           </div>
@@ -64,8 +66,17 @@ const AppointmentListItem = ({ type, data, isLoading }: Props) => {
           </div>
         </div>
       )}
-      <Link href={`/appointments/${data.id}`} className={cn(isLoading &&"cursor-not-allowed")}>
-        <Button className={cn("bg-white hover:bg-ahGrey text-ahTextBlack font-semibold cursor-pointer rounded-sm py-4 px-6 border-2 border-stone-300", isLoading && "cursor-not-allowed")} disabled={isLoading}>
+      <Link
+        href={`/appointments/${data.id}`}
+        className={cn(isLoading && "cursor-not-allowed")}
+      >
+        <Button
+          className={cn(
+            "bg-white hover:bg-ahGrey text-ahTextBlack font-semibold cursor-pointer rounded-sm py-4 px-6 border-2 border-stone-300",
+            isLoading && "cursor-not-allowed",
+          )}
+          disabled={isLoading}
+        >
           View Details
         </Button>
       </Link>
