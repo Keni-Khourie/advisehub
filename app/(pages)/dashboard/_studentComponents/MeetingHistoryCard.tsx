@@ -5,8 +5,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import {Skeleton} from "@/components/ui/skeleton"
+import Link from "next/link";
+interface Props{
+  data:number|undefined,
+  isLoading:boolean;
+  isError:boolean;
+}
 
-const MeetingHistoryCard = () => {
+const MeetingHistoryCard = ({data, isLoading, isError}:Props) => {
   return (
       <Card className={cn("w-full md:w-[35%] rounded-md p-4 bg-white")}>
       <CardHeader className="">
@@ -14,8 +21,12 @@ const MeetingHistoryCard = () => {
       </CardHeader>
       <CardContent className="flex h-full pb-6 content-center">
         <div className="flex flex-col justify-center items-start">
-            <p className="font-semibold text-xl">{`${6} past meetings`}</p>
-            <p className="font-thin text-ahTextGrey text-sm">View Notes and Meeting Details</p>
+          {isLoading && <Skeleton className="w-5 h-8"/>}
+          {isError &&<p className="font-semibold text-xl">{`- past meetings`}</p>}
+            {data!==undefined &&<p className="font-semibold text-xl">{`${data} past meetings`}</p>}
+            <Link href="#">
+            <p className="font-thin text-ahTextGrey text-sm hover:underline cursor-pointer">View Notes and Meeting Details</p></Link>
+            
         </div>
       </CardContent>
     </Card>

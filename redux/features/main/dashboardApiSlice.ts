@@ -1,22 +1,25 @@
 import { ApiSlice } from "@/redux/services/apiSlice";
 import { AppointmentStatus, AdvisorSpecialization } from "@/types/types";
 
-export interface StudentDashboardData{
-    closestAppointment:{
-        id:number;
+export interface ClosestAppointmentData{
+    id:number;
         appointmentStatus:AppointmentStatus
         date:string;
         advisorTitle:string;
         advisorFullName:string;
         advisorSpecialization:AdvisorSpecialization;
-    },
-    degreeInfo:{
-        degreeProgressPercent:number;
+}
+export interface DashboardDegreeInfo{
+    degreeProgressPercent:number;
         completedCredits:number;
         remainingCredits:number;
         degreeName:string;
         degreeClassification:string;
-    },
+}
+
+export interface StudentDashboardData{
+    closestAppointment:ClosestAppointmentData|null,
+    degreeInfo:DashboardDegreeInfo
     pastAppointmentsCount:number;
     todaysNotesCount:number
 }
