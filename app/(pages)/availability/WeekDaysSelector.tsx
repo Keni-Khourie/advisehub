@@ -38,6 +38,7 @@ const WeekDaysSelector = () => {
   const setAvailabilityDate = (date:Date)=>{
     setSelectedDate(date)
     contextData.setAvailabilityData({...contextData.availabilityData, date:date})
+    console.log(date.toISOString());
   }
   return (
     <div className="mb-8 w-full">

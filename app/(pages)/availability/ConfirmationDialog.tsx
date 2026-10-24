@@ -24,7 +24,8 @@ const ConfirmationDialog = () => {
     if (contextData.pageData.dialogType === "add") {
       if (!contextData.availabilityData.combinedDateTime) return;
       console.log(contextData.availabilityData.combinedDateTime);
-      console.log(`${format(contextData.availabilityData.combinedDateTime, "h:mm a, dd MMM yyyy")} Added`);
+      console.log(contextData.availabilityData.combinedDateTime, "added+");
+      //console.log(`${format(contextData.availabilityData.combinedDateTime, "h:mm a, dd MMM yyyy")} Added`);
       contextData.setDialogOpen(false);
     }
     if (contextData.pageData.dialogType === "delete") {
