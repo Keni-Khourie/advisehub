@@ -3,8 +3,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
-import { availabilityDateFilterSchema} from "@/validators/api/availabilityApiValidators"
-import { addDays, format, parseISO, isValid } from "date-fns";
+import { addDays, format, parseISO} from "date-fns";
 import { fromZonedTime } from "date-fns-tz";
 interface RouteContext {
   params: Promise<{ advisorId: string }>;
