@@ -29,7 +29,7 @@ const StudentDetailsPageContent = ({ studentId }: Props) => {
       /> 
       {isError && <div className="w-full flex justify-center mt-28">
         <FetchErrorMessage/></div>}
-      {isLoading && <Skeleton className="h-60 w-full"/>}
+      {isLoading && <Skeleton className="h-96 w-full"/>}
       {student && (
         <div className="flex flex-col gap-y-5">
           <div className="flex items-center gap-x-3 mb-5">
