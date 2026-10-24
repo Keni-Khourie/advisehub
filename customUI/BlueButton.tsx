@@ -15,4 +15,4 @@ const BlueButton = ({text, additionalStyle, ...props}:Props) => {
 
 export default BlueButton
 
-
+//border border-ahDeepBlue text-ahDeepBlue h-12 bg-white w-full hover:bg-white hover:underline cursor-pointer font-semibold relative

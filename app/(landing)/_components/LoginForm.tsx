@@ -81,7 +81,7 @@ const trySubmitForm = async (values: LoginFormData) => {
           onSubmit={loginForm.handleSubmit(trySubmitForm)}
           className="w-full"
         >
-          <FieldGroup className="flex gap-y-6 mb-10">
+          <FieldGroup className=" gap-y-6 mb-10 hidden">
             <Controller
               name="email"
               control={loginForm.control}
@@ -134,7 +134,7 @@ const trySubmitForm = async (values: LoginFormData) => {
             />
           </FieldGroup>
 
-          <Field className="">
+          <Field className="hidden">
             <BlueButton
               text={isLoading?"Signing in..." :"Sign in"}
               additionalStyle="h-15 rounded-md"
@@ -143,13 +143,13 @@ const trySubmitForm = async (values: LoginFormData) => {
             />
           </Field>
 
-          <div className="mt-5 w-full">
-            <div className="flex items-center gap-x-3 w-full justify-center mb-5">
+          <div className="mt-5 w-full ">
+            <div className=" items-center gap-x-3 w-full justify-center mb-5 hidden">
               <hr className="w-full mt-1" />
               <p className="font-light text-ahTextGrey">or</p>
               <hr className="w-full mt-1" />
             </div>
-            <Button className="border border-ahDeepBlue text-ahDeepBlue h-12 bg-white w-full hover:bg-white hover:underline cursor-pointer font-semibold relative" onClick={institutionalSign}>
+            <Button className="bg-ahDeepBlue hover:bg-ahHoverDeepBlue text-white text-center font-semibold text-sm w-full h-12 rounded-lg cursor-pointer hover:underline relative" onClick={institutionalSign}>
               <FaUniversity className="md:absolute md:left-6 md:top-4" />
               Use Campus Credentials (SSO)
             </Button>

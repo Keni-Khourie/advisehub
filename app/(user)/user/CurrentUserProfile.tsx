@@ -19,7 +19,8 @@ const CurrentUserProfile = () => {
     dispatch(clearUser())
    }
    useEffect(()=>{
-    if(user)
+    
+    if(user){
       dispatch(
         setUser({
           id:user.id,
@@ -30,8 +31,11 @@ const CurrentUserProfile = () => {
           role:user.role,
         })
       )
+      if(user.role){
+    router.push("/dashboard")}
+  }
     
-   },[user, dispatch])
+   },[user, dispatch, router])
 
     if (isLoading) return (
       <div className="bg-ahBgBlue w-full h-screen flex flex-col items-center justify-center">
@@ -80,9 +84,7 @@ const CurrentUserProfile = () => {
     </div>)
   }
 
-  if(user.role){
-    router.push("/dashboard")
-  }
+  
    return
 }
 
