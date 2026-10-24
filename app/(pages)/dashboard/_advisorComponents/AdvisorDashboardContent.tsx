@@ -8,6 +8,7 @@ import AppointmentCard from "./AppointmentCard";
 import { RootState } from "@/redux/store";
 import { useAppSelector } from "@/redux/reduxHooks";
 import { useGetAdvisorAppointmentsQuery } from "@/redux/features/main/appointmentApiSlice";
+import {useGetAdvisorDashboardDataQuery} from "@/redux/features/main/dashboardApiSlice"
 import { Skeleton } from "@/components/ui/skeleton";
 import { generateArray } from "@/lib/utilityFunctions";
 import FetchErrorMessage from "@/customUI/FetchErrorMessage";
@@ -24,6 +25,8 @@ const AdvisorDashboardContent = () => {
     period: "today",
     timeZone: timeZone,
   });
+
+  const {data:dashboardData, isLoading:dashboardLoading, isError:dashboardError} =useGetAdvisorDashboardDataQuery(timeZone)
   return (
     <div className="w-full">
       <SectionHeader
@@ -32,8 +35,8 @@ const AdvisorDashboardContent = () => {
       />
       <div>
         <div className="flex gap-x-5 mb-6">
-          <AvailableSlotsCard slots={6} />
-          <UpcomingMeetingsCard upcomingMeetings={3} />
+          <AvailableSlotsCard slots={dashboardData?.availableSlotsTodayCount} isLoading={dashboardLoading} isError={dashboardError} />
+          <UpcomingMeetingsCard upcomingMeetings={dashboardData?.appointmentsTodayCount} isLoading={dashboardLoading} isError={dashboardError} />
           <SearchStudentsCard />
         </div>
         <div className="">

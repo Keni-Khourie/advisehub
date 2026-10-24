@@ -5,20 +5,24 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-//import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
 //public/upcomingMeetingsCardImage.png
 
 interface Props{
-    upcomingMeetings:number
+    upcomingMeetings:number|undefined
+    isLoading:boolean
+    isError:boolean
 }
-const UpcomingMeetingsCard = ({upcomingMeetings}:Props) => {
+const UpcomingMeetingsCard = ({upcomingMeetings, isLoading, isError}:Props) => {
   return (
      <Card className={cn("bg-white rounded-lg pt-4 ps-3 py-3 border w-full md:w-1/3")}>
       
       <CardContent className="w-full h-full flex gap-x-5">
         <div className="w-full h-full flex flex-col gap-y-6 z-10">
             <div className="flex items-center gap-x-3">
-            <p className="font-semibold text-3xl">{upcomingMeetings}</p>
+              {isLoading && <Skeleton className="h-5 w-5 rounded-full"/>}
+              {isError &&<p className="font-semibold text-3xl">-</p>}
+            {upcomingMeetings &&<p className="font-semibold text-3xl">{upcomingMeetings?upcomingMeetings:0}</p>}
             <p className="font-thin text-ahTextGrey text-nowrap"> Upcoming meetings</p>
                   </div>
                   <Link href="/appointments">
