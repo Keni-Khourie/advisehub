@@ -9,10 +9,14 @@ import { ExistingMeetingData } from "@/dummyData/dummyTypes";
 import { getPastMeetings, getUpcomingMeetings } from "@/dummyData/dummyUtils";
 import Link from "next/link";
 import BlueButton from "@/customUI/BlueButton";
-//import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
+import {generateArray} from "@/lib/utilityFunctions"
+import FetchErrorMessage from "@/customUI/FetchErrorMessage"
 
+const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const StudentAppointmentsContent = () => {
   const contextData = useContext(StudentAppointmentContext);
+  
   const appointments: ExistingMeetingData[] =
     contextData.componentDetails.section === "Upcoming"
       ? getUpcomingMeetings()

@@ -9,8 +9,11 @@ import AdvisorAppointmentSectionBadge from './AdvisorAppointmentSectionBadge';
 import AdvisorAppointmentListItem from './AdvisorAppointmentListItem';
 import BlueButton from '@/customUI/BlueButton'
 import Link from 'next/link';
-//import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
+import {generateArray} from "@/lib/utilityFunctions"
+import FetchErrorMessage from "@/customUI/FetchErrorMessage"
 
+const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const AdvisorAppointmentsContent = () => {
   const contextData = useContext(AdvisorAppointmentContext)
   const appointments:DummyAdvisorAppointments[] = contextData.componentDetails.section==="Upcoming"? getAdvisorUpcomingMeetings(): contextData.componentDetails.section==="Past Meetings"? getAdvisorPastMeetings():[]

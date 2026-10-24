@@ -8,7 +8,10 @@ import AppointmentCard from './AppointmentCard';
 import { dummyAdvisorAppointments } from '@/dummyData/dummyData';
 import { RootState } from "@/redux/store";
 import { useAppSelector } from "@/redux/reduxHooks";
-
+import { Skeleton } from '@/components/ui/skeleton';
+import {generateArray} from "@/lib/utilityFunctions"
+import FetchErrorMessage from "@/customUI/FetchErrorMessage"
+const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const AdvisorDashboardContent = () => {
   //fetch dashboard data
   const user = useAppSelector((state: RootState) => state.user);
