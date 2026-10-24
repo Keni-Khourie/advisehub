@@ -39,8 +39,9 @@ const ConfirmationDialog = () => {
       toast.promise(
         addAvailability(createAvailabilityBody).unwrap().then((resp)=>{
           console.log(resp)
-          contextData.setIsLoading(true)
+          // contextData.setIsLoading(true)
           contextData.setRefetchData(true)
+          //contextData.setDialogOpen(false)
           
         }), {
           loading:"Adding availability",
@@ -51,16 +52,16 @@ const ConfirmationDialog = () => {
       //console.log(`${format(contextData.availabilityData.combinedDateTime, "h:mm a, dd MMM yyyy")} Added`);
       
       contextData.setDialogOpen(false)
-      // contextData.setIsLoading(true)
+       contextData.setIsLoading(true)
     }
     if (contextData.pageData.dialogType === "delete") {
       if (!contextData.pageData.selectedExistingAvailability) return;
       toast.promise(
         deleteAvailability(contextData.pageData.selectedExistingAvailability.id).unwrap().then((resp)=>{
           console.log(resp)
-           contextData.setIsLoading(true)
+           //contextData.setIsLoading(true)
           contextData.setRefetchData(true)
-          
+          contextData.setDialogOpen(false)
         }), {
           loading:"Adding availability",
           success:"availability Added",
@@ -71,7 +72,7 @@ const ConfirmationDialog = () => {
       // console.log(contextData.pageData.selectedExistingAvailability.id);
       // console.log(`${format(contextData.pageData.selectedExistingAvailability.availability, "h:mm a, dd MMM yyyy")} deleted`);
       contextData.setDialogOpen(false)
-      // contextData.setIsLoading(true)
+      contextData.setIsLoading(true)
     }
   };
 

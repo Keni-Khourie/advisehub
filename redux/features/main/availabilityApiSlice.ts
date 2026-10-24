@@ -52,10 +52,10 @@ const availabilityApiSlice = ApiSlice.injectEndpoints({
             query:({date, timeZone})=>({
                 url:"/advisor-availability",
                 method:"GET",
-                params:{
+                params: new URLSearchParams({
                     date:date,
-                    timeZone:encodeURIComponent(timeZone)
-                }
+                    timeZone:timeZone
+                })
             }),
             providesTags:["AvailabilityTimes"]
         }),
@@ -63,10 +63,10 @@ const availabilityApiSlice = ApiSlice.injectEndpoints({
             query:({advisorId, date, timeZone})=>({
                 url:`/advisor/availability/${advisorId}`,
                 method:"GET",
-                params:{
+                params: new URLSearchParams({
                     date:date,
-                    timeZone:encodeURIComponent(timeZone)
-                }
+                    timeZone:timeZone
+                })
             }),
             providesTags:["AvailabilityTimes"]
         }),
