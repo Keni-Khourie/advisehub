@@ -134,7 +134,7 @@ model Appointment {
   advisor          Advisor               @relation(fields: [advisorId], references: [id], onDelete: Restrict)
   specializationId Int
   specialization   AdvisorSpecialization @relation(fields: [specializationId], references: [id], onDelete: Restrict)
-  availabilityId   Int?
+  availabilityId   Int? @unique
   availability     AdvisorAvailability?  @relation(fields: [availabilityId], references: [id], onDelete: SetNull)
   createdAt        DateTime              @default(now())
   updatedAt        DateTime              @updatedAt

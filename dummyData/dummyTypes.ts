@@ -99,3 +99,4 @@ export interface DummyExistingAdvisorAvailability{
   availability:string;
   isBooked:boolean;
 }
+

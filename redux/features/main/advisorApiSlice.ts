@@ -27,6 +27,16 @@ export interface AdvisorSpecializationResponseData {
   createdAt: string;
   updatedAt: string;
 }
+export interface AdvisorResponseForStudent{
+  advisorId: string
+    specialization: string
+    office: string,
+    yearsOfExperience: number,
+    closestAvailability: string,
+    fullName: string,
+    title: string,
+    advisorProfileImg: string
+}
 
 const advisorApiSlice = ApiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -50,9 +60,21 @@ const advisorApiSlice = ApiSlice.injectEndpoints({
         body: formData,
       }),
     }),
+
+    getAdvisorBySpecialization: builder.query<AdvisorResponseForStudent[], AdvisorSpecialization|undefined>({
+      query:(specialization)=>({
+        url:"/advisor",
+        method:"GET",
+        params:{
+          specialization
+        }
+      }),
+      providesTags:["Advisors"]
+    }),
+    
   }),
 });
 
-export const { useGetAdvisorSpecializationsQuery, useCreateAdvisorMutation } =
+export const { useGetAdvisorSpecializationsQuery, useCreateAdvisorMutation, useGetAdvisorBySpecializationQuery } =
   advisorApiSlice;
 export default advisorApiSlice.reducer;

@@ -3,16 +3,19 @@ import { createContext, useState, Dispatch, SetStateAction } from "react";
 import {AdvisorSpecialization, StudentScheduleAppointmentComponentDetail  } from "@/types/types";
 import StudentScheduleAppointmentContent from "./StudentScheduleAppointmentContent";
 import{getStudentAppointmentScheduleComponentDetailsByView } from '@/lib/utilityFunctions';
-import {DummyAdvisor} from "@/dummyData/dummyTypes"
+import {AdvisorResponseForStudent} from "@/redux/features/main/advisorApiSlice"
+import { AdvisorAvailabilityStudentListData } from "@/redux/features/main/availabilityApiSlice";
 //this would be the data sent to the backend
 interface AppointmentDetails{
   appointmentReason:AdvisorSpecialization|undefined;
-  advisorId: number|undefined;
+  advisorId: string|undefined;
   date: Date|undefined;
   availableTime:string|undefined;
   generalAdvisingQuestion:string|undefined;
-  advisor:DummyAdvisor|undefined;
+  advisor:AdvisorResponseForStudent|undefined;
   meetingDateTime:string|undefined;
+  availabilityId:number|undefined
+  availability:AdvisorAvailabilityStudentListData|undefined
 }
 interface StudentScheduleAppointmentContextData{
   componentDetails: StudentScheduleAppointmentComponentDetail,
@@ -30,11 +33,13 @@ export const StudentScheduleAppointmentContext = createContext<StudentScheduleAp
   appointmentDetails:{
     appointmentReason:undefined,
     advisorId:undefined,
-    date:undefined,
+    date:new Date(),
     availableTime:undefined,
     generalAdvisingQuestion:undefined,
     advisor:undefined,
-    meetingDateTime:undefined
+    meetingDateTime:undefined,
+    availabilityId:undefined,
+    availability:undefined,
   },
   setAppointmentDetails:()=>{},
 })
@@ -43,11 +48,13 @@ const StudentAppointmentSchedule = () => {
     const [appointmentDetails, setAppointmentDetails] = useState<AppointmentDetails>({
       appointmentReason:undefined,
     advisorId:undefined,
-    date:undefined,
+    date: new Date(),
     availableTime:undefined,
     generalAdvisingQuestion:undefined,
     advisor:undefined,
-    meetingDateTime:undefined
+    meetingDateTime:undefined,
+    availabilityId:undefined,
+    availability:undefined,
     })
   return (
     <StudentScheduleAppointmentContext.Provider value={{componentDetails, setComponentDetails, appointmentDetails, setAppointmentDetails}}>
@@ -60,3 +67,11 @@ const StudentAppointmentSchedule = () => {
 export default StudentAppointmentSchedule
 
 //#20B8B4
+
+interface jj {
+  appointmentReason:AdvisorSpecialization
+  advisorId: string //advisor's 8-digit ID
+  availabilityId:number|undefined //the id for the chosen availability slot
+  generalAdvisingQuestion?:string|undefined;
+  
+}

@@ -28,8 +28,8 @@ export interface AvailabilityDeletionResponse{
       }
 
 interface StudentAvailabilityQueryParams{
-    advisorId:number;
-    date:string;
+    advisorId:string|undefined;
+    date:string|undefined;
     timeZone:string
 }
 
@@ -64,8 +64,8 @@ const availabilityApiSlice = ApiSlice.injectEndpoints({
                 url:`/advisor/availability/${advisorId}`,
                 method:"GET",
                 params: new URLSearchParams({
-                    date:date,
-                    timeZone:timeZone
+                    date:date!,
+                    timeZone:timeZone!
                 })
             }),
             providesTags:["AvailabilityTimes"]

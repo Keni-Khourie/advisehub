@@ -2,16 +2,24 @@
 import {useContext} from 'react'
 import { StudentScheduleAppointmentContext } from './StudentAppointmentSchedule';
 import {format} from "date-fns"
-import { cn } from "@/lib/utils";
 import AvailableTimeItem from './AvailableTimeItem';
-//import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
+import { generateArray } from "@/lib/utilityFunctions";
+import FetchErrorMessage from "@/customUI/FetchErrorMessage";
+import { useGetAvailabilitiesByDateForStudentQuery} from "@/redux/features/main/availabilityApiSlice";
 
 const AvailableTimeSelection = () => {
-    //fetch available times based advisorId  and available date in the context. The data will come sorted by earliest
-    //use skeletons for the loading state
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    
     const contextData = useContext(StudentScheduleAppointmentContext)
-     
-    const availableTimes = ["9:00 AM", "10:00 AM", "10:30 AM", "11:00 AM", "12:00 PM", "1:00 PM", "1:30 PM", "2:30 AM"]
+
+    const {data:availableTimes, isLoading, isError} =useGetAvailabilitiesByDateForStudentQuery({
+        date:format(contextData.appointmentDetails.date!,"yyyy-MM-dd"),
+        timeZone:timeZone,
+        advisorId: contextData.appointmentDetails.advisorId
+    })
+
+    
   return (
     <div className="bg-white w-full md:w-1/3 border rounded-lg p-3 h-full ">
         <div className="w-full mb-4">
@@ -20,10 +28,17 @@ const AvailableTimeSelection = () => {
            
         </div>
          <div className="w-full h-[14vh] md:h-[80%] flex flex-col gap-y-3 overflow-y-scroll ">
-                {availableTimes.map((time, index)=>(
-                    <AvailableTimeItem key={index} time={time}/>
+            {isLoading &&
+        generateArray(6).map((item) => (
+          <Skeleton key={item} className="h-12 w-full" />
+        ))}
+        {isError && <FetchErrorMessage />}
+                {availableTimes && availableTimes.map((time, index)=>(
+                    <AvailableTimeItem key={index} data={time}/>
                 ))}
+                {availableTimes && availableTimes.length==0 && <p className="font-thin text-xs text-ahTextGrey w-full text-center mt-5">No available slots for selected date</p>}
             </div>
+            
     </div>
   )
 }

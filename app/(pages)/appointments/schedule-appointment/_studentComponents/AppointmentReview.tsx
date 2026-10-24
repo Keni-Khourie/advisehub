@@ -6,16 +6,16 @@ import WhiteButton from '@/customUI/WhiteButton';
 //import BlueButton from '@/customUI/BlueButton';
 import {getStudentAppointmentScheduleComponentDetailsByView } from '@/lib/utilityFunctions';
 import Image from 'next/image';
-
 import BeforeYouConfirmCard from './BeforeYouConfirmCard';
 import AppointmentReviewCard from './AppointmentReviewCard';
 import { combineDateAndTime } from '@/lib/utilityDateFunctions';
-
+import {format} from "date-fns"
 
 
 const AppointmentReview = () => {
     const contextData = useContext(StudentScheduleAppointmentContext)
    
+    const combinedDateTime = combineDateAndTime(contextData.appointmentDetails.date!, contextData.appointmentDetails.availableTime!)
    const backToDateTimeSelection = ()=>{
     contextData.setComponentDetails(getStudentAppointmentScheduleComponentDetailsByView("DateSelection"))
    }
@@ -23,13 +23,16 @@ const AppointmentReview = () => {
    //this will be moved to the onSuccess of RTK query
    const continueToAppointmentSuccess = ()=>{
     const combinedDateTime = combineDateAndTime(contextData.appointmentDetails.date!, contextData.appointmentDetails.availableTime!)
-    
+     console.log("can you see this");
     console.log(contextData.appointmentDetails);
     console.log(combinedDateTime);
-    contextData.setComponentDetails(getStudentAppointmentScheduleComponentDetailsByView("AppointmentConfirmationSuccess"))
+    // contextData.setComponentDetails(getStudentAppointmentScheduleComponentDetailsByView("AppointmentConfirmationSuccess"))
    }
   return (
     <div>
+      <p>{format(combinedDateTime, "iii dd MM yyyy, h:mm a")}</p>
+      <p>{format(contextData.appointmentDetails.availability!.dateTime ,"iii dd MM yyyy, h:mm a")}</p>
+      <p>{contextData.appointmentDetails.availability!.id}</p>
       <div className="flex items-start flex-wrap md:flex-nowrap gap-x-5 gap-y-5 mb-4 md:mb-0">
         <AppointmentReviewCard/>
         <BeforeYouConfirmCard/>
@@ -46,3 +49,12 @@ const AppointmentReview = () => {
 }
 
 export default AppointmentReview
+
+
+/*
+advisorId:string//advisor 8-digitId
+availabilityId: number //the ID for the availability slot created by the advisor and selected by the student,
+note?string; //will either send an empty string or undefined if not chosen
+
+
+ */
