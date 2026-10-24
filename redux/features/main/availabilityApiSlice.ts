@@ -2,17 +2,23 @@ import { ApiSlice } from "@/redux/services/apiSlice";
 import {CreateAdvisorAvailabilityData} from "@/validators/api/availabilityApiValidators"
 
 export interface AdvisorAvailabilityData{
-        id: string;
+        id: number;
         dateTime: string,
         advisorId: string,
         createdAt:string
 }
 export interface AdvisorAvailabilityListData{
-        id: string;
+        id: number;
         dateTime: string,
-        advisorId: string,
+        advisorId: string, //advisors advisorID
         hasAppointment:boolean
         createdAt:string
+}
+export interface AdvisorAvailabilityStudentListData{
+    dateTime: string;
+        advisorId: string; //advisors advisorID
+        hasAppointment: boolean;
+        createdAt: string;
 }
 export interface AvailabilityDeletionResponse{
         message: string;
@@ -35,23 +41,25 @@ const availabilityApiSlice = ApiSlice.injectEndpoints({
             }),
             invalidatesTags:["AvailabilityTimes"]
         }),
-        getAvailabilitiesByDateForAdvisor:builder.query<AdvisorAvailabilityListData, string>({
+        getAvailabilitiesByDateForAdvisor:builder.query<AdvisorAvailabilityListData[], string>({
             query:(dateString)=>({
                 url:"/advisor-availability",
                 method:"GET",
                 params:{
                     date:dateString
                 }
-            })
+            }),
+            providesTags:["AvailabilityTimes"]
         }),
-        getAvailabilitiesByDateForStudent:builder.query<AdvisorAvailabilityListData, AdvisorAvailabilityQueryParams>({
+        getAvailabilitiesByDateForStudent:builder.query<AdvisorAvailabilityStudentListData[], AdvisorAvailabilityQueryParams>({
             query:({advisorId, date})=>({
                 url:`/advisor/availability/${advisorId}`,
                 method:"GET",
                 params:{
                     date:date
                 }
-            })
+            }),
+            providesTags:["AvailabilityTimes"]
         }),
         deleteAdvisorAvailability:builder.mutation<AvailabilityDeletionResponse, number>({
             query:(availabilityId)=>({

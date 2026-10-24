@@ -7,7 +7,7 @@ import WeekDaysSelector from './WeekDaysSelector';
 import AvailabilityTimes from './AvailabilityTimes';
 import AddAvailabilityTime from './AddAvailabilityTime';
 import BlueButton from '@/customUI/BlueButton';
-
+import LoadingSheet from "@/customUI/LoadingSheet"
 import ConfirmationDialog from "./ConfirmationDialog";
 
 const AvailabilityContent = () => {
@@ -28,6 +28,7 @@ const AvailabilityContent = () => {
                 <BlueButton text="Save Availability" additionalStyle="w-full md:w-2/6"/>
             </div>
             <ConfirmationDialog/>
+            {contextData.isLoading && <LoadingSheet/>}
         </div>
 
     </div>

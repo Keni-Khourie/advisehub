@@ -11,9 +11,14 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import WhiteButton from "@/customUI/WhiteButton";
 import BlueButton from "@/customUI/BlueButton";
-
+import {useAddAdvisorAvailabilityMutation, useDeleteAdvisorAvailabilityMutation} from "@/redux/features/main/availabilityApiSlice"
+import { toast } from "sonner";
+import { queryErrorResponse } from "@/lib/utilityComponents";
 //this is where you include the logic to delete or add selected existing meeting Object by sending it to the backend
 const ConfirmationDialog = () => {
+  const[addAvailability] = useAddAdvisorAvailabilityMutation()
+  const [deleteAvailability] = useDeleteAdvisorAvailabilityMutation()
+ 
   const contextData = useContext(AdvisorAvailabilityContext);
 
   const handleCancel = () => {
@@ -23,16 +28,42 @@ const ConfirmationDialog = () => {
   const handleSubmit = () => {
     if (contextData.pageData.dialogType === "add") {
       if (!contextData.availabilityData.combinedDateTime) return;
-      console.log(contextData.availabilityData.combinedDateTime);
-      console.log(contextData.availabilityData.combinedDateTime, "added+");
+      toast.promise(
+        addAvailability({dateTime:contextData.availabilityData.combinedDateTime}).unwrap().then((resp)=>{
+          console.log(resp)
+          contextData.setPageData({...contextData.pageData, isLoading:true})
+          contextData.setRefetchData(true)
+          
+        }), {
+          loading:"Adding availability",
+          success:"availability Added",
+          error:queryErrorResponse
+        }
+      )
       //console.log(`${format(contextData.availabilityData.combinedDateTime, "h:mm a, dd MMM yyyy")} Added`);
-      contextData.setDialogOpen(false);
+      
+      contextData.setDialogOpen(false)
+      contextData.setIsLoading(true)
     }
     if (contextData.pageData.dialogType === "delete") {
       if (!contextData.pageData.selectedExistingAvailability) return;
-      console.log(contextData.pageData.selectedExistingAvailability.id);
-      console.log(`${format(contextData.pageData.selectedExistingAvailability.availability, "h:mm a, dd MMM yyyy")} deleted`);
-      contextData.setDialogOpen(false);
+      toast.promise(
+        deleteAvailability(contextData.pageData.selectedExistingAvailability.id).unwrap().then((resp)=>{
+          console.log(resp)
+          
+          contextData.setRefetchData(true)
+          
+        }), {
+          loading:"Adding availability",
+          success:"availability Added",
+          error:queryErrorResponse
+        }
+      )
+
+      // console.log(contextData.pageData.selectedExistingAvailability.id);
+      // console.log(`${format(contextData.pageData.selectedExistingAvailability.availability, "h:mm a, dd MMM yyyy")} deleted`);
+      contextData.setDialogOpen(false)
+      contextData.setIsLoading(true)
     }
   };
 
@@ -59,8 +90,7 @@ const ConfirmationDialog = () => {
                     )
                   : contextData.pageData.dialogType === "delete"
                     ? format(
-                        contextData.pageData.selectedExistingAvailability!
-                          .availability!,
+                        contextData.pageData.selectedExistingAvailability!.dateTime,
                         "h:mm a •  MMM dd yyyy",
                       )
                     : ""}

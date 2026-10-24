@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import {createAdvisorAvailabilitySchema, availabilityDateFilterSchema} from "@/validators/api/availabilityApiValidators"
+import { addDays, parseISO, format } from "date-fns";
+import { fromZonedTime } from "date-fns-tz";
 
 
 // TO CREATE AN ADVISOR
@@ -176,35 +178,55 @@ export async function GET(request: NextRequest) {
     }
 
     // 2. Get and validate the date query parameter
-    const dateParam = request.nextUrl.searchParams.get("date");
+    // const dateParam = request.nextUrl.searchParams.get("date");
 
-    if (!dateParam) {
-      return NextResponse.json(
-        { message: "The date query parameter is required." },
-        { status: 400 }
-      );
-    }
+    // if (!dateParam) {
+    //   return NextResponse.json(
+    //     { message: "The date query parameter is required." },
+    //     { status: 400 }
+    //   );
+    // }
 
-    const validation = availabilityDateFilterSchema.safeParse(dateParam);
+    // const validation = availabilityDateFilterSchema.safeParse(dateParam);
 
-    if (!validation.success) {
-      return NextResponse.json(
-        {
-          message:
-            "Invalid date. Provide an ISO date-time string, including a timezone.",
-        },
-        { status: 400 }
-      );
-    }
+    // if (!validation.success) {
+    //   return NextResponse.json(
+    //     {
+    //       message:
+    //         "Invalid date. Provide an ISO date-time string, including a timezone.",
+    //     },
+    //     { status: 400 }
+    //   );
+    // }
 
-    // 3. Determine the UTC calendar-day boundaries
-    const requestedDate = new Date(validation.data);
+    // // 3. Determine the UTC calendar-day boundaries
+    // const requestedDate = new Date(validation.data);
 
-    const startOfDay = new Date(requestedDate);
-    startOfDay.setUTCHours(0, 0, 0, 0);
+    // const startOfDay = new Date(requestedDate);
+    // startOfDay.setUTCHours(0, 0, 0, 0);
 
-    const startOfNextDay = new Date(startOfDay);
-    startOfNextDay.setUTCDate(startOfNextDay.getUTCDate() + 1);
+    // const startOfNextDay = new Date(startOfDay);
+    // startOfNextDay.setUTCDate(startOfNextDay.getUTCDate() + 1);
+    const date = request.nextUrl.searchParams.get("date");
+
+if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+  return NextResponse.json([]);
+}
+
+const selectedDate = parseISO(date);
+const nextDate = addDays(selectedDate, 1);
+
+const startOfDay = fromZonedTime(
+  `${date}T00:00:00`,
+  "Africa/Lagos"
+);
+
+const startOfNextDay = fromZonedTime(
+  `${format(nextDate, "yyyy-MM-dd")}T00:00:00`,
+  "Africa/Lagos"
+);
+
+    
 
     // 4. Find the advisor associated with the session
     const user = await prisma.user.findUnique({
@@ -262,7 +284,7 @@ export async function GET(request: NextRequest) {
     // 6. Format the response
     const formattedAvailabilities = availabilities.map(
       (availability) => ({
-        id: String(availability.id),
+        id: availability.id,
         dateTime: availability.date.toISOString(),
         advisorId: user.advisor!.advisorId,
         hasAppointment: availability.appointments.length > 0,
