@@ -1,4 +1,3 @@
-//ROUTE: /api/students/[studentId]
 
 import { NextRequest, NextResponse } from "next/server";
 
@@ -27,6 +26,7 @@ export async function GET(
         studentId,
       },
       select: {
+        id: true,
         userId: true,
         studentId: true,
         firstName: true,
@@ -34,6 +34,11 @@ export async function GET(
         enrollmentDate: true,
         expectedGraduationDate: true,
         completedCredits: true,
+        user: {
+          select: {
+            image: true,
+          },
+        },
         degree: {
           select: {
             degreeName: true,
@@ -60,8 +65,37 @@ export async function GET(
 
     const degreePercentCompletion =
       requiredCredits > 0
-        ? Math.round((completedCredits / requiredCredits) * 100)
+        ? Math.min(
+            100,
+            Math.max(
+              0,
+              Math.round((completedCredits / requiredCredits) * 100),
+            ),
+          )
         : 0;
+
+    const remainingCredits = Math.max(
+      0,
+      requiredCredits - completedCredits,
+    );
+
+    // Find the nearest future scheduled appointment for this student.
+    const nextAppointment = await prisma.appointment.findFirst({
+      where: {
+        studentId: student.id,
+        date: {
+          gt: new Date(),
+        },
+        status: "SCHEDULED",
+      },
+      orderBy: {
+        date: "asc",
+      },
+      select: {
+        id: true,
+        date:true
+      },
+    });
 
     const result = {
       id: student.userId,
@@ -73,8 +107,10 @@ export async function GET(
         student.expectedGraduationDate.toISOString(),
       degreePercentCompletion,
       completedCredits,
-      remainingCredits: requiredCredits - completedCredits,
+      remainingCredits,
       requiredCredits,
+      nextAppointment: nextAppointment?.date ?? "",
+      studentProfileImage: student.user.image ?? "",
     };
 
     return NextResponse.json(result, { status: 200 });

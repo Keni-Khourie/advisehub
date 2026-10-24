@@ -38,6 +38,8 @@ export interface StudentSearchResponseData{
         completedCredits:number;
         remainingCredits:number;
         requiredCredits:number;
+        nextAppointment:string;
+        studentProfileImage:string;
 }
 interface StudentSearchQueryParams{
     search?:string|undefined
@@ -69,7 +71,8 @@ const studentApiSlice = ApiSlice.injectEndpoints({
                 method:"GET",
             }),
             providesTags:(data)=>data?["Students", {type:"Students", id:data.id}]:[]
-        })
+        }),
+        
         
     })
 })
