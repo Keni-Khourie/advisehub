@@ -86,8 +86,9 @@ export async function GET(
     });
 
     if (user?.role !== "STUDENT" || !user.student) {
+      console.log(`role: ${user?.role}`);
       return NextResponse.json(
-        { message: "Only students can view advisor availability." },
+        { message: `Only students can view advisor availability. your role is${user?.role}` },
         { status: 403 }
       );
     }
