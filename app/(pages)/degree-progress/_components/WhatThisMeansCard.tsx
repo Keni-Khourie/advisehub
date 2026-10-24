@@ -7,15 +7,19 @@ import {
 import GreenCheckOption from "@/customUI/GreenCheckOption";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-
-interface Props {
-  completedCredits: number;
-  remainingCredits: number;
+import { DegreeInfo} from "@/redux/features/main/degreeApiSlice"
+import {Skeleton} from "@/components/ui/skeleton"
+import {generateArray} from "@/lib/utilityFunctions"
+import FetchErrorMessage from "@/customUI/FetchErrorMessage"
+interface Props{
+    data:DegreeInfo|undefined
+    isLoading:boolean;
+    isError:boolean
 }
-const WhatThisMeansCard = ({ completedCredits, remainingCredits }: Props) => {
+const WhatThisMeansCard = ({data, isLoading, isError}: Props) => {
   const bulletPoints: string[] = [
-    `You have completed ${completedCredits} credits.`,
-    `${remainingCredits} credits remain before the ${completedCredits + remainingCredits}-credit total.`,
+    `You have completed ${data? data.completedCredits:"-"} credits.`,
+    `${data? data.remainingCredits:"-"} credits remain before the ${data?data.requiredCredits:"-"}-credit total.`,
     `Use advising to plan the remaining credits.`,
   ];
   return (
@@ -25,7 +29,9 @@ const WhatThisMeansCard = ({ completedCredits, remainingCredits }: Props) => {
       </CardHeader>
       <CardContent className="w-full flex">
         <div className=" w-full flex flex-col gap-y-2 justify-center z-10">
-          {bulletPoints.map((point, index) => (
+          {isLoading && generateArray(3).map((item)=><Skeleton key={item} className="w-full h-5"/>)}
+          {isError && <FetchErrorMessage/>}
+          {data && bulletPoints.map((point, index) => (
             <GreenCheckOption key={index} text={point} />
           ))}
         </div>

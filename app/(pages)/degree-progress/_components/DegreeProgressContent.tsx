@@ -2,19 +2,18 @@
 import DegreeProgressCard from "./DegreeProgressCard";
 import RecommendedNextStepsCard from "./RecommendedNextStepsCard";
 import WhatThisMeansCard from "./WhatThisMeansCard";
+import {useGetStudentDegreeQuery} from "@/redux/features/main/degreeApiSlice"
 
 const DegreeProgressContent = () => {
-    //fetch students Degree info. This info should contain required credits
-    const dummyDegreeInfo = {
-        creditsEarned :94,
-        creditsRemaining:26,
-        degreeCompletion:78
-    }
+    
+    const {data:degreeInfo, isLoading, isError} = useGetStudentDegreeQuery()
   return (
     <div className="w-full flex flex-col gap-y-8">
-        <DegreeProgressCard completedCredits={dummyDegreeInfo.creditsEarned} remainingCredits={dummyDegreeInfo.creditsRemaining} percentComplete={dummyDegreeInfo.degreeCompletion}/>
+        <DegreeProgressCard 
+        data={degreeInfo} isLoading={isLoading} isError={isError}
+        />
         <div className="w-full flex gap-x-5">
-          <WhatThisMeansCard completedCredits={dummyDegreeInfo.creditsEarned} remainingCredits={dummyDegreeInfo.creditsRemaining}/>
+          <WhatThisMeansCard data={degreeInfo} isLoading={isLoading} isError={isError} />
           <RecommendedNextStepsCard/>
         </div>
       </div>
