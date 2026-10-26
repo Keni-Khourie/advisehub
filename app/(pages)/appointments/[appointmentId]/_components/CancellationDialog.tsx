@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { format } from "date-fns";
+import { format} from "date-fns";
 import { cn } from "@/lib/utils";
 import WhiteButton from "@/customUI/WhiteButton";
 import BlueButton from "@/customUI/BlueButton";

@@ -31,7 +31,7 @@ const AppointmentTimePlaceCard = ({isLoading, isError, cardData}:Props) => {
         <CardTitle className="font-semibold">Appointment</CardTitle>
         <CardDescription className="">
           {isLoading && <Skeleton className=" h-10 w-full"/>}
-            {cardData && <p className="flex items-center">{`${isSameDay(today, cardData.date)?"Today":format(cardData.date, "dd MMM yyyy" )}•${format(cardData.date, "h:mm")}`}</p>}
+            {cardData && <p className="flex items-center">{`${isSameDay(today, cardData.date)?"Today":format(cardData.date, "dd MMM yyyy" )}•${format(cardData.date, "h:mm a")}`}</p>}
         </CardDescription>
       </CardHeader>
       <CardContent className="">

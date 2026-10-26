@@ -25,7 +25,7 @@ const StudentAppointmentContent = ({appointmentId}:Props) => {
             <AppointmentTimeNotesCard isLoading={isLoading} isError={isError} cardData={appointment?{date:appointment.date, office:appointment.advisorOffice, status:appointment.appointmentStatus, note:appointment.note}:undefined}/>
         </div>
         <div className="w-full">
-            <PrepareForMeetingCard isLoading={isLoading} isError={isError} cardData={appointment?{appointmentId:appointment.id, advisorId:appointment.advisorId, appointmentStatus:appointment.appointmentStatus}:undefined} setDialogOpen={setDialogOpen}/>
+            <PrepareForMeetingCard isLoading={isLoading} isError={isError} cardData={appointment?{appointmentId:appointment.id, advisorId:appointment.advisorId, appointmentStatus:appointment.appointmentStatus, appointmentDate:appointment.date}:undefined} setDialogOpen={setDialogOpen}/>
         </div>
         {appointment && <CancellationDialog dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} appointmentId={appointment.id} studentName={appointment.studentFullName} advisorName={appointment.advisorFullName} appointmentDate={appointment.date} setLoadingActive={setLoadingActive} type="studentCancel"/>}
         {loadingActive && <LoadingSheet/>}

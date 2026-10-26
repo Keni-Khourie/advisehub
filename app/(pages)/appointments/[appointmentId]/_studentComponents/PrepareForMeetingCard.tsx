@@ -16,6 +16,7 @@ import {generateArray} from "@/lib/utilityFunctions"
 import { useMediaQuery } from "react-responsive"
 import {AppointmentStatus} from "@/types/types"
 import { Dispatch, SetStateAction } from "react"
+import {isAfter} from "date-fns"
 interface Props{
   isLoading:boolean;
   isError:boolean;
@@ -24,6 +25,7 @@ interface Props{
     appointmentId:number;
     advisorId:string;
     appointmentStatus:AppointmentStatus
+    appointmentDate:string
   }|undefined
 }
 
@@ -31,6 +33,8 @@ const PrepareForMeetingCard = ({isLoading, isError, cardData, setDialogOpen}:Pro
     const isPortrait = useMediaQuery({
     query: "(orientation: portrait)",
   });
+  const now = new Date()
+ 
   return (
    <Card className={cn("bg-white rounded-lg")}>
       <CardHeader className="">
@@ -54,7 +58,7 @@ const PrepareForMeetingCard = ({isLoading, isError, cardData, setDialogOpen}:Pro
             <Link href={`/advising-notes`} className={cn("md:w-2/3 w-full", isPortrait &&"sm:w-1/3 md:w-full")}>
               <Button className="w-full h-10 cursor-pointer rounded-lg text-center font-semibold text-white bg-ahDeepBlue hover:bg-ahHoverDeepBlue">View Notes</Button>
             </Link>
-            <div className={cn("md:w-2/3 w-full", isPortrait &&"sm:w-1/3 md:w-full", cardData.appointmentStatus=="CANCELLED"&&"hidden", cardData.appointmentStatus=="COMPLETED" &&"hidden")}>
+            <div className={cn("md:w-2/3 w-full", isPortrait &&"sm:w-1/3 md:w-full", cardData.appointmentStatus=="CANCELLED"&&"hidden", cardData.appointmentStatus=="COMPLETED" &&"hidden", isAfter(now, new Date(cardData.appointmentDate))&&"hidden" )}>
               <Button className=" w-full h-10 cursor-pointer rounded-lg text-center font-semibold text-white bg-red-400 hover:bg-red-500" onClick={()=>setDialogOpen(true)}>Cancel Appointment</Button>
             </div>
         </div>}
