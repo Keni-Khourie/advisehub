@@ -55,9 +55,9 @@ const PrepareForMeetingCard = ({isLoading, isError, cardData}:Props) => {
             <Link href={`/advising-notes/student/${cardData.studentId}/create`} className={cn("md:w-2/3 w-full", isPortrait &&"sm:w-1/3 md:w-full")}>
               <Button className="w-full h-10 cursor-pointer rounded-lg text-center font-semibold text-white bg-ahDeepBlue hover:bg-ahHoverDeepBlue">Create Note</Button>
             </Link>
-            <Link href={``} className={cn("md:w-2/3 w-full", isPortrait &&"sm:w-1/3 md:w-full", cardData.appointmentStatus=="CANCELLED"&&"hidden", cardData.appointmentStatus=="COMPLETED" &&"hidden")}>
+            <div className={cn("md:w-2/3 w-full", isPortrait &&"sm:w-1/3 md:w-full", cardData.appointmentStatus=="CANCELLED"&&"hidden", cardData.appointmentStatus=="COMPLETED" &&"hidden")}>
               <Button className="w-full h-10 cursor-pointer rounded-lg text-center font-semibold text-white bg-red-400 hover:bg-red-500">Cancel Appointment</Button>
-            </Link>
+            </div>
         </div>}
       </CardContent>
     </Card>

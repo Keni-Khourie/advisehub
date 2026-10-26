@@ -8,7 +8,7 @@ import AdvisorAppointmentContent from './AdvisorAppointmentContent';
 
 const AdvisorAppointmentDetails = ({appointmentId}:Props) => {
   
-  console.log(appointmentId);
+  
   return (
     <div>
       <PageHeader headerText="Appointment Details" additionalClass=""/>

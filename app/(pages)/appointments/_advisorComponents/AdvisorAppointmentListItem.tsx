@@ -87,7 +87,7 @@ const AdvisorAppointmentListItem = ({ type, data, isLoading }: Props) => {
             )}
             disabled={isLoading}
           >
-            View Summary
+            View Details
           </Button>
         </Link>
       </div>

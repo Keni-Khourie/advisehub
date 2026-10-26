@@ -15,7 +15,7 @@ import FetchErrorMessage from "@/customUI/FetchErrorMessage"
 interface Props{
   isLoading:boolean;
   isError:boolean;
-  studentInfo:{
+  cardData:{
     studentName:string;
     studentDegree:string;
     studentId:string;
@@ -25,25 +25,25 @@ interface Props{
   }|undefined
 }
 
-const StudentDetailsCard = ({isLoading, isError, studentInfo}:Props) => {
+const StudentDetailsCard = ({isLoading, isError, cardData}:Props) => {
   return (
      <Card className={cn("border rounded-lg bg-white w-full md:w-2/3 pb-10")}>
      {isLoading && <Skeleton className="h-12 w-3/4"/>}
-     {studentInfo && <CardHeader className="">
-        <CardTitle className="font-semibold">{studentInfo.studentName}</CardTitle>
-        <CardDescription className="">{studentInfo.studentDegree}</CardDescription>
+     {cardData && <CardHeader className="">
+        <CardTitle className="font-semibold">{cardData.studentName}</CardTitle>
+        <CardDescription className="">{cardData.studentDegree}</CardDescription>
       </CardHeader>}
       <CardContent className="">
-        {isError && !studentInfo && (<div className="flex flex-col w-full h-full justify-center items-center font-thin text-center text-sm text-ahTextGrey"><FetchErrorMessage/></div>)}
+        {isError && !cardData && (<div className="flex flex-col w-full h-full justify-center items-center font-thin text-center text-sm text-ahTextGrey"><FetchErrorMessage/></div>)}
         {isLoading && (<div className="flex items-center gap-x-3">
           <Skeleton className="h-15 w-15 rounded-full"/>
           <Skeleton className="h-15 w-3/4"/>
         </div>)}
-       {studentInfo && <div className="flex items-center gap-x-3">
-          <CardAvatar fullName={studentInfo.studentName} additionalStyle="w-15 h-15" imageUrl={studentInfo.studentProfileImage}/>
+       {cardData && <div className="flex items-center gap-x-3">
+          <CardAvatar fullName={cardData.studentName} additionalStyle="w-15 h-15" imageUrl={cardData.studentProfileImage}/>
             <div>
-                <p className="text-thin text-ahTextGrey">{`Student ID ${studentInfo.studentId.split("").toSpliced(0, 4, "*", "*", "*", "*").join("")}`}</p>
-                <Badge className="text-ahGreen px-3 py-1 bg-ahGrey rounded-sm">{studentInfo.advisorSpecialization}</Badge>
+                <p className="text-thin text-ahTextGrey">{`Student ID ${cardData.studentId.split("").toSpliced(0, 4, "*", "*", "*", "*").join("")}`}</p>
+                <Badge className="text-ahGreen px-3 py-1 bg-ahGrey rounded-sm">{cardData.advisorSpecialization}</Badge>
             </div>
         </div>}
       </CardContent>

@@ -1,14 +1,15 @@
 "use client"
 import PageHeader from '@/customUI/PageHeader';
+import StudentAppointmentContent from "./StudentAppointmentContent"
 interface Props{
   appointmentId:number
 }
 const StudentAppointmentDetails = ({appointmentId}:Props) => {
-  console.log(appointmentId);
+  
   return (
     <div>
       <PageHeader headerText="Appointment Details" additionalClass=""/>
-     
+     <StudentAppointmentContent appointmentId={appointmentId}/>
     </div>
   )
 }
