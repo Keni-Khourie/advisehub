@@ -15,6 +15,7 @@ import {useAddAdvisorAvailabilityMutation, useDeleteAdvisorAvailabilityMutation}
 import { toast } from "sonner";
 import { queryErrorResponse } from "@/lib/utilityComponents";
 import {CreateAdvisorAvailabilityData} from "@/validators/api/availabilityApiValidators"
+import {  customToast } from "@/lib/utilityComponents";
 
 //this is where you include the logic to delete or add selected existing meeting Object by sending it to the backend
 const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -38,11 +39,15 @@ const ConfirmationDialog = () => {
       }
       toast.promise(
         addAvailability(createAvailabilityBody).unwrap().then((resp)=>{
-          console.log(resp)
+          if(resp.id){
+            customToast("Availability Added", "success")
+          }
           // contextData.setIsLoading(true)
           contextData.setRefetchData(true)
           //contextData.setDialogOpen(false)
           
+        }).catch((resp)=>{
+          customToast(resp.message, "error")
         }), {
           loading:"Adding availability",
           success:"availability Added",
@@ -59,6 +64,9 @@ const ConfirmationDialog = () => {
       toast.promise(
         deleteAvailability(contextData.pageData.selectedExistingAvailability.id).unwrap().then((resp)=>{
           console.log(resp)
+          if(resp.id){
+            customToast("Availability Deleted", "success")
+          }
            //contextData.setIsLoading(true)
           contextData.setRefetchData(true)
           contextData.setDialogOpen(false)

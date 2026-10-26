@@ -11,6 +11,10 @@ import { cn } from "@/lib/utils";
 import WhiteButton from "@/customUI/WhiteButton";
 import BlueButton from "@/customUI/BlueButton";
 import {useRouter} from "next/navigation"
+import {useCancelAppointmentMutation} from "@/redux/features/main/appointmentApiSlice"
+import { toast } from "sonner";
+import { queryErrorResponse } from "@/lib/utilityComponents";
+import {  customToast } from "@/lib/utilityComponents";
 interface Props{
     dialogOpen:boolean;
     setDialogOpen:Dispatch<SetStateAction<boolean>>;
@@ -25,13 +29,28 @@ interface Props{
 
 const CancellationDialog = ({dialogOpen, setDialogOpen, appointmentDate, type, studentName, advisorName, appointmentId, setLoadingActive}:Props) => {
     const router = useRouter()
+    const [cancelAppointment] =useCancelAppointmentMutation()
     const handleCancel = ()=>{
         setDialogOpen(false)
     }
     const handleSubmit = ()=>{ 
+      toast.promise(cancelAppointment(appointmentId).unwrap().then((resp)=>{
+        console.log(resp)
+        if(resp.id){
+          setLoadingActive(false)
+          customToast("Appointment cancelled", "success")
+          router.push("/appointments")
+        }
+      }).catch((resp)=>{
+          customToast(resp.message, "error")
+        }),{
+          loading:"Cancelling Appointment",
+          success:"Appointment cancelled",
+          error:queryErrorResponse
+        })
         setDialogOpen(false)
         setLoadingActive(true)
-        router.push("/appointments")
+       
     }
   return (
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>

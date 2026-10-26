@@ -231,3 +231,171 @@ export async function GET(
     );
   }
 }
+
+
+export async function PATCH(
+  _request: NextRequest,
+  { params }: RouteContext
+) {
+  try {
+    // 1. Authenticate the user
+    const session = await auth();
+
+    if (!session?.user?.id) {
+      return NextResponse.json(
+        { message: "Unauthenticated." },
+        { status: 401 }
+      );
+    }
+
+    const userId = Number(session.user.id);
+
+    if (!Number.isInteger(userId) || userId <= 0) {
+      return NextResponse.json(
+        { message: "Invalid session." },
+        { status: 401 }
+      );
+    }
+
+    // 2. Validate the appointment ID
+    const { appointmentId: rawAppointmentId } = await params;
+    const parsedId = appointmentIdSchema.safeParse(rawAppointmentId);
+
+    if (!parsedId.success) {
+      return NextResponse.json(
+        { message: "Invalid appointment ID." },
+        { status: 400 }
+      );
+    }
+
+    const appointmentId = parsedId.data;
+
+    // 3. Retrieve the user's role and profile IDs
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        role: true,
+        student: {
+          select: { id: true },
+        },
+        advisor: {
+          select: { id: true },
+        },
+      },
+    });
+
+    if (!user) {
+      return NextResponse.json(
+        { message: "User not found." },
+        { status: 404 }
+      );
+    }
+
+    if (user.role !== "STUDENT" && user.role !== "ADVISOR") {
+      return NextResponse.json(
+        { message: "Only students and advisors can cancel appointments." },
+        { status: 403 }
+      );
+    }
+
+    if (
+      (user.role === "STUDENT" && !user.student) ||
+      (user.role === "ADVISOR" && !user.advisor)
+    ) {
+      return NextResponse.json(
+        { message: "Your account profile has not been configured." },
+        { status: 403 }
+      );
+    }
+
+    // 4. Build an ownership condition from the authenticated profile
+    const ownershipFilter =
+      user.role === "STUDENT"
+        ? { studentId: user.student!.id }
+        : { advisorId: user.advisor!.id };
+
+    // 5. Cancel the appointment atomically
+    const result = await prisma.$transaction(async (tx) => {
+      const appointment = await tx.appointment.findFirst({
+        where: {
+          id: appointmentId,
+          ...ownershipFilter,
+        },
+        select: {
+          id: true,
+          status: true,
+        },
+      });
+
+      if (!appointment) {
+        return { type: "NOT_FOUND" as const };
+      }
+
+      if (appointment.status !== "SCHEDULED") {
+        return {
+          type: "NOT_SCHEDULED" as const,
+          status: appointment.status,
+        };
+      }
+
+      // Only one concurrent request can successfully cancel
+      // an appointment that is still SCHEDULED.
+      const update = await tx.appointment.updateMany({
+        where: {
+          id: appointmentId,
+          ...ownershipFilter,
+          status: "SCHEDULED",
+        },
+        data: {
+          status: "CANCELLED",
+          // Release the associated availability slot so it can
+          // become available for another appointment.
+          availabilityId: null,
+        },
+      });
+
+      if (update.count === 0) {
+        return { type: "NOT_SCHEDULED" as const };
+      }
+
+      return {
+        type: "CANCELLED" as const,
+        id: appointment.id,
+      };
+    });
+
+    if (result.type === "NOT_FOUND") {
+      return NextResponse.json(
+        { message: "Appointment not found." },
+        { status: 404 }
+      );
+    }
+
+    if (result.type === "NOT_SCHEDULED") {
+      return NextResponse.json(
+        {
+          message:
+            "Only scheduled appointments can be cancelled. This appointment may already be cancelled or completed.",
+        },
+        { status: 409 }
+      );
+    }
+
+    return NextResponse.json(
+      {
+        message: "Appointment cancelled successfully.",
+        id: result.id,
+        appointmentStatus: "CANCELLED",
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("PATCH cancel appointment error:", error);
+
+    return NextResponse.json(
+      { message: "An unexpected error occurred." },
+      { status: 500 }
+    );
+  }
+}
+

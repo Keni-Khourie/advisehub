@@ -28,11 +28,14 @@ interface Props{
 const StudentDetailsCard = ({isLoading, isError, cardData}:Props) => {
   return (
      <Card className={cn("border rounded-lg bg-white w-full md:w-2/3 pb-10")}>
-     {isLoading && <Skeleton className="h-12 w-3/4"/>}
-     {cardData && <CardHeader className="">
-        <CardTitle className="font-semibold">{cardData.studentName}</CardTitle>
+     
+      <CardHeader className="">
+        {isLoading && <Skeleton className="h-12 w-3/4"/>}
+       {cardData && <><CardTitle className="font-semibold">{cardData.studentName}</CardTitle>
         <CardDescription className="">{cardData.studentDegree}</CardDescription>
-      </CardHeader>}
+        </>}
+        
+      </CardHeader>
       <CardContent className="">
         {isError && !cardData && (<div className="flex flex-col w-full h-full justify-center items-center font-thin text-center text-sm text-ahTextGrey"><FetchErrorMessage/></div>)}
         {isLoading && (<div className="flex items-center gap-x-3">

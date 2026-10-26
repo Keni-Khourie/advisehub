@@ -47,7 +47,7 @@ const PrepareForMeetingCard = ({isLoading, isError, cardData, setDialogOpen}:Pro
         <FetchErrorMessage/></div>)}
         {isLoading && (
           <div className="w-full md:w-1/3 flex md:flex-col md:gap-y-6 items-center flex-wrap md:flex-nowrap  md:items-end">
-            {generateArray(3).map((item)=><Skeleton key={item} className="w-2/3 h-10"/>)}
+            {generateArray(2).map((item)=><Skeleton key={item} className="w-2/3 h-10"/>)}
           </div>
         )}
        {cardData && <div className={cn("w-full md:w-1/3 flex md:flex-col gap-y-3 md:gap-y-6 md:items-end items-center gap-x-4 md:flex-nowrap flex-wrap", isPortrait &&"sm:gap-y-3 sm:gap-x-0 ")}>
@@ -58,7 +58,7 @@ const PrepareForMeetingCard = ({isLoading, isError, cardData, setDialogOpen}:Pro
               <Button className="w-full h-10 cursor-pointer rounded-lg text-center font-semibold text-white bg-ahDeepBlue hover:bg-ahHoverDeepBlue">Create Note</Button>
             </Link>
             <div className={cn("md:w-2/3 w-full", isPortrait &&"sm:w-1/3 md:w-full", cardData.appointmentStatus=="CANCELLED"&&"hidden", cardData.appointmentStatus=="COMPLETED" &&"hidden")}>
-              <Button className="w-full h-10 cursor-pointer rounded-lg text-center font-semibold text-white bg-red-400 hover:bg-red-500" onClick={()=>setDialogOpen(true)} >Cancel Appointment</Button>
+              <Button className="hidden w-full h-10 cursor-pointer rounded-lg text-center font-semibold text-white bg-red-400 hover:bg-red-500" onClick={()=>setDialogOpen(true)} >Cancel Appointment</Button>
             </div>
         </div>}
       </CardContent>

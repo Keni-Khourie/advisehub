@@ -67,6 +67,11 @@ interface AppointmentFilter {
   period: "today" | "previous" | "upcoming";
   timeZone: string;
 }
+interface AppointmentCancellationResponse {
+   message: string;
+  id: number;
+  appointmentStatus: "CANCELLED",
+}
 
 const appointmentApiSlice = ApiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -115,9 +120,15 @@ const appointmentApiSlice = ApiSlice.injectEndpoints({
             method:"GET",
             params: new URLSearchParams({timeZone})
         })
+    }),
+    cancelAppointment:builder.mutation<AppointmentCancellationResponse, number>({
+      query:(appointmentId)=>({
+        url:`/appointments/${appointmentId}`,
+        method:"GET",
+      })
     })
   }),
 });
 
-export const { useCreateAppointmentMutation, useGetAdvisorAppointmentsQuery, useGetStudentAppointmentsQuery, useGetAppointmentByIdQuery } = appointmentApiSlice;
+export const { useCreateAppointmentMutation, useGetAdvisorAppointmentsQuery, useGetStudentAppointmentsQuery, useGetAppointmentByIdQuery, useCancelAppointmentMutation } = appointmentApiSlice;
 export default appointmentApiSlice.reducer;

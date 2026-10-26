@@ -27,11 +27,13 @@ interface Props{
 const AdvisorDetailsCard = ({isLoading, isError, cardData}:Props) => {
   return (
      <Card className={cn("border rounded-lg bg-white w-full md:w-2/3 pb-10")}>
-     {isLoading && <Skeleton className="h-12 w-3/4"/>}
-     {cardData && <CardHeader className="">
+     
+      <CardHeader className="">
+      {isLoading && <Skeleton className="h-12 w-3/4"/>}
+      {cardData && <>
         <CardTitle className="font-semibold">{`${cardData.advisorTitle} ${cardData.advisorName}`}</CardTitle>
-        <CardDescription className="">{cardData.advisorEmail}</CardDescription>
-      </CardHeader>}
+        <CardDescription className="">{cardData.advisorEmail}</CardDescription></>}
+      </CardHeader>
       <CardContent className="">
         {isError && !cardData && (<div className="flex flex-col w-full h-full justify-center items-center font-thin text-center text-sm text-ahTextGrey"><FetchErrorMessage/></div>)}
         {isLoading && (<div className="flex items-center gap-x-3">
