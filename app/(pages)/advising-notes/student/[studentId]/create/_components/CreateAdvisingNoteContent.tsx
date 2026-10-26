@@ -3,12 +3,15 @@
 import PageHeader from "@/customUI/PageHeader";
 import {useGetStudentByStudentIdQuery} from "@/redux/features/main/studentApiSlice"
 import CreateStudentAdvisingNoteForm from "./CreateStudentAdvisingNoteForm";
-
+const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 interface Props{
     studentId:number
 }
 const CreateAdvisingNoteContent = ({studentId}:Props) => {
-  const {data:student, isLoading, isError} = useGetStudentByStudentIdQuery(studentId)
+  const {data:student, isLoading, isError} = useGetStudentByStudentIdQuery({
+    studentId:studentId,
+    timeZone:timeZone,
+  })
     
     
   return (
