@@ -51,6 +51,7 @@ export interface AppointmentData {
   studentFullName: string;
   studentDegree: string;
   studentProfileImage: string;
+  studentEmail:string;
   date: string;
   note:string;
   appointmentStatus: AppointmentStatus;
@@ -60,6 +61,7 @@ export interface AppointmentData {
   advisorSpecialization: AdvisorSpecialization;
   advisorOffice: string;
   advisorProfileImage: string;
+  advisorEmail:string;
 }
 interface AppointmentFilter {
   period: "today" | "previous" | "upcoming";

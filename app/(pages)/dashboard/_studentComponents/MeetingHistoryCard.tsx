@@ -22,7 +22,7 @@ const MeetingHistoryCard = ({data, isLoading, isError}:Props) => {
       <CardContent className="flex h-full pb-6 content-center">
         <div className="flex flex-col justify-center items-start">
           {isLoading && <Skeleton className="w-5 h-8"/>}
-          {isError &&<p className="font-semibold text-xl">{`- past meetings`}</p>}
+          {isError && !data &&<p className="font-semibold text-xl">{`- past meetings`}</p>}
             {data!==undefined &&<p className="font-semibold text-xl">{`${data} past meetings`}</p>}
             <Link href="#">
             <p className="font-thin text-ahTextGrey text-sm hover:underline cursor-pointer">View Notes and Meeting Details</p></Link>

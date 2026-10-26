@@ -50,7 +50,7 @@ const AvailabilityTimes = () => {
         <p className="w-full text-center font-thin text-xs text-ahTextGrey">{`No available times for ${format(contextData.availabilityData.date, "iii dd MMM yyyy")}`}</p>
       )}
 
-      {isError && <FetchErrorMessage />}
+      {isError && !existingAvailabilities && <FetchErrorMessage />}
     </div>
   );
 };

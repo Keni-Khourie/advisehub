@@ -28,7 +28,7 @@ const StudentSearch = () => {
 
         <div className="flex flex-col gap-y-4 overflow-y-scroll md:h-[65vh] h-140">
            {isLoading && generateArray(5).map((item)=>(<Skeleton key={item} className="h-20 w-full"/>))  }
-           {isError && <FetchErrorMessage/>}
+           {isError &&!students && <FetchErrorMessage/>}
            
             {students && students.map((student, index)=><StudentCard key={index} studentData={student}/>)}
         </div>

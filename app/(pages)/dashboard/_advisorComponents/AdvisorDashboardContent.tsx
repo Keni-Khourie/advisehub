@@ -47,7 +47,7 @@ const AdvisorDashboardContent = () => {
                 generateArray(3).map((item) => (
                   <Skeleton key={item} className="w-full h-10" />
                 ))}
-              {isError && <FetchErrorMessage />}
+              {isError && !todaysAppointments && <FetchErrorMessage />}
               {todaysAppointments && todaysAppointments.length == 0 && (
                 <p className="font-thin text-sm text-ahTextGrey w-full text-center">
                   No appointments scheduled today

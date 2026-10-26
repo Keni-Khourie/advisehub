@@ -14,7 +14,7 @@ const DegreeProgressCard = ({data, isLoading, isError}:Props) => {
   return (
      <div className={cn("border border-ahBorderBlue rounded-lg bg-ahCardBlue py-6 px-5")}>
       {isLoading && <Skeleton className="w-full h-60"/>}
-      {isError && (
+      {isError && !data && (
         <div className="w-full flex justify-center">
           <FetchErrorMessage/>
         </div>

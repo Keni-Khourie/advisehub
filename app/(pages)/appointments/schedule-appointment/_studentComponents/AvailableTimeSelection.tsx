@@ -32,7 +32,7 @@ const AvailableTimeSelection = () => {
         generateArray(6).map((item) => (
           <Skeleton key={item} className="h-12 w-full" />
         ))}
-        {isError && <FetchErrorMessage />}
+        {isError && !availableTimes && <FetchErrorMessage />}
                 {availableTimes && availableTimes.map((time, index)=>(
                     <AvailableTimeItem key={index} data={time}/>
                 ))}

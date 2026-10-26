@@ -76,11 +76,7 @@ const AdvisorAppointmentListItem = ({ type, data, isLoading }: Props) => {
         )}
         <Link
           href={
-            type === "Upcoming"
-              ? `/students/${data.studentId}`
-              : type === "Past Meetings"
-                ? `/appointments/${data.id}`
-                : "#"
+            `/appointments/${data.id}`
           }
           className={cn(isLoading && "cursor-not-allowed")}
         >
@@ -91,11 +87,7 @@ const AdvisorAppointmentListItem = ({ type, data, isLoading }: Props) => {
             )}
             disabled={isLoading}
           >
-            {type === "Upcoming"
-              ? "Open Profile"
-              : type === "Past Meetings"
-                ? "View Summary"
-                : ""}
+            View Summary
           </Button>
         </Link>
       </div>

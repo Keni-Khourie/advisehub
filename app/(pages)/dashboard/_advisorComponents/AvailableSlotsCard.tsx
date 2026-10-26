@@ -20,7 +20,7 @@ const AvailableSlotsCard = ({slots, isLoading, isError}:Props) => {
          <div className="w-full h-full flex flex-col gap-y-6 z-10">
             <div className="flex items-center gap-x-3">
               {isLoading && <Skeleton className="h-5 w-5 rounded-full"/>}
-              {isError &&<p className="font-semibold text-3xl text-ahGreen">-</p>}
+              {isError && !slots &&<p className="font-semibold text-3xl text-ahGreen">-</p>}
             {slots &&<p className="font-semibold text-3xl text-ahGreen">{slots?slots:0}</p>}
             
             <p className="font-thin text-ahTextGrey text-nowrap"> Upcoming meetings</p>

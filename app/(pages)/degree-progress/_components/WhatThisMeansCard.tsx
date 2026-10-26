@@ -30,7 +30,7 @@ const WhatThisMeansCard = ({data, isLoading, isError}: Props) => {
       <CardContent className="w-full flex">
         <div className=" w-full flex flex-col gap-y-2 justify-center z-10">
           {isLoading && generateArray(3).map((item)=><Skeleton key={item} className="w-full h-5"/>)}
-          {isError && <FetchErrorMessage/>}
+          {isError && !data && <FetchErrorMessage/>}
           {data && bulletPoints.map((point, index) => (
             <GreenCheckOption key={index} text={point} />
           ))}

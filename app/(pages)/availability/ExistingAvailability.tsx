@@ -29,7 +29,7 @@ const ExistingAvailability = () => {
       <div className="md:h-[20vh] overflow-y-scroll flex flex-col gap-y-3 ">
         {isLoading && generateArray(6).map((item)=><Skeleton key={item} className="h-12"/>)}
         {existingAvailabilities&& existingAvailabilities.map((availability, index)=>  <ExistingAvailabilityItem key={index} existingAvailability={availability}/>)}
-        {isError && <FetchErrorMessage/>}
+        {isError && !existingAvailabilities && <FetchErrorMessage/>}
        
        
       </div>

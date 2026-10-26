@@ -75,7 +75,7 @@ console.log(advisors);
           </div>
         ))}
       </RadioGroup>}
-      {isError && <FetchErrorMessage/>}
+      {isError && !advisors && <FetchErrorMessage/>}
     </div>
   );
 };

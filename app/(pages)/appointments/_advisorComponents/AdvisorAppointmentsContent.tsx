@@ -52,7 +52,7 @@ const AdvisorAppointmentsContent = () => {
           generateArray(5).map((item) => (
             <Skeleton key={item} className="h-28 w-full" />
           ))}
-        {isError && <FetchErrorMessage />}
+        {isError && !appointments && <FetchErrorMessage />}
         {appointments &&
           appointments.map((meeting, index) => (
             <AdvisorAppointmentListItem

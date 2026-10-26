@@ -21,7 +21,7 @@ const NextAppointmentCard = ({data, isLoading, isError}:Props) => {
       <p className="font-semibold text-base">Next Appointment</p>
       <CardContent className="flex space-between items-start p-0">
         {isLoading && <Skeleton className="w-[90%] h-7"/>}
-        {isError && <FetchErrorMessage/>}
+        {isError && !data && <FetchErrorMessage/>}
         {data &&(<div className="flex flex-col gap-y-5  justify-center">
           <div>
              <p className="flex items-center text-xl font-bold text-ahTextBlack">{format(data.date, "iii, MMM dd • h:mm a")}</p>

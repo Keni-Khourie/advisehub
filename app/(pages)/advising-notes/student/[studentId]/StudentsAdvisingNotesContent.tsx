@@ -24,7 +24,7 @@ const StudentsAdvisingNotesContent = ({studentId}:Props) => {
   return (
     <div className="w-full">
         <PageHeader headerText="Advising Notes" subtitle="View student's advising notes" additionalClass="mb-10"/>
-        {!isError && (
+        {!isError && !student && (
             <div>
                 <p className="font-thin">Unable to get student details</p>
             </div>

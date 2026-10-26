@@ -22,7 +22,7 @@ const DegreeProgressCard = ({data, isLoading, isError}:Props) => {
         </CardHeader>
         <CardContent className="flex items-center w-full">
           {isLoading && <Skeleton className="h-12 w-10"/>}
-          {isError && <p className="text-xs font-thin text-ahTextGreen">Error getting degree info</p>}
+          {isError && !data && <p className="text-xs font-thin text-ahTextGreen">Error getting degree info</p>}
           {data &&(<div className="w-1/2 flex flex-col justify-center">
             
               <p className="text-ahTextBlack font-bold text-4xl mb-3">{`${data.degreeProgressPercent}%`}</p>

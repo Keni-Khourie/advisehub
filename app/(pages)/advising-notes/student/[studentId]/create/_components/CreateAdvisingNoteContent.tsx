@@ -22,7 +22,7 @@ const CreateAdvisingNoteContent = ({studentId}:Props) => {
                 <p className="font-thin text-sm text-ahTextGrey">{`${student.degree} • Student ID ${student.studentId.toString().split("").toSpliced(0, 4, "*", "*", "*", "*").join("")}`}</p>
                      </div>)}
                      {isLoading && <p className="text-base font-semibold">Loading student information...</p>}
-                     {!isError && <p className="text-base font-semibold">Student not found</p>}
+                     {!isError && !student && <p className="text-base font-semibold">Student not found</p>}
          </div>
          <CreateStudentAdvisingNoteForm studentId={studentId}/>
         

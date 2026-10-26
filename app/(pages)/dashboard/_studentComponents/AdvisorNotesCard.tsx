@@ -27,7 +27,7 @@ const AdvisorNotesCard = ({data, isLoading, isError}:Props) => {
         <div className="w-1/3">
             {data!==undefined && <p className="text-ahGreen font-bold text-2xl">{`${data} unread notes`}</p>}
             {isLoading && <Skeleton className="w-5 h-8"/>}
-            {isError && <p className="text-ahGreen font-bold text-2xl">{`- unread notes`}</p>}
+            {isError && !data &&  <p className="text-ahGreen font-bold text-2xl">{`- unread notes`}</p>}
             {/* <p>{`Latest from ${"Jordan Lee"}`}</p> */}
         </div>
         <div className="w-[60%] flex flex-col justify-center">

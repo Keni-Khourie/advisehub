@@ -31,7 +31,7 @@ const StudentAdvisingNotes = () => {
             advisingNotes.map((note, index) => (
               <AdvisingNotesCard key={index} note={note} />
             ))}
-          {isError && <FetchErrorMessage />}
+          {isError && !advisingNotes &&<FetchErrorMessage />}
         </div>
       </div>
     </div>

@@ -148,6 +148,7 @@ export async function GET(
             user: {
               select: {
                 image: true,
+                email:true
               },
             },
             degree: {
@@ -178,6 +179,7 @@ export async function GET(
             user: {
               select: {
                 image: true,
+                email:true,
               },
             },
           },
@@ -200,8 +202,9 @@ export async function GET(
       id: appointment.id,
       studentId: student.studentId,
       studentFullName: `${student.firstName} ${student.lastName}`,
-      studentDegree: `${student.degree.degreeName} (${classification.abbreviation})`,
+      studentDegree: `${classification.abbreviation} ${student.degree.degreeName} `,
       studentProfileImage: student.user.image ?? "",
+      studentEmail:student.user.email,
       date: formatInTimeZone(
         appointment.date,
         timeZone,
@@ -215,6 +218,7 @@ export async function GET(
       advisorSpecialization: advisor.specialization.name,
       advisorOffice: advisor.office,
       advisorProfileImage: advisor.user.image ?? "",
+      advisorEmail:advisor.user.email
     };
 
     return NextResponse.json(response, { status: 200 });

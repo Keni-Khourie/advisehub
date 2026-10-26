@@ -21,7 +21,7 @@ const UpcomingMeetingsCard = ({upcomingMeetings, isLoading, isError}:Props) => {
         <div className="w-full h-full flex flex-col gap-y-6 z-10">
             <div className="flex items-center gap-x-3">
               {isLoading && <Skeleton className="h-5 w-5 rounded-full"/>}
-              {isError &&<p className="font-semibold text-3xl">-</p>}
+              {isError && !upcomingMeetings &&<p className="font-semibold text-3xl">-</p>}
             {upcomingMeetings &&<p className="font-semibold text-3xl">{upcomingMeetings?upcomingMeetings:0}</p>}
             <p className="font-thin text-ahTextGrey text-nowrap"> Upcoming meetings</p>
                   </div>

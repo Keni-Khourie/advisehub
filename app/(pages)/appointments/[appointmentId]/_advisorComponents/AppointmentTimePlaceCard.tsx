@@ -7,19 +7,43 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import {Badge} from "@/components/ui/badge"
+import { AppointmentStatus} from "@/types/types";
+import {format, startOfDay, isSameDay} from "date-fns"
+import {Skeleton} from "@/components/ui/skeleton"
+import FetchErrorMessage from "@/customUI/FetchErrorMessage"
+interface Props{
+  isLoading:boolean;
+  isError:boolean
+  appointmentInfo:{
+    date:string;
+    office:string;
+    note:string|undefined;
+    status:AppointmentStatus
+  }|undefined
+}
 
-const AppointmentTimePlaceCard = () => {
+const AppointmentTimePlaceCard = ({isLoading, isError, appointmentInfo}:Props) => {
+  const today = startOfDay(new Date())
   return (
-     <Card className={cn("bg-ahGrey rounded-sm w-1/3 border pb-22")}>
+     <Card className={cn("bg-ahCardBlue rounded-lg w-full md:w-1/3 border border-ahBorderBlue pb-10")}>
       <CardHeader className="">
         <CardTitle className="font-semibold">Appointment</CardTitle>
         <CardDescription className="">
-            <p className="flex items-center">{`${"Today"}•${"10:30 AM"}`}</p>
+          {isLoading && <Skeleton className=" h-10 w-full"/>}
+            {appointmentInfo && <p className="flex items-center">{`${isSameDay(today, appointmentInfo.date)?"Today":format(appointmentInfo.date, "dd MMM yyyy" )}•${format(appointmentInfo.date, "h:mm")}`}</p>}
         </CardDescription>
       </CardHeader>
-      <CardContent className="flex flex-col justify-center">
-        <p className="font-semibold">Advising Center</p>
-        <p className="text-ahTextGrey">{"Room 210"}</p>
+      <CardContent className="">
+        {isError && !appointmentInfo && <FetchErrorMessage/>}
+        {isLoading && <div className="flex flex-col justify-center gap-y-5">
+          <Skeleton className="h-10 w-full"/></div>}
+       {appointmentInfo && <div className="flex flex-col justify-center gap-y-5">
+          <p className="text-ahTextGrey">{appointmentInfo.office}</p>
+          <p className="font-semibold mt-4">Student Note</p>
+          <p className="text-ahTextGrey text-sm">{appointmentInfo.note?appointmentInfo.note:"No student note"}</p>
+          <Badge className={cn("py-2 px-5 font-semibold",appointmentInfo.status==="SCHEDULED"?"bg-green-200 text-green-500":appointmentInfo.status==="CANCELLED"?"bg-red-100 text-red-500":"bg-stone-100 text-stone-500" )}>{appointmentInfo.status} </Badge>
+        </div>}
       </CardContent>
     </Card>
   )

@@ -27,7 +27,7 @@ const StudentDetailsPageContent = ({ studentId }: Props) => {
         headerText="Student Profile"
         subtitle="Student context before and after advising."
       /> 
-      {isError && <div className="w-full flex justify-center mt-28">
+      {isError && !student && <div className="w-full flex justify-center mt-28">
         <FetchErrorMessage/></div>}
       {isLoading && <Skeleton className="h-96 w-full"/>}
       {student && (
