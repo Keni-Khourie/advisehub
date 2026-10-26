@@ -141,6 +141,7 @@ export async function GET(
     if (
       user.role !== "ADMIN" &&
       note.advisorId !== user.advisor!.id
+      && note.isPrivate
     ) {
       return NextResponse.json(
         { message: "You are not authorized to access this advising note." },
