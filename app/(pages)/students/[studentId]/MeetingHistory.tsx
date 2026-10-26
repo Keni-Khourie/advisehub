@@ -6,7 +6,7 @@ import FetchErrorMessage from "@/customUI/FetchErrorMessage"
 import Link from "next/link"
 import WhiteButton from "@/customUI/WhiteButton"
 import {Badge} from "@/components/ui/badge"
-import {cn} from "@/lib/utils"
+// import {cn} from "@/lib/utils"
 interface Props{
     studentId:number
 }
