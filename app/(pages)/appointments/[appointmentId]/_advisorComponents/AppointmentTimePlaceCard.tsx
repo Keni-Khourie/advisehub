@@ -41,7 +41,7 @@ const AppointmentTimePlaceCard = ({isLoading, isError, cardData}:Props) => {
        {cardData && <div className="flex flex-col justify-center gap-y-5">
           <p className="text-ahTextGrey">{cardData.office}</p>
           <p className="font-semibold mt-4">Student Note</p>
-          <p className="text-ahTextGrey text-sm">{cardData.note?cardData.note:"No student note"}</p>
+          <p className="text-ahTextGrey text-sm">{cardData.note?cardData.note:"No note from student"}</p>
           <Badge className={cn("py-2 px-5 font-semibold",cardData.status==="SCHEDULED"?"bg-green-200 text-green-500":cardData.status==="CANCELLED"?"bg-red-100 text-red-500":"bg-stone-100 text-stone-500" )}>{cardData.status} </Badge>
         </div>}
       </CardContent>

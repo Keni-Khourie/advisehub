@@ -15,9 +15,11 @@ import FetchErrorMessage from "@/customUI/FetchErrorMessage"
 import {generateArray} from "@/lib/utilityFunctions"
 import { useMediaQuery } from "react-responsive"
 import {AppointmentStatus} from "@/types/types"
+import { Dispatch, SetStateAction } from "react"
 interface Props{
   isLoading:boolean;
   isError:boolean;
+  setDialogOpen:Dispatch<SetStateAction<boolean>>;
   cardData:{
     appointmentId:number;
     advisorId:string;
@@ -25,7 +27,7 @@ interface Props{
   }|undefined
 }
 
-const PrepareForMeetingCard = ({isLoading, isError, cardData}:Props) => {
+const PrepareForMeetingCard = ({isLoading, isError, cardData, setDialogOpen}:Props) => {
     const isPortrait = useMediaQuery({
     query: "(orientation: portrait)",
   });
@@ -35,7 +37,7 @@ const PrepareForMeetingCard = ({isLoading, isError, cardData}:Props) => {
         <CardTitle className="font-semibold">Prepare for the Meeting</CardTitle>
         <CardDescription className="">Review student details before meeting</CardDescription>
       </CardHeader>
-      <CardContent className=" flex items-center w-full justify-between md:flex-nowrap flex-wrap gap-y-3">
+      <CardContent className=" flex items-start w-full justify-between md:flex-nowrap flex-wrap gap-y-3">
         <div className="flex flex-col gap-y-3 w-full md:w-1/3">
             <GreenCheckOption text="View your profile"/>
             <GreenCheckOption text="Review previous advising notes"/>
@@ -53,7 +55,7 @@ const PrepareForMeetingCard = ({isLoading, isError, cardData}:Props) => {
               <Button className="w-full h-10 cursor-pointer rounded-lg text-center font-semibold text-white bg-ahDeepBlue hover:bg-ahHoverDeepBlue">View Notes</Button>
             </Link>
             <div className={cn("md:w-2/3 w-full", isPortrait &&"sm:w-1/3 md:w-full", cardData.appointmentStatus=="CANCELLED"&&"hidden", cardData.appointmentStatus=="COMPLETED" &&"hidden")}>
-              <Button className="w-full h-10 cursor-pointer rounded-lg text-center font-semibold text-white bg-red-400 hover:bg-red-500">Cancel Appointment</Button>
+              <Button className="w-full h-10 cursor-pointer rounded-lg text-center font-semibold text-white bg-red-400 hover:bg-red-500" onClick={()=>setDialogOpen(true)}>Cancel Appointment</Button>
             </div>
         </div>}
       </CardContent>

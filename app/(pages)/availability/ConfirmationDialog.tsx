@@ -88,7 +88,7 @@ const ConfirmationDialog = () => {
           </DialogHeader>
           <div>
             <p className="text-base">
-              Confirm you&apos;d like to <span className={cn("font-semibold text-lg", contextData.pageData.dialogType === "add"&&"text-ahGreen",contextData.pageData.dialogType === "delete"&&"text-red-400")}>
+              Please confirm that you&apos;d like to <span className={cn("font-semibold text-lg", contextData.pageData.dialogType === "add"&&"text-ahGreen",contextData.pageData.dialogType === "delete"&&"text-red-400")}>
                 {contextData.pageData.dialogType === "add" ? "ADD" : contextData.pageData.dialogType === "delete" ? "DELETE" : ""}</span> the following availability time:
               
               <span className={cn("font-semibold text-lg" , contextData.pageData.dialogType === "add"&&"text-ahGreen",contextData.pageData.dialogType === "delete"&&"text-red-400")}>
