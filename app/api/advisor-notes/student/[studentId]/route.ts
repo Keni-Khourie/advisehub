@@ -1,5 +1,6 @@
 //ROUTE: /api/advisor-notes/student/[studentId]
-//this will get the students advising notes (an array) for an advisor
+//This will get all public notes written about the students by all advisors AND the private ones written about that student by the advisor making the query
+
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
