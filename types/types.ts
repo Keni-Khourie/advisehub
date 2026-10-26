@@ -1,5 +1,8 @@
 export interface ErrorResponse {
-    message:string
+    data:{
+      message:string
+    }
+    
   }
 export type UserRole = "STUDENT" | "ADVISOR" | "ADMIN";
 export interface GenericMessageResponse{

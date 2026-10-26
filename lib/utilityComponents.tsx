@@ -5,7 +5,7 @@ import { toast } from "@/components/ui/toast";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const queryErrorResponse = (err:any) => {
           const errorMessage =
-            (err as ErrorResponse)?.message ||
+            (err as ErrorResponse)?.data.message ||
             "An unexpected error occurred.";
           console.error(err);
           return (
