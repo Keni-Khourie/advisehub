@@ -9,12 +9,14 @@ import { RootState } from "@/redux/store";
 import { useAppSelector } from "@/redux/reduxHooks";
 import { useDispatch } from "react-redux";
 import {clearUser} from "@/redux/features/userSlice"
+import { ApiSlice } from "@/redux/services/apiSlice";
 const UserAvatar = () => {
     //fetch user from store
    const dispatch = useDispatch()
    const signOut = ()=>{
     signOutUser()
     dispatch(clearUser())
+    dispatch(ApiSlice.util.resetApiState())
    }
     const user = useAppSelector((state: RootState) => state.user);
    
