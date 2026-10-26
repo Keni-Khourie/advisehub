@@ -47,6 +47,7 @@ const ConfirmationDialog = () => {
           //contextData.setDialogOpen(false)
           
         }).catch((resp)=>{
+          contextData.setIsLoading(false)
           customToast(resp.data.message, "error")
         }), {
           loading:"Adding availability",
@@ -70,6 +71,9 @@ const ConfirmationDialog = () => {
            //contextData.setIsLoading(true)
           contextData.setRefetchData(true)
           contextData.setDialogOpen(false)
+        }).catch((resp)=>{
+          contextData.setIsLoading(false)
+          customToast(resp.data.message, "error")
         }), {
           loading:"Adding availability",
           success:"availability Added",
