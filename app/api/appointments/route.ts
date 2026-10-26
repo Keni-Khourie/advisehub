@@ -232,7 +232,7 @@ if (appointmentDetails) {
   // Use the student's requested timezone, or UTC as a fallback.
   // Prefer validating this value before creating the appointment.
  // const timeZone = request.nextUrl.searchParams.get("timeZone") ?? "UTC";
- const timeZone = resolvedTimeZone;
+ //const timeZone = resolvedTimeZone;
 
   const studentName =
     `${appointmentDetails.student.firstName} ${appointmentDetails.student.lastName}`;
