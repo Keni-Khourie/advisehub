@@ -22,6 +22,7 @@ import {
   createAdvisingNoteSchema,
 } from "@/validators/app/advisorValidationSchemas";
 import { useCreateAdvisingNoteMutation } from "@/redux/features/main/advisingNotesApiSlice";
+import {  customToast } from "@/lib/utilityComponents";
 interface Props {
   studentId: number;
 }
@@ -41,9 +42,11 @@ const CreateStudentAdvisingNoteForm = ({ studentId }: Props) => {
   const trySubmitForm = (values: CreateAdvisingNoteData) => {
     toast.promise(
           createAdvisingNote(values).unwrap().then((resp)=>{
-            console.log(resp)
+            if(resp.id)
             router.push(`/advising-notes/student/${studentId}`)
-          }),
+          }).catch((resp)=>{
+          customToast(resp.data.message, "error")
+        }),
           {
             loading:"Saving Note",
             success:"Note Saved!",

@@ -64,7 +64,7 @@ const ConfirmationDialog = () => {
       if (!contextData.pageData.selectedExistingAvailability) return;
       toast.promise(
         deleteAvailability(contextData.pageData.selectedExistingAvailability.id).unwrap().then((resp)=>{
-          console.log(resp)
+         
           if(resp.id){
             customToast("Availability Deleted", "success")
           }

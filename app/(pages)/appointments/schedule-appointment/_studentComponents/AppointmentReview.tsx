@@ -11,6 +11,7 @@ import {useCreateAppointmentMutation} from "@/redux/features/main/appointmentApi
 import { toast } from "sonner";
 import { queryErrorResponse } from "@/lib/utilityComponents";
 import LoadingSheet from "@/customUI/LoadingSheet"
+import {  customToast } from "@/lib/utilityComponents";
 const AppointmentReview = () => {
     const contextData = useContext(StudentScheduleAppointmentContext)
     const [createAppointment, {isLoading}] =useCreateAppointmentMutation()
@@ -28,9 +29,11 @@ const AppointmentReview = () => {
         availabilityId:contextData.appointmentDetails.availabilityId,
         note:contextData.appointmentDetails.appointmentReason==="General Advising"? contextData.appointmentDetails.generalAdvisingQuestion:undefined
       }).unwrap().then((resp)=>{
-        console.log(resp)
+        if(resp.id)
         contextData.setComponentDetails(getStudentAppointmentScheduleComponentDetailsByView("AppointmentConfirmationSuccess"))
-      }), {
+      }).catch((resp)=>{
+          customToast(resp.data.message, "error")
+        }), {
         loading:"Creating new appointment",
         success:"Appointment scheduled",
         error:queryErrorResponse

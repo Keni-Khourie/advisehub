@@ -20,6 +20,7 @@ import WhiteButton from "@/customUI/WhiteButton"
 import { CreateAdvisingNoteData, createAdvisingNoteSchema } from "@/validators/app/advisorValidationSchemas";
 import { useCreateAdvisingNoteMutation } from "@/redux/features/main/advisingNotesApiSlice";
 import { useRouter } from "next/navigation";
+import {  customToast } from "@/lib/utilityComponents";
 
 
 interface Props{
@@ -49,7 +50,9 @@ const CreateAdvisingNoteForm = ({studentId}:Props) => {
           createAdvisingNote(values).unwrap().then((resp)=>{
             console.log(resp)
             router.push("/advising-notes")
-          }),
+          }).catch((resp)=>{
+          customToast(resp.data.message, "error")
+        }),
           {
             loading:"Saving Note",
             success:"Note Saved!",
