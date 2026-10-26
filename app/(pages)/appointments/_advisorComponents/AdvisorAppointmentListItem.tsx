@@ -72,7 +72,7 @@ const AdvisorAppointmentListItem = ({ type, data, isLoading }: Props) => {
       >
         {data && data.appointmentStatus=="CANCELLED" && <Badge className="bg-red-100 text-red-500 font-semibold px-5 py-1 opacity-60">CANCELLED</Badge>}
 
-        {type === "Past Meetings" && (
+        {type === "Past Meetings" && data.appointmentStatus!=="CANCELLED" && (
           <Badge className="text-green-600 font-semibold bg-green-200 px-5 opacity-60 ">
             Completed
           </Badge>

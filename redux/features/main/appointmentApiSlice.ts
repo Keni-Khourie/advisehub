@@ -24,6 +24,15 @@ interface CreateAppointmentResponse {
   };
 }
 
+export interface AdvisorAppointmentWithStudentResponse{
+  id:number;
+  date:string;
+  status:AppointmentStatus;
+  note:string;
+  advisorSpecialization:AdvisorSpecialization 
+  createdAt:string
+}
+
 export interface AppointmentDataForStudent {
   id: number;
   advisorTitle: string;
@@ -128,9 +137,23 @@ const appointmentApiSlice = ApiSlice.injectEndpoints({
         method:"PATCH",
       }),
       invalidatesTags:(data)=>data?["Appointments","AvailabilityTimes", {type:"Appointments", id:data.id}]:[]
-    })
+    }),
+    getAdvisorPastAppointmentWithStudent:builder.query<AdvisorAppointmentWithStudentResponse, {studentId:number, timeZone:string}>({
+      query:({studentId, timeZone})=>({
+        url:`/appointments/advisor/students/${studentId}`,
+        method:"GET",
+        params: new URLSearchParams({timeZone})
+      })
+    }),
+    getStudentPastAppointmentWithAdvisor:builder.query<AdvisorAppointmentWithStudentResponse, {advisorId:number, timeZone:string}>({
+      query:({advisorId, timeZone})=>({
+        url:`/appointments/student/advisors/${advisorId}`,
+        method:"GET",
+        params: new URLSearchParams({timeZone})
+      })
+    }),
   }),
 });
 
-export const { useCreateAppointmentMutation, useGetAdvisorAppointmentsQuery, useGetStudentAppointmentsQuery, useGetAppointmentByIdQuery, useCancelAppointmentMutation } = appointmentApiSlice;
+export const { useCreateAppointmentMutation, useGetAdvisorAppointmentsQuery, useGetStudentAppointmentsQuery, useGetAppointmentByIdQuery, useCancelAppointmentMutation, useGetAdvisorPastAppointmentWithStudentQuery, useGetStudentPastAppointmentWithAdvisorQuery } = appointmentApiSlice;
 export default appointmentApiSlice.reducer;

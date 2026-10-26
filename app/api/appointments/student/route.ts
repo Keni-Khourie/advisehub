@@ -1,5 +1,5 @@
 //ROUTE: /api/appointments/student
-
+//the get request is to get a specific student's appointments
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import { addDays, format, parseISO } from "date-fns";
