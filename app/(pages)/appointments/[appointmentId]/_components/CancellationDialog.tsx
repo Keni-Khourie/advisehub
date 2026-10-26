@@ -10,9 +10,11 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import WhiteButton from "@/customUI/WhiteButton";
 import BlueButton from "@/customUI/BlueButton";
+import {useRouter} from "next/navigation"
 interface Props{
     dialogOpen:boolean;
     setDialogOpen:Dispatch<SetStateAction<boolean>>;
+    setLoadingActive:Dispatch<SetStateAction<boolean>>;
     appointmentDate:string;
     type:"studentCancel"|"advisorCancel";
     studentName:string;
@@ -21,13 +23,15 @@ interface Props{
 }
 
 
-const CancellationDialog = ({dialogOpen, setDialogOpen, appointmentDate, type, studentName, advisorName, appointmentId}:Props) => {
+const CancellationDialog = ({dialogOpen, setDialogOpen, appointmentDate, type, studentName, advisorName, appointmentId, setLoadingActive}:Props) => {
+    const router = useRouter()
     const handleCancel = ()=>{
         setDialogOpen(false)
     }
-    const handleSubmit = ()=>{
-        console.log(appointmentId);
+    const handleSubmit = ()=>{ 
         setDialogOpen(false)
+        setLoadingActive(true)
+        router.push("/appointments")
     }
   return (
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>

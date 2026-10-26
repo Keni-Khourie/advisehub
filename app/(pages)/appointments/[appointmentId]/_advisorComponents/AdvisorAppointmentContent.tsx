@@ -6,6 +6,7 @@ import PrepareForMeetingCard from "./PrepareForMeetingCard";
 import {useGetAppointmentByIdQuery} from "@/redux/features/main/appointmentApiSlice"
 import {useState} from "react"
 import CancellationDialog from "../_components/CancellationDialog"
+import LoadingSheet from "@/customUI/LoadingSheet"
 const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 interface Props{
@@ -16,6 +17,7 @@ const AdvisorAppointmentContent = ({appointmentId}:Props) => {
         appointmentId, timeZone
     })
     const [dialogOpen, setDialogOpen] = useState<boolean>(false)
+    const [loadingActive, setLoadingActive] = useState<boolean>(false)
   return (
     <div className="w-full">
         <div className="w-full flex gap-x-7 gap-y-7 mb-7 md:flex-nowrap flex-wrap">
@@ -25,7 +27,8 @@ const AdvisorAppointmentContent = ({appointmentId}:Props) => {
         <div className="w-full">
             <PrepareForMeetingCard isLoading={isLoading} isError={isError} cardData={appointment?{appointmentId:appointment.id, studentId:appointment.studentId, appointmentStatus:appointment.appointmentStatus}:undefined} setDialogOpen={setDialogOpen}/>
         </div>
-        {appointment && <CancellationDialog dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} appointmentId={appointment.id} studentName={appointment.studentFullName} advisorName={appointment.advisorFullName} appointmentDate={appointment.date} type="advisorCancel"/>}
+        {appointment && <CancellationDialog dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} appointmentId={appointment.id} studentName={appointment.studentFullName} advisorName={appointment.advisorFullName} appointmentDate={appointment.date} setLoadingActive={setLoadingActive} type="advisorCancel"/>}
+        {loadingActive && <LoadingSheet/>}
     </div>
   )
 }
