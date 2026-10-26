@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import { queryErrorResponse } from "@/lib/utilityComponents";
 import LoadingSheet from "@/customUI/LoadingSheet"
 import {  customToast } from "@/lib/utilityComponents";
+const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const AppointmentReview = () => {
     const contextData = useContext(StudentScheduleAppointmentContext)
     const [createAppointment, {isLoading}] =useCreateAppointmentMutation()
@@ -27,7 +28,8 @@ const AppointmentReview = () => {
       createAppointment({
         advisorId:contextData.appointmentDetails.advisorId,
         availabilityId:contextData.appointmentDetails.availabilityId,
-        note:contextData.appointmentDetails.appointmentReason==="General Advising"? contextData.appointmentDetails.generalAdvisingQuestion:undefined
+        note:contextData.appointmentDetails.appointmentReason==="General Advising"? contextData.appointmentDetails.generalAdvisingQuestion:undefined,
+        timeZone:timeZone
       }).unwrap().then((resp)=>{
         if(resp.id)
         contextData.setComponentDetails(getStudentAppointmentScheduleComponentDetailsByView("AppointmentConfirmationSuccess"))

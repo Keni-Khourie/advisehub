@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { AppointmentDataForStudent } from "@/redux/features/main/appointmentApiSlice";
 import { cn } from "@/lib/utils";
 import { AppointmentSection } from "@/types/types";
-import { format } from "date-fns";
+import { format, addMinutes } from "date-fns";
 import Link from "next/link";
 import {Badge} from "@/components/ui/badge"
 
@@ -28,7 +28,7 @@ const AppointmentListItem = ({ type, data, isLoading }: Props) => {
             </p>
             {type === "Upcoming" && (
               <p className="font-thin text-ahTextGrey text-sm">
-                {`${data.advisorTitle} ${data.advisorFullName} • ${format(data.date, "h:mm a")} - ${format(data.date, "h:mm a")}`}
+                {`${data.advisorTitle} ${data.advisorFullName} • ${format(data.date, "h:mm a")} - ${format(addMinutes(data.date,30), "h:mm a")}`}
               </p>
             )}
             {type === "Past Meetings" && (

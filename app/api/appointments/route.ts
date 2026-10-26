@@ -4,7 +4,7 @@ import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import {createAppointmentSchema} from "@/validators/api/appointmentApiValidators"
-
+import { sendAppointmentConfirmationEmail } from "@/lib/email";
 export async function POST(request: NextRequest) {
   try {
     // 1. Authenticate the student.
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { advisorId, availabilityId, note } = parsed.data;
+    const { advisorId, availabilityId, note, timeZone } = parsed.data;
 
     // 3. Find the authenticated student's profile.
     const user = await prisma.user.findUnique({
@@ -78,6 +78,21 @@ export async function POST(request: NextRequest) {
         { status: 404 }
       );
     }
+
+    const resolvedTimeZone = timeZone ?? "UTC";
+    try {
+  new Intl.DateTimeFormat("en-US", {
+    timeZone: resolvedTimeZone,
+  }).format(new Date());
+} catch {
+  return NextResponse.json(
+    {
+      message: "Invalid timeZone. Provide a valid IANA timezone.",
+    },
+    { status: 400 }
+  );
+}
+
 
     // 5. Create the appointment transactionally.
     const appointment = await prisma.$transaction(
@@ -175,6 +190,88 @@ export async function POST(request: NextRequest) {
         isolationLevel: "Serializable",
       }
     );
+
+
+const appointmentDetails = await prisma.appointment.findUnique({
+  where: {
+    id: appointment.id,
+  },
+  select: {
+    date: true,
+    student: {
+      select: {
+        firstName: true,
+        lastName: true,
+        user: {
+          select: {
+            email: true,
+          },
+        },
+      },
+    },
+    advisor: {
+      select: {
+        firstName: true,
+        lastName: true,
+        user: {
+          select: {
+            email: true,
+          },
+        },
+      },
+    },
+    specialization: {
+      select: {
+        name: true,
+      },
+    },
+  },
+});
+
+if (appointmentDetails) {
+  // Use the student's requested timezone, or UTC as a fallback.
+  // Prefer validating this value before creating the appointment.
+ // const timeZone = request.nextUrl.searchParams.get("timeZone") ?? "UTC";
+ const timeZone = resolvedTimeZone;
+
+  const studentName =
+    `${appointmentDetails.student.firstName} ${appointmentDetails.student.lastName}`;
+
+  const advisorName =
+    `${appointmentDetails.advisor.firstName} ${appointmentDetails.advisor.lastName}`;
+
+  const emailResults = await Promise.allSettled([
+    sendAppointmentConfirmationEmail({
+      to: appointmentDetails.student.user.email,
+      recipientName: studentName,
+      otherPersonName: advisorName,
+      appointmentDate: appointmentDetails.date.toISOString(),
+      timeZone: resolvedTimeZone,
+      specialization: appointmentDetails.specialization.name,
+    }),
+
+    sendAppointmentConfirmationEmail({
+      to: appointmentDetails.advisor.user.email,
+      recipientName: advisorName,
+      otherPersonName: studentName,
+      appointmentDate: appointmentDetails.date.toISOString(),
+      timeZone: resolvedTimeZone,
+      specialization: appointmentDetails.specialization.name,
+    }),
+  ]);
+
+  emailResults.forEach((result, index) => {
+    if (result.status === "rejected") {
+      console.error(
+        `Appointment confirmation email ${index + 1} failed:`,
+        result.reason
+      );
+    }
+  });
+}
+
+// Continue with your existing successful appointment response.
+
 
     // 6. Return the newly created appointment.
     return NextResponse.json(

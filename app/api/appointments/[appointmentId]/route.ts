@@ -3,7 +3,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { formatInTimeZone } from "date-fns-tz";
-
+import { sendAppointmentCancellationEmail } from "@/lib/email";
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 
@@ -380,6 +380,90 @@ export async function PATCH(
         { status: 409 }
       );
     }
+
+//email response before sending response:
+
+const appointmentDetails = await prisma.appointment.findUnique({
+  where: {
+    id: appointmentId, // Use your validated numeric appointment ID
+  },
+  select: {
+    date: true,
+    status: true,
+    student: {
+      select: {
+        firstName: true,
+        lastName: true,
+        user: {
+          select: {
+            email: true,
+          },
+        },
+      },
+    },
+    advisor: {
+      select: {
+        firstName: true,
+        lastName: true,
+        title: true,
+        user: {
+          select: {
+            email: true,
+          },
+        },
+      },
+    },
+    specialization: {
+      select: {
+        name: true,
+      },
+    },
+  },
+});
+
+// Send emails only if the appointment was actually cancelled.
+if (appointmentDetails?.status === "CANCELLED") {
+  const studentName =
+    `${appointmentDetails.student.firstName} ${appointmentDetails.student.lastName}`;
+
+  const advisorName = [
+    appointmentDetails.advisor.title,
+    appointmentDetails.advisor.firstName,
+    appointmentDetails.advisor.lastName,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const emailResults = await Promise.allSettled([
+    sendAppointmentCancellationEmail({
+      to: appointmentDetails.student.user.email,
+      recipientName: studentName,
+      otherPersonName: advisorName,
+      appointmentDate: appointmentDetails.date.toISOString(),
+      timeZone: "UTC",
+      specialization: appointmentDetails.specialization.name,
+    }),
+
+    sendAppointmentCancellationEmail({
+      to: appointmentDetails.advisor.user.email,
+      recipientName: advisorName,
+      otherPersonName: studentName,
+      appointmentDate: appointmentDetails.date.toISOString(),
+      timeZone: "UTC",
+      specialization: appointmentDetails.specialization.name,
+    }),
+  ]);
+
+  emailResults.forEach((result, index) => {
+    if (result.status === "rejected") {
+      console.error(
+        `Cancellation email ${index + 1} failed for appointment ${appointmentId}:`,
+        result.reason
+      );
+    }
+  });
+}
+
 
     return NextResponse.json(
       {
