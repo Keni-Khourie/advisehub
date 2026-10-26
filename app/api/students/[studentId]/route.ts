@@ -131,6 +131,7 @@ export async function GET(
       },
       select: {
         date: true,
+        status:true
       },
     });
 
@@ -157,6 +158,7 @@ export async function GET(
       remainingCredits,
       requiredCredits,
       nextAppointment: nextAppointmentDate,
+      nextAppointmentStatus:nextAppointment?.status,
       studentProfileImage: student.user.image ?? "",
     };
 

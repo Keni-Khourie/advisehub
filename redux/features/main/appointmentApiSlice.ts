@@ -138,14 +138,14 @@ const appointmentApiSlice = ApiSlice.injectEndpoints({
       }),
       invalidatesTags:(data)=>data?["Appointments","AvailabilityTimes", {type:"Appointments", id:data.id}]:[]
     }),
-    getAdvisorPastAppointmentWithStudent:builder.query<AdvisorAppointmentWithStudentResponse, {studentId:number, timeZone:string}>({
+    getAdvisorPastAppointmentWithStudent:builder.query<AdvisorAppointmentWithStudentResponse[], {studentId:number, timeZone:string}>({
       query:({studentId, timeZone})=>({
         url:`/appointments/advisor/students/${studentId}`,
         method:"GET",
         params: new URLSearchParams({timeZone})
       })
     }),
-    getStudentPastAppointmentWithAdvisor:builder.query<AdvisorAppointmentWithStudentResponse, {advisorId:number, timeZone:string}>({
+    getStudentPastAppointmentWithAdvisor:builder.query<AdvisorAppointmentWithStudentResponse[], {advisorId:number, timeZone:string}>({
       query:({advisorId, timeZone})=>({
         url:`/appointments/student/advisors/${advisorId}`,
         method:"GET",

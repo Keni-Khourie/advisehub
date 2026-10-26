@@ -136,14 +136,14 @@ const advisingNotesApiSlice = ApiSlice.injectEndpoints({
         }),
         providesTags:["AdvisingNotes"]
       }),
-      getNotesAboutStudentByAdvisorForAdvisor:builder.query<AdvisorNotesAboutStudent, number>({
+      getNotesAboutStudentByAdvisorForAdvisor:builder.query<AdvisorNotesAboutStudent[], number>({
         query:(studentId)=>({
           url:`advisor-notes/mine/student/${studentId}`,
           method:"GET"
         }),
         providesTags:["AdvisingNotes"]
       }),
-      getNotesAboutStudentByAdvisorForStudent:builder.query<AdvisorNotesAboutStudent, number>({
+      getNotesAboutStudentByAdvisorForStudent:builder.query<AdvisorNotesAboutStudent[], number>({
         query:(advisorId)=>({
           url:`/advisor-notes/student/advisor/${advisorId}`,
           method:"GET"

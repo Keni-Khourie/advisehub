@@ -39,6 +39,7 @@ export interface StudentSearchResponseData{
         remainingCredits:number;
         requiredCredits:number;
         nextAppointment:string;
+        nextAppointmentStatus:string;
         studentProfileImage:string;
 }
 interface StudentSearchQueryParams{

@@ -15,7 +15,7 @@ const StudentSearch = () => {
     }
    
     const {data:students, isLoading, isError} = useGetStudentsWithSearchFilterQuery({search:inputValue},{ refetchOnMountOrArgChange: true })
-    console.log(students);
+
   return (
     <div className="w-full">
         

@@ -46,7 +46,7 @@ const StudentDetailsPageContent = ({ studentId }: Props) => {
           </div>
           <div className="flex gap-x-5 flex-wrap md:flex-nowrap w-full">
             <DegreeProgressCard percentComplete={student.degreePercentCompletion} completedCredits={student.completedCredits} remainingCredits={student.remainingCredits}/>
-            <NextAppointmentCard nextAppointmentDate={student.nextAppointment}/>
+            <NextAppointmentCard nextAppointmentDate={student.nextAppointment} nextAppointmentStatus={student.nextAppointmentStatus}/>
           </div>
           <div className="flex items-center gap-y-3 justify-between flex-wrap md:flex-nowrap mt-3">
             <div className="flex items-center gap-x-5 gap-y-3 flex-wrap md:flex-nowrap">
@@ -59,8 +59,8 @@ const StudentDetailsPageContent = ({ studentId }: Props) => {
             </Link>
           </div>
           <div className="md:h-[30vh] overflow-y-scroll">
-            {view==="Advising Notes" && (<AdvisingNotes/>)}
-            {view==="Meeting History" && (<MeetingHistory/>)}
+            {view==="Advising Notes" && (<AdvisingNotes studentId={studentId}/>)}
+            {view==="Meeting History" && (<MeetingHistory studentId={studentId}/>)}
           </div>
         </div>
       )}
