@@ -13,13 +13,18 @@ import BlueButton from "@/customUI/BlueButton";
 import {useGetStudentByStudentIdQuery } from "@/redux/features/main/studentApiSlice";
 import {Skeleton} from "@/components/ui/skeleton"
 import FetchErrorMessage from "@/customUI/FetchErrorMessage"
+
+const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 interface Props {
   studentId: number;
 }
 const StudentDetailsPageContent = ({ studentId }: Props) => {
   //fetch student by studentId
   const [view, setView] = useState<"Advising Notes"|"Meeting History">("Advising Notes")
-  const {data:student, isLoading, isError} = useGetStudentByStudentIdQuery(studentId)
+  const {data:student, isLoading, isError} = useGetStudentByStudentIdQuery({
+    studentId:studentId,
+    timeZone:timeZone
+  })
 
   return (
     <div>

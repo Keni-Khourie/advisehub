@@ -1,5 +1,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
+import { formatInTimeZone } from "date-fns-tz";
 
 import prisma from "@/lib/prisma";
 
@@ -7,11 +9,24 @@ type RouteContext = {
   params: Promise<{ studentId: string }>;
 };
 
+const timeZoneSchema = z.string().min(1).refine(
+  (timeZone) => {
+    try {
+      new Intl.DateTimeFormat("en-US", { timeZone });
+      return true;
+    } catch {
+      return false;
+    }
+  },
+  { message: "Invalid IANA time zone." }
+);
+
 export async function GET(
-  _req: NextRequest,
+  request: NextRequest,
   { params }: RouteContext,
 ) {
   try {
+    // 1. Validate the student ID
     const { studentId } = await params;
 
     if (!/^\d{8}$/.test(studentId)) {
@@ -21,10 +36,29 @@ export async function GET(
       );
     }
 
+    // 2. Read and validate the optional timezone
+    const rawTimeZone = request.nextUrl.searchParams.get("timeZone");
+    let timeZone = "UTC";
+
+    if (rawTimeZone !== null) {
+      const parsedTimeZone = timeZoneSchema.safeParse(rawTimeZone);
+
+      if (!parsedTimeZone.success) {
+        return NextResponse.json(
+          {
+            message:
+              "Invalid timeZone. Provide a valid IANA time zone, such as Africa/Lagos.",
+          },
+          { status: 400 },
+        );
+      }
+
+      timeZone = parsedTimeZone.data;
+    }
+
+    // 3. Retrieve the student and their degree information
     const student = await prisma.student.findUnique({
-      where: {
-        studentId,
-      },
+      where: { studentId },
       select: {
         id: true,
         userId: true,
@@ -60,6 +94,7 @@ export async function GET(
       );
     }
 
+    // 4. Calculate degree progress
     const requiredCredits = student.degree.requiredCredits;
     const completedCredits = student.completedCredits;
 
@@ -79,12 +114,15 @@ export async function GET(
       requiredCredits - completedCredits,
     );
 
-    // Find the nearest future scheduled appointment for this student.
+    // 5. Find the nearest future scheduled appointment
+    // The comparison uses absolute instants, regardless of timezone.
+    const now = new Date();
+
     const nextAppointment = await prisma.appointment.findFirst({
       where: {
         studentId: student.id,
         date: {
-          gt: new Date(),
+          gt: now,
         },
         status: "SCHEDULED",
       },
@@ -92,11 +130,20 @@ export async function GET(
         date: "asc",
       },
       select: {
-        id: true,
-        date:true
+        date: true,
       },
     });
 
+    // 6. Format the next appointment in the requested timezone
+    const nextAppointmentDate = nextAppointment
+      ? formatInTimeZone(
+          nextAppointment.date,
+          timeZone,
+          "yyyy-MM-dd'T'HH:mm:ssXXX",
+        )
+      : "";
+
+    // 7. Return the response
     const result = {
       id: student.userId,
       studentId: student.studentId,
@@ -109,7 +156,7 @@ export async function GET(
       completedCredits,
       remainingCredits,
       requiredCredits,
-      nextAppointment: nextAppointment?.date ?? "",
+      nextAppointment: nextAppointmentDate,
       studentProfileImage: student.user.image ?? "",
     };
 

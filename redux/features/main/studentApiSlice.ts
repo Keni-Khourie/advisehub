@@ -65,10 +65,11 @@ const studentApiSlice = ApiSlice.injectEndpoints({
             }),
             providesTags:["Students"]
         }),
-        getStudentByStudentId:builder.query<StudentSearchResponseData, number>({
-            query:(studentId)=>({
+        getStudentByStudentId:builder.query<StudentSearchResponseData, {studentId:number, timeZone:string}>({
+            query:({studentId, timeZone})=>({
                 url:`/students/${studentId}`,
                 method:"GET",
+                params: new URLSearchParams({timeZone})
             }),
             providesTags:(data)=>data?["Students", {type:"Students", id:data.id}]:[]
         }),

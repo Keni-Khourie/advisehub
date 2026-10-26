@@ -14,7 +14,7 @@ interface Props{
 }
 const AdvisorAppointmentContent = ({appointmentId}:Props) => {
     const {data:appointment, isLoading, isError } = useGetAppointmentByIdQuery({
-        appointmentId, timeZone
+        appointmentId:appointmentId, timeZone:timeZone
     })
     const [dialogOpen, setDialogOpen] = useState<boolean>(false)
     const [loadingActive, setLoadingActive] = useState<boolean>(false)
