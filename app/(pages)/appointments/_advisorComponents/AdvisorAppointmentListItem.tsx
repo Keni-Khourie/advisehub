@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { AppointmentSection } from "@/types/types";
 import { format } from "date-fns";
 import Link from "next/link";
+
 import { AppointmentDataForAdvisor } from "@/redux/features/main/appointmentApiSlice";
 interface Props {
   type: AppointmentSection;
@@ -66,11 +67,13 @@ const AdvisorAppointmentListItem = ({ type, data, isLoading }: Props) => {
       )}
       <div
         className={cn(
-          type === "Past Meetings" ? "flex items-center gap-x-4" : "",
+          type === "Past Meetings" ? "flex items-center gap-x-4" : (data && data.appointmentStatus=="CANCELLED")?"flex items-center gap-x-4": "",
         )}
       >
+        {data && data.appointmentStatus=="CANCELLED" && <Badge className="bg-red-100 text-red-500 font-semibold px-5 py-1 opacity-60">CANCELLED</Badge>}
+
         {type === "Past Meetings" && (
-          <Badge className="text-green-600 font-semibold bg-green-200 px-5 ">
+          <Badge className="text-green-600 font-semibold bg-green-200 px-5 opacity-60 ">
             Completed
           </Badge>
         )}

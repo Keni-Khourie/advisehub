@@ -55,7 +55,7 @@ const PrepareForMeetingCard = ({isLoading, isError, cardData, setDialogOpen}:Pro
               <Button className="w-full h-10 cursor-pointer rounded-lg text-center font-semibold text-white bg-ahDeepBlue hover:bg-ahHoverDeepBlue">View Notes</Button>
             </Link>
             <div className={cn("md:w-2/3 w-full", isPortrait &&"sm:w-1/3 md:w-full", cardData.appointmentStatus=="CANCELLED"&&"hidden", cardData.appointmentStatus=="COMPLETED" &&"hidden")}>
-              <Button className="hidden w-full h-10 cursor-pointer rounded-lg text-center font-semibold text-white bg-red-400 hover:bg-red-500" onClick={()=>setDialogOpen(true)}>Cancel Appointment</Button>
+              <Button className=" w-full h-10 cursor-pointer rounded-lg text-center font-semibold text-white bg-red-400 hover:bg-red-500" onClick={()=>setDialogOpen(true)}>Cancel Appointment</Button>
             </div>
         </div>}
       </CardContent>

@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { AppointmentSection } from "@/types/types";
 import { format } from "date-fns";
 import Link from "next/link";
+import {Badge} from "@/components/ui/badge"
 
 interface Props {
   type: AppointmentSection;
@@ -15,7 +16,7 @@ interface Props {
 const AppointmentListItem = ({ type, data, isLoading }: Props) => {
   return (
     <div className="flex justify-between items-center ps-3 pe-5 py-6 rounded-md bg-white border">
-      {!isLoading && (
+      {!isLoading && data && (
         <div className="flex gap-x-5">
           <div className="font-bold bg-ahGrey flex flex-col justify-center text-center border w-22 h-22 rounded-sm">
             {format(data.date, "MMM dd").toLocaleUpperCase()}
@@ -36,6 +37,7 @@ const AppointmentListItem = ({ type, data, isLoading }: Props) => {
                 <p>{data.advisorSpecialization}</p>
               </div>
             )}
+            {data && data.appointmentStatus=="CANCELLED" && <Badge className="bg-red-100 text-red-500 font-semibold px-5 py-1 opacity-60 mt-2">CANCELLED</Badge>}
           </div>
         </div>
       )}

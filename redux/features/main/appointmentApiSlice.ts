@@ -119,13 +119,15 @@ const appointmentApiSlice = ApiSlice.injectEndpoints({
             url: `/appointments/${appointmentId}`,
             method:"GET",
             params: new URLSearchParams({timeZone})
-        })
+        }),
+        providesTags:(data)=>data?["Appointments", {type:"Appointments", id:data.id}]:[]
     }),
     cancelAppointment:builder.mutation<AppointmentCancellationResponse, number>({
       query:(appointmentId)=>({
         url:`/appointments/${appointmentId}`,
-        method:"GET",
-      })
+        method:"PATCH",
+      }),
+      invalidatesTags:(data)=>data?["Appointments","AvailabilityTimes", {type:"Appointments", id:data.id}]:[]
     })
   }),
 });

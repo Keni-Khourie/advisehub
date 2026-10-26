@@ -169,7 +169,7 @@ export async function GET(request: NextRequest) {
         id: appointment.id,
         studentId: student.studentId,
         studentFullName: `${student.firstName} ${student.lastName}`,
-        studentDegree: `${student.degree.degreeName} (${classification.abbreviation})`,
+        studentDegree: `${classification.abbreviation} ${student.degree.degreeName}`,
         studentProfileImage: student.user.image ?? "",
         date: appointment.date.toISOString(),
         appointmentStatus: appointment.status,

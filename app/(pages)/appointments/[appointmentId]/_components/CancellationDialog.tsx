@@ -42,7 +42,10 @@ const CancellationDialog = ({dialogOpen, setDialogOpen, appointmentDate, type, s
           router.push("/appointments")
         }
       }).catch((resp)=>{
-          customToast(resp.message, "error")
+        setLoadingActive(false)
+        console.log(resp);
+        console.log(`MESSAGE:${resp.message}`);
+          customToast(resp.data.message, "error")
         }),{
           loading:"Cancelling Appointment",
           success:"Appointment cancelled",
