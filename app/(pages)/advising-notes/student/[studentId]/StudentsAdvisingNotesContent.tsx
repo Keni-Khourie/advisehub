@@ -11,13 +11,14 @@ import {generateArray} from "@/lib/utilityFunctions"
 interface Props{
     studentId:number
 }
-
+const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const StudentsAdvisingNotesContent = ({studentId}:Props) => {
     //get student by ID 
     //(find all notes with student ID, regardless of which advisor made it)
     //can include filter to filter based on notes made by that advisor
 
-    const {data:student, isLoading, isError} = useGetStudentByStudentIdQuery(studentId)
+    const {data:student, isLoading, isError} = useGetStudentByStudentIdQuery({studentId:studentId,
+    timeZone:timeZone,})
 
     const {data:advisingNotes, isLoading:notesLoading, isError:notesError} = useGetStudentAdvisingNotesForAdvisorQuery(studentId)
 

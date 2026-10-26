@@ -1,7 +1,6 @@
 import {CreateStudentData} from "@/validators/api/studentApiValidators"
-
 import { ApiSlice } from "@/redux/services/apiSlice";
-import { UserRole } from "@/types/types";
+import { UserRole,AppointmentStatus } from "@/types/types";
 
 export interface StudentResponseData{
  completedCredits: number;
@@ -39,7 +38,7 @@ export interface StudentSearchResponseData{
         remainingCredits:number;
         requiredCredits:number;
         nextAppointment:string;
-        nextAppointmentStatus:string;
+        nextAppointmentStatus:AppointmentStatus
         studentProfileImage:string;
 }
 interface StudentSearchQueryParams{

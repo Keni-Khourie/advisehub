@@ -7,7 +7,7 @@ import { getDummyAdvisorById } from '@/dummyData/dummyUtils';
 const AppointmentReviewCard = () => {
      const contextData = useContext(StudentScheduleAppointmentContext)
     //fetch advisor by id based on advisor ID in context
-    const selectedAdvisor = getDummyAdvisorById(contextData.appointmentDetails.advisorId!)
+    const selectedAdvisor = getDummyAdvisorById(parseInt(contextData.appointmentDetails.advisorId!))
   return (
      <div className="bg-white border w-full md:w-2/3 rounded-lg px-3 pt-8 pb-12 flex flex-col gap-y-5">
         <div className="flex flex-col gap-y-2">
