@@ -5,6 +5,9 @@ import StudentScheduleAppointmentContent from "./StudentScheduleAppointmentConte
 import{getStudentAppointmentScheduleComponentDetailsByView } from '@/lib/utilityFunctions';
 import {AdvisorResponseForStudent} from "@/redux/features/main/advisorApiSlice"
 import { AdvisorAvailabilityStudentListData } from "@/redux/features/main/availabilityApiSlice";
+import { RootState } from "@/redux/store";
+import { useAppSelector } from "@/redux/reduxHooks";
+import {useRouter} from "next/navigation"
 //this would be the data sent to the backend
 interface AppointmentDetails{
   appointmentReason:AdvisorSpecialization|undefined;
@@ -44,6 +47,9 @@ export const StudentScheduleAppointmentContext = createContext<StudentScheduleAp
   setAppointmentDetails:()=>{},
 })
 const StudentAppointmentSchedule = () => {
+  const user = useAppSelector((state: RootState) => state.user);
+  const router = useRouter()
+  if(user.role==="ADVISOR"){router.push("/dashboard")}
     const [componentDetails, setComponentDetails] = useState<StudentScheduleAppointmentComponentDetail>(studentScheduleAppointmentLanding)
     const [appointmentDetails, setAppointmentDetails] = useState<AppointmentDetails>({
       appointmentReason:undefined,
@@ -56,6 +62,7 @@ const StudentAppointmentSchedule = () => {
     availabilityId:undefined,
     availability:undefined,
     })
+
   return (
     <StudentScheduleAppointmentContext.Provider value={{componentDetails, setComponentDetails, appointmentDetails, setAppointmentDetails}}>
       <StudentScheduleAppointmentContent/>
