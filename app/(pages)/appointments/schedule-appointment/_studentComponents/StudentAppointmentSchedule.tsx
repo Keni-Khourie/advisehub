@@ -75,10 +75,3 @@ export default StudentAppointmentSchedule
 
 //#20B8B4
 
-interface jj {
-  appointmentReason:AdvisorSpecialization
-  advisorId: string //advisor's 8-digit ID
-  availabilityId:number|undefined //the id for the chosen availability slot
-  generalAdvisingQuestion?:string|undefined;
-  
-}
