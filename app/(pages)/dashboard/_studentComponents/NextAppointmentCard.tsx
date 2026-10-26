@@ -28,7 +28,7 @@ const NextAppointmentCard = ({data, isLoading, isError}:Props) => {
           </div>
          
             <p className="font-thin text-ahTextGrey text-sm">{`${data.advisorTitle} ${data.advisorFullName} • ${data.advisorSpecialization}`}</p>
-          <Badge className={cn("font-semibold py-2 opacity-60", data.appointmentStatus==="SCHEDULED"?"bg-green-100 px-3 text-green-600 ":data.appointmentStatus==="CANCELLED"?"bg-red-100 text-red-500":"bg-stone-200 text-stone-500")}>{data.appointmentStatus.toLocaleLowerCase()}</Badge>
+          <Badge className={cn("font-semibold py-2 opacity-60", data.appointmentStatus==="SCHEDULED"?"bg-blue-200 px-3 text-blue-500 ":data.appointmentStatus==="CANCELLED"?"bg-red-100 text-red-500":"bg-stone-200 text-stone-500")}>{data.appointmentStatus.toLocaleLowerCase()}</Badge>
         </div>)}
         {data==null && <p>No upcoming meetings</p>}
         <div className="w-[40%]">
