@@ -19,22 +19,28 @@ enum AppointmentStatus {
   CANCELLED
 }
 
+enum NotificationType {
+  APPOINTMENT_SCHEDULED
+  APPOINTMENT_CANCELLED
+}
+
 model User {
-  id                Int      @id @default(autoincrement())
-  email             String   @unique
+  id                Int            @id @default(autoincrement())
+  email             String         @unique
   firstName         String
   lastName          String
   passwordHash      String? //only for admins
   // Microsoft Entra identity
   microsoftTenantId String?
   microsoftObjectId String?
+  notifications     Notification[]
   role              Role?
   image             String?
   student           Student?
   advisor           Advisor?
   admin             Admin?
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
 
   @@unique([microsoftTenantId, microsoftObjectId])
 }
@@ -134,8 +140,9 @@ model Appointment {
   advisor          Advisor               @relation(fields: [advisorId], references: [id], onDelete: Restrict)
   specializationId Int
   specialization   AdvisorSpecialization @relation(fields: [specializationId], references: [id], onDelete: Restrict)
-  availabilityId   Int? @unique
+  availabilityId   Int?                  @unique
   availability     AdvisorAvailability?  @relation(fields: [availabilityId], references: [id], onDelete: SetNull)
+  notifications    Notification[]
   createdAt        DateTime              @default(now())
   updatedAt        DateTime              @updatedAt
 
@@ -163,4 +170,19 @@ model DegreeClassification {
   degrees      Degree[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+}
+
+model Notification {
+  id            Int              @id @default(autoincrement())
+  type          NotificationType
+  title         String
+  message       String
+  isRead        Boolean          @default(false)
+  userId        Int
+  user          User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  appointmentId Int?
+  appointment   Appointment?     @relation(fields: [appointmentId], references: [id], onDelete: SetNull)
+  createdAt     DateTime         @default(now())
+
+  @@index([userId, isRead, createdAt])
 }

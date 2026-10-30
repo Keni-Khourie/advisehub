@@ -15,6 +15,7 @@ import {useCancelAppointmentMutation} from "@/redux/features/main/appointmentApi
 import { toast } from "sonner";
 import { queryErrorResponse } from "@/lib/utilityComponents";
 import {  customToast } from "@/lib/utilityComponents";
+const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 interface Props{
     dialogOpen:boolean;
     setDialogOpen:Dispatch<SetStateAction<boolean>>;
@@ -34,7 +35,7 @@ const CancellationDialog = ({dialogOpen, setDialogOpen, appointmentDate, type, s
         setDialogOpen(false)
     }
     const handleSubmit = ()=>{ 
-      toast.promise(cancelAppointment(appointmentId).unwrap().then((resp)=>{
+      toast.promise(cancelAppointment({appointmentId, timeZone}).unwrap().then((resp)=>{
         console.log(resp)
         if(resp.id){
           setLoadingActive(false)

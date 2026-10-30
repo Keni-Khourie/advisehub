@@ -60,7 +60,8 @@ export const ModelName = {
   AdvisorNote: 'AdvisorNote',
   Appointment: 'Appointment',
   AdvisorAvailability: 'AdvisorAvailability',
-  DegreeClassification: 'DegreeClassification'
+  DegreeClassification: 'DegreeClassification',
+  Notification: 'Notification'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -214,6 +215,20 @@ export const DegreeClassificationScalarFieldEnum = {
 } as const
 
 export type DegreeClassificationScalarFieldEnum = (typeof DegreeClassificationScalarFieldEnum)[keyof typeof DegreeClassificationScalarFieldEnum]
+
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  title: 'title',
+  message: 'message',
+  isRead: 'isRead',
+  userId: 'userId',
+  appointmentId: 'appointmentId',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
 export const SortOrder = {

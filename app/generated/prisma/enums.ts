@@ -25,3 +25,11 @@ export const AppointmentStatus = {
 } as const
 
 export type AppointmentStatus = (typeof AppointmentStatus)[keyof typeof AppointmentStatus]
+
+
+export const NotificationType = {
+  APPOINTMENT_SCHEDULED: 'APPOINTMENT_SCHEDULED',
+  APPOINTMENT_CANCELLED: 'APPOINTMENT_CANCELLED'
+} as const
+
+export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]

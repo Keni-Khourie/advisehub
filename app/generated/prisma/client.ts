@@ -91,3 +91,8 @@ export type AdvisorAvailability = Prisma.AdvisorAvailabilityModel
  * 
  */
 export type DegreeClassification = Prisma.DegreeClassificationModel
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel
