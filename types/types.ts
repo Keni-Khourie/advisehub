@@ -30,6 +30,7 @@ export type StudentScheduleAppointmentView = "AdvisorSelection"|"AppointmentConf
 export type StudentScheduleAppointmentSection = "Details"|"Time"|"Review"|"none"
 export type StudentScheduleAppointmentStep = "Reason"|"Advisor"|"Date & Time"|"Review"|"Success"|"none"
 
+export type NotificationType = "APPOINTMENT_SCHEDULED"|"APPOINTMENT_CANCELLED"
 export interface StudentScheduleAppointmentComponentDetail{
     header:string;
     subtitle?:string;
