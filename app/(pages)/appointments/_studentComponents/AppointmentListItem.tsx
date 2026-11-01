@@ -20,6 +20,7 @@ const AppointmentListItem = ({ type, data, isLoading }: Props) => {
         <div className="flex gap-x-5">
           <div className="font-bold bg-ahGrey flex flex-col justify-center text-center border w-22 h-22 rounded-sm">
             {format(data.date, "MMM dd").toLocaleUpperCase()}
+            {type==="Past Meetings" && (<p className="text-xs font-thin text-ahTextGrey">{format(data.date, "yyyy")}</p>)}
           </div>
 
           <div>
