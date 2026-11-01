@@ -5,6 +5,7 @@ import SidebarItem from "./SidebarItem";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import UserAvatar from "./UserAvatar";
+import NotificationBell from "./NotificationBell"
 import {SidebarItemDetails}from "@/types/types"
 import {studentSidebarItems, advisorSidebarItems, adminSidebarItems} from "@/constants"
 import { RootState } from "@/redux/store";
@@ -51,8 +52,11 @@ const Sidebar = () => {
         </div>
         <div className="flex flex-col gap-y-4">
           <Separator className="border " orientation="horizontal" />
-
+          <div className="flex flex-col gap-y-2 w-full">
+            <div className="w-full flex justify-start ps-3"><NotificationBell/></div>
           <UserAvatar />
+          </div>
+            
         </div>
       </div>
     </div>

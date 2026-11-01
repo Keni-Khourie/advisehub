@@ -22,6 +22,10 @@ export interface PaginatedNotificationResponse{
     },
     unreadCount:number
 }
+export interface NonPaginatedNotificationResponse{
+    notification:NotificationResponse[],
+    unreadCount:number
+}
 
 const notificationsApiSlice = ApiSlice.injectEndpoints({
     endpoints:(builder)=>({
@@ -40,10 +44,18 @@ const notificationsApiSlice = ApiSlice.injectEndpoints({
             query:(notificationId)=>({
                 url:`/notifications/${notificationId}`,
                 method:"PATCH"
-            })
+            }),
+            invalidatesTags: (data)=>data? ["Notifications", {type: "Notifications", id:data.id}]:[]
+        }),
+        getUnreadNotifications:builder.query<NonPaginatedNotificationResponse, void>({
+            query:()=>({
+                url:"/notifications/unread",
+                method:"GET"
+            }),
+            providesTags:["Notifications"]
         })
     })
 })
 
-export const {} =notificationsApiSlice
+export const {useGetNotificationsQuery, useMarkNotificationAsReadMutation, useGetUnreadNotificationsQuery} =notificationsApiSlice
 export default notificationsApiSlice.reducer
