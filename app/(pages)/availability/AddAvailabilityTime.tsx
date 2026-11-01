@@ -12,7 +12,7 @@ import {
 import WhiteButton from '@/customUI/WhiteButton';
 import { Input } from "@/components/ui/input";
 import {advisorAvailableTimeOptions} from "@/constants"
-import {format} from "date-fns"
+import {format, startOfDay, isBefore} from "date-fns"
 import { combineDateAndTime } from '@/lib/utilityDateFunctions';
 
 
@@ -20,7 +20,11 @@ import { combineDateAndTime } from '@/lib/utilityDateFunctions';
 const AddAvailabilityTime = () => {
 
     const contextData = useContext(AdvisorAvailabilityContext)
-
+    const today = startOfDay(new Date());
+     function isPastDay(date: Date) {
+    return isBefore(startOfDay(date), today);
+  }
+    const disabled = isPastDay(contextData.availabilityData.date)
     const setDate = (e:ChangeEvent<HTMLInputElement>)=>{
         
         const date = new Date(e.target.value)
@@ -69,7 +73,7 @@ const AddAvailabilityTime = () => {
             }
         </div>
         <div className="flex justify-center md:justify-end">
-            <WhiteButton text="+ Add Time" additionalStyle="border border-stone-200" onClick={handleSubmit}/>
+            <WhiteButton text="+ Add Time" additionalStyle="border border-stone-200" onClick={handleSubmit} disabled={disabled}/>
         </div>
     </div>
   )

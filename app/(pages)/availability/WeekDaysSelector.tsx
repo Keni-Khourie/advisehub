@@ -1,16 +1,16 @@
 "use client"
 import {useContext, useState, useMemo} from "react"
 import { AdvisorAvailabilityContext } from "./AdvisorAvailability";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 import {cn} from "@/lib/utils"
 import {
   addDays,
   addWeeks,
   format,
-  isBefore,
   isSameDay,
   startOfDay,
   startOfWeek,
+  subWeeks,
 } from "date-fns";
 import {Button} from "@/components/ui/button"
 const WeekDaysSelector = () => {
@@ -22,9 +22,9 @@ const WeekDaysSelector = () => {
   const weekStart = startOfWeek(selectedDate, {
     weekStartsOn: 1,
   });
-  function isPastDay(date: Date) {
-    return isBefore(startOfDay(date), today);
-  }
+  // function isPastDay(date: Date) {
+  //   return isBefore(startOfDay(date), today);
+  // }
   const weekDays = useMemo(
     () =>
       Array.from({ length: 7 }, (_, index) =>
@@ -34,6 +34,15 @@ const WeekDaysSelector = () => {
   );
   function goToNextWeek() {
     setSelectedDate((previous) => addWeeks(previous, 1));
+    contextData.setAvailabilityData((previous)=>({...contextData.availabilityData, date:addWeeks(startOfWeek(previous.date, {
+    weekStartsOn: 1,
+  }),1)}))
+  }
+  function goToPreviousWeek(){
+    setSelectedDate((previous) => subWeeks(previous, 1));
+    contextData.setAvailabilityData((previous)=>({...contextData.availabilityData, date:subWeeks(startOfWeek(previous.date, {
+    weekStartsOn: 1,
+  }),1)}))
   }
   const setAvailabilityDate = (date:Date)=>{
     setSelectedDate(date)
@@ -54,27 +63,27 @@ const WeekDaysSelector = () => {
                 )}`}
         </p>
         <div className="flex items-center justify-between w-full">
+          <Button className="bg-transparent hover:bg-transparent text-black cursor-pointer" onClick={goToPreviousWeek}>
+                <ChevronLeft size={40} />
+            </Button>
             <div className="flex items-center gap-x-5 w-full">
                 {weekDays.map((day) => {
-            const selected = isSameDay(day, selectedDate);
-            const disabled = isPastDay(day);
+            const selected = isSameDay(day, contextData.availabilityData.date);
+            // const disableButton = isPastDay(day);
 
             return (
               <Button
                 key={day.toISOString()}
                 type="button"
-                disabled={disabled}
+    
                 aria-pressed={selected}
                 onClick={() => setAvailabilityDate(day)}
                 className={cn(
-                  "bg-white border rounded-lg px-4 py-6 text-center w-1/6 cursor-pointer hover:bg-stone-100 text-ahTextBlack",
+                  "bg-white border rounded-lg px-4 py-6 text-center w-1/6 cursor-pointer hover:bg-stone-100 text-ahTextBlack disabled:cursor-not-allowed disabled:opacity-40",
                   (format(day, "ii")==="06"||format(day, "ii")==="07") && "hidden",
                   selected
                     ? "border-ahGreen bg-white text-ahGreen font-semibold"
                     : "border-stone-200 bg-white hover:border-ahGreen",
-                  disabled
-                    ? "cursor-not-allowed opacity-40"
-                    : "cursor-pointer",
             )}
               >
                 {format(day, "iii d")}
