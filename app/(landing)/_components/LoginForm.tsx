@@ -97,7 +97,7 @@ const trySubmitForm = async (values: LoginFormData) => {
                     {...field}
                     id="email"
                     aria-invalid={fieldState.invalid}
-                    placeholder="John.Smith@@baforcemultiplier.com"
+                    placeholder="John.Smith@baforcemultiplier.com"
                     type="text"
                     className="w-full rounded-md h-12"
                   />

@@ -11,7 +11,7 @@ appointmentId:number
 createdAt:number
 }
 export interface PaginatedNotificationResponse{
-    notification:NotificationResponse[],
+    notifications:NotificationResponse[],
     pagination:{
         page:number;
         limit:number;
@@ -23,7 +23,7 @@ export interface PaginatedNotificationResponse{
     unreadCount:number
 }
 export interface NonPaginatedNotificationResponse{
-    notification:NotificationResponse[],
+    notifications:NotificationResponse[],
     unreadCount:number
 }
 
